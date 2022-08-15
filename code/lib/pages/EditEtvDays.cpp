@@ -15,7 +15,7 @@ public:
         KeypadButton key = controller->keypad();
         if(key != NoBtn) redraw = true;
 
-        switch (key) {
+        switch(key) {
             case Cancel:
                 if(etvEdit >= 2) {
                     etvEdit--;

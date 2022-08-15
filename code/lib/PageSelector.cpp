@@ -5,6 +5,7 @@
 #include "pages/Page.cpp"
 #include "pages/Home.cpp"
 #include "pages/Settings1.cpp"
+#include "pages/EditClock.cpp"
 #include "pages/Settings2.cpp"
 #include "pages/EditEtvTime.cpp"
 #include "pages/Settings3.cpp"
@@ -22,6 +23,7 @@ private:
 
     Home* home;
     Settings1* settings1;
+    EditClock* editClock;
     Settings2* settings2;
     EditEtvTime* editEtvTime;
     Settings3* settings3;
@@ -41,10 +43,11 @@ public:
 
         home = new Home(controller);
         settings1 = new Settings1(controller);
-        manualEtv = new ManualEtv(controller);
+        editClock = new EditClock(controller);
         settings2 = new Settings2(controller);
         editEtvTime = new EditEtvTime(controller);
         settings3 = new Settings3(controller);
+        manualEtv = new ManualEtv(controller);
         settings4 = new Settings4(controller);
         settings5 = new Settings5(controller);
         settings6 = new Settings6(controller);
@@ -64,6 +67,9 @@ public:
                 break;
             case SettingsPage1:
                 activePage = settings1;
+                break;
+            case EditClockPage:
+                activePage = editClock;
                 break;
             case SettingsPage2:
                 activePage = settings2;

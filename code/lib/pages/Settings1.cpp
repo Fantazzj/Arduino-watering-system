@@ -20,7 +20,7 @@ public:
             case Up:
                 return SettingsPage2;
             case Confirm:
-                return Stay; //TODO add page
+                    return EditClockPage;
             default:
                 return Stay;
         }

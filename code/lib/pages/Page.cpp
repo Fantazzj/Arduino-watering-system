@@ -7,6 +7,7 @@ enum PageNum: int{
     Stay,
     HomePage,
     SettingsPage1,
+    EditClockPage,
     SettingsPage2,
     EditEtvTimePage,
     SettingsPage3,

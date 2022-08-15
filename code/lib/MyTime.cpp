@@ -1,7 +1,7 @@
 #ifndef MY_TIME_CPP
 #define MY_TIME_CPP
 
-enum Dow : unsigned int {
+enum Dow : int {
     Monday = 1,
     Tuesday,
     Wednesday,
@@ -11,7 +11,7 @@ enum Dow : unsigned int {
     Sunday
 };
 
-enum Month : unsigned int {
+enum Month : int {
     January = 1,
     February,
     March,

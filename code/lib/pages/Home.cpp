@@ -12,7 +12,7 @@ private:
 public:
     Home(PageController* controller): Page(controller) {}
 
-    PageNum exec() {
+    PageNum exec() { //TODO convert in switch
         KeypadButton key = controller->keypad();
         if(key != NoBtn) redraw = true;
 

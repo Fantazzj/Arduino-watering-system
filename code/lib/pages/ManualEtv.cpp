@@ -17,7 +17,7 @@ public:
         if(key != NoBtn) redraw = true;
 
         if(controller->etvOn == 0) {
-            if (key == Up) {
+            if (key == Up) { //TODO convert in switch
                 num++;
                 if(num > controller->etvNum) num = 1;
             }
