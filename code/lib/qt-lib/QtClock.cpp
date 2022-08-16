@@ -2,6 +2,7 @@
 #define QT_CLOCK_CPP
 
 #include "lib/Clock.cpp"
+#include <QString>
 
 class QtClock: public Clock {
 private:
@@ -29,7 +30,11 @@ public:
         return time;
     }
 
-    void setTime(MyTime time){}
+    void setTime(MyTime time){
+        w->printOnConsole(QString::number(time.hour) + ":" + QString::number((time.min)));
+        w->printOnConsole(QString::number(time.dow));
+        w->printOnConsole(QString::number(time.date) + "/" + QString::number(time.mon) + "/" + QString::number(time.sec));
+    }
 
 protected:
 
