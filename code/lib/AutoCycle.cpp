@@ -20,10 +20,14 @@ public:
         this->myDisplay = myDisplay;
         this->myClock = myClock;
         this->myEtv = myEtv;
+
+        tStart.hour = 109;
+        tStart.min = 30;
     }
 
     void exec() {
-
+        if(tStart.hour < 19) myEtv[1]->turnOn();
+        else myEtv[1]->turnOff();
     }
 
 protected:

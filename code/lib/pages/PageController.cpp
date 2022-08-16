@@ -65,6 +65,9 @@ public:
     void clockSetTime(MyTime timeIn) { myClock->setTime(timeIn); }
     void autoCycleSetWatered(bool mode) { autoCycle->watered = mode; }
     bool autoCycleGetWatered() { return autoCycle->watered; }
+    void autoCycleSetTStart(MyTime timeIn) { autoCycle->tStart = timeIn; }
+    MyTime autoCycleGetTStart() { return autoCycle->tStart; }
+
 
 protected:
 };

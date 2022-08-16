@@ -117,9 +117,9 @@ void setup() {
     myEtv[8] = new HwValve(myClock, etvsPin[8], 1, 1);
     myEtv[9] = new HwValve(myClock, etvsPin[9], 1, 1);
 
-    autoCycle = new AutoCycle();
+    autoCycle = new AutoCycle(myKeypad, myDebugger, myDisplay, myClock, myEtv);
 
-    pageSelector = new PageSelector(myKeypad, myDebugger, myDisplay, myClock, myEtv);
+    pageSelector = new PageSelector(myKeypad, myDebugger, myDisplay, myClock, myEtv, autoCycle);
 }
 #endif
 //endregion
@@ -130,7 +130,7 @@ void loop() {
 
     pageSelector->exec();
 
-    autoCycle->exec();
+    //autoCycle->exec();
 
 }
 

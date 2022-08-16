@@ -14,7 +14,7 @@
 #include "pages/EditEtvTime.cpp"
 
 #include "pages/Settings3.cpp"
-
+#include "pages/EditTStart.cpp"
 
 #include "pages/Settings4.cpp"
 #include "pages/ManualEtv.cpp"
@@ -39,7 +39,7 @@ private:
     EditEtvTime* editEtvTime;
 
     Settings3* settings3;
-
+    EditTStart* editTStart;
 
     Settings4* settings4;
     ManualEtv* manualEtv;
@@ -67,7 +67,7 @@ public:
         editEtvTime = new EditEtvTime(controller);
 
         settings3 = new Settings3(controller);
-
+        editTStart = new EditTStart(controller);
 
         settings4 = new Settings4(controller);
         manualEtv = new ManualEtv(controller);
@@ -106,7 +106,7 @@ public:
                 activePage = settings3;
                 break;
             case EditTStartPage:
-                //TODO activePage = ;
+                activePage = editTStart;
                 break;
             case SettingsPage4:
                 activePage = settings4;
