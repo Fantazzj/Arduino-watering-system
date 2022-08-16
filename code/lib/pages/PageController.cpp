@@ -22,14 +22,16 @@ private:
     Display* myDisplay;
     Clock* myClock;
     Valve** myEtv;
+    AutoCycle* autoCycle;
 
 public:
-    PageController(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[]) {
+    PageController(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
         this->myKeypad = myKeypad;
         this->myDebugger = myDebugger;
         this->myDisplay = myDisplay;
         this->myClock = myClock;
         this->myEtv = myEtv;
+        this->autoCycle = autoCycle;
     }
 
     KeypadButton keypad() {
@@ -61,6 +63,8 @@ public:
     int getEtvMinOn(int num) { return myEtv[num]->minOn; }
     MyTime clockGetTime() { return myClock->getTime(); }
     void clockSetTime(MyTime timeIn) { myClock->setTime(timeIn); }
+    void autoCycleSetWatered(bool mode) { autoCycle->watered = mode; }
+    bool autoCycleGetWatered() { return autoCycle->watered; }
 
 protected:
 };

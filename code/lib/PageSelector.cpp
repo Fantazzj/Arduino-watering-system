@@ -1,6 +1,8 @@
 #ifndef PAGE_SELECTOR_CPP
 #define PAGE_SELECTOR_CPP
 
+#include "AutoCycle.cpp"
+
 #include "pages/PageController.cpp"
 #include "pages/Page.cpp"
 #include "pages/Home.cpp"
@@ -52,9 +54,9 @@ private:
     PageNum oldPage = newPage;
 
 public:
-    PageSelector(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[]) {
+    PageSelector(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
 
-        this->controller = new PageController(myKeypad, myDebugger, myDisplay, myClock, myEtv);
+        this->controller = new PageController(myKeypad, myDebugger, myDisplay, myClock, myEtv, autoCycle);
 
         home = new Home(controller);
 

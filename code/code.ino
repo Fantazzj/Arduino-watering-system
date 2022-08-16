@@ -11,6 +11,7 @@
 #include "lib/MyString.cpp"
 #include "lib/Valve.cpp"
 #include "lib/PageSelector.cpp"
+#include "lib/AutoCycle.cpp"
 
 Keypad* myKeypad;
 Debugger* myDebugger;
@@ -27,6 +28,7 @@ Valve* myEtv8;
 Valve* myEtv9;
 Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6, myEtv7, myEtv8, myEtv9};
 PageSelector* pageSelector;
+AutoCycle* autoCycle;
 
 //region QTDESKTOP
 #ifdef QTDESKTOP
@@ -57,7 +59,8 @@ void setup(ControlUnit* w) {
 
     w->setKeypad(myKeypad);
 
-    pageSelector = new PageSelector(myKeypad, myDebugger, myDisplay, myClock, myEtv);
+    autoCycle = new AutoCycle(myKeypad, myDebugger, myDisplay, myClock, myEtv);
+    pageSelector = new PageSelector(myKeypad, myDebugger, myDisplay, myClock, myEtv, autoCycle);
 
 }
 
@@ -114,8 +117,9 @@ void setup() {
     myEtv[8] = new HwValve(myClock, etvsPin[8], 1, 1);
     myEtv[9] = new HwValve(myClock, etvsPin[9], 1, 1);
 
+    autoCycle = new AutoCycle();
+
     pageSelector = new PageSelector(myKeypad, myDebugger, myDisplay, myClock, myEtv);
-    
 }
 #endif
 //endregion
@@ -125,6 +129,8 @@ void loop() {
     pageSelector->show();
 
     pageSelector->exec();
+
+    autoCycle->exec();
 
 }
 
