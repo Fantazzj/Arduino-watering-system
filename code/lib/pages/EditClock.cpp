@@ -76,6 +76,7 @@ public:
                 editPhase++;
                 if(editPhase >= 6) {
                     controller->clockSetTime(newTime);
+                    editPhase = 1;
                     return HomePage;
                 }
                 else return Stay;
