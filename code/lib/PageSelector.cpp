@@ -4,14 +4,22 @@
 #include "pages/PageController.cpp"
 #include "pages/Page.cpp"
 #include "pages/Home.cpp"
+
 #include "pages/Settings1.cpp"
 #include "pages/EditClock.cpp"
+
 #include "pages/Settings2.cpp"
 #include "pages/EditEtvTime.cpp"
+
 #include "pages/Settings3.cpp"
-#include "pages/ManualEtv.cpp"
+
+
 #include "pages/Settings4.cpp"
+#include "pages/ManualEtv.cpp"
+
 #include "pages/Settings5.cpp"
+#include "pages/EditSRWatered.cpp"
+
 #include "pages/Settings6.cpp"
 #include "pages/EditEtvDays.cpp"
 
@@ -24,12 +32,19 @@ private:
     Home* home;
     Settings1* settings1;
     EditClock* editClock;
+
     Settings2* settings2;
     EditEtvTime* editEtvTime;
+
     Settings3* settings3;
-    ManualEtv* manualEtv;
+
+
     Settings4* settings4;
+    ManualEtv* manualEtv;
+
     Settings5* settings5;
+    EditSRWatered* editSrWatered;
+
     Settings6* settings6;
     EditEtvDays* editEtvDays;
 
@@ -42,14 +57,22 @@ public:
         this->controller = new PageController(myKeypad, myDebugger, myDisplay, myClock, myEtv);
 
         home = new Home(controller);
+
         settings1 = new Settings1(controller);
         editClock = new EditClock(controller);
+
         settings2 = new Settings2(controller);
         editEtvTime = new EditEtvTime(controller);
+
         settings3 = new Settings3(controller);
-        manualEtv = new ManualEtv(controller);
+
+
         settings4 = new Settings4(controller);
+        manualEtv = new ManualEtv(controller);
+
         settings5 = new Settings5(controller);
+        editSrWatered = new EditSRWatered(controller);
+
         settings6 = new Settings6(controller);
         editEtvDays = new EditEtvDays(controller);
 
@@ -80,14 +103,20 @@ public:
             case SettingsPage3:
                 activePage = settings3;
                 break;
-            case ManualEtvPage:
-                activePage = manualEtv;
+            case EditTStartPage:
+                //TODO activePage = ;
                 break;
             case SettingsPage4:
                 activePage = settings4;
                 break;
+            case ManualEtvPage:
+                activePage = manualEtv;
+                break;
             case SettingsPage5:
                 activePage = settings5;
+                break;
+            case EditSRWateredPage:
+                activePage = editSrWatered;
                 break;
             case SettingsPage6:
                 activePage = settings6;

@@ -20,7 +20,7 @@ public:
             case Up:
                 return SettingsPage4;
             case Confirm:
-                return Stay; //TODO add page
+                return EditTStartPage;
             default:
                 return Stay;
         }

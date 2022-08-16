@@ -20,7 +20,7 @@ public:
             case Up:
                 return SettingsPage6;
             case Confirm:
-                return Stay; //TODO add page
+                return EditSRWateredPage;
             default:
                 return Stay;
         }

@@ -13,7 +13,9 @@ enum PageNum: int{
     SettingsPage3,
     ManualEtvPage,
     SettingsPage4,
+    EditSRWateredPage,
     SettingsPage5,
+    EditTStartPage,
     SettingsPage6,
     EditEtvDaysPage
 };
