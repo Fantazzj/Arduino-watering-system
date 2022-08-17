@@ -51,7 +51,8 @@ public:
         if (state) myDisplay->dropSym();
         else myDisplay->noDropSym();
     }
-    int etvOn = 0;
+    int getEtvOn() { return autoCycle->etvOn; }
+    void setEtvOn(int num) { autoCycle->etvOn = num; }
     const int etvNum = 9;
     void setEtvState(int num, bool state) {
         if(state) myEtv[num]->turnOn();

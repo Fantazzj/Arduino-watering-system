@@ -12,7 +12,10 @@ private:
 
 public:
     MyTime tStart;
+    MyTime newTime;
     bool watered = false;
+    bool started = false;
+    int etvOn = 0;
 
     AutoCycle(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[]) {
         this->myKeypad = myKeypad;
@@ -21,13 +24,31 @@ public:
         this->myClock = myClock;
         this->myEtv = myEtv;
 
-        tStart.hour = 109;
+        tStart.hour = 14;
         tStart.min = 30;
     }
 
     void exec() {
-        if(tStart.hour < 19) myEtv[1]->turnOn();
-        else myEtv[1]->turnOff();
+
+        newTime = myClock->getTime();
+
+        if (MyTime::isGreaterOrEq(newTime, tStart) && !watered && !started) {
+            started = true;
+            etvOn = 1;
+            myEtv[etvOn]->turnOn();
+        }
+
+        if (started) {
+            if (MyTime::elapsedMin(myEtv[etvOn]->tOn, newTime) >= myEtv[etvOn]->minOn) {
+                myEtv[etvOn]->turnOff();
+                etvOn++;
+                if (etvOn >= 10) {
+                    etvOn = 0;
+                    watered = true;
+                    started = false;
+                } else myEtv[etvOn]->turnOn();
+            }
+        }
     }
 
 protected:

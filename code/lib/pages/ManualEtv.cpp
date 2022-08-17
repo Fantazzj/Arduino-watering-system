@@ -18,7 +18,7 @@ public:
         KeypadButton key = controller->keypad();
         if(key != NoBtn) redraw = true;
 
-        if(controller->etvOn == 0) {
+        if(controller->getEtvOn() == 0) {
             if (key == Up) { //TODO convert in switch
                 num++;
                 if(num > controller->etvNum) num = 1;
@@ -36,7 +36,7 @@ public:
 
             if (key == Confirm) {
                 controller->setEtvState(num, true);
-                controller->etvOn = num;
+                controller->setEtvOn(num);
                 return HomePage;
             }
         }
@@ -46,8 +46,8 @@ public:
             }
 
             if (key == Confirm) {
-                controller->setEtvState(controller->etvOn, false);
-                controller->etvOn = 0;
+                controller->setEtvState(controller->getEtvOn(), false);
+                controller->setEtvOn(0);
                 return HomePage;
             }
         }
@@ -58,8 +58,8 @@ public:
 
     void show() {
         if(redraw) {
-            if (controller->etvOn == 0) controller->displayPrint("Accendi elettrovalvola", num, "");
-            else controller->displayPrint("Spegni elettrovalvola", controller->etvOn, "");
+            if (controller->getEtvOn() == 0) controller->displayPrint("Accendi elettrovalvola", num, "");
+            else controller->displayPrint("Spegni elettrovalvola", controller->getEtvOn(), "");
             redraw = false;
         }
     }

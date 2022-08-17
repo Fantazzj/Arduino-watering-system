@@ -47,15 +47,15 @@ void setup(ControlUnit* w) {
     myDisplay = new QtDisplay(w, 16, 2);
     myClock = new QtClock(w);
 
-    myEtv[1] = new QtValve(w, myClock, 1, 5, 1);
-    myEtv[2] = new QtValve(w, myClock, 2, 5, 1);
-    myEtv[3] = new QtValve(w, myClock, 3, 5, 1);
-    myEtv[4] = new QtValve(w, myClock, 4, 5, 1);
-    myEtv[5] = new QtValve(w, myClock, 5, 5, 1);
-    myEtv[6] = new QtValve(w, myClock, 6, 5, 1);
-    myEtv[7] = new QtValve(w, myClock, 7, 5, 1);
-    myEtv[8] = new QtValve(w, myClock, 8, 5, 1);
-    myEtv[9] = new QtValve(w, myClock, 9, 5, 1);
+    myEtv[1] = new QtValve(w, myClock, 1, 1, 1);
+    myEtv[2] = new QtValve(w, myClock, 2, 0, 1);
+    myEtv[3] = new QtValve(w, myClock, 3, 0, 1);
+    myEtv[4] = new QtValve(w, myClock, 4, 0, 1);
+    myEtv[5] = new QtValve(w, myClock, 5, 0, 1);
+    myEtv[6] = new QtValve(w, myClock, 6, 0, 1);
+    myEtv[7] = new QtValve(w, myClock, 7, 0, 1);
+    myEtv[8] = new QtValve(w, myClock, 8, 0, 1);
+    myEtv[9] = new QtValve(w, myClock, 9, 1, 1);
 
     w->setKeypad(myKeypad);
 
@@ -130,7 +130,7 @@ void loop() {
 
     pageSelector->exec();
 
-    //autoCycle->exec();
+    autoCycle->exec();
 
 }
 
