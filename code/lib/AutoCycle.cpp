@@ -12,12 +12,13 @@ private:
 
 public:
     MyTime tStart;
+    MyTime tChange;
     MyTime newTime;
     bool watered = false;
     bool started = false;
     int etvOn = 0;
 
-    AutoCycle(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[]) {
+    AutoCycle(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], int etvNum) {
         this->myKeypad = myKeypad;
         this->myDebugger = myDebugger;
         this->myDisplay = myDisplay;
@@ -26,6 +27,21 @@ public:
 
         tStart.hour = 14;
         tStart.min = 30;
+        int minToEndDay = tStart.hour*60 + tStart.min;
+
+        int minToWater = 0;
+
+        for(int i=1; i<=etvNum; i++) minToWater += myEtv[i]->minOn;
+
+        if(minToEndDay + minToWater >= 1440 /* 24*60 */) {
+            tChange.hour = 0;
+            tChange.min = 0;
+        }
+        else {
+            tChange.hour = 12;
+            tChange.min = 0;
+        }
+
     }
 
     void exec() {
@@ -49,6 +65,9 @@ public:
                 } else myEtv[etvOn]->turnOn();
             }
         }
+
+        if(MyTime::isEqual(tChange, newTime)) watered=false;
+
     }
 
 protected:
