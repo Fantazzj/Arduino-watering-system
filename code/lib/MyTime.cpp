@@ -47,9 +47,18 @@ public:
         else return false;
     }
 
-    /*bool operator!=(const MyTime t1, const MyTime t2) {
-
-    }*/
+    static bool isGreaterOrEq(MyTime t1, MyTime t2) {
+        if(t1.hour > t2.hour) return true;
+        else if(t1.hour == t2.hour) {
+            if(t1.min > t2.min) return true;
+            else if(t1.min == t2.min) {
+                if(t1.min >= t2.sec) return true;
+                else return false;
+            }
+            else return false;
+        }
+        else return false;
+    }
 
     static int elapsedHours(MyTime t1, MyTime t2) { //Only for <=24h
         int hours;
