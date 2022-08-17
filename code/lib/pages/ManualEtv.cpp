@@ -48,6 +48,8 @@ public:
             if (key == Confirm) {
                 controller->setEtvState(controller->getEtvOn(), false);
                 controller->setEtvOn(0);
+                controller->autoCycleSetWatered(true);
+                controller->autoCycleSetStarted(false);
                 return HomePage;
             }
         }
