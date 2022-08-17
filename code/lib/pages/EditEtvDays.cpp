@@ -9,7 +9,10 @@ private:
     int daysEdit = controller->getEtvDays(1);
 
 public:
-    EditEtvDays(PageController *controller) : Page(controller) {}
+    EditEtvDays(PageController *controller) : Page(controller) {
+        etvEdit = 1;
+        daysEdit = controller->getEtvDays(1);
+    }
 
     PageNum exec() {
         KeypadButton key = controller->keypad();
@@ -42,11 +45,8 @@ public:
             case Confirm:
                 controller->setEtvDays(etvEdit++, daysEdit);
                 daysEdit = controller->getEtvDays(etvEdit);
-                if(etvEdit > controller->etvNum) {
-                    etvEdit = 1;
-                    daysEdit = controller->getEtvDays(1);
+                if(etvEdit > controller->etvNum)
                     return HomePage;
-                }
                 else return Stay;
         }
 

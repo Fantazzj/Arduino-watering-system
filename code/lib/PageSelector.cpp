@@ -31,25 +31,6 @@ private:
 
     Page* activePage;
 
-    Home* home;
-    Settings1* settings1;
-    EditClock* editClock;
-
-    Settings2* settings2;
-    EditEtvTime* editEtvTime;
-
-    Settings3* settings3;
-    EditTStart* editTStart;
-
-    Settings4* settings4;
-    ManualEtv* manualEtv;
-
-    Settings5* settings5;
-    EditSRWatered* editSrWatered;
-
-    Settings6* settings6;
-    EditEtvDays* editEtvDays;
-
     PageNum newPage = Stay;
     PageNum oldPage = newPage;
 
@@ -58,27 +39,7 @@ public:
 
         this->controller = new PageController(myKeypad, myDebugger, myDisplay, myClock, myEtv, autoCycle);
 
-        home = new Home(controller);
-
-        settings1 = new Settings1(controller);
-        editClock = new EditClock(controller);
-
-        settings2 = new Settings2(controller);
-        editEtvTime = new EditEtvTime(controller);
-
-        settings3 = new Settings3(controller);
-        editTStart = new EditTStart(controller);
-
-        settings4 = new Settings4(controller);
-        manualEtv = new ManualEtv(controller);
-
-        settings5 = new Settings5(controller);
-        editSrWatered = new EditSRWatered(controller);
-
-        settings6 = new Settings6(controller);
-        editEtvDays = new EditEtvDays(controller);
-
-        activePage = home;
+        activePage = new Home(controller);
 
     }
 
@@ -88,43 +49,56 @@ public:
             case Stay:
                 break;
             case HomePage:
-                activePage = home;
+                delete activePage;
+                activePage = new Home(controller);
                 break;
             case SettingsPage1:
-                activePage = settings1;
+                delete activePage;
+                activePage = new Settings1(controller);
                 break;
             case EditClockPage:
-                activePage = editClock;
+                delete activePage;
+                activePage = new EditClock(controller);
                 break;
             case SettingsPage2:
-                activePage = settings2;
+                delete activePage;
+                activePage = new Settings2(controller);
                 break;
             case EditEtvTimePage:
-                activePage = editEtvTime;
+                delete activePage;
+                activePage = new EditEtvTime(controller);
                 break;
             case SettingsPage3:
-                activePage = settings3;
+                delete activePage;
+                activePage = new Settings3(controller);
                 break;
             case EditTStartPage:
-                activePage = editTStart;
+                delete activePage;
+                activePage = new EditTStart(controller);
                 break;
             case SettingsPage4:
-                activePage = settings4;
+                delete activePage;
+                activePage = new Settings4(controller);
                 break;
             case ManualEtvPage:
-                activePage = manualEtv;
+                delete activePage;
+                activePage = new ManualEtv(controller);
                 break;
             case SettingsPage5:
-                activePage = settings5;
+                delete activePage;
+                activePage = new Settings5(controller);
                 break;
             case EditSRWateredPage:
-                activePage = editSrWatered;
+                delete activePage;
+                activePage = new EditSRWatered(controller);
                 break;
             case SettingsPage6:
-                activePage = settings6;
+                delete activePage;
+                activePage = new Settings6(controller);
                 break;
             case EditEtvDaysPage:
-                activePage = editEtvDays;
+                delete activePage;
+                activePage = new EditEtvDays(controller);
                 break;
         }
 

@@ -9,16 +9,14 @@ private:
     int i;
 
 public:
-    EditSRWatered(PageController* controller): Page(controller) {}
+    EditSRWatered(PageController* controller): Page(controller) {
+        watered = controller->autoCycleGetWatered();
+    }
 
     PageNum exec() {
         KeypadButton key = controller->keypad();
 
         if(key != NoBtn) redraw = true;
-
-        for(; i<1; i++) {
-            watered = controller->autoCycleGetWatered();
-        }
 
         switch(key) {
             case Cancel:

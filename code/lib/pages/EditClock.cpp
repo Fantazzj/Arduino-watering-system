@@ -13,6 +13,7 @@ private:
 public:
     EditClock(PageController* controller): Page(controller) {
         this->controller = controller;
+        editPhase = 1;
         oldTime = controller->clockGetTime();
         newTime = oldTime;
     }
@@ -74,9 +75,8 @@ public:
 
             case Confirm:
                 editPhase++;
-                if(editPhase >= 6) {
+                if(editPhase > 6) {
                     controller->clockSetTime(newTime);
-                    editPhase = 1;
                     return HomePage;
                 }
                 else return Stay;

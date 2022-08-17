@@ -9,7 +9,10 @@ private:
     int timeEdit = controller->getEtvMinOn(1);
 
 public:
-    EditEtvTime(PageController *controller) : Page(controller) {}
+    EditEtvTime(PageController *controller) : Page(controller) {
+        etvEdit = 1;
+        timeEdit = controller->getEtvMinOn(1);
+    }
 
     PageNum exec() {
         KeypadButton key = controller->keypad();
@@ -42,11 +45,8 @@ public:
             case Confirm:
                 controller->setEtvMinOn(etvEdit++, timeEdit);
                 timeEdit = controller->getEtvMinOn(etvEdit);
-                if(etvEdit > controller->etvNum) {
-                    etvEdit = 1;
-                    timeEdit = controller->getEtvMinOn(1);
+                if(etvEdit > controller->etvNum)
                     return HomePage;
-                }
                 else return Stay;
         }
 

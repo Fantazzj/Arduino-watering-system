@@ -7,10 +7,11 @@ class EditTStart: public Page {
 private:
     MyTime newTime;
     int editPhase = 1;
-    int i=0;
 
 public:
-    EditTStart(PageController* controller): Page(controller) {}
+    EditTStart(PageController* controller): Page(controller) {
+        newTime = controller->autoCycleGetTStart();
+    }
 
     PageNum exec() {
         KeypadButton key = controller->keypad();
@@ -62,12 +63,6 @@ public:
         if(redraw) {
             controller->displayPrint("Orario di avvio", newTime.hour, ":", newTime.min, "");
             redraw = false;
-        }
-    }
-
-    void once() {
-        for(;i<1;i++) {
-            newTime = controller->autoCycleGetTStart();
         }
     }
 

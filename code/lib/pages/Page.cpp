@@ -27,7 +27,7 @@ public:
     Page(PageController* controller) {
         this->controller = controller;
     }
-    virtual PageNum exec() { return Stay;}
+    virtual PageNum exec() { return Stay; }
     virtual void show() {
         controller->displayPrint("INTERFACCIA");
     }

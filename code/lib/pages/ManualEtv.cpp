@@ -9,7 +9,9 @@ private:
     int num = 1;
 
 public:
-    ManualEtv(PageController* controller): Page(controller) {}
+    ManualEtv(PageController* controller): Page(controller) {
+        num = 1;
+    }
 
     PageNum exec() {
 
@@ -35,7 +37,6 @@ public:
             if (key == Confirm) {
                 controller->setEtvState(num, true);
                 controller->etvOn = num;
-                num = 1;
                 return HomePage;
             }
         }
