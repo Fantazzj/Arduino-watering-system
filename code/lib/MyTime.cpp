@@ -47,6 +47,17 @@ public:
         else return false;
     }
 
+    static bool isEqual(MyTime t1, MyTime t2) {
+        if(t1.dow == t2.dow) return true;
+        else if(t1.min == t2.min) return true;
+        else if(t1.hour == t2.hour) return true;
+        //else if(t1.sec == t2.sec) return true;
+        else if(t1.date == t2.date) return true;
+        else if(t1.mon == t2.mon) return true;
+        else if(t1.year == t2.year) return true;
+        else return false;
+    }
+
     static bool isGreaterOrEq(MyTime t1, MyTime t2) {
         if(t1.hour > t2.hour) return true;
         else if(t1.hour == t2.hour) {
