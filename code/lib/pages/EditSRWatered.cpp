@@ -34,8 +34,8 @@ public:
 
     void show() {
         if(redraw) {
-            if(!watered) controller->displayPrint("Imposta da innaffiare");
-            else controller->displayPrint("Imposta gia' innaffiato");
+            if(!watered) controller->displayPrint("Imposta gia' innaffiato");
+            else controller->displayPrint("Imposta da innaffiare");
             redraw = false;
         }
     }
