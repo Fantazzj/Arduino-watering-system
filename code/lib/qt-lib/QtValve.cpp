@@ -10,17 +10,15 @@ private:
     int num;
 
 public:
-    QtValve(ControlUnit* w, Clock* clock, int num, int minOn, int days) {
+    QtValve(ControlUnit* w, Clock* clock, int num, int minOn, int days) : Valve(minOn, days) {
         this->w = w;
         this->num = num;
-        this->minOn = minOn;
-        this->days = days;
         etvClock = clock;
     }
 
     void turnOn() {
         tOn = etvClock->getTime();
-        elapsedDays = 0;
+        elapsedDays = 1;
         w->activate(num);
     }
 

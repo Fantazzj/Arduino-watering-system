@@ -20,7 +20,7 @@ public:
 
     void turnOn() {
         tOn = etvClock->getTime();
-        elapsedDays = 0;
+        elapsedDays = 1;
         digitalWrite(pin, LOW);
     }
 
