@@ -9,6 +9,13 @@ private:
     Clock* myClock;
     Valve** myEtv;
     AutoCycle* autoCycle;
+    int nextEtv() {
+        for(int etv = etvOn+1; etv<=etvNum; etv++) {
+            if(myEtv[etv]->toWater()) return etv;
+            else myEtv[etv]->elapsedDays++;
+        }
+        return 0;
+    }
 
 public:
     MyTime tStart;
@@ -17,6 +24,8 @@ public:
     bool watered = false;
     bool started = false;
     int etvOn = 0;
+    int oldEtvOn = 0;
+    int etvNum;
 
     AutoCycle(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], int etvNum) {
         this->myKeypad = myKeypad;
@@ -24,6 +33,8 @@ public:
         this->myDisplay = myDisplay;
         this->myClock = myClock;
         this->myEtv = myEtv;
+
+        this->etvNum = etvNum;
 
         tStart.hour = 14;
         tStart.min = 30;
@@ -48,25 +59,27 @@ public:
 
         newTime = myClock->getTime();
 
-        if (MyTime::isGreaterOrEq(newTime, tStart) && !watered && !started) {
+        if(MyTime::isGreaterOrEq(newTime, tStart) and !watered and !started) {
             started = true;
-            etvOn = 1;
+            etvOn = nextEtv();
             myEtv[etvOn]->turnOn();
         }
 
-        if (started) {
-            if (MyTime::elapsedMin(myEtv[etvOn]->tOn, newTime) >= myEtv[etvOn]->minOn) {
+        if(started) {
+
+            if(myEtv[etvOn]->wateringDone(newTime)) {
                 myEtv[etvOn]->turnOff();
-                etvOn++;
-                if (etvOn >= 10) {
-                    etvOn = 0;
+                etvOn = nextEtv();
+                if(etvOn == 0) {
                     watered = true;
                     started = false;
-                } else myEtv[etvOn]->turnOn();
+                }
+                else {
+                    myEtv[etvOn]->turnOn();
+                }
             }
-        }
 
-        if(MyTime::isEqual(tChange, newTime)) watered=false;
+        }
 
     }
 
