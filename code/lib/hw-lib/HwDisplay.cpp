@@ -201,6 +201,12 @@ public:
         lcd->setCursor(col, row);
         myPrint(text);
     }
+    void printIn(int num, int col, int row) {
+        String conv = String(num);
+
+        lcd->setCursor(col, row);
+        myPrint(conv);
+    }
     void showClock(MyTime timeIn) {
         lcd->clear();
         String date;
