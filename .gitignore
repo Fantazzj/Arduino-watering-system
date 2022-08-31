@@ -3,3 +3,4 @@
 /qt-cmake-build-debug/*
 /code/.idea/*
 /code/.vscode/*
+/schema/*
