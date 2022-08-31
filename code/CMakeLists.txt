@@ -11,13 +11,14 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_PREFIX_PATH "C:\\Qt\\6.3.1\\mingw_64")#
+#set(QT_DIR "C:\\Qt\\6.3.1\\mingw_64")#
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6Widgets REQUIRED)#
 
 #target_link_libraries(Arduino-watering-system Qt6::Widgets)#
-
-set(CMAKE_PREFIX_PATH "C:\\Qt\\6.3.1\\mingw_64")#
 
 set(PROJECT_SOURCES
         ./main.cpp
