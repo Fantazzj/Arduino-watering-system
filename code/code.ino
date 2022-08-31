@@ -26,7 +26,7 @@ Valve* myEtv6;
 Valve* myEtv7;
 Valve* myEtv8;
 Valve* myEtv9;
-Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6, myEtv7, myEtv8, myEtv9};
+Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6/*, myEtv7, myEtv8, myEtv9*/};
 int etvNum = sizeof(myEtv)/sizeof(myEtv[1]) -1;
 PageSelector* pageSelector;
 AutoCycle* autoCycle;
@@ -78,23 +78,23 @@ void setup(ControlUnit* w) {
 
 //region PINS
 //Display
-const int lcdAddress = 0x27;
-const int lcdLength = 16;
-const int lcdHeight = 2;
+#define lcdAddress 0x27
+#define lcdLength 16
+#define lcdHeight 2
 
 //Etv
 const int etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 //Buttons
-const int cancelPin = A0;
-const int downPin = A2;
-const int upPin = A1;
-const int confirmPin = A3;
+#define cancelPin A0
+#define downPin A2
+#define upPin A1
+#define confirmPin A3
 
 //RTC
-const int rtcRst = 10;
-const int rtcData = 11;
-const int rtcClk = 12;
+#define rtcRst 10
+#define rtcData 11
+#define rtcClk 12
 
 //Sensors
 //const int humidityPin = A7;
@@ -103,7 +103,7 @@ const int rtcClk = 12;
 void setup() {
     
     myKeypad = new HwKeypad(cancelPin, downPin, upPin, confirmPin);
-    myDebugger = new HwDebugger(9600);
+    //myDebugger = new HwDebugger(9600);
     
     myDisplay = new HwDisplay(lcdAddress, lcdLength, lcdHeight);
     myClock = new HwClock(rtcRst, rtcData, rtcClk);
@@ -114,18 +114,18 @@ void setup() {
     myEtv[4] = new HwValve(myClock, etvsPin[4], 1, 1);
     myEtv[5] = new HwValve(myClock, etvsPin[5], 1, 1);
     myEtv[6] = new HwValve(myClock, etvsPin[6], 1, 1);
-    myEtv[7] = new HwValve(myClock, etvsPin[7], 1, 1);
-    myEtv[8] = new HwValve(myClock, etvsPin[8], 1, 1);
-    myEtv[9] = new HwValve(myClock, etvsPin[9], 1, 1);
+    //myEtv[7] = new HwValve(myClock, etvsPin[7], 1, 1);
+    //myEtv[8] = new HwValve(myClock, etvsPin[8], 1, 1);
+    //myEtv[9] = new HwValve(myClock, etvsPin[9], 1, 1);
 
-    autoCycle = new AutoCycle(myKeypad, myDebugger, myDisplay, myClock, myEtv);
+    autoCycle = new AutoCycle(myKeypad, myDebugger, myDisplay, myClock, myEtv, etvNum);
 
     pageSelector = new PageSelector(myKeypad, myDebugger, myDisplay, myClock, myEtv, autoCycle);
 }
 #endif
 //endregion
 
-int i=0;
+//int i=0;
 
 void loop() {
 
