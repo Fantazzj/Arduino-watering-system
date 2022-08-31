@@ -27,6 +27,10 @@ public:
         if(redraw) {
             controller->displayPrint(newTime);
             //controller->displayPrint("HOMEPAGE");
+            if(controller->getEtvOn() != 0) {
+                controller->displayPrint("Etv", 11, 1);
+                controller->displayPrint(controller->getEtvOn(), 14, 1);
+            }
             redraw = false;
         }
         oldTime = newTime;
