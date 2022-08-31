@@ -32,7 +32,7 @@ private:
     Page* activePage;
 
     PageNum newPage = Stay;
-    PageNum oldPage = newPage;
+    //PageNum oldPage = newPage;
 
 public:
     PageSelector(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
@@ -102,7 +102,7 @@ public:
                 break;
         }
 
-        oldPage = newPage;
+        //oldPage = newPage;
     }
 
     void show() {
