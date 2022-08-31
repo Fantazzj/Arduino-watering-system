@@ -9,7 +9,8 @@ private:
     int pin;
 
 public:
-    HwValve(Clock* clock, int pin, int minOn, int days) : Valve(minOn, days) {
+    HwValve(Clock* clock, int pin, int minOn, int days) {
+        init(minOn, days);
         this->pin = pin;
         pinMode(pin, OUTPUT);
         digitalWrite(pin, HIGH);
