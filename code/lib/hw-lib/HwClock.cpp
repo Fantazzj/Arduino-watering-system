@@ -56,7 +56,7 @@ public:
         t.min = __TIME__[4]-z + (__TIME__[3]-z)*10;
         t.sec = __TIME__[7]-z + (__TIME__[6]-z)*10;
 
-        t.dow = Wednesday;
+        t.dow = Tuesday;
     }
     MyTime getTime() {
         int elapMillis = millis();

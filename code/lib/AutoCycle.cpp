@@ -44,12 +44,10 @@ public:
 
         for(int i=1; i<=etvNum; i++) minToWater += myEtv[i]->minOn;
 
+        tChange.hour = 12;
+        tChange.min = 0;
         if(minToEndDay + minToWater >= 1440 /* 24*60 */) {
             tChange.hour = 0;
-            tChange.min = 0;
-        }
-        else {
-            tChange.hour = 12;
             tChange.min = 0;
         }
 

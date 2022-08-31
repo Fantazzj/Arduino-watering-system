@@ -13,10 +13,10 @@ private:
 
 public:
     HwKeypad(int cancelPin, int downPin, int upPin, int confirmPin) {
-        cancelButton = new Button(cancelPin, INPUT_PULLUP, 500);
-        downButton = new Button(downPin, INPUT_PULLUP, 500);
-        upButton = new Button(upPin, INPUT_PULLUP, 500);
-        confirmButton = new Button(confirmPin, INPUT_PULLUP, 500);
+        cancelButton = new Button(cancelPin, INPUT_PULLUP, 250);
+        downButton = new Button(downPin, INPUT_PULLUP, 250);
+        upButton = new Button(upPin, INPUT_PULLUP, 250);
+        confirmButton = new Button(confirmPin, INPUT_PULLUP, 250);
     }
 
     bool cancel() {
