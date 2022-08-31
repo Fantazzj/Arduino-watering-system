@@ -164,6 +164,13 @@ public:
         w->printOnDisplay(conv);
     }
 
+    void printIn(int data, int x, int y) {
+        QString conv = QString::number(data);
+
+        w->setCursorDisplay(x, y);
+        w->printOnDisplay(conv);
+    }
+
     void printIn(QString text, int x, int y) {
         w->setCursorDisplay(x, y);
         w->printOnDisplay(text);

@@ -13,6 +13,7 @@ public:
     virtual void printData(char text1[], int data, char text2[]) {}
     virtual void printData(char text1[], int data1, char text2[], int data2, char text3[]) {}
     virtual void printIn(char text[], int x, int y) {}
+    virtual void printIn(int data, int x, int y) {}
     virtual void showClock(MyTime timeIn) {}
     virtual void blinkAt(int pos[]) {}
     virtual void noBlink() {}
