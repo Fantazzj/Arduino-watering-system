@@ -15,6 +15,13 @@ enum KeypadButton : int {
     Confirm
 };
 
+/*#define KeypadButton int
+#define NoBtn 0
+#define Cancel 1
+#define Down 2
+#define Up 3
+#define Confirm 4*/
+
 class PageController{
 private:
     Keypad* myKeypad;
@@ -32,6 +39,7 @@ public:
         this->myClock = myClock;
         this->myEtv = myEtv;
         this->autoCycle = autoCycle;
+        etvNum = autoCycle->etvNum;
     }
 
     KeypadButton keypad() {
@@ -44,6 +52,8 @@ public:
     void debugPrint(char text[]) { myDebugger->printText(text); }
     void debugPrint(int num) { myDebugger->printData(num); }
     void displayPrint(char text[]) { myDisplay->printSimpleText(text); }
+    void displayPrint(char text[], int x, int y) { myDisplay->printIn(text, x, y); }
+    void displayPrint(int num, int x, int y) { myDisplay->printIn(num, x, y); }
     void displayPrint(char text1[], int data, char text2[]) { myDisplay->printData(text1, data, text2); }
     void displayPrint(char text1[], int data1, char text2[], int data2, char text3[]) { myDisplay->printData(text1, data1, text2, data2, text3); }
     void displayPrint(MyTime time) { myDisplay->showClock(time); }
@@ -53,7 +63,7 @@ public:
     }
     int getEtvOn() { return autoCycle->etvOn; }
     void setEtvOn(int num) { autoCycle->etvOn = num; }
-    const int etvNum = 9;
+    int etvNum;
     void setEtvState(int num, bool state) {
         if(state) myEtv[num]->turnOn();
         else myEtv[num]->turnOff();
