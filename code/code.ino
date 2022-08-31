@@ -26,7 +26,7 @@ Valve* myEtv6;
 Valve* myEtv7;
 Valve* myEtv8;
 Valve* myEtv9;
-Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6/*, myEtv7, myEtv8, myEtv9*/};
+Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6, myEtv7, myEtv8, myEtv9};
 int etvNum = sizeof(myEtv)/sizeof(myEtv[1]) -1;
 PageSelector* pageSelector;
 AutoCycle* autoCycle;
@@ -124,8 +124,6 @@ void setup() {
 }
 #endif
 //endregion
-
-//int i=0;
 
 void loop() {
 
