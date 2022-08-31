@@ -104,6 +104,15 @@ public:
         return seconds + minutesSec;
     }
 
+    #ifdef HWARDUINO
+    static int freeze(unsigned long ms) {
+        delay(ms);
+    }
+    #endif
+    #ifdef QTDESKTOP
+    static int freeze(unsigned long ms) {}
+    #endif
+
 };
 
 #endif //MY_TIME_CPP
