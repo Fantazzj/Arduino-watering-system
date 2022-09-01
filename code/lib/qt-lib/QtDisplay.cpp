@@ -192,9 +192,15 @@ public:
 
     }
 
-    void blinkAt(int pos[]) {}
+    void blinkAt(int x, int y) {
+        w->hideCursorDisplay();
+        w->setCursorDisplay(x, y);
+        w->showCursorDisplay();
+    }
 
-    void noBlink() {}
+    void noBlink() {
+        w->hideCursorDisplay();
+    }
 
     void clockSym() {
         w->setCursorDisplay(12, 1);

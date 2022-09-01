@@ -15,7 +15,7 @@ public:
     virtual void printIn(char text[], int x, int y) {}
     virtual void printIn(int data, int x, int y) {}
     virtual void showClock(MyTime timeIn) {}
-    virtual void blinkAt(int pos[]) {}
+    virtual void blinkAt(int x, int y) {}
     virtual void noBlink() {}
     virtual void clockSym() {}
     virtual void noClockSym() {}

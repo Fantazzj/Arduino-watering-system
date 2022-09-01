@@ -220,8 +220,8 @@ public:
         printIn(time,11,0);
         //printIn(String(timeIn.sec),14,1);
     }
-    void blinkAt(int pos[]) {
-        lcd->setCursor(pos[0], pos[1]);
+    void blinkAt(int x, int y) {
+        lcd->setCursor(x, y);
         lcd->blink();
     }
     void noBlink() {
