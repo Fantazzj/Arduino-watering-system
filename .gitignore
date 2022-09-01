@@ -1,5 +1,6 @@
 /avr-build-arduino/*
 /cmake-build-debug/*
+/code/cmake-build-debug/*
 /qt-cmake-build-debug/*
 /code/.idea/*
 /code/.vscode/*
