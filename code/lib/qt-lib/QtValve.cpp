@@ -10,11 +10,9 @@ private:
     int num;
 
 public:
-    QtValve(ControlUnit* w, Clock* clock, int num, int minOn, int days) {
-        init(minOn, days);
+    QtValve(ControlUnit* w, Clock* clock, int num, int minOn, int days) : Valve(clock, minOn, days) {
         this->w = w;
         this->num = num;
-        etvClock = clock;
     }
 
     void turnOn() {
