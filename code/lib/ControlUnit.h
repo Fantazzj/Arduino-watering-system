@@ -24,6 +24,8 @@ public:
     void printOnConsole(QString text);
     void printOnDisplay(QString text);
     void setCursorDisplay(int length, int height);
+    void showCursorDisplay();
+    void hideCursorDisplay();
     void homeDisplay();
     void clearDisplay();
     void activate(int num);
@@ -43,8 +45,10 @@ private:
     int height = 2;
     QCheckBox* etv[9];
     QLabel* matrix[16][2];
+    QLabel* higlighted;
     int x = 0;
     int y = 0;
+
 };
 
 #endif 

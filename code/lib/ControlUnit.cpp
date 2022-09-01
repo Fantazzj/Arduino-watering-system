@@ -42,6 +42,8 @@ ControlUnit::ControlUnit(QWidget *parent): QMainWindow(parent), ui(new Ui::Contr
     matrix[14][1] = ui->label_30;
     matrix[15][1] = ui->label_31;
 
+    higlighted = matrix[0][0];
+
     etv[0] = ui->etv1;
     etv[1] = ui->etv2;
     etv[2] = ui->etv3;
@@ -95,6 +97,15 @@ void ControlUnit::clearDisplay() {
         }
     }
     homeDisplay();
+}
+
+void ControlUnit::showCursorDisplay() {
+    matrix[x][y]->setStyleSheet("QLabel { color : red; }");
+    higlighted = matrix[x][y];
+}
+
+void ControlUnit::hideCursorDisplay() {
+    higlighted->setStyleSheet("QLabel { color : black; }");
 }
 
 void ControlUnit::activate(int num) {
