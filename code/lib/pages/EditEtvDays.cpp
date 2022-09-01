@@ -12,6 +12,7 @@ public:
     EditEtvDays(PageController *controller) : Page(controller) {
         etvEdit = 1;
         daysEdit = controller->getEtvDays(1);
+        controller->displayShowCursor(11, 0);
     }
 
     PageNum exec() {

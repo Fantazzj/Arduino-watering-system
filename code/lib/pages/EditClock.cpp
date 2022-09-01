@@ -90,6 +90,27 @@ public:
         if(redraw) {
             controller->displayPrint(newTime);
             redraw = false;
+
+            switch(editPhase) {
+                case 1:
+                    controller->displayShowCursor(0,0);
+                    break;
+                case 2:
+                    controller->displayShowCursor(12,0);
+                    break;
+                case 3:
+                    controller->displayShowCursor(15,0);
+                    break;
+                case 4:
+                    controller->displayShowCursor(1,1);
+                    break;
+                case 5:
+                    controller->displayShowCursor(4,1);
+                    break;
+                case 6:
+                    controller->displayShowCursor(9,1);
+                    break;
+            }
         }
     }
 

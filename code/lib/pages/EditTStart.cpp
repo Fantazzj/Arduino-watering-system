@@ -11,6 +11,7 @@ private:
 public:
     EditTStart(PageController* controller): Page(controller) {
         newTime = controller->autoCycleGetTStart();
+        controller->displayShowCursor(1, 1);
     }
 
     PageNum exec() {
@@ -47,6 +48,7 @@ public:
 
             case Confirm:
                 editPhase++;
+                if(editPhase==2) controller->displayShowCursor(6, 1);
                 if(editPhase==3) {
                     editPhase = 1;
                     controller->autoCycleSetTStart(newTime);

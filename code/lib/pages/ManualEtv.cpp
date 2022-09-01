@@ -11,6 +11,7 @@ private:
 public:
     ManualEtv(PageController* controller): Page(controller) {
         num = 1;
+        controller->displayShowCursor(15,1);
     }
 
     PageNum exec() {

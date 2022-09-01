@@ -12,6 +12,7 @@ public:
     EditEtvTime(PageController *controller) : Page(controller) {
         etvEdit = 1;
         timeEdit = controller->getEtvMinOn(1);
+        controller->displayShowCursor(10, 0);
     }
 
     PageNum exec() {

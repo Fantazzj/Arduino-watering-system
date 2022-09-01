@@ -11,6 +11,7 @@ private:
 public:
     EditSRWatered(PageController* controller): Page(controller) {
         watered = controller->autoCycleGetWatered();
+        controller->displayShowCursor(15,1);
     }
 
     PageNum exec() {
