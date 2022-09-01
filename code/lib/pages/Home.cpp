@@ -10,7 +10,9 @@ private:
     MyTime oldTime;
 
 public:
-    Home(PageController* controller): Page(controller) {}
+    Home(PageController* controller): Page(controller) {
+        controller->displayHideCursor();
+    }
 
     PageNum exec() { //TODO convert in switch
         KeypadButton key = controller->keypad();
