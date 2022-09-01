@@ -7,7 +7,9 @@ class Settings4: public Page {
 private:
 
 public:
-    Settings4(PageController* controller): Page(controller) {}
+    Settings4(PageController* controller): Page(controller) {
+        controller->displayHideCursor();
+    }
 
     PageNum exec() {
         KeypadButton key = controller->keypad();
@@ -28,7 +30,7 @@ public:
 
     void show() {
         if(redraw) {
-            controller->displayPrint("Impostazione Manuale");
+            controller->displayPrint("Impostazione manuale");
             redraw = false;
         }
     }

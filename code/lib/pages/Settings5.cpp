@@ -7,7 +7,9 @@ class Settings5: public Page {
 private:
 
 public:
-    Settings5(PageController* controller): Page(controller) {}
+    Settings5(PageController* controller): Page(controller) {
+        controller->displayHideCursor();
+    }
 
     PageNum exec() {
         KeypadButton key = controller->keypad();
