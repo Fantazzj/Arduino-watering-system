@@ -61,6 +61,8 @@ public:
         if (state) myDisplay->dropSym();
         else myDisplay->noDropSym();
     }
+    void displayShowCursor(int x, int y) { myDisplay->blinkAt(x, y); }
+    void displayHideCursor() { myDisplay->noBlink(); }
     int getEtvOn() { return autoCycle->etvOn; }
     void setEtvOn(int num) { autoCycle->etvOn = num; }
     int etvNum;
