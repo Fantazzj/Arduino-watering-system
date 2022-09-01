@@ -26,7 +26,7 @@ Valve* myEtv6;
 Valve* myEtv7;
 Valve* myEtv8;
 Valve* myEtv9;
-Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6, myEtv7, myEtv8, myEtv9};
+Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5/*, myEtv6, myEtv7, myEtv8, myEtv9*/};
 int etvNum = sizeof(myEtv)/sizeof(myEtv[1]) -1;
 PageSelector* pageSelector;
 AutoCycle* autoCycle;
@@ -86,10 +86,10 @@ void setup(ControlUnit* w) {
 const int etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 //Buttons
-#define cancelPin A0
-#define downPin A2
-#define upPin A1
-#define confirmPin A3
+#define cancelPin A3
+#define downPin A1
+#define upPin A2
+#define confirmPin A0
 
 //RTC
 #define rtcRst 10
@@ -113,10 +113,12 @@ void setup() {
     myEtv[3] = new HwValve(myClock, etvsPin[3], 1, 1);
     myEtv[4] = new HwValve(myClock, etvsPin[4], 1, 1);
     myEtv[5] = new HwValve(myClock, etvsPin[5], 1, 1);
+    /*
     myEtv[6] = new HwValve(myClock, etvsPin[6], 1, 1);
-    //myEtv[7] = new HwValve(myClock, etvsPin[7], 1, 1);
-    //myEtv[8] = new HwValve(myClock, etvsPin[8], 1, 1);
-    //myEtv[9] = new HwValve(myClock, etvsPin[9], 1, 1);
+    myEtv[7] = new HwValve(myClock, etvsPin[7], 1, 1);
+    myEtv[8] = new HwValve(myClock, etvsPin[8], 1, 1);
+    myEtv[9] = new HwValve(myClock, etvsPin[9], 1, 1);
+    */
 
     autoCycle = new AutoCycle(myKeypad, myDebugger, myDisplay, myClock, myEtv, etvNum);
 

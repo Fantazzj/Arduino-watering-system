@@ -8,7 +8,11 @@ class Valve{
 private:
 
 public:
-    Valve() = default;
+    Valve(Clock* etvClock, int minOn, int days) {
+        this->etvClock = etvClock;
+        this->minOn = minOn;
+        this->days = days;
+    }
 
     int days;
     int minOn;
@@ -28,10 +32,6 @@ public:
 
 protected:
     Clock* etvClock;
-    void init(int minOn, int days) {
-        this->minOn = minOn;
-        this->days = days;
-    }
 
 };
 
