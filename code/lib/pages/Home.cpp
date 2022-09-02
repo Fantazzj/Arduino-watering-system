@@ -14,8 +14,9 @@ public:
         controller->displayHideCursor();
     }
 
-    PageNum exec() { //TODO convert in switch
+    PageNum exec() {
         KeypadButton key = controller->keypad();
+
         if(key != NoBtn) redraw = true;
 
         newTime = controller->clockGetTime();
@@ -32,6 +33,16 @@ public:
             if(controller->getEtvOn() != 0) {
                 controller->displayPrint("Etv", 11, 1);
                 controller->displayPrint(controller->getEtvOn(), 14, 1);
+            }
+            else {
+                if(controller->autoCycleGetWatered()) controller->displayCheck(true);
+                else controller->displayCheck(false);
+                /*
+                 if(moisture) controller->displayDrop(true);
+                 else controller->displayDrop(false);
+                */
+                if(newTime.year < 2022) controller->displayClock(true);
+                else controller->displayClock(false);
             }
             redraw = false;
         }
