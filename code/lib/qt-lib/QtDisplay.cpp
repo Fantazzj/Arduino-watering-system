@@ -232,12 +232,6 @@ public:
         w->printOnDisplay(" ");
     }
 
-    void noSymbols() {
-        noClockSym();
-        noDropSym();
-        noCheckSym();
-    }
-
 };
 
 #endif

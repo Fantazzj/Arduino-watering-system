@@ -23,7 +23,11 @@ public:
     virtual void noDropSym() {}
     virtual void checkSym() {}
     virtual void noCheckSym() {}
-    virtual void noSymbols() {}
+    virtual void noSymbols() {
+        noClockSym();
+        noDropSym();
+        noCheckSym();
+    }
 
 protected:
 };
