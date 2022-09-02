@@ -25,6 +25,8 @@ public:
 
         switch(key) {
             case Cancel:
+                editPhase--;
+                if(editPhase<=0) return SettingsPage1;
                 return Stay;
 
             case Down:
