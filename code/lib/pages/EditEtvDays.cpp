@@ -45,7 +45,7 @@ public:
             case Confirm:
                 controller->setEtvDays(etvEdit++, daysEdit);
                 daysEdit = controller->getEtvDays(etvEdit);
-                if(etvEdit > controller->etvNum)
+                if(etvEdit > controller->getEtvNum())
                     return HomePage;
                 else return Stay;
         }

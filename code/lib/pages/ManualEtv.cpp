@@ -21,12 +21,12 @@ public:
         if(controller->getEtvOn() == 0) {
             if (key == Up) { //TODO convert in switch
                 num++;
-                if(num > controller->etvNum) num = 1;
+                if(num > controller->getEtvNum()) num = 1;
             }
 
             if (key == Down) {
                 num--;
-                if(num < 1) num = controller->etvNum;
+                if(num < 1) num = controller->getEtvNum();
             }
 
             if (key == Cancel) {

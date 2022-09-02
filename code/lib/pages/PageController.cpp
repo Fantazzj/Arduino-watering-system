@@ -39,7 +39,6 @@ public:
         this->myClock = myClock;
         this->myEtv = myEtv;
         this->autoCycle = autoCycle;
-        etvNum = autoCycle->etvNum;
     }
 
     KeypadButton keypad() {
@@ -58,14 +57,22 @@ public:
     void displayPrint(char text1[], int data1, char text2[], int data2, char text3[]) { myDisplay->printData(text1, data1, text2, data2, text3); }
     void displayPrint(MyTime time) { myDisplay->showClock(time); }
     void displayDrop(bool state) {
-        if (state) myDisplay->dropSym();
+        if(state) myDisplay->dropSym();
         else myDisplay->noDropSym();
+    }
+    void displayClock(bool state) {
+        if(state) myDisplay->clockSym();
+        else myDisplay->noClockSym();
+    }
+    void displayCheck(bool state) {
+        if(state) myDisplay->checkSym();
+        else myDisplay->noCheckSym();
     }
     void displayShowCursor(int x, int y) { myDisplay->blinkAt(x, y); }
     void displayHideCursor() { myDisplay->noBlink(); }
     int getEtvOn() { return autoCycle->etvOn; }
     void setEtvOn(int num) { autoCycle->etvOn = num; }
-    int etvNum;
+    int getEtvNum() { return autoCycle->etvNum; }
     void setEtvState(int num, bool state) {
         if(state) myEtv[num]->turnOn();
         else myEtv[num]->turnOff();

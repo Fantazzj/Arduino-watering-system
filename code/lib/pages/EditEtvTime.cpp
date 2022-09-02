@@ -45,7 +45,7 @@ public:
             case Confirm:
                 controller->setEtvMinOn(etvEdit++, timeEdit);
                 timeEdit = controller->getEtvMinOn(etvEdit);
-                if(etvEdit > controller->etvNum)
+                if(etvEdit > controller->getEtvNum())
                     return HomePage;
                 else return Stay;
         }
