@@ -24,7 +24,6 @@ public:
     bool watered = false;
     bool started = false;
     int etvOn = 0;
-    int oldEtvOn = 0;
     int etvNum;
 
     AutoCycle(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], int etvNum) {
@@ -36,7 +35,7 @@ public:
 
         this->etvNum = etvNum;
 
-        tStart.hour = 14;
+        tStart.hour = 20;
         tStart.min = 30;
         int minToEndDay = tStart.hour*60 + tStart.min;
 
@@ -77,8 +76,9 @@ public:
             }
         }
 
-        if(!started && etvOn!=0) {
-
+        if(!started and etvOn!=0 and myEtv[etvOn]->wateringDone(newTime)) {
+            myEtv[etvOn]->turnOff();
+            etvOn = 0;
         }
 
     }
