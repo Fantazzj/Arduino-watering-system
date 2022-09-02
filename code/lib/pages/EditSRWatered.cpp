@@ -6,12 +6,10 @@
 class EditSRWatered: public Page {
 private:
     bool watered = false;
-    int i;
 
 public:
     EditSRWatered(PageController* controller): Page(controller) {
         watered = controller->autoCycleGetWatered();
-        controller->displayShowCursor(15,1);
     }
 
     PageNum exec() {
@@ -25,7 +23,6 @@ public:
 
             case Confirm:
                 controller->autoCycleSetWatered(!watered);
-                i=0;
                 return HomePage;
 
             default:
@@ -37,6 +34,7 @@ public:
         if(redraw) {
             if(!watered) controller->displayPrint("Imposta gia' innaffiato");
             else controller->displayPrint("Imposta da innaffiare");
+            controller->displayShowCursor(15,1);
             redraw = false;
         }
     }

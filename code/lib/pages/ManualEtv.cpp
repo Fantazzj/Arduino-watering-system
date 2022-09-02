@@ -11,7 +11,6 @@ private:
 public:
     ManualEtv(PageController* controller): Page(controller) {
         num = 1;
-        controller->displayShowCursor(15,1);
     }
 
     PageNum exec() {
@@ -63,6 +62,7 @@ public:
         if(redraw) {
             if (controller->getEtvOn() == 0) controller->displayPrint("Accendi elettrovalvola", num, "");
             else controller->displayPrint("Spegni elettrovalvola", controller->getEtvOn(), "");
+            controller->displayShowCursor(15,1);
             redraw = false;
         }
     }

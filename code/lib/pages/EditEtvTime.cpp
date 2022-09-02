@@ -12,7 +12,6 @@ public:
     EditEtvTime(PageController *controller) : Page(controller) {
         etvEdit = 1;
         timeEdit = controller->getEtvMinOn(1);
-        controller->displayShowCursor(10, 0);
     }
 
     PageNum exec() {
@@ -56,6 +55,7 @@ public:
     void show() {
         if(redraw) {
             controller->displayPrint("Etv", etvEdit, "per", timeEdit, "minuti");
+            controller->displayShowCursor(10, 0);
             redraw = false;
         }
     }
