@@ -64,7 +64,6 @@ public:
         }
 
         if(started) {
-
             if(myEtv[etvOn]->wateringDone(newTime)) {
                 myEtv[etvOn]->turnOff();
                 etvOn = nextEtv();
@@ -76,6 +75,9 @@ public:
                     myEtv[etvOn]->turnOn();
                 }
             }
+        }
+
+        if(!started && etvOn!=0) {
 
         }
 
