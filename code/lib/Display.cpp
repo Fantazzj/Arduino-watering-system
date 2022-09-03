@@ -28,6 +28,8 @@ public:
         noDropSym();
         noCheckSym();
     }
+    virtual void backlight() {}
+    virtual void noBacklight() {}
 
 protected:
 };

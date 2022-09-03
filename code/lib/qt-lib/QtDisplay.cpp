@@ -103,6 +103,7 @@ public:
         this->height = height;
         w->setDimensions(length, height);
         displayChars = length * height;
+        w->backlight();
     }
 
     void printSimpleText(char text[]) {
@@ -230,6 +231,13 @@ public:
     void noCheckSym() {
         w->setCursorDisplay(14, 1);
         w->printOnDisplay(" ");
+    }
+
+    void backlight() {
+        w->backlight();
+    }
+    void noBacklight() {
+        w->noBacklight();
     }
 
 };

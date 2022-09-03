@@ -256,6 +256,12 @@ public:
         noDropSym();
         noCheckSym();
     }
+    void backlight(){
+        lcd->backlight();
+    }
+    void noBacklight(){
+        lcd->noBacklight();
+    }
 
 protected:
 
