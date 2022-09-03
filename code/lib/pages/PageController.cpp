@@ -30,6 +30,7 @@ private:
     Clock* myClock;
     Valve** myEtv;
     AutoCycle* autoCycle;
+    bool timeToEdit;
 
 public:
     PageController(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
@@ -39,6 +40,7 @@ public:
         this->myClock = myClock;
         this->myEtv = myEtv;
         this->autoCycle = autoCycle;
+        timeToEdit = true;
     }
 
     KeypadButton keypad() {
@@ -48,6 +50,8 @@ public:
         if(myKeypad->confirm()) return Confirm;
         else return NoBtn;
     }
+    bool getTimeToEdit() { return timeToEdit; }
+    bool setTimeToEdit(bool state) { timeToEdit=state; }
     bool keypadGeneral() { return myKeypad->generalPressed(); }
     void debugPrint(char text[]) { myDebugger->printText(text); }
     void debugPrint(int num) { myDebugger->printData(num); }
@@ -87,7 +91,10 @@ public:
     void setEtvMinOn(int num, int minOn) { myEtv[num]->minOn = minOn; }
     int getEtvMinOn(int num) { return myEtv[num]->minOn; }
     MyTime clockGetTime() { return myClock->getTime(); }
-    void clockSetTime(MyTime timeIn) { myClock->setTime(timeIn); }
+    void clockSetTime(MyTime timeIn) { 
+        myClock->setTime(timeIn);
+        setTimeToEdit(false);
+    }
     void autoCycleSetWatered(bool mode) { autoCycle->watered = mode; }
     bool autoCycleGetWatered() { return autoCycle->watered; }
     void autoCycleSetStarted(bool mode) { autoCycle->started = mode; }

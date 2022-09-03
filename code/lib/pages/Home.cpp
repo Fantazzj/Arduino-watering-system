@@ -41,7 +41,7 @@ public:
                  if(moisture) controller->displayDrop(true);
                  else controller->displayDrop(false);
                 */
-                if(newTime.year < 2022) controller->displayClock(true);
+                if(newTime.year < 2022 or controller->getTimeToEdit()) controller->displayClock(true);
                 else controller->displayClock(false);
             }
             redraw = false;
