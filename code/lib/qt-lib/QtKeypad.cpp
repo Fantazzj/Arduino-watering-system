@@ -37,6 +37,10 @@ public:
         return state;
     }
 
+    bool generalPressed() {
+        return cancelState or downState or upState or confirmState;
+    }
+
 protected:
 };
 

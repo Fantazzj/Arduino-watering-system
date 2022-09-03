@@ -35,6 +35,10 @@ public:
         return confirmButton->readFalling();
     }
 
+    bool generalPressed() {
+        return cancelButton->readLow() or downButton->readLow() or upButton->readLow() or confirmButton->readLow();
+    }
+
 protected:
 
 };

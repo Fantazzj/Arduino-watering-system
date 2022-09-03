@@ -16,6 +16,7 @@ public:
     virtual bool down() {return false;}
     virtual bool up() {return false;}
     virtual bool confirm() {return false;}
+    virtual bool generalPressed() {return false;}
 
 protected:
 };
