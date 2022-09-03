@@ -48,15 +48,15 @@ void setup(ControlUnit* w) {
     myDisplay = new QtDisplay(w, 16, 2);
     myClock = new QtClock(w);
 
-    myEtv[1] = new QtValve(w, myClock, 1, 5, 2);
-    myEtv[2] = new QtValve(w, myClock, 2, 5, 2);
-    myEtv[3] = new QtValve(w, myClock, 3, 5, 2);
-    myEtv[4] = new QtValve(w, myClock, 4, 5, 2);
-    myEtv[5] = new QtValve(w, myClock, 5, 5, 2);
-    myEtv[6] = new QtValve(w, myClock, 6, 5, 2);
-    myEtv[7] = new QtValve(w, myClock, 7, 5, 2);
-    myEtv[8] = new QtValve(w, myClock, 8, 5, 2);
-    myEtv[9] = new QtValve(w, myClock, 9, 5, 2);
+    myEtv[1] = new QtValve(w, myClock, 1, 0, 0);
+    myEtv[2] = new QtValve(w, myClock, 2, 0, 0);
+    myEtv[3] = new QtValve(w, myClock, 3, 0, 0);
+    myEtv[4] = new QtValve(w, myClock, 4, 0, 0);
+    myEtv[5] = new QtValve(w, myClock, 5, 0, 0);
+    myEtv[6] = new QtValve(w, myClock, 6, 0, 0);
+    myEtv[7] = new QtValve(w, myClock, 7, 0, 0);
+    myEtv[8] = new QtValve(w, myClock, 8, 0, 0);
+    myEtv[9] = new QtValve(w, myClock, 9, 0, 0);
 
     w->setKeypad(myKeypad);
 
@@ -108,16 +108,16 @@ void setup() {
     myDisplay = new HwDisplay(lcdAddress, lcdLength, lcdHeight);
     myClock = new HwClock(rtcRst, rtcData, rtcClk);
     
-    myEtv[1] = new HwValve(myClock, etvsPin[1], 1, 1);
-    myEtv[2] = new HwValve(myClock, etvsPin[2], 1, 1);
-    myEtv[3] = new HwValve(myClock, etvsPin[3], 1, 1);
-    myEtv[4] = new HwValve(myClock, etvsPin[4], 1, 1);
-    myEtv[5] = new HwValve(myClock, etvsPin[5], 1, 1);
+    myEtv[1] = new HwValve(myClock, etvsPin[1], 0, 0);
+    myEtv[2] = new HwValve(myClock, etvsPin[2], 0, 0);
+    myEtv[3] = new HwValve(myClock, etvsPin[3], 0, 0);
+    myEtv[4] = new HwValve(myClock, etvsPin[4], 0, 0);
+    myEtv[5] = new HwValve(myClock, etvsPin[5], 0, 0);
     /*
-    myEtv[6] = new HwValve(myClock, etvsPin[6], 1, 1);
-    myEtv[7] = new HwValve(myClock, etvsPin[7], 1, 1);
-    myEtv[8] = new HwValve(myClock, etvsPin[8], 1, 1);
-    myEtv[9] = new HwValve(myClock, etvsPin[9], 1, 1);
+    myEtv[6] = new HwValve(myClock, etvsPin[6], 0, 0);
+    myEtv[7] = new HwValve(myClock, etvsPin[7], 0, 0);
+    myEtv[8] = new HwValve(myClock, etvsPin[8], 0, 0);
+    myEtv[9] = new HwValve(myClock, etvsPin[9], 0, 0);
     */
 
     autoCycle = new AutoCycle(myKeypad, myDebugger, myDisplay, myClock, myEtv, etvNum);
