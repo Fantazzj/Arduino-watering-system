@@ -59,7 +59,13 @@ public:
         if(MyTime::isGreaterOrEq(newTime, tStart) and !watered and !started) {
             started = true;
             etvOn = nextEtv();
-            myEtv[etvOn]->turnOn();
+            if(etvOn == 0) {
+                watered = true;
+                started = false;
+            }
+            else {
+                myEtv[etvOn]->turnOn();
+            }
         }
 
         if(started) {
