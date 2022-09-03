@@ -34,6 +34,8 @@ private:
     PageNum newPage = Stay;
     //PageNum oldPage = newPage;
 
+    MyTime lightTime;
+
 public:
     PageSelector(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
 
@@ -41,6 +43,7 @@ public:
 
         activePage = new Home(controller);
 
+        lightTime = controller->clockGetTime();
     }
 
     void exec() {
@@ -107,6 +110,15 @@ public:
 
     void show() {
         activePage->show();
+
+        if(controller->keypadGeneral()) {
+            controller->displaySetBacklight(true);
+            lightTime = controller->clockGetTime();
+        }
+        else if(MyTime::elapsedMin(lightTime, controller->clockGetTime())>=2) {
+            controller->displaySetBacklight(false);
+        }
+
     }
 
 protected:

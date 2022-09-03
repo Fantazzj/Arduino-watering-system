@@ -48,6 +48,7 @@ public:
         if(myKeypad->confirm()) return Confirm;
         else return NoBtn;
     }
+    bool keypadGeneral() { return myKeypad->generalPressed(); }
     void debugPrint(char text[]) { myDebugger->printText(text); }
     void debugPrint(int num) { myDebugger->printData(num); }
     void displayPrint(char text[]) { myDisplay->printSimpleText(text); }
@@ -70,6 +71,10 @@ public:
     }
     void displayShowCursor(int x, int y) { myDisplay->blinkAt(x, y); }
     void displayHideCursor() { myDisplay->noBlink(); }
+    void displaySetBacklight(bool state) {
+        if(state) myDisplay->backlight();
+        else myDisplay->noBacklight();
+    }
     int getEtvOn() { return autoCycle->etvOn; }
     void setEtvOn(int num) { autoCycle->etvOn = num; }
     int getEtvNum() { return autoCycle->etvNum; }
