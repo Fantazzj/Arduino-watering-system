@@ -116,6 +116,14 @@ void ControlUnit::deactivate(int num) {
     etv[num-1]->setChecked(false);
 }
 
+void ControlUnit::backlight() {
+    ui->backlight->setValue(100);
+}
+
+void ControlUnit::noBacklight() {
+    ui->backlight->setValue(0);
+}
+
 void ControlUnit::on_confirmButton_clicked() {
     keypad->confirmState = true;
 }

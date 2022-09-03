@@ -30,6 +30,8 @@ public:
     void clearDisplay();
     void activate(int num);
     void deactivate(int num);
+    void backlight();
+    void noBacklight();
     ~ControlUnit();
 
 private slots:
