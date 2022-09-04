@@ -71,8 +71,8 @@ public:
         else return false;
     }
 
-    static int8_t elapsedHours(MyTime t1, MyTime t2) { //Only for <=24h
-        int8_t hours;
+    static uint16_t elapsedHours(MyTime t1, MyTime t2) { //Only for <=24h
+        uint16_t hours;
 
         hours = t2.hour - t1.hour;
         if(hours < 0) hours+=24;
@@ -80,9 +80,9 @@ public:
         return hours;
     }
 
-    static int8_t elapsedMin(MyTime t1, MyTime t2) {
-        int8_t hoursMin;
-        int8_t minutes;
+    static uint16_t elapsedMin(MyTime t1, MyTime t2) {
+        uint16_t hoursMin;
+        uint16_t minutes;
 
         hoursMin = elapsedHours(t1, t2) * 60;
 
@@ -92,9 +92,9 @@ public:
         return minutes + hoursMin;
     }
 
-    static int8_t elapsedSec(MyTime t1, MyTime t2) {
-        int8_t minutesSec;
-        int8_t seconds;
+    static uint16_t elapsedSec(MyTime t1, MyTime t2) {
+        uint16_t minutesSec;
+        uint16_t seconds;
 
         minutesSec = elapsedMin(t1, t2) * 60;
 
@@ -105,12 +105,12 @@ public:
     }
 
     #ifdef HWARDUINO
-    static int8_t freeze(unsigned long ms) {
+    static void freeze(unsigned long ms) {
         delay(ms);
     }
     #endif
     #ifdef QTDESKTOP
-    static int8_t freeze(unsigned long ms) {}
+    static void freeze(unsigned long ms) {}
     #endif
 
 };
