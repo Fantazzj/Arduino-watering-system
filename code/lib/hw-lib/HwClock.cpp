@@ -47,8 +47,8 @@ private:
 
 public:
     HwClock(int8_t rtcRst, int8_t rtcData, int8_t rtcClk) {
-        t.date = 10;
-        t.mon = 8;
+        t.date = 4;
+        t.mon = 9;
         t.year = 2022;
 
         char z = '0';
