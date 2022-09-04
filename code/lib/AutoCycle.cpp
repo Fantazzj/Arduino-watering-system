@@ -9,7 +9,7 @@ private:
     Clock* myClock;
     Valve** myEtv;
     AutoCycle* autoCycle;
-    int nextEtv() {
+    int _nextEtv() {
         for(int etv = etvOn+1; etv<=etvNum; etv++) {
             if(myEtv[etv]->toWater()) return etv;
             else myEtv[etv]->elapsedDays++;
@@ -35,7 +35,7 @@ public:
 
         this->etvNum = etvNum;
 
-        tStart.hour = 20;
+        tStart.hour = 0;
         tStart.min = 30;
         int minToEndDay = tStart.hour*60 + tStart.min;
 
@@ -58,7 +58,7 @@ public:
 
         if(MyTime::timeIsNextOrEq(newTime, tStart) and !watered and !started) {
             started = true;
-            etvOn = nextEtv();
+            etvOn = _nextEtv();
             if(etvOn == 0) {
                 watered = true;
                 started = false;
@@ -71,7 +71,7 @@ public:
         if(started) {
             if(myEtv[etvOn]->wateringDone(newTime)) {
                 myEtv[etvOn]->turnOff();
-                etvOn = nextEtv();
+                etvOn = _nextEtv();
                 if(etvOn == 0) {
                     watered = true;
                     started = false;
