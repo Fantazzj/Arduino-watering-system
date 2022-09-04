@@ -19,7 +19,10 @@ public:
     int elapsedDays=1;
     MyTime tOn;
 
-    virtual void turnOn() {}
+    virtual void turnOn() {
+        tOn = etvClock->getTime();
+        elapsedDays = 1;
+    }
     virtual void turnOff() {}
     bool toWater() {
         if(elapsedDays>=days and days > 0 and minOn > 0) return true;
