@@ -58,7 +58,7 @@ public:
         else return false;
     }
 
-    static bool isGreaterOrEq(MyTime t1, MyTime t2) {
+    static bool timeIsNextOrEq(MyTime t1, MyTime t2) {
         if(t1.hour > t2.hour) return true;
         else if(t1.hour == t2.hour) {
             if(t1.min > t2.min) return true;

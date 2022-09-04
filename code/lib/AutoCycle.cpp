@@ -56,7 +56,7 @@ public:
 
         newTime = myClock->getTime();
 
-        if(MyTime::isGreaterOrEq(newTime, tStart) and !watered and !started) {
+        if(MyTime::timeIsNextOrEq(newTime, tStart) and !watered and !started) {
             started = true;
             etvOn = nextEtv();
             if(etvOn == 0) {
