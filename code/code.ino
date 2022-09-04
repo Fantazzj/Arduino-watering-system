@@ -4,7 +4,7 @@
 #include "lib/Config.h"
 
 #include "lib/Keypad.cpp"
-#include "lib/Debugger.cpp"
+//#include "lib/Debugger.cpp"
 #include "lib/Display.cpp"
 #include "lib/Clock.cpp"
 #include "lib/MyTime.cpp"
@@ -14,7 +14,7 @@
 #include "lib/AutoCycle.cpp"
 
 Keypad* myKeypad;
-Debugger* myDebugger;
+//Debugger* myDebugger;
 Display* myDisplay;
 Clock* myClock;
 Valve* myEtv1;
@@ -23,10 +23,10 @@ Valve* myEtv3;
 Valve* myEtv4;
 Valve* myEtv5;
 Valve* myEtv6;
-Valve* myEtv7;
+/*Valve* myEtv7;
 Valve* myEtv8;
-Valve* myEtv9;
-Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5/*, myEtv6, myEtv7, myEtv8, myEtv9*/};
+Valve* myEtv9;*/
+Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6/*, myEtv7, myEtv8, myEtv9*/};
 int etvNum = sizeof(myEtv)/sizeof(myEtv[1]) -1;
 PageSelector* pageSelector;
 AutoCycle* autoCycle;
@@ -113,16 +113,16 @@ void setup() {
     myEtv[3] = new HwValve(myClock, etvsPin[3], 0, 0);
     myEtv[4] = new HwValve(myClock, etvsPin[4], 0, 0);
     myEtv[5] = new HwValve(myClock, etvsPin[5], 0, 0);
-    /*
     myEtv[6] = new HwValve(myClock, etvsPin[6], 0, 0);
+    /*
     myEtv[7] = new HwValve(myClock, etvsPin[7], 0, 0);
     myEtv[8] = new HwValve(myClock, etvsPin[8], 0, 0);
     myEtv[9] = new HwValve(myClock, etvsPin[9], 0, 0);
     */
 
-    autoCycle = new AutoCycle(myKeypad, myDebugger, myDisplay, myClock, myEtv, etvNum);
+    autoCycle = new AutoCycle(myKeypad/*, myDebugger*/, myDisplay, myClock, myEtv, etvNum);
 
-    pageSelector = new PageSelector(myKeypad, myDebugger, myDisplay, myClock, myEtv, autoCycle);
+    pageSelector = new PageSelector(myKeypad/*, myDebugger*/, myDisplay, myClock, myEtv, autoCycle);
 }
 #endif
 //endregion

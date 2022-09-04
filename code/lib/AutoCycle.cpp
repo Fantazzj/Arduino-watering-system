@@ -4,7 +4,7 @@
 class AutoCycle {
 private:
     Keypad* myKeypad;
-    Debugger* myDebugger;
+    //Debugger* myDebugger;
     Display* myDisplay;
     Clock* myClock;
     Valve** myEtv;
@@ -26,9 +26,9 @@ public:
     int etvOn = 0;
     int etvNum;
 
-    AutoCycle(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], int etvNum) {
+    AutoCycle(Keypad* myKeypad/*, Debugger* myDebugger*/, Display* myDisplay, Clock* myClock, Valve* myEtv[], int etvNum) {
         this->myKeypad = myKeypad;
-        this->myDebugger = myDebugger;
+        //this->myDebugger = myDebugger;
         this->myDisplay = myDisplay;
         this->myClock = myClock;
         this->myEtv = myEtv;

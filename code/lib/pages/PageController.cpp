@@ -2,7 +2,7 @@
 #define PAGE_CONTROLLER_CPP
 
 #include "../Keypad.cpp"
-#include "../Debugger.cpp"
+//#include "../Debugger.cpp"
 #include "../Display.cpp"
 #include "../Clock.cpp"
 #include "../Valve.cpp"
@@ -25,7 +25,7 @@ enum KeypadButton : int {
 class PageController{
 private:
     Keypad* myKeypad;
-    Debugger* myDebugger;
+    //Debugger* myDebugger;
     Display* myDisplay;
     Clock* myClock;
     Valve** myEtv;
@@ -33,9 +33,9 @@ private:
     bool timeToEdit;
 
 public:
-    PageController(Keypad* myKeypad, Debugger* myDebugger, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
+    PageController(Keypad* myKeypad/*, Debugger* myDebugger*/, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
         this->myKeypad = myKeypad;
-        this->myDebugger = myDebugger;
+        //this->myDebugger = myDebugger;
         this->myDisplay = myDisplay;
         this->myClock = myClock;
         this->myEtv = myEtv;
@@ -53,8 +53,8 @@ public:
     bool getTimeToEdit() { return timeToEdit; }
     bool setTimeToEdit(bool state) { timeToEdit=state; }
     bool keypadGeneral() { return myKeypad->generalPressed(); }
-    void debugPrint(char text[]) { myDebugger->printText(text); }
-    void debugPrint(int num) { myDebugger->printData(num); }
+    //void debugPrint(char text[]) { myDebugger->printText(text); }
+    //void debugPrint(int num) { myDebugger->printData(num); }
     void displayPrint(char text[]) { myDisplay->printSimpleText(text); }
     void displayPrint(char text[], int x, int y) { myDisplay->printIn(text, x, y); }
     void displayPrint(int num, int x, int y) { myDisplay->printIn(num, x, y); }
