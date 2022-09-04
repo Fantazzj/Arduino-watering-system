@@ -32,7 +32,6 @@ private:
     Page* activePage;
 
     PageNum newPage = Stay;
-    //PageNum oldPage = newPage;
 
     MyTime lightTime;
 
@@ -105,7 +104,6 @@ public:
                 break;
         }
 
-        //oldPage = newPage;
     }
 
     void show() {
