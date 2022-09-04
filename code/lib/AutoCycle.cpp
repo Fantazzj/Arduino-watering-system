@@ -3,12 +3,8 @@
 
 class AutoCycle {
 private:
-    Keypad* myKeypad;
-    //Debugger* myDebugger;
-    Display* myDisplay;
     Clock* myClock;
     Valve** myEtv;
-    AutoCycle* autoCycle;
     int8_t _nextEtv() {
         for(int8_t etv = etvOn+1; etv<=etvNum; etv++) {
             if(myEtv[etv]->toWater()) return etv;
@@ -26,13 +22,9 @@ public:
     int8_t etvOn = 0;
     int8_t etvNum;
 
-    AutoCycle(Keypad* myKeypad/*, Debugger* myDebugger*/, Display* myDisplay, Clock* myClock, Valve* myEtv[], int8_t etvNum) {
-        this->myKeypad = myKeypad;
-        //this->myDebugger = myDebugger;
-        this->myDisplay = myDisplay;
+    AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum) {
         this->myClock = myClock;
         this->myEtv = myEtv;
-
         this->etvNum = etvNum;
 
         tStart.hour = 0;
