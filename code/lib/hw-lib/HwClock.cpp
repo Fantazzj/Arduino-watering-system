@@ -43,7 +43,7 @@ protected:
 class HwClock: public Clock {
 private:
     MyTime t;
-    int8_t prevMillis=0;
+    unsigned long prevMillis=0;
 
 public:
     HwClock(int8_t rtcRst, int8_t rtcData, int8_t rtcClk) {
@@ -56,12 +56,12 @@ public:
         t.min = __TIME__[4]-z + (__TIME__[3]-z)*10;
         t.sec = __TIME__[7]-z + (__TIME__[6]-z)*10;
 
-        t.dow = Wednesday;
+        t.dow = Sunday;
     }
     MyTime getTime() {
-        int8_t elapMillis = millis();
+        unsigned long elapMillis = millis();
 
-        t.sec += (elapMillis - prevMillis)/1000;
+        t.sec += (elapMillis - prevMillis)/1000ul;
         t.min += t.sec/60;
         t.hour += t.min/60;
         t.date += t.hour/24;
@@ -70,19 +70,19 @@ public:
         t.min %=60;
         t.hour %= 24;
 
-        if(elapMillis-prevMillis >= 1000)
+        if(elapMillis-prevMillis >= 1000ul)
             prevMillis = elapMillis;
 
         return t;
     }
-    void setTime(MyTime timeIn) {
-        t.date = timeIn.date;
-        t.mon = timeIn.mon;
-        t.year = timeIn.year;
-        t.hour = timeIn.hour;
-        t.min = timeIn.min;
-        t.sec = timeIn.sec;
-        t.dow = timeIn.dow;
+    void setTime(MyTime tIn) {
+        t.date = tIn.date;
+        t.mon = tIn.mon;
+        t.year = tIn.year;
+        t.hour = tIn.hour;
+        t.min = tIn.min;
+        t.sec = tIn.sec;
+        t.dow = tIn.dow;
     }
 };
 

@@ -37,9 +37,9 @@ public:
 
         tStart.hour = 0;
         tStart.min = 30;
-        int8_t minToEndDay = tStart.hour*60 + tStart.min;
+        int16_t minToEndDay = tStart.hour*60 + tStart.min;
 
-        int8_t minToWater = 0;
+        int16_t minToWater = 0;
 
         for(int8_t i=1; i<=etvNum; i++) minToWater += myEtv[i]->minOn;
 
