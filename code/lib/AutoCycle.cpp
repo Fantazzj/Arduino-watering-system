@@ -9,8 +9,8 @@ private:
     Clock* myClock;
     Valve** myEtv;
     AutoCycle* autoCycle;
-    int _nextEtv() {
-        for(int etv = etvOn+1; etv<=etvNum; etv++) {
+    int8_t _nextEtv() {
+        for(int8_t etv = etvOn+1; etv<=etvNum; etv++) {
             if(myEtv[etv]->toWater()) return etv;
             else myEtv[etv]->elapsedDays++;
         }
@@ -23,10 +23,10 @@ public:
     MyTime newTime;
     bool watered = false;
     bool started = false;
-    int etvOn = 0;
-    int etvNum;
+    int8_t etvOn = 0;
+    int8_t etvNum;
 
-    AutoCycle(Keypad* myKeypad/*, Debugger* myDebugger*/, Display* myDisplay, Clock* myClock, Valve* myEtv[], int etvNum) {
+    AutoCycle(Keypad* myKeypad/*, Debugger* myDebugger*/, Display* myDisplay, Clock* myClock, Valve* myEtv[], int8_t etvNum) {
         this->myKeypad = myKeypad;
         //this->myDebugger = myDebugger;
         this->myDisplay = myDisplay;
@@ -37,11 +37,11 @@ public:
 
         tStart.hour = 0;
         tStart.min = 30;
-        int minToEndDay = tStart.hour*60 + tStart.min;
+        int8_t minToEndDay = tStart.hour*60 + tStart.min;
 
-        int minToWater = 0;
+        int8_t minToWater = 0;
 
-        for(int i=1; i<=etvNum; i++) minToWater += myEtv[i]->minOn;
+        for(int8_t i=1; i<=etvNum; i++) minToWater += myEtv[i]->minOn;
 
         tChange.hour = 12;
         tChange.min = 0;

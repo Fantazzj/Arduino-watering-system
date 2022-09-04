@@ -1,4 +1,4 @@
-#ifndef HW_DEBUGGER_CPP
+/*#ifndef HW_DEBUGGER_CPP
 #define HW_DEBUGGER_CPP
 
 #include "../Debugger.cpp"
@@ -22,3 +22,4 @@ protected:
 };
 
 #endif
+*/

@@ -6,7 +6,7 @@
 class EditTStart: public Page {
 private:
     MyTime newTime;
-    int editPhase = 1;
+    int8_t editPhase = 1;
 
 public:
     EditTStart(PageController* controller): Page(controller) {

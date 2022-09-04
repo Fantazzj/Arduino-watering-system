@@ -5,8 +5,8 @@
 
 class EditEtvDays : public Page{
 private:
-    int etvEdit = 1;
-    int daysEdit = controller->getEtvDays(1);
+    int8_t etvEdit = 1;
+    int8_t daysEdit = controller->getEtvDays(1);
 
 public:
     EditEtvDays(PageController *controller) : Page(controller) {

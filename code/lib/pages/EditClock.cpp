@@ -8,7 +8,7 @@ class EditClock: public Page {
 private:
     MyTime newTime;
     MyTime oldTime;
-    int editPhase = 1;
+    int8_t editPhase = 1;
 
 public:
     EditClock(PageController* controller): Page(controller) {

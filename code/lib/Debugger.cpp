@@ -1,4 +1,4 @@
-#ifndef DEBUGGER_CPP
+/*#ifndef DEBUGGER_CPP
 #define DEBUGGER_CPP
 
 class Debugger {
@@ -13,3 +13,4 @@ protected:
 };
 
 #endif //DEBUGGER_CPP
+*/

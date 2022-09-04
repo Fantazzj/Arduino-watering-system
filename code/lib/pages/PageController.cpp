@@ -7,7 +7,7 @@
 #include "../Clock.cpp"
 #include "../Valve.cpp"
 
-enum KeypadButton : int {
+enum KeypadButton : int8_t {
     NoBtn,
     Cancel,
     Down,
@@ -15,7 +15,7 @@ enum KeypadButton : int {
     Confirm
 };
 
-/*#define KeypadButton int
+/*#define KeypadButton int8_t
 #define NoBtn 0
 #define Cancel 1
 #define Down 2
@@ -53,13 +53,13 @@ public:
     bool getTimeToEdit() { return timeToEdit; }
     bool setTimeToEdit(bool state) { timeToEdit=state; }
     bool keypadGeneral() { return myKeypad->generalPressed(); }
-    //void debugPrint(char text[]) { myDebugger->printText(text); }
-    //void debugPrint(int num) { myDebugger->printData(num); }
+    //void debugprint(char text[]) { myDebugger->printText(text); }
+    //void debugprint(int8_t num) { myDebugger->printData(num); }
     void displayPrint(char text[]) { myDisplay->printSimpleText(text); }
-    void displayPrint(char text[], int x, int y) { myDisplay->printIn(text, x, y); }
-    void displayPrint(int num, int x, int y) { myDisplay->printIn(num, x, y); }
-    void displayPrint(char text1[], int data, char text2[]) { myDisplay->printData(text1, data, text2); }
-    void displayPrint(char text1[], int data1, char text2[], int data2, char text3[]) { myDisplay->printData(text1, data1, text2, data2, text3); }
+    void displayPrint(char text[], int8_t x, int8_t y) { myDisplay->printIn(text, x, y); }
+    void displayPrint(int8_t num, int8_t x, int8_t y) { myDisplay->printIn(num, x, y); }
+    void displayPrint(char text1[], int8_t data, char text2[]) { myDisplay->printData(text1, data, text2); }
+    void displayPrint(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) { myDisplay->printData(text1, data1, text2, data2, text3); }
     void displayPrint(MyTime time) { myDisplay->showClock(time); }
     void displayDrop(bool state) {
         if(state) myDisplay->dropSym();
@@ -73,23 +73,23 @@ public:
         if(state) myDisplay->checkSym();
         else myDisplay->noCheckSym();
     }
-    void displayShowCursor(int x, int y) { myDisplay->blinkAt(x, y); }
+    void displayShowCursor(int8_t x, int8_t y) { myDisplay->blinkAt(x, y); }
     void displayHideCursor() { myDisplay->noBlink(); }
     void displaySetBacklight(bool state) {
         if(state) myDisplay->backlight();
         else myDisplay->noBacklight();
     }
-    int getEtvOn() { return autoCycle->etvOn; }
-    void setEtvOn(int num) { autoCycle->etvOn = num; }
-    int getEtvNum() { return autoCycle->etvNum; }
-    void setEtvState(int num, bool state) {
+    int8_t getEtvOn() { return autoCycle->etvOn; }
+    void setEtvOn(int8_t num) { autoCycle->etvOn = num; }
+    int8_t getEtvNum() { return autoCycle->etvNum; }
+    void setEtvState(int8_t num, bool state) {
         if(state) myEtv[num]->turnOn();
         else myEtv[num]->turnOff();
     }
-    void setEtvDays(int num, int days) { myEtv[num]->days = days; }
-    int getEtvDays(int num) { return myEtv[num]->days; }
-    void setEtvMinOn(int num, int minOn) { myEtv[num]->minOn = minOn; }
-    int getEtvMinOn(int num) { return myEtv[num]->minOn; }
+    void setEtvDays(int8_t num, int8_t days) { myEtv[num]->days = days; }
+    int8_t getEtvDays(int8_t num) { return myEtv[num]->days; }
+    void setEtvMinOn(int8_t num, int8_t minOn) { myEtv[num]->minOn = minOn; }
+    int8_t getEtvMinOn(int8_t num) { return myEtv[num]->minOn; }
     MyTime clockGetTime() { return myClock->getTime(); }
     void clockSetTime(MyTime timeIn) { 
         myClock->setTime(timeIn);

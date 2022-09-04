@@ -8,15 +8,15 @@ class Valve{
 private:
 
 public:
-    Valve(Clock* etvClock, int minOn, int days) {
+    Valve(Clock* etvClock, int8_t minOn, int8_t days) {
         this->etvClock = etvClock;
         this->minOn = minOn;
         this->days = days;
     }
 
-    int days;
-    int minOn;
-    int elapsedDays=1;
+    int8_t days;
+    int8_t minOn;
+    int8_t elapsedDays=1;
     MyTime tOn;
 
     virtual void turnOn() {

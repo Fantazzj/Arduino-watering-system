@@ -1,4 +1,4 @@
-#ifndef QT_DEBUGGER_CPP
+/*#ifndef QT_DEBUGGER_CPP
 #define QT_DEBUGGER_CPP
 
 #include "lib/Debugger.cpp"
@@ -28,3 +28,4 @@ protected:
 };
 
 #endif //QT_DEBUGGER_CPP
+*/

@@ -6,7 +6,7 @@
 
 class ManualEtv: public Page {
 private:
-    int num = 1;
+    int8_t num = 1;
 
 public:
     ManualEtv(PageController* controller): Page(controller) {

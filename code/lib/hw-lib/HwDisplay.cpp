@@ -27,9 +27,9 @@ private:
     byte myCheck = 6;
     byte myClockArray[8] = {0x00,0x00,0x0E,0x15,0x17,0x11,0x0E,0x00};
     byte myClock = 7;
-    int height = 0;
-    int lenght = 0;
-    int lcdLenght = 0;
+    int8_t height = 0;
+    int8_t lenght = 0;
+    int8_t lcdLenght = 0;
     void displayError1() {
         lcd->print("Err. string");
         lcd->setCursor(0, 1);
@@ -37,10 +37,10 @@ private:
     }
     void arrangeWords(String text, String row[]) {
         String buffer = "";
-        int rowN = 0;
+        int8_t rowN = 0;
 
         if(text.charAt(text.length()-1) != ' ') text += " ";
-        for(int i=0;i<text.length();i++) {
+        for(int8_t i=0;i<text.length();i++) {
             if(text.charAt(i) != ' ') buffer += text.charAt(i);
             else {
                 if(row[rowN].length() + buffer.length() <= lenght) row[rowN] += (buffer + " ");
@@ -50,13 +50,13 @@ private:
         }
     }
     void printRows(String row[]) {
-        for(int rowN=0;rowN<height;rowN++) {
+        for(int8_t rowN=0;rowN<height;rowN++) {
             lcd->setCursor(0, rowN);
             myPrint(row[rowN]);
         }
     }
     void myPrint(String text) {
-        for(int chr=0; chr<text.length(); chr++) {
+        for(int8_t chr=0; chr<text.length(); chr++) {
             if(text.charAt(chr) == 'a' && text.charAt(chr+1) == '\'') {
                 lcd->write(myA);
                 chr++;
@@ -131,7 +131,7 @@ private:
     }
 
 public:
-    HwDisplay(int address, int lenght, int height) {
+    HwDisplay(int8_t address, int8_t lenght, int8_t height) {
         lcd = new LiquidCrystal_I2C(address, lenght, height);
         lcdLenght = height * lenght;
         this->height = height;
@@ -191,17 +191,17 @@ public:
         }
         else displayError1();
     }
-    void printIn(char text[], int col, int row) {
+    void printIn(char text[], int8_t col, int8_t row) {
         String conv = MyString::toArduinoString(text);
         
         lcd->setCursor(col, row);
         myPrint(conv);
     }
-    void printIn(String text, int col, int row) {
+    void printIn(String text, int8_t col, int8_t row) {
         lcd->setCursor(col, row);
         myPrint(text);
     }
-    void printIn(int num, int col, int row) {
+    void printIn(int8_t num, int8_t col, int8_t row) {
         String conv = String(num);
 
         lcd->setCursor(col, row);
@@ -220,7 +220,7 @@ public:
         printIn(time,11,0);
         //printIn(String(timeIn.sec),14,1);
     }
-    void blinkAt(int x, int y) {
+    void blinkAt(int8_t x, int8_t y) {
         lcd->setCursor(x, y);
         lcd->blink();
     }

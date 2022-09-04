@@ -10,7 +10,7 @@ private:
     DS1302* rtc;
 
 public:
-    HwClock(int rtcRst, int rtcData, int rtcClk) {
+    HwClock(int8_t rtcRst, int8_t rtcData, int8_t rtcClk) {
         rtc = new DS1302(rtcRst, rtcData, rtcClk);
     }
 
@@ -43,10 +43,10 @@ protected:
 class HwClock: public Clock {
 private:
     MyTime t;
-    int prevMillis=0;
+    int8_t prevMillis=0;
 
 public:
-    HwClock(int rtcRst, int rtcData, int rtcClk) {
+    HwClock(int8_t rtcRst, int8_t rtcData, int8_t rtcClk) {
         t.date = 10;
         t.mon = 8;
         t.year = 2022;
@@ -59,7 +59,7 @@ public:
         t.dow = Wednesday;
     }
     MyTime getTime() {
-        int elapMillis = millis();
+        int8_t elapMillis = millis();
 
         t.sec += (elapMillis - prevMillis)/1000;
         t.min += t.sec/60;

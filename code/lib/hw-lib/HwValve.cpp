@@ -6,10 +6,10 @@
 
 class HwValve: public Valve {
 private:
-    int pin;
+    int8_t pin;
 
 public:
-    HwValve(Clock* etvClock, int pin, int minOn, int days) : Valve(etvClock, minOn, days) {
+    HwValve(Clock* etvClock, int8_t pin, int8_t minOn, int8_t days) : Valve(etvClock, minOn, days) {
         this->pin = pin;
         pinMode(pin, OUTPUT);
         digitalWrite(pin, HIGH);

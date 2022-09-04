@@ -23,7 +23,7 @@ public:
     #ifdef HWARDUINO
     static String toArduinoString(char text[]) {
         String conv = "";
-        for(int i=0; text[i]!='\0'; i++) conv += text[i];
+        for(int8_t i=0; text[i]!='\0'; i++) conv += text[i];
         return conv;
     }
     #endif

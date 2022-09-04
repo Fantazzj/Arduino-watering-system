@@ -1,7 +1,7 @@
 #ifndef MY_TIME_CPP
 #define MY_TIME_CPP
 
-enum Dow : int {
+enum Dow : uint8_t {
     Monday = 1,
     Tuesday,
     Wednesday,
@@ -11,7 +11,7 @@ enum Dow : int {
     Sunday
 };
 
-enum Month : int {
+enum Month : uint8_t {
     January = 1,
     February,
     March,
@@ -28,13 +28,13 @@ enum Month : int {
 
 class MyTime{
 public:
-    int hour = 15;
-    int min = 50;
-    int sec = 12;
-    int date = 29;
-    int mon = July;
-    int year = 2022;
-    int dow = Friday;
+    uint8_t hour = 15;
+    uint8_t min = 50;
+    uint8_t sec = 12;
+    uint8_t date = 29;
+    uint8_t mon = July;
+    uint16_t year = 2022;
+    uint8_t dow = Friday;
 
     static bool isDifferent(MyTime t1, MyTime t2) {
         if(t1.dow != t2.dow) return true;
@@ -71,8 +71,8 @@ public:
         else return false;
     }
 
-    static int elapsedHours(MyTime t1, MyTime t2) { //Only for <=24h
-        int hours;
+    static int8_t elapsedHours(MyTime t1, MyTime t2) { //Only for <=24h
+        int8_t hours;
 
         hours = t2.hour - t1.hour;
         if(hours < 0) hours+=24;
@@ -80,9 +80,9 @@ public:
         return hours;
     }
 
-    static int elapsedMin(MyTime t1, MyTime t2) {
-        int hoursMin;
-        int minutes;
+    static int8_t elapsedMin(MyTime t1, MyTime t2) {
+        int8_t hoursMin;
+        int8_t minutes;
 
         hoursMin = elapsedHours(t1, t2) * 60;
 
@@ -92,9 +92,9 @@ public:
         return minutes + hoursMin;
     }
 
-    static int elapsedSec(MyTime t1, MyTime t2) {
-        int minutesSec;
-        int seconds;
+    static int8_t elapsedSec(MyTime t1, MyTime t2) {
+        int8_t minutesSec;
+        int8_t seconds;
 
         minutesSec = elapsedMin(t1, t2) * 60;
 
@@ -105,12 +105,12 @@ public:
     }
 
     #ifdef HWARDUINO
-    static int freeze(unsigned long ms) {
+    static int8_t freeze(unsigned long ms) {
         delay(ms);
     }
     #endif
     #ifdef QTDESKTOP
-    static int freeze(unsigned long ms) {}
+    static int8_t freeze(unsigned long ms) {}
     #endif
 
 };
