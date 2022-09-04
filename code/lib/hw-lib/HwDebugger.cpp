@@ -14,7 +14,7 @@ public:
         Serial.println(text);
     }
 
-    void printText(int num) {
+    void printData(int num) {
         Serial.println(num);
     }
     
