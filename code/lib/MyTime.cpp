@@ -63,7 +63,7 @@ public:
         else if(t1.hour == t2.hour) {
             if(t1.min > t2.min) return true;
             else if(t1.min == t2.min) {
-                if(t1.min >= t2.sec) return true;
+                if(t1.sec >= t2.sec) return true;
                 else return false;
             }
             else return false;
