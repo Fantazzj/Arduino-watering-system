@@ -4,7 +4,7 @@
 #include "PageController.cpp"
 
 enum PageNum: int8_t{
-    Stay,
+    Stay = 0,
     HomePage,
     SettingsPage1,
     EditClockPage,

@@ -9,9 +9,9 @@ private:
 
     ControlUnit* w;
 
-    int length;
-    int height;
-    int displayChars;
+    int8_t length;
+    int8_t height;
+    int8_t displayChars;
 
     void _displayError1() {
         w->printOnDisplay("Err. string");
@@ -21,11 +21,11 @@ private:
 
     void _arrangeWords(QString text, QString rows[]) {
         QString buffer = "";
-        int row = 0;
+        int8_t row = 0;
 
         if(!text.endsWith(' ')) text += " ";
 
-        for(int i=0; i<text.length(); i++) {
+        for(int8_t i=0; i<text.length(); i++) {
             if(text.data()[i] != ' ') buffer += text.data()[i];
             else {
                 if(rows[row].length() + buffer.length() <= length) rows[row] += (buffer + " ");
@@ -37,7 +37,7 @@ private:
     }
 
     void _printRows(QString rows[]) {
-        for(int row=0; row < height; row++) {
+        for(int8_t row=0; row < height; row++) {
             w->setCursorDisplay(0, row);
             w->printOnDisplay(rows[row]);
         }
@@ -97,7 +97,7 @@ private:
 
 public:
 
-    QtDisplay(ControlUnit* w, int length, int height) {
+    QtDisplay(ControlUnit* w, int8_t length, int8_t height) {
         this->w = w;
         this->length = length;
         this->height = height;
@@ -123,7 +123,7 @@ public:
 
     }
 
-    void printData(char text1[], int data, char text2[]) {
+    void printData(char text1[], int8_t data, char text2[]) {
         QString rows[height];
 
         QString conv1 = MyString::toQString(text1);
@@ -140,7 +140,7 @@ public:
         else _displayError1();
     }
 
-    void printData(char text1[], int data1, char text2[], int data2, char text3[]) {
+    void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) {
         QString rows[height];
 
         QString conv1 = MyString::toQString(text1);
@@ -158,21 +158,21 @@ public:
         else _displayError1();
     }
 
-    void printIn(char text[], int x, int y) {
+    void printIn(char text[], int8_t x, int8_t y) {
         QString conv = MyString::toQString(text);
 
         w->setCursorDisplay(x, y);
         w->printOnDisplay(conv);
     }
 
-    void printIn(int data, int x, int y) {
+    void printIn(int8_t data, int8_t x, int8_t y) {
         QString conv = QString::number(data);
 
         w->setCursorDisplay(x, y);
         w->printOnDisplay(conv);
     }
 
-    void printIn(QString text, int x, int y) {
+    void printIn(QString text, int8_t x, int8_t y) {
         w->setCursorDisplay(x, y);
         w->printOnDisplay(text);
     }
@@ -193,7 +193,7 @@ public:
 
     }
 
-    void blinkAt(int x, int y) {
+    void blinkAt(int8_t x, int8_t y) {
         w->hideCursorDisplay();
         w->setCursorDisplay(x, y);
         w->showCursorDisplay();
