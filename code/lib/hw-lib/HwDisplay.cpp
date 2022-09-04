@@ -160,7 +160,7 @@ public:
         }
         else displayError1();
     }
-    void printData(char text1[], int data, char text2[]) {
+    void printData(char text1[], int8_t data, char text2[]) {
         String row[height];
 
         String conv1 = MyString::toArduinoString(text1);
@@ -175,7 +175,7 @@ public:
         }
         else displayError1();
     }
-    void printData(char text1[], int data1, char text2[], int data2, char text3[]) {
+    void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) {
         String row[height];
 
         String conv1 = MyString::toArduinoString(text1);
