@@ -25,8 +25,12 @@ public:
     }
     virtual void turnOff() {}
     bool toWater() {
-        if(elapsedDays>=days and days > 0 and minOn > 0) return true;
-        else false;
+        if(elapsedDays>=days and days > 0 and minOn > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     bool wateringDone(MyTime newTime) {
         if(MyTime::elapsedMin(tOn, newTime) >= minOn) return true;

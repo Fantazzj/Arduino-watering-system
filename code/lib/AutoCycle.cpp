@@ -7,8 +7,12 @@ private:
     Valve** myEtv;
     int8_t _nextEtv() {
         for(int8_t etv = etvOn+1; etv<=etvNum; etv++) {
-            if(myEtv[etv]->toWater()) return etv;
-            else myEtv[etv]->elapsedDays++;
+            if(myEtv[etv]->toWater()) {
+                return etv;
+            }
+            else {
+                myEtv[etv]->elapsedDays++;
+            } 
         }
         return 0;
     }
