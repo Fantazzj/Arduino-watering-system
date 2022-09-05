@@ -25,11 +25,13 @@ public:
     bool started = false;
     int8_t etvOn = 0;
     int8_t etvNum;
+    Moisture _myMoisture;
 
-    AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum) {
+    AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, Moisture myMoisture) {
         _myClock = myClock;
         _myEtv = myEtv;
         this->etvNum = etvNum;
+        _myMoisture = myMoisture;
 
         tStart.hour = 0;
         tStart.min = 30;
@@ -83,6 +85,11 @@ public:
             etvOn = 0;
         }
 
+        if(tChange.hour==newTime.hour and tChange.min==newTime.min) {
+            uint8_t moisture = _myMoisture.getMoisture();
+            if (moisture < 50) watered = false;
+            else watered = true;
+        }
     }
 
 protected:
