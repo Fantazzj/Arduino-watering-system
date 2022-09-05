@@ -22,9 +22,9 @@ Valve* myEtv5;
 Valve* myEtv6;
 Valve* myEtv7;
 Valve* myEtv8;
-//Valve* myEtv9;
+Valve* myEtv9;
 
-Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6, myEtv7, myEtv8, /*myEtv9*/};
+Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6, myEtv7, myEtv8, myEtv9};
 int8_t etvNum = sizeof(myEtv)/sizeof(myEtv[1]) -1;
 PageSelector* pageSelector;
 AutoCycle* autoCycle;
@@ -44,15 +44,15 @@ void setup(ControlUnit* w) {
     myDisplay = new QtDisplay(w, 16, 2);
     myClock = new QtClock(w);
 
-    myEtv[1] = new QtValve(w, myClock, 1, 0, 0);
-    myEtv[2] = new QtValve(w, myClock, 2, 0, 0);
-    myEtv[3] = new QtValve(w, myClock, 3, 0, 0);
-    myEtv[4] = new QtValve(w, myClock, 4, 0, 0);
-    myEtv[5] = new QtValve(w, myClock, 5, 0, 0);
-    myEtv[6] = new QtValve(w, myClock, 6, 0, 0);
-    myEtv[7] = new QtValve(w, myClock, 7, 0, 0);
-    myEtv[8] = new QtValve(w, myClock, 8, 0, 0);
-    myEtv[9] = new QtValve(w, myClock, 9, 0, 0);
+    myEtv[1] = new QtValve(myClock, 5, 0, w, 1);
+    myEtv[2] = new QtValve(myClock, 5, 0, w, 2);
+    myEtv[3] = new QtValve(myClock, 5, 0, w, 3);
+    myEtv[4] = new QtValve(myClock, 5, 0, w, 4);
+    myEtv[5] = new QtValve(myClock, 5, 0, w, 5);
+    myEtv[6] = new QtValve(myClock, 5, 0, w, 6);
+    myEtv[7] = new QtValve(myClock, 5, 0, w, 7);
+    myEtv[8] = new QtValve(myClock, 5, 0, w, 8);
+    myEtv[9] = new QtValve(myClock, 5, 0, w, 9);
 
     w->setKeypad(myKeypad);
 
@@ -98,25 +98,25 @@ const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 void setup() {
     
-    myClock = new HwClock(rtcRst, rtcData, rtcClk);
+    _myClock = new HwClock(rtcRst, rtcData, rtcClk);
 
-    myEtv[1] = new HwValve(myClock, etvsPin[1], 0, 1);
-    myEtv[2] = new HwValve(myClock, etvsPin[2], 0, 1);
-    myEtv[3] = new HwValve(myClock, etvsPin[3], 0, 1);
-    myEtv[4] = new HwValve(myClock, etvsPin[4], 0, 1);
-    myEtv[5] = new HwValve(myClock, etvsPin[5], 0, 1);
-    myEtv[6] = new HwValve(myClock, etvsPin[6], 0, 1);
-    myEtv[7] = new HwValve(myClock, etvsPin[7], 0, 1);
-    myEtv[8] = new HwValve(myClock, etvsPin[8], 0, 1);
-    //myEtv[9] = new HwValve(myClock, etvsPin[9], 0, 0);
+    _myEtv[1] = new HwValve(_myClock, 0, 1, etvsPin[1]);
+    _myEtv[2] = new HwValve(_myClock, 0, 1, etvsPin[2]);
+    _myEtv[3] = new HwValve(_myClock, 0, 1, etvsPin[3]);
+    _myEtv[4] = new HwValve(_myClock, 0, 1, etvsPin[4]);
+    _myEtv[5] = new HwValve(_myClock, 0, 1, etvsPin[5]);
+    _myEtv[6] = new HwValve(_myClock, 0, 1, etvsPin[6]);
+    _myEtv[7] = new HwValve(_myClock, 0, 1, etvsPin[7]);
+    _myEtv[8] = new HwValve(_myClock, 0, 1, etvsPin[8]);
+    //_myEtv[9] = new HwValve(_myClock, etvsPin[9], 0, 0);
     
-    myKeypad = new HwKeypad(cancelPin, downPin, upPin, confirmPin);
+    _myKeypad = new HwKeypad(cancelPin, downPin, upPin, confirmPin);
     
-    myDisplay = new HwDisplay(lcdAddress, lcdLength, lcdHeight);
+    _myDisplay = new HwDisplay(lcdAddress, lcdLength, lcdHeight);
 
-    autoCycle = new AutoCycle(myClock, myEtv, etvNum);
+    _autoCycle = new AutoCycle(_myClock, _myEtv, etvNum);
 
-    pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, autoCycle);
+    pageSelector = new PageSelector(_myKeypad, _myDisplay, _myClock, _myEtv, _autoCycle);
 }
 #endif
 //endregion

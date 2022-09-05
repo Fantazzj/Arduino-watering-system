@@ -8,12 +8,12 @@ private:
 
 public:
     Settings3(PageController* controller): Page(controller) {
-        controller->displayHideCursor();
+        _controller->displayHideCursor();
     }
 
     PageNum exec() {
-        KeypadButton key = controller->keypad();
-        if(key != NoBtn) redraw = true;
+        KeypadButton key = _controller->keypad();
+        if(key != NoBtn) _redraw = true;
         switch(key) {
             case Cancel:
                 return HomePage;
@@ -29,9 +29,9 @@ public:
     }
 
     void show() {
-        if(redraw) {
-            controller->displayPrint("Cambia orario di avvio");
-            redraw = false;
+        if(_redraw) {
+            _controller->displayPrint("Cambia orario di avvio");
+            _redraw = false;
         }
     }
 

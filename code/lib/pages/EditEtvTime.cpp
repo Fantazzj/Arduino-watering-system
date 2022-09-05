@@ -5,47 +5,47 @@
 
 class EditEtvTime : public Page{
 private:
-    int8_t etvEdit = 1;
-    int8_t timeEdit = controller->getEtvMinOn(1);
+    int8_t _etvEdit = 1;
+    int8_t _timeEdit = _controller->getEtvMinOn(1);
 
 public:
     EditEtvTime(PageController *controller) : Page(controller) {
-        etvEdit = 1;
-        timeEdit = controller->getEtvMinOn(1);
+        _etvEdit = 1;
+        _timeEdit = _controller->getEtvMinOn(1);
     }
 
     PageNum exec() {
-        KeypadButton key = controller->keypad();
-        if(key != NoBtn) redraw = true;
+        KeypadButton key = _controller->keypad();
+        if(key != NoBtn) _redraw = true;
 
         switch(key) {
             case Cancel:
-                if(etvEdit >= 2) {
-                    etvEdit--;
-                    timeEdit = controller->getEtvMinOn(etvEdit);
+                if(_etvEdit >= 2) {
+                    _etvEdit--;
+                    _timeEdit = _controller->getEtvMinOn(_etvEdit);
                     return Stay;
                 }
                 else {
-                    etvEdit = 1;
-                    timeEdit = 0;
+                    _etvEdit = 1;
+                    _timeEdit = 0;
                     return SettingsPage2;
                 }
 
             case Down:
-                if(timeEdit <= 10) timeEdit--;
-                else timeEdit -= 5;
-                if(timeEdit <= 0) timeEdit=0;
+                if(_timeEdit <= 10) _timeEdit--;
+                else _timeEdit -= 5;
+                if(_timeEdit <= 0) _timeEdit=0;
                 return Stay;
 
             case Up:
-                if(timeEdit < 10) timeEdit++;
-                else timeEdit+=5;
+                if(_timeEdit < 10) _timeEdit++;
+                else _timeEdit+=5;
                 return Stay;
 
             case Confirm:
-                controller->setEtvMinOn(etvEdit++, timeEdit);
-                timeEdit = controller->getEtvMinOn(etvEdit);
-                if(etvEdit > controller->getEtvNum())
+                _controller->setEtvMinOn(_etvEdit++, _timeEdit);
+                _timeEdit = _controller->getEtvMinOn(_etvEdit);
+                if(_etvEdit > _controller->getEtvNum())
                     return HomePage;
                 else return Stay;
         }
@@ -53,10 +53,10 @@ public:
     }
 
     void show() {
-        if(redraw) {
-            controller->displayPrint("Etv", etvEdit, "per", timeEdit, "minuti");
-            controller->displayShowCursor(10, 0);
-            redraw = false;
+        if(_redraw) {
+            _controller->displayPrint("Etv", _etvEdit, "per", _timeEdit, "minuti");
+            _controller->displayShowCursor(10, 0);
+            _redraw = false;
         }
     }
 

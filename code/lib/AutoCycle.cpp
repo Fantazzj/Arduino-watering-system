@@ -3,15 +3,15 @@
 
 class AutoCycle {
 private:
-    Clock* myClock;
-    Valve** myEtv;
+    Clock* _myClock;
+    Valve** _myEtv;
     int8_t _nextEtv() {
         for(int8_t etv = etvOn+1; etv<=etvNum; etv++) {
-            if(myEtv[etv]->toWater()) {
+            if(_myEtv[etv]->toWater()) {
                 return etv;
             }
             else {
-                myEtv[etv]->elapsedDays++;
+                _myEtv[etv]->elapsedDays++;
             } 
         }
         return 0;
@@ -27,8 +27,8 @@ public:
     int8_t etvNum;
 
     AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum) {
-        this->myClock = myClock;
-        this->myEtv = myEtv;
+        _myClock = myClock;
+        _myEtv = myEtv;
         this->etvNum = etvNum;
 
         tStart.hour = 0;
@@ -50,7 +50,7 @@ public:
 
     void exec() {
 
-        newTime = myClock->getTime();
+        newTime = _myClock->getTime();
 
         if(MyTime::timeIsNextOrEq(newTime, tStart) and !watered and !started) {
             started = true;
@@ -60,26 +60,26 @@ public:
                 started = false;
             }
             else {
-                myEtv[etvOn]->turnOn();
+                _myEtv[etvOn]->turnOn();
             }
         }
 
         if(started) {
-            if(myEtv[etvOn]->wateringDone(newTime)) {
-                myEtv[etvOn]->turnOff();
+            if(_myEtv[etvOn]->wateringDone(newTime)) {
+                _myEtv[etvOn]->turnOff();
                 etvOn = _nextEtv();
                 if(etvOn == 0) {
                     watered = true;
                     started = false;
                 }
                 else {
-                    myEtv[etvOn]->turnOn();
+                    _myEtv[etvOn]->turnOn();
                 }
             }
         }
 
-        if(!started and etvOn!=0 and myEtv[etvOn]->wateringDone(newTime)) {
-            myEtv[etvOn]->turnOff();
+        if(!started and etvOn!=0 and _myEtv[etvOn]->wateringDone(newTime)) {
+            _myEtv[etvOn]->turnOff();
             etvOn = 0;
         }
 

@@ -5,51 +5,51 @@
 
 class EditTStart: public Page {
 private:
-    MyTime newTime;
-    int8_t editPhase = 1;
+    MyTime _newTime;
+    int8_t _editPhase = 1;
 
 public:
     EditTStart(PageController* controller): Page(controller) {
-        newTime = controller->autoCycleGetTStart();
+        _newTime = _controller->autoCycleGetTStart();
     }
 
     PageNum exec() {
-        KeypadButton key = controller->keypad();
+        KeypadButton key = _controller->keypad();
 
-        if(key != NoBtn) redraw = true;
+        if(key != NoBtn) _redraw = true;
 
         switch(key) {
             case Cancel:
-                editPhase = 1;
+                _editPhase = 1;
                 return SettingsPage3;
 
             case Down:
-                switch(editPhase) {
+                switch(_editPhase) {
                     case 1:
-                        newTime.hour = (newTime.hour > 0) ? newTime.hour-1 : 23;
+                        _newTime.hour = (_newTime.hour > 0) ? _newTime.hour - 1 : 23;
                         break;
                     case 2:
-                        newTime.min = (newTime.min > 0) ? newTime.min-5 : 55;
+                        _newTime.min = (_newTime.min > 0) ? _newTime.min - 5 : 55;
                         break;
                 }
                 return Stay;
 
             case Up:
-                switch(editPhase) {
+                switch(_editPhase) {
                     case 1:
-                        newTime.hour = (newTime.hour < 23) ? newTime.hour+1 : 0;
+                        _newTime.hour = (_newTime.hour < 23) ? _newTime.hour + 1 : 0;
                         break;
                     case 2:
-                        newTime.min = (newTime.min < 55) ? newTime.min+5 : 0;
+                        _newTime.min = (_newTime.min < 55) ? _newTime.min + 5 : 0;
                         break;
                 }
                 return Stay;
 
             case Confirm:
-                editPhase++;
-                if(editPhase==3) {
-                    editPhase = 1;
-                    controller->autoCycleSetTStart(newTime);
+                _editPhase++;
+                if(_editPhase == 3) {
+                    _editPhase = 1;
+                    _controller->autoCycleSetTStart(_newTime);
                     return HomePage;
                 }
                 else return Stay;
@@ -60,11 +60,11 @@ public:
     }
 
     void show() {
-        if(redraw) {
-            controller->displayPrint("Orario di avvio", newTime.hour, ":", newTime.min, "");
-            if(editPhase==2) controller->displayShowCursor(6, 1);
-            else controller->displayShowCursor(1, 1);
-            redraw = false;
+        if(_redraw) {
+            _controller->displayPrint("Orario di avvio", _newTime.hour, ":", _newTime.min, "");
+            if(_editPhase == 2) _controller->displayShowCursor(6, 1);
+            else _controller->displayShowCursor(1, 1);
+            _redraw = false;
         }
     }
 

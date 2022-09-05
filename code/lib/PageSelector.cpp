@@ -36,9 +36,9 @@ private:
     MyTime lightTime;
 
 public:
-    PageSelector(Keypad* myKeypad/*, Debugger* myDebugger*/, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
+    PageSelector(Keypad* myKeypad, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
 
-        this->controller = new PageController(myKeypad/*, myDebugger*/, myDisplay, myClock, myEtv, autoCycle);
+        this->controller = new PageController(myKeypad, myDisplay, myClock, myEtv, autoCycle);
 
         activePage = new Home(controller);
 

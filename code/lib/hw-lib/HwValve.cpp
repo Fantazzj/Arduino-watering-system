@@ -2,14 +2,13 @@
 #define HW_VALVE_CPP
 
 #include "../Valve.cpp"
-#include "HwClock.cpp"
 
 class HwValve: public Valve {
 private:
     int8_t pin;
 
 public:
-    HwValve(Clock* etvClock, int8_t pin, int8_t minOn, int8_t days) : Valve(etvClock, minOn, days) {
+    HwValve(Clock* etvClock, int8_t minOn, int8_t days, int8_t pin) : Valve(etvClock, minOn, days) {
         this->pin = pin;
         pinMode(pin, OUTPUT);
         digitalWrite(pin, HIGH);

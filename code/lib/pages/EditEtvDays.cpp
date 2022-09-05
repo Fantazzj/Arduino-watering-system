@@ -5,47 +5,47 @@
 
 class EditEtvDays : public Page{
 private:
-    int8_t etvEdit = 1;
-    int8_t daysEdit = controller->getEtvDays(1);
+    int8_t _etvEdit = 1;
+    int8_t _daysEdit = _controller->getEtvDays(1);
 
 public:
     EditEtvDays(PageController *controller) : Page(controller) {
-        etvEdit = 1;
-        daysEdit = controller->getEtvDays(1);
+        _etvEdit = 1;
+        _daysEdit = _controller->getEtvDays(1);
     }
 
     PageNum exec() {
-        KeypadButton key = controller->keypad();
-        if(key != NoBtn) redraw = true;
+        KeypadButton key = _controller->keypad();
+        if(key != NoBtn) _redraw = true;
 
         switch(key) {
             case Cancel:
-                if(etvEdit >= 2) {
-                    etvEdit--;
-                    daysEdit = controller->getEtvDays(etvEdit);
+                if(_etvEdit >= 2) {
+                    _etvEdit--;
+                    _daysEdit = _controller->getEtvDays(_etvEdit);
                     return Stay;
                 }
                 else {
-                    etvEdit = 1;
-                    daysEdit = 0;
+                    _etvEdit = 1;
+                    _daysEdit = 0;
                     return SettingsPage6;
                 }
 
             case Down:
-                if(daysEdit <= 10) daysEdit--;
-                else daysEdit -= 5;
-                if(daysEdit <= 0) daysEdit=0;
+                if(_daysEdit <= 10) _daysEdit--;
+                else _daysEdit -= 5;
+                if(_daysEdit <= 0) _daysEdit=0;
                 return Stay;
 
             case Up:
-                if(daysEdit < 10) daysEdit++;
-                else daysEdit+=5;
+                if(_daysEdit < 10) _daysEdit++;
+                else _daysEdit+=5;
                 return Stay;
 
             case Confirm:
-                controller->setEtvDays(etvEdit++, daysEdit);
-                daysEdit = controller->getEtvDays(etvEdit);
-                if(etvEdit > controller->getEtvNum())
+                _controller->setEtvDays(_etvEdit++, _daysEdit);
+                _daysEdit = _controller->getEtvDays(_etvEdit);
+                if(_etvEdit > _controller->getEtvNum())
                     return HomePage;
                 else return Stay;
         }
@@ -53,10 +53,10 @@ public:
     }
 
     void show() {
-        if(redraw) {
-            controller->displayPrint("Etv", etvEdit, "ogni", daysEdit, "giorni");
-            controller->displayShowCursor(11, 0);
-            redraw = false;
+        if(_redraw) {
+            _controller->displayPrint("Etv", _etvEdit, "ogni", _daysEdit, "giorni");
+            _controller->displayShowCursor(11, 0);
+            _redraw = false;
         }
     }
 

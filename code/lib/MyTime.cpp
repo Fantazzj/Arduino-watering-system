@@ -1,4 +1,4 @@
-#ifndef MY_TIME_CPP
+#ifndef MY_TIME_CPP //TODO improve
 #define MY_TIME_CPP
 
 enum Dow : uint8_t {
@@ -48,14 +48,7 @@ public:
     }
 
     static bool isEqual(MyTime t1, MyTime t2) {
-        if(t1.dow == t2.dow) return true;
-        else if(t1.min == t2.min) return true;
-        else if(t1.hour == t2.hour) return true;
-        //else if(t1.sec == t2.sec) return true;
-        else if(t1.date == t2.date) return true;
-        else if(t1.mon == t2.mon) return true;
-        else if(t1.year == t2.year) return true;
-        else return false;
+        return !isDifferent(t1, t2);
     }
 
     static bool timeIsNextOrEq(MyTime t1, MyTime t2) {
@@ -104,14 +97,14 @@ public:
         return seconds + minutesSec;
     }
 
-    #ifdef HWARDUINO
     static void freeze(unsigned long ms) {
+        #ifdef HWARDUINO
         delay(ms);
+        #endif
+        #ifdef QTDESKTOP
+
+        #endif
     }
-    #endif
-    #ifdef QTDESKTOP
-    static void freeze(unsigned long ms) {}
-    #endif
 
 };
 
