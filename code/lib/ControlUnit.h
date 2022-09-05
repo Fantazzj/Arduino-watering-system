@@ -8,6 +8,7 @@
 #include <QMainWindow>
 #include <QLabel>
 #include <QCheckBox>
+#include <QSlider>
 #include "Keypad.cpp"
 
 QT_BEGIN_NAMESPACE
@@ -32,6 +33,7 @@ public:
     void deactivate(int num);
     void backlight();
     void noBacklight();
+    int getMoisture();
     ~ControlUnit();
 
 private slots:
@@ -50,6 +52,7 @@ private:
     QLabel* higlighted;
     int x = 0;
     int y = 0;
+    QSlider moisture;
 
 };
 

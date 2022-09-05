@@ -124,6 +124,10 @@ void ControlUnit::noBacklight() {
     ui->backlight->setValue(0);
 }
 
+int ControlUnit::getMoisture() {
+    return ui->moisture->value();
+}
+
 void ControlUnit::on_confirmButton_clicked() {
     keypad->confirmState = true;
 }
