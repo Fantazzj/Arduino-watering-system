@@ -6,47 +6,48 @@
 
 class Home: public Page {
 private:
-    MyTime newTime;
-    MyTime oldTime;
+    MyTime _newTime;
+    MyTime _oldTime;
 
 public:
     Home(PageController* controller): Page(controller) {
-        controller->displayHideCursor();
+        _controller->displayHideCursor();
+        _newTime = _controller->clockGetTime();
     }
 
     PageNum exec() {
-        KeypadButton key = controller->keypad();
+        KeypadButton key = _controller->keypad();
 
-        if(key != NoBtn) redraw = true;
+        if(key != NoBtn) _redraw = true;
 
-        newTime = controller->clockGetTime();
-        if(MyTime::isDifferent(oldTime,newTime)) redraw = true;
+        _newTime = _controller->clockGetTime();
+        if(MyTime::isDifferent(_oldTime, _newTime)) _redraw = true;
 
         if(key == Confirm) return SettingsPage1;
         else return Stay;
     }
 
     void show() {
-        if(redraw) {
-            controller->displayPrint(newTime);
-            //controller->displayPrint("HOMEPAGE");
-            if(controller->getEtvOn() != 0) {
-                controller->displayPrint("Etv", 11, 1);
-                controller->displayPrint(controller->getEtvOn(), 14, 1);
+        if(_redraw) {
+            _controller->displayPrint(_newTime);
+            //_controller->displayPrint("HOMEPAGE");
+            if(_controller->getEtvOn() != 0) {
+                _controller->displayPrint("Etv", 11, 1);
+                _controller->displayPrint(_controller->getEtvOn(), 14, 1);
             }
             else {
-                if(controller->autoCycleGetWatered()) controller->displayCheck(true);
-                else controller->displayCheck(false);
+                if(_controller->autoCycleGetWatered()) _controller->displayCheck(true);
+                else _controller->displayCheck(false);
                 /*
-                 if(moisture) controller->displayDrop(true);
-                 else controller->displayDrop(false);
+                 if(moisture) _controller->displayDrop(true);
+                 else _controller->displayDrop(false);
                 */
-                if(newTime.year < 2022 or controller->getTimeToEdit()) controller->displayClock(true);
-                else controller->displayClock(false);
+                if(_newTime.year < 2022 or _controller->getTimeToEdit()) _controller->displayClock(true);
+                else _controller->displayClock(false);
             }
-            redraw = false;
+            _redraw = false;
         }
-        oldTime = newTime;
+        _oldTime = _newTime;
     }
 
 protected:

@@ -18,19 +18,14 @@ public:
         this->minOn = minOn;
         this->days = days;
     }
-
     virtual void turnOn() {
         tOn = etvClock->getTime();
         elapsedDays = 1;
     }
     virtual void turnOff() {}
     bool toWater() {
-        if(elapsedDays>=days and days > 0 and minOn > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        if(elapsedDays>=days and days > 0 and minOn > 0) return true;
+        else return false;
     }
     bool wateringDone(MyTime newTime) {
         if(MyTime::elapsedMin(tOn, newTime) >= minOn) return true;

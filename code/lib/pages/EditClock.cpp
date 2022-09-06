@@ -6,79 +6,78 @@
 
 class EditClock: public Page {
 private:
-    MyTime newTime;
-    MyTime oldTime;
-    int8_t editPhase = 1;
+    MyTime _newTime;
+    MyTime _oldTime;
+    int8_t _editPhase = 1;
 
 public:
     EditClock(PageController* controller): Page(controller) {
-        this->controller = controller;
-        editPhase = 1;
-        oldTime = controller->clockGetTime();
-        newTime = oldTime;
+        _editPhase = 1;
+        _oldTime = controller->clockGetTime();
+        _newTime = _oldTime;
     }
     PageNum exec() {
 
-        KeypadButton key = controller->keypad();
+        KeypadButton key = _controller->keypad();
 
-        if(key != NoBtn) redraw = true;
+        if(key != NoBtn) _redraw = true;
 
         switch(key) {
             case Cancel:
-                editPhase--;
-                if(editPhase<=0) return SettingsPage1;
+                _editPhase--;
+                if(_editPhase <= 0) return SettingsPage1;
                 return Stay;
 
             case Down:
-                switch(editPhase) {
+                switch(_editPhase) {
                     case 1:
-                        newTime.dow = (newTime.dow > Monday) ? newTime.dow-1 : Sunday;
+                        _newTime.dow = (_newTime.dow > Monday) ? _newTime.dow - 1 : Sunday;
                         break;
                     case 2:
-                        newTime.hour = (newTime.hour > 0) ? newTime.hour-1 : 23;
+                        _newTime.hour = (_newTime.hour > 0) ? _newTime.hour - 1 : 23;
                         break;
                     case 3:
-                        newTime.min = (newTime.min > 0) ? newTime.min-1 : 59;
+                        _newTime.min = (_newTime.min > 0) ? _newTime.min - 1 : 59;
                         break;
                     case 4:
-                        newTime.date = (newTime.date > 1) ? newTime.date-1 : 31;
+                        _newTime.date = (_newTime.date > 1) ? _newTime.date - 1 : 31;
                         break;
                     case 5:
-                        newTime.mon = (newTime.mon > 1) ? newTime.mon-1 : 12;
+                        _newTime.mon = (_newTime.mon > 1) ? _newTime.mon - 1 : 12;
                         break;
                     case 6:
-                        newTime.year = (newTime.year > 2021) ? newTime.year-1 : 2021;
+                        _newTime.year = (_newTime.year > 2021) ? _newTime.year - 1 : 2021;
                         break;
                 }
                 return Stay;
 
             case Up:
-                switch(editPhase) {
+                switch(_editPhase) {
                     case 1:
-                        newTime.dow = (newTime.dow < Sunday) ? newTime.dow+1 : Monday;
+                        _newTime.dow = (_newTime.dow < Sunday) ? _newTime.dow + 1 : Monday;
                         break;
                     case 2:
-                        newTime.hour = (newTime.hour < 23) ? newTime.hour+1 : 0;
+                        _newTime.hour = (_newTime.hour < 23) ? _newTime.hour + 1 : 0;
                         break;
                     case 3:
-                        newTime.min = (newTime.min < 59) ? newTime.min+1 : 0;
+                        _newTime.min = (_newTime.min < 59) ? _newTime.min + 1 : 0;
                         break;
                     case 4:
-                        newTime.date = (newTime.date < 31) ? newTime.date+1 : 1;
+                        _newTime.date = (_newTime.date < 31) ? _newTime.date + 1 : 1;
                         break;
                     case 5:
-                        newTime.mon = (newTime.mon < 12) ? newTime.mon+1 : 1;
+                        _newTime.mon = (_newTime.mon < 12) ? _newTime.mon + 1 : 1;
                         break;
                     case 6:
-                        newTime.year ++;
+                        _newTime.year ++;
                         break;
                 }
                 return Stay;
 
             case Confirm:
-                editPhase++;
-                if(editPhase > 6) {
-                    controller->clockSetTime(newTime);
+                _editPhase++;
+                if(_editPhase > 6) {
+                    _controller->clockSetTime(_newTime);
                     return HomePage;
                 }
                 else return Stay;
@@ -89,28 +88,28 @@ public:
 
     }
     void show() {
-        if(redraw) {
-            controller->displayPrint(newTime);
-            redraw = false;
+        if(_redraw) {
+            _controller->displayPrint(_newTime);
+            _redraw = false;
 
-            switch(editPhase) {
+            switch(_editPhase) {
                 case 1:
-                    controller->displayShowCursor(0,0);
+                    _controller->displayShowCursor(0, 0);
                     break;
                 case 2:
-                    controller->displayShowCursor(12,0);
+                    _controller->displayShowCursor(12, 0);
                     break;
                 case 3:
-                    controller->displayShowCursor(15,0);
+                    _controller->displayShowCursor(15, 0);
                     break;
                 case 4:
-                    controller->displayShowCursor(1,1);
+                    _controller->displayShowCursor(1, 1);
                     break;
                 case 5:
-                    controller->displayShowCursor(4,1);
+                    _controller->displayShowCursor(4, 1);
                     break;
                 case 6:
-                    controller->displayShowCursor(9,1);
+                    _controller->displayShowCursor(9, 1);
                     break;
             }
         }

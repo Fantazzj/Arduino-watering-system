@@ -2,7 +2,6 @@
 #define PAGE_CONTROLLER_CPP
 
 #include "../Keypad.cpp"
-//#include "../Debugger.cpp"
 #include "../Display.cpp"
 #include "../Clock.cpp"
 #include "../Valve.cpp"
@@ -24,83 +23,79 @@ enum KeypadButton : int8_t {
 
 class PageController{
 private:
-    Keypad* myKeypad;
-    //Debugger* myDebugger;
-    Display* myDisplay;
-    Clock* myClock;
-    Valve** myEtv;
-    AutoCycle* autoCycle;
-    bool timeToEdit;
+    Keypad* _myKeypad;
+    Display* _myDisplay;
+    Clock* _myClock;
+    Valve** _myEtv;
+    AutoCycle* _autoCycle;
+    bool _timeToEdit;
 
 public:
-    PageController(Keypad* myKeypad/*, Debugger* myDebugger*/, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
-        this->myKeypad = myKeypad;
-        //this->myDebugger = myDebugger;
-        this->myDisplay = myDisplay;
-        this->myClock = myClock;
-        this->myEtv = myEtv;
-        this->autoCycle = autoCycle;
-        timeToEdit = true;
+    PageController(Keypad* myKeypad, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
+        _myKeypad = myKeypad;
+        _myDisplay = myDisplay;
+        _myClock = myClock;
+        _myEtv = myEtv;
+        _autoCycle = autoCycle;
+        _timeToEdit = true;
     }
 
     KeypadButton keypad() {
-        if(myKeypad->cancel()) return Cancel;
-        if(myKeypad->down()) return Down;
-        if(myKeypad->up()) return Up;
-        if(myKeypad->confirm()) return Confirm;
+        if(_myKeypad->cancel()) return Cancel;
+        if(_myKeypad->down()) return Down;
+        if(_myKeypad->up()) return Up;
+        if(_myKeypad->confirm()) return Confirm;
         else return NoBtn;
     }
-    bool getTimeToEdit() { return timeToEdit; }
-    bool setTimeToEdit(bool state) { timeToEdit=state; }
-    bool keypadGeneral() { return myKeypad->generalPressed(); }
-    //void debugprint(char text[]) { myDebugger->printText(text); }
-    //void debugprint(int8_t num) { myDebugger->printData(num); }
-    void displayPrint(char text[]) { myDisplay->printSimpleText(text); }
-    void displayPrint(char text[], int8_t x, int8_t y) { myDisplay->printIn(text, x, y); }
-    void displayPrint(int8_t num, int8_t x, int8_t y) { myDisplay->printIn(num, x, y); }
-    void displayPrint(char text1[], int8_t data, char text2[]) { myDisplay->printData(text1, data, text2); }
-    void displayPrint(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) { myDisplay->printData(text1, data1, text2, data2, text3); }
-    void displayPrint(MyTime time) { myDisplay->showClock(time); }
+    bool getTimeToEdit() { return _timeToEdit; }
+    bool setTimeToEdit(bool state) { _timeToEdit=state; }
+    bool keypadGeneral() { return _myKeypad->generalPressed(); }
+    void displayPrint(char text[]) { _myDisplay->printSimpleText(text); }
+    void displayPrint(char text[], int8_t x, int8_t y) { _myDisplay->printIn(text, x, y); }
+    void displayPrint(int8_t num, int8_t x, int8_t y) { _myDisplay->printIn(num, x, y); }
+    void displayPrint(char text1[], int8_t data, char text2[]) { _myDisplay->printData(text1, data, text2); }
+    void displayPrint(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) { _myDisplay->printData(text1, data1, text2, data2, text3); }
+    void displayPrint(MyTime time) { _myDisplay->showClock(time); }
     void displayDrop(bool state) {
-        if(state) myDisplay->dropSym();
-        else myDisplay->noDropSym();
+        if(state) _myDisplay->dropSym();
+        else _myDisplay->noDropSym();
     }
     void displayClock(bool state) {
-        if(state) myDisplay->clockSym();
-        else myDisplay->noClockSym();
+        if(state) _myDisplay->clockSym();
+        else _myDisplay->noClockSym();
     }
     void displayCheck(bool state) {
-        if(state) myDisplay->checkSym();
-        else myDisplay->noCheckSym();
+        if(state) _myDisplay->checkSym();
+        else _myDisplay->noCheckSym();
     }
-    void displayShowCursor(int8_t x, int8_t y) { myDisplay->blinkAt(x, y); }
-    void displayHideCursor() { myDisplay->noBlink(); }
+    void displayShowCursor(int8_t x, int8_t y) { _myDisplay->blinkAt(x, y); }
+    void displayHideCursor() { _myDisplay->noBlink(); }
     void displaySetBacklight(bool state) {
-        if(state) myDisplay->backlight();
-        else myDisplay->noBacklight();
+        if(state) _myDisplay->backlight();
+        else _myDisplay->noBacklight();
     }
-    int8_t getEtvOn() { return autoCycle->etvOn; }
-    void setEtvOn(int8_t num) { autoCycle->etvOn = num; }
-    int8_t getEtvNum() { return autoCycle->etvNum; }
+    int8_t getEtvOn() { return _autoCycle->etvOn; }
+    void setEtvOn(int8_t num) { _autoCycle->etvOn = num; }
+    int8_t getEtvNum() { return _autoCycle->etvNum; }
     void setEtvState(int8_t num, bool state) {
-        if(state) myEtv[num]->turnOn();
-        else myEtv[num]->turnOff();
+        if(state) _myEtv[num]->turnOn();
+        else _myEtv[num]->turnOff();
     }
-    void setEtvDays(int8_t num, int8_t days) { myEtv[num]->days = days; }
-    int8_t getEtvDays(int8_t num) { return myEtv[num]->days; }
-    void setEtvMinOn(int8_t num, int8_t minOn) { myEtv[num]->minOn = minOn; }
-    int8_t getEtvMinOn(int8_t num) { return myEtv[num]->minOn; }
-    MyTime clockGetTime() { return myClock->getTime(); }
+    void setEtvDays(int8_t num, int8_t days) { _myEtv[num]->days = days; }
+    int8_t getEtvDays(int8_t num) { return _myEtv[num]->days; }
+    void setEtvMinOn(int8_t num, int8_t minOn) { _myEtv[num]->minOn = minOn; }
+    int8_t getEtvMinOn(int8_t num) { return _myEtv[num]->minOn; }
+    MyTime clockGetTime() { return _myClock->getTime(); }
     void clockSetTime(MyTime timeIn) { 
-        myClock->setTime(timeIn);
+        _myClock->setTime(timeIn);
         setTimeToEdit(false);
     }
-    void autoCycleSetWatered(bool mode) { autoCycle->watered = mode; }
-    bool autoCycleGetWatered() { return autoCycle->watered; }
-    void autoCycleSetStarted(bool mode) { autoCycle->started = mode; }
-    bool autoCycleGetStarted() { return autoCycle->started; }
-    void autoCycleSetTStart(MyTime timeIn) { autoCycle->tStart = timeIn; }
-    MyTime autoCycleGetTStart() { return autoCycle->tStart; }
+    void autoCycleSetWatered(bool mode) { _autoCycle->watered = mode; }
+    bool autoCycleGetWatered() { return _autoCycle->watered; }
+    void autoCycleSetStarted(bool mode) { _autoCycle->started = mode; }
+    bool autoCycleGetStarted() { return _autoCycle->started; }
+    void autoCycleSetTStart(MyTime timeIn) { _autoCycle->tStart = timeIn; }
+    MyTime autoCycleGetTStart() { return _autoCycle->tStart; }
 
 
 protected:

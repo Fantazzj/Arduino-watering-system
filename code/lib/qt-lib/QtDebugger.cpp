@@ -7,21 +7,21 @@
 
 class QtDebugger: public Debugger {
 private:
-    ControlUnit* w;
+    ControlUnit* _w;
 
 public:
-    QtDebugger(ControlUnit* w) {
-        this->w = w;
+    QtDebugger(ControlUnit* _w) {
+        this->_w = _w;
     }
 
     void printText(char text[]) {
         QString qText = MyString::toQString(text);
-        w->printOnConsole(qText);
+        _w->printOnConsole(qText);
     }
 
-    void printData(int num) {
-        QString qText = QString::number(num);
-        w->printOnConsole(qText);
+    void printData(int _num) {
+        QString qText = QString::number(_num);
+        _w->printOnConsole(qText);
     }
 
 protected:

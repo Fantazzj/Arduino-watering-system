@@ -1113,6 +1113,19 @@
      <string>%p%</string>
     </property>
    </widget>
+   <widget class="QSlider" name="moisture">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>360</y>
+      <width>771</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -1120,7 +1133,7 @@
      <x>0</x>
      <y>0</y>
      <width>1081</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

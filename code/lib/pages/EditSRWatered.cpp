@@ -5,24 +5,24 @@
 
 class EditSRWatered: public Page {
 private:
-    bool watered = false;
+    bool _watered = false;
 
 public:
     EditSRWatered(PageController* controller): Page(controller) {
-        watered = controller->autoCycleGetWatered();
+        _watered = _controller->autoCycleGetWatered();
     }
 
     PageNum exec() {
-        KeypadButton key = controller->keypad();
+        KeypadButton key = _controller->keypad();
 
-        if(key != NoBtn) redraw = true;
+        if(key != NoBtn) _redraw = true;
 
         switch(key) {
             case Cancel:
                 return SettingsPage5;
 
             case Confirm:
-                controller->autoCycleSetWatered(!watered);
+                _controller->autoCycleSetWatered(!_watered);
                 return HomePage;
 
             default:
@@ -31,11 +31,11 @@ public:
     }
 
     void show() {
-        if(redraw) {
-            if(!watered) controller->displayPrint("Imposta gia' innaffiato");
-            else controller->displayPrint("Imposta da innaffiare");
-            controller->displayShowCursor(15,1);
-            redraw = false;
+        if(_redraw) {
+            if(!_watered) _controller->displayPrint("Imposta gia' innaffiato");
+            else _controller->displayPrint("Imposta da innaffiare");
+            _controller->displayShowCursor(15, 1);
+            _redraw = false;
         }
     }
 

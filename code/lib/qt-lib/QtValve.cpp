@@ -2,7 +2,6 @@
 #define QT_VALVE_CPP
 
 #include "lib/Valve.cpp"
-#include "QtClock.cpp"
 
 class QtValve: public Valve {
 private:
@@ -10,7 +9,7 @@ private:
     int num;
 
 public:
-    QtValve(ControlUnit* w, Clock* clock, int num, int minOn, int days) : Valve(clock, minOn, days) {
+    QtValve(Clock* clock, int minOn, int days, ControlUnit* w, int num) : Valve(clock, minOn, days) {
         this->w = w;
         this->num = num;
     }

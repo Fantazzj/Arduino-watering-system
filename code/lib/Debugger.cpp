@@ -7,7 +7,7 @@ private:
 public:
     Debugger() = default;
     virtual void printText(char text[]) {}
-    virtual void printData(int num) {}
+    virtual void printData(int _num) {}
 
 protected:
 };

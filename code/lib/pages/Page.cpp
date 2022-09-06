@@ -43,16 +43,16 @@ private:
 
 public:
     Page(PageController* controller) {
-        this->controller = controller;
+        _controller = controller;
     }
     virtual PageNum exec() { return Stay; }
     virtual void show() {
-        controller->displayPrint("INTERFACCIA");
+        _controller->displayPrint("PAGINA GENERALE");
     }
 
 protected:
-    PageController* controller;
-    bool redraw = true;
+    PageController* _controller;
+    bool _redraw = true;
 
 };
 

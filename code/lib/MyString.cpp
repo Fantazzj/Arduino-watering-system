@@ -15,7 +15,7 @@ public:
     #ifdef QTDESKTOP
     static QString toQString(char text[]) {
         QString conv = "";
-        for(int i=0; text[i]!='\0'; i++) conv += text[i];
+        for(int8_t i=0; text[i]!='\0'; i++) conv += text[i];
         return conv;
     }
     #endif

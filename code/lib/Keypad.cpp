@@ -12,11 +12,11 @@ public:
     bool upState = false;
     bool confirmState = false;
 
-    virtual bool cancel() {return false;}
-    virtual bool down() {return false;}
-    virtual bool up() {return false;}
-    virtual bool confirm() {return false;}
-    virtual bool generalPressed() {return false;}
+    virtual bool cancel() { return cancelState; }
+    virtual bool down() { return downState; }
+    virtual bool up() { return upState; }
+    virtual bool confirm() { return confirmState; }
+    virtual bool generalPressed() { return cancelState or downState or upState or confirmState; }
 
 protected:
 };

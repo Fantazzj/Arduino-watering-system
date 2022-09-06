@@ -7,16 +7,16 @@
 class QtDisplay: public Display{
 private:
 
-    ControlUnit* w;
+    ControlUnit* _w;
 
-    int8_t length;
-    int8_t height;
-    int8_t displayChars;
+    int8_t _length;
+    int8_t _height;
+    int8_t _displayChars;
 
     void _displayError1() {
-        w->printOnDisplay("Err. string");
-        w->setCursorDisplay(0, 1);
-        w->printOnDisplay("too big");
+        _w->printOnDisplay("Err. string");
+        _w->setCursorDisplay(0, 1);
+        _w->printOnDisplay("too big");
     }
 
     void _arrangeWords(QString text, QString rows[]) {
@@ -28,8 +28,8 @@ private:
         for(int8_t i=0; i<text.length(); i++) {
             if(text.data()[i] != ' ') buffer += text.data()[i];
             else {
-                if(rows[row].length() + buffer.length() <= length) rows[row] += (buffer + " ");
-                else if(row+1 <= height) rows[++row] += (buffer + " ");
+                if(rows[row].length() + buffer.length() <= _length) rows[row] += (buffer + " ");
+                else if(row+1 <= _height) rows[++row] += (buffer + " ");
                 buffer.clear();
             }
         }
@@ -37,9 +37,9 @@ private:
     }
 
     void _printRows(QString rows[]) {
-        for(int8_t row=0; row < height; row++) {
-            w->setCursorDisplay(0, row);
-            w->printOnDisplay(rows[row]);
+        for(int8_t row=0; row < _height; row++) {
+            _w->setCursorDisplay(0, row);
+            _w->printOnDisplay(rows[row]);
         }
     }
 
@@ -98,24 +98,24 @@ private:
 public:
 
     QtDisplay(ControlUnit* w, int8_t length, int8_t height) {
-        this->w = w;
-        this->length = length;
-        this->height = height;
+        this->_w = w;
+        this->_length = length;
+        this->_height = height;
         w->setDimensions(length, height);
-        displayChars = length * height;
+        _displayChars = length * height;
         w->backlight();
     }
 
     void printSimpleText(char text[]) {
-        QString rows[height];
+        QString rows[_height];
         QString conv;
 
         conv = MyString::toQString(text);
 
 
-        w->clearDisplay();
+        _w->clearDisplay();
 
-        if(conv.length() <= displayChars) {
+        if(conv.length() <= _displayChars) {
             _arrangeWords(conv, rows);
             _printRows(rows);
         }
@@ -124,16 +124,16 @@ public:
     }
 
     void printData(char text1[], int8_t data, char text2[]) {
-        QString rows[height];
+        QString rows[_height];
 
         QString conv1 = MyString::toQString(text1);
         QString conv2 = MyString::toQString(text2);
 
         QString conv = conv1 + " " + QString::number(data) + " " + conv2;
 
-        w->clearDisplay();
+        _w->clearDisplay();
 
-        if(conv.length() <= displayChars) {
+        if(conv.length() <= _displayChars) {
             _arrangeWords(conv, rows);
             _printRows(rows);
         }
@@ -141,7 +141,7 @@ public:
     }
 
     void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) {
-        QString rows[height];
+        QString rows[_height];
 
         QString conv1 = MyString::toQString(text1);
         QString conv2 = MyString::toQString(text2);
@@ -149,9 +149,9 @@ public:
 
         QString conv = conv1 + " " + QString::number(data1) + " " + conv2 + " " + QString::number(data2) + " " + conv3;
 
-        w->clearDisplay();
+        _w->clearDisplay();
 
-        if(conv.length() <= displayChars) {
+        if(conv.length() <= _displayChars) {
             _arrangeWords(conv, rows);
             _printRows(rows);
         }
@@ -161,24 +161,24 @@ public:
     void printIn(char text[], int8_t x, int8_t y) {
         QString conv = MyString::toQString(text);
 
-        w->setCursorDisplay(x, y);
-        w->printOnDisplay(conv);
+        _w->setCursorDisplay(x, y);
+        _w->printOnDisplay(conv);
     }
 
     void printIn(int8_t data, int8_t x, int8_t y) {
         QString conv = QString::number(data);
 
-        w->setCursorDisplay(x, y);
-        w->printOnDisplay(conv);
+        _w->setCursorDisplay(x, y);
+        _w->printOnDisplay(conv);
     }
 
     void printIn(QString text, int8_t x, int8_t y) {
-        w->setCursorDisplay(x, y);
-        w->printOnDisplay(text);
+        _w->setCursorDisplay(x, y);
+        _w->printOnDisplay(text);
     }
 
     void showClock(MyTime timeIn) {
-        w->clearDisplay();
+        _w->clearDisplay();
 
         QString date;
         date = _arrangeDate(timeIn);
@@ -194,50 +194,50 @@ public:
     }
 
     void blinkAt(int8_t x, int8_t y) {
-        w->hideCursorDisplay();
-        w->setCursorDisplay(x, y);
-        w->showCursorDisplay();
+        _w->hideCursorDisplay();
+        _w->setCursorDisplay(x, y);
+        _w->showCursorDisplay();
     }
 
     void noBlink() {
-        w->hideCursorDisplay();
+        _w->hideCursorDisplay();
     }
 
     void clockSym() {
-        w->setCursorDisplay(12, 1);
-        w->printOnDisplay("c");
+        _w->setCursorDisplay(12, 1);
+        _w->printOnDisplay("c");
     }
 
     void noClockSym() {
-        w->setCursorDisplay(12, 1);
-        w->printOnDisplay(" ");
+        _w->setCursorDisplay(12, 1);
+        _w->printOnDisplay(" ");
     }
 
     void dropSym() {
-        w->setCursorDisplay(13, 1);
-        w->printOnDisplay("d");
+        _w->setCursorDisplay(13, 1);
+        _w->printOnDisplay("d");
     }
 
     void noDropSym() {
-        w->setCursorDisplay(13, 1);
-        w->printOnDisplay(" ");
+        _w->setCursorDisplay(13, 1);
+        _w->printOnDisplay(" ");
     }
 
     void checkSym() {
-        w->setCursorDisplay(14, 1);
-        w->printOnDisplay("c");
+        _w->setCursorDisplay(14, 1);
+        _w->printOnDisplay("c");
     }
 
     void noCheckSym() {
-        w->setCursorDisplay(14, 1);
-        w->printOnDisplay(" ");
+        _w->setCursorDisplay(14, 1);
+        _w->printOnDisplay(" ");
     }
 
     void backlight() {
-        w->backlight();
+        _w->backlight();
     }
     void noBacklight() {
-        w->noBacklight();
+        _w->noBacklight();
     }
 
 };

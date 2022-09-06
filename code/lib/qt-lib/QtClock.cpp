@@ -6,11 +6,11 @@
 
 class QtClock: public Clock {
 private:
-    ControlUnit* w;
+    ControlUnit* _w;
 
 public:
     QtClock(ControlUnit* w) {
-        this->w = w;
+        this->_w = w;
     }
 
     MyTime getTime() {
@@ -31,9 +31,9 @@ public:
     }
 
     void setTime(MyTime time){
-        w->printOnConsole(QString::number(time.hour) + ":" + QString::number((time.min)));
-        w->printOnConsole(QString::number(time.dow));
-        w->printOnConsole(QString::number(time.date) + "/" + QString::number(time.mon) + "/" + QString::number(time.sec));
+        _w->printOnConsole(QString::number(time.hour) + ":" + QString::number((time.min)));
+        _w->printOnConsole(QString::number(time.dow));
+        _w->printOnConsole(QString::number(time.date) + "/" + QString::number(time.mon) + "/" + QString::number(time.sec));
     }
 
 protected:

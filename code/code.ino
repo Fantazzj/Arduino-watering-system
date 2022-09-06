@@ -8,6 +8,7 @@
 #include "lib/MyTime.cpp"
 #include "lib/MyString.cpp"
 #include "lib/Valve.cpp"
+#include "lib/Moisture.cpp"
 #include "lib/PageSelector.cpp"
 #include "lib/AutoCycle.cpp"
 
@@ -22,10 +23,10 @@ Valve* myEtv5;
 Valve* myEtv6;
 Valve* myEtv7;
 Valve* myEtv8;
-//Valve* myEtv9;
-
-Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6, myEtv7, myEtv8, /*myEtv9*/};
+Valve* myEtv9;
+Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6, myEtv7, myEtv8, myEtv9};
 int8_t etvNum = sizeof(myEtv)/sizeof(myEtv[1]) -1;
+Moisture* myMoisture;
 PageSelector* pageSelector;
 AutoCycle* autoCycle;
 
@@ -37,6 +38,7 @@ AutoCycle* autoCycle;
 #include "lib/qt-lib/QtDisplay.cpp"
 #include "lib/qt-lib/QtClock.cpp"
 #include "lib/qt-lib/QtValve.cpp"
+#include "lib/qt-lib/QtMoisture.cpp"
 
 void setup(ControlUnit* w) {
 
@@ -44,15 +46,17 @@ void setup(ControlUnit* w) {
     myDisplay = new QtDisplay(w, 16, 2);
     myClock = new QtClock(w);
 
-    myEtv[1] = new QtValve(w, myClock, 1, 0, 0);
-    myEtv[2] = new QtValve(w, myClock, 2, 0, 0);
-    myEtv[3] = new QtValve(w, myClock, 3, 0, 0);
-    myEtv[4] = new QtValve(w, myClock, 4, 0, 0);
-    myEtv[5] = new QtValve(w, myClock, 5, 0, 0);
-    myEtv[6] = new QtValve(w, myClock, 6, 0, 0);
-    myEtv[7] = new QtValve(w, myClock, 7, 0, 0);
-    myEtv[8] = new QtValve(w, myClock, 8, 0, 0);
-    myEtv[9] = new QtValve(w, myClock, 9, 0, 0);
+    myEtv[1] = new QtValve(myClock, 5, 0, w, 1);
+    myEtv[2] = new QtValve(myClock, 5, 0, w, 2);
+    myEtv[3] = new QtValve(myClock, 5, 0, w, 3);
+    myEtv[4] = new QtValve(myClock, 5, 0, w, 4);
+    myEtv[5] = new QtValve(myClock, 5, 0, w, 5);
+    myEtv[6] = new QtValve(myClock, 5, 0, w, 6);
+    myEtv[7] = new QtValve(myClock, 5, 0, w, 7);
+    myEtv[8] = new QtValve(myClock, 5, 0, w, 8);
+    myEtv[9] = new QtValve(myClock, 5, 0, w, 9);
+
+    myMoisture = new QtMoisture(w);
 
     w->setKeypad(myKeypad);
 
@@ -71,6 +75,7 @@ void setup(ControlUnit* w) {
 #include "lib/hw-lib/HwDisplay.cpp"
 #include "lib/hw-lib/HwClock.cpp"
 #include "lib/hw-lib/HwValve.cpp"
+#include "lib/hw-lib/HwMoisture.cpp"
 
 //region PINS
 //Display
@@ -93,26 +98,28 @@ const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 #define rtcClk 12
 
 //Sensors
-//const int8_t humidityPin = A7;
+#define humidityPin A7
 //endregion PINS
 
 void setup() {
     
     myClock = new HwClock(rtcRst, rtcData, rtcClk);
 
-    myEtv[1] = new HwValve(myClock, etvsPin[1], 0, 1);
-    myEtv[2] = new HwValve(myClock, etvsPin[2], 0, 1);
-    myEtv[3] = new HwValve(myClock, etvsPin[3], 0, 1);
-    myEtv[4] = new HwValve(myClock, etvsPin[4], 0, 1);
-    myEtv[5] = new HwValve(myClock, etvsPin[5], 0, 1);
-    myEtv[6] = new HwValve(myClock, etvsPin[6], 0, 1);
-    myEtv[7] = new HwValve(myClock, etvsPin[7], 0, 1);
-    myEtv[8] = new HwValve(myClock, etvsPin[8], 0, 1);
-    //myEtv[9] = new HwValve(myClock, etvsPin[9], 0, 0);
+    myEtv[1] = new HwValve(myClock, 1, 0, etvsPin[1]);
+    myEtv[2] = new HwValve(myClock, 1, 0, etvsPin[2]);
+    myEtv[3] = new HwValve(myClock, 1, 0, etvsPin[3]);
+    myEtv[4] = new HwValve(myClock, 1, 0, etvsPin[4]);
+    myEtv[5] = new HwValve(myClock, 1, 0, etvsPin[5]);
+    myEtv[6] = new HwValve(myClock, 1, 0, etvsPin[6]);
+    myEtv[7] = new HwValve(myClock, 1, 0, etvsPin[7]);
+    myEtv[8] = new HwValve(myClock, 1, 0, etvsPin[8]);
+    myEtv[9] = new HwValve(myClock, 1, 0, etvsPin[9]);
     
     myKeypad = new HwKeypad(cancelPin, downPin, upPin, confirmPin);
-    
+
     myDisplay = new HwDisplay(lcdAddress, lcdLength, lcdHeight);
+
+    myMoisture = new HwMoisture(humidityPin);
 
     autoCycle = new AutoCycle(myClock, myEtv, etvNum);
 

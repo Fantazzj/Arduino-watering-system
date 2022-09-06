@@ -6,37 +6,37 @@
 
 class ManualEtv: public Page {
 private:
-    int8_t num = 1;
+    int8_t _num = 1;
 
 public:
     ManualEtv(PageController* controller): Page(controller) {
-        num = 1;
+        _num = 1;
     }
 
     PageNum exec() {
 
-        KeypadButton key = controller->keypad();
-        if(key != NoBtn) redraw = true;
+        KeypadButton key = _controller->keypad();
+        if(key != NoBtn) _redraw = true;
 
-        if(controller->getEtvOn() == 0) {
+        if(_controller->getEtvOn() == 0) {
             if (key == Up) { //TODO convert in switch
-                num++;
-                if(num > controller->getEtvNum()) num = 1;
+                _num++;
+                if(_num > _controller->getEtvNum()) _num = 1;
             }
 
             if (key == Down) {
-                num--;
-                if(num < 1) num = controller->getEtvNum();
+                _num--;
+                if(_num < 1) _num = _controller->getEtvNum();
             }
 
             if (key == Cancel) {
-                num = 1;
+                _num = 1;
                 return SettingsPage1;
             }
 
             if (key == Confirm) {
-                controller->setEtvState(num, true);
-                controller->setEtvOn(num);
+                _controller->setEtvState(_num, true);
+                _controller->setEtvOn(_num);
                 return HomePage;
             }
         }
@@ -46,10 +46,10 @@ public:
             }
 
             if (key == Confirm) {
-                controller->setEtvState(controller->getEtvOn(), false);
-                controller->setEtvOn(0);
-                controller->autoCycleSetWatered(true);
-                controller->autoCycleSetStarted(false);
+                _controller->setEtvState(_controller->getEtvOn(), false);
+                _controller->setEtvOn(0);
+                _controller->autoCycleSetWatered(true);
+                _controller->autoCycleSetStarted(false);
                 return HomePage;
             }
         }
@@ -59,11 +59,11 @@ public:
     }
 
     void show() {
-        if(redraw) {
-            if (controller->getEtvOn() == 0) controller->displayPrint("Accendi elettrovalvola", num, "");
-            else controller->displayPrint("Spegni elettrovalvola", controller->getEtvOn(), "");
-            controller->displayShowCursor(15,1);
-            redraw = false;
+        if(_redraw) {
+            if (_controller->getEtvOn() == 0) _controller->displayPrint("Accendi elettrovalvola", _num, "");
+            else _controller->displayPrint("Spegni elettrovalvola", _controller->getEtvOn(), "");
+            _controller->displayShowCursor(15, 1);
+            _redraw = false;
         }
     }
 
