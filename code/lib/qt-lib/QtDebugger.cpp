@@ -1,8 +1,8 @@
 /*#ifndef QT_DEBUGGER_CPP
 #define QT_DEBUGGER_CPP
 
-#include "lib/Debugger.cpp"
 #include "lib/ControlUnit.h"
+#include "lib/Debugger.cpp"
 #include "lib/MyString.cpp"
 
 class QtDebugger: public Debugger {

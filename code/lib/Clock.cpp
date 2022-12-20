@@ -3,19 +3,17 @@
 
 #include "MyTime.cpp"
 
-class Clock{
+class Clock {
 private:
-
 public:
-    Clock() = default;
-    virtual MyTime getTime() {
-        MyTime null;
-        return null;
-    }
-    virtual void setTime(MyTime time){}
+	Clock() = default;
+	virtual MyTime getTime() {
+		MyTime null;
+		return null;
+	}
+	virtual void setTime(MyTime time) {}
 
 protected:
-
 };
 
-#endif //CLOCK_CPP
+#endif//CLOCK_CPP

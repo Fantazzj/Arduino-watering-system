@@ -3,21 +3,21 @@
 
 #include "PageController.cpp"
 
-enum PageNum: int8_t{
-    Stay = 0,
-    HomePage,
-    SettingsPage1,
-    EditClockPage,
-    SettingsPage2,
-    EditEtvTimePage,
-    SettingsPage3,
-    ManualEtvPage,
-    SettingsPage4,
-    EditSRWateredPage,
-    SettingsPage5,
-    EditTStartPage,
-    SettingsPage6,
-    EditEtvDaysPage
+enum PageNum : int8_t {
+	Stay = 0,
+	HomePage,
+	SettingsPage1,
+	EditClockPage,
+	SettingsPage2,
+	EditEtvTimePage,
+	SettingsPage3,
+	ManualEtvPage,
+	SettingsPage4,
+	EditSRWateredPage,
+	SettingsPage5,
+	EditTStartPage,
+	SettingsPage6,
+	EditEtvDaysPage
 };
 
 /*
@@ -40,20 +40,18 @@ enum PageNum: int8_t{
 
 class Page {
 private:
-
 public:
-    Page(PageController* controller) {
-        _controller = controller;
-    }
-    virtual PageNum exec() { return Stay; }
-    virtual void show() {
-        _controller->displayPrint("PAGINA GENERALE");
-    }
+	Page(PageController* controller) {
+		_controller = controller;
+	}
+	virtual PageNum exec() { return Stay; }
+	virtual void show() {
+		_controller->displayPrint("PAGINA GENERALE");
+	}
 
 protected:
-    PageController* _controller;
-    bool _redraw = true;
-
+	PageController* _controller;
+	bool _redraw = true;
 };
 
 #endif

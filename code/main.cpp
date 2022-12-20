@@ -2,30 +2,27 @@
 
 #ifdef QTDESKTOP
 
-#include <QApplication>
-#include <QThread>
-#include <chrono>
-#include <thread>
-#include "code.ino"
+#	include "code.ino"
+#	include <QApplication>
+#	include <QThread>
+#	include <thread>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
+	QApplication a(argc, argv);
+	ControlUnit w;
 
-    QApplication a(argc, argv);
-    ControlUnit w;
+	setup(&w);
 
-    setup(&w);
+	QThread* thread = QThread::create([] {
+		while(true) {
+			loop();
+			std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+		}
+	});
+	thread->start();
 
-    QThread *thread = QThread::create([]{
-        while(true) {
-            loop();
-            std::this_thread::sleep_for(std::chrono::nanoseconds(100));
-        }
-    });
-    thread->start();
-
-    w.show();
-    return a.exec();
-
+	w.show();
+	return a.exec();
 }
 
 #endif

@@ -2,11 +2,11 @@
 #define CONFIG_H
 
 #ifndef ARDUINO
-#    define QTDESKTOP
-#    include <cstdint>
+#	define QTDESKTOP
+#	include <cstdint>
 
 #else//!ARDUINO
-#    define HWARDUINO
+#	define HWARDUINO
 #endif
 
 #endif//CONFIG_H

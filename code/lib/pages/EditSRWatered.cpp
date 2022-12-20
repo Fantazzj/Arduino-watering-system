@@ -3,44 +3,44 @@
 
 #include "Page.cpp"
 
-class EditSRWatered: public Page {
+class EditSRWatered : public Page {
 private:
-    bool _watered = false;
+	bool _watered = false;
 
 public:
-    EditSRWatered(PageController* controller): Page(controller) {
-        _watered = _controller->autoCycleGetWatered();
-    }
+	EditSRWatered(PageController* controller) :
+		Page(controller) {
+		_watered = _controller->autoCycleGetWatered();
+	}
 
-    PageNum exec() {
-        KeypadButton key = _controller->keypad();
+	PageNum exec() {
+		KeypadButton key = _controller->keypad();
 
-        if(key != NoBtn) _redraw = true;
+		if(key != NoBtn) _redraw = true;
 
-        switch(key) {
-            case Cancel:
-                return SettingsPage5;
+		switch(key) {
+			case Cancel:
+				return SettingsPage5;
 
-            case Confirm:
-                _controller->autoCycleSetWatered(!_watered);
-                return HomePage;
+			case Confirm:
+				_controller->autoCycleSetWatered(!_watered);
+				return HomePage;
 
-            default:
-                return Stay;
-        }
-    }
+			default:
+				return Stay;
+		}
+	}
 
-    void show() {
-        if(_redraw) {
-            if(!_watered) _controller->displayPrint("Imposta gia' innaffiato");
-            else _controller->displayPrint("Imposta da innaffiare");
-            _controller->displayShowCursor(15, 1);
-            _redraw = false;
-        }
-    }
+	void show() {
+		if(_redraw) {
+			if(!_watered) _controller->displayPrint("Imposta gia' innaffiato");
+			else _controller->displayPrint("Imposta da innaffiare");
+			_controller->displayShowCursor(15, 1);
+			_redraw = false;
+		}
+	}
 
 protected:
-
 };
 
 #endif
