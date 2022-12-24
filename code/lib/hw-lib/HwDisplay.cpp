@@ -4,7 +4,7 @@
 #	define HWDISPLAY_CPP
 
 #	include "../../src/LiquidCrystal_I2C.h"
-#	include "../Display.cpp"
+#	include "../UnitDisplay.cpp"
 #	include <Wire.h>
 
 

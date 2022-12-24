@@ -4,10 +4,10 @@
 #include "MyString.cpp"
 #include "MyTime.cpp"
 
-class Display {
+class UnitDisplay {
 private:
 public:
-	Display() = default;
+	UnitDisplay() = default;
 	virtual void printSimpleText(char text[]) {}
 	virtual void printData(char text1[], int8_t data, char text2[]) {}
 	virtual void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) {}
@@ -19,7 +19,7 @@ public:
 	virtual void clockSym() {}
 	virtual void noClockSym() {}
 	virtual void dropSym() {}
-	virtual void noDropSym() {}
+	virtual void DisplaynoDropSym() {}
 	virtual void checkSym() {}
 	virtual void noCheckSym() {}
 	virtual void noSymbols() {

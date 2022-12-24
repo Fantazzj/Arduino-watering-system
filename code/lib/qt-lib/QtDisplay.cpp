@@ -2,9 +2,9 @@
 #define QT_DISPLAY_CPP
 
 #include "../ControlUnit.h"
-#include "lib/Display.cpp"
+#include "lib/UnitDisplay.cpp"
 
-class QtDisplay : public Display {
+class QtDisplay : public UnitDisplay {
 private:
 	ControlUnit* _w;
 

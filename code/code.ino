@@ -4,16 +4,16 @@
 #include "lib/AutoCycle.cpp"
 #include "lib/Clock.cpp"
 #include "lib/Config.h"
-#include "lib/Display.cpp"
 #include "lib/Keypad.cpp"
 #include "lib/Moisture.cpp"
 #include "lib/MyString.cpp"
 #include "lib/MyTime.cpp"
 #include "lib/PageSelector.cpp"
+#include "lib/UnitDisplay.cpp"
 #include "lib/Valve.cpp"
 
 Keypad* myKeypad;
-Display* myDisplay;
+UnitDisplay* myDisplay;
 Clock* myClock;
 Valve* myEtv1;
 Valve* myEtv2;
@@ -76,7 +76,7 @@ void setup(ControlUnit* w) {
 #	include "lib/hw-lib/HwValve.cpp"
 
 //region PINS
-//Display
+//UnitDisplay
 #	define lcdAddress 0x27
 #	define lcdLength 16
 #	define lcdHeight 2

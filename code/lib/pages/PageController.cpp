@@ -2,8 +2,8 @@
 #define PAGE_CONTROLLER_CPP
 
 #include "../Clock.cpp"
-#include "../Display.cpp"
 #include "../Keypad.cpp"
+#include "../UnitDisplay.cpp"
 #include "../Valve.cpp"
 
 enum KeypadButton : int8_t {
@@ -24,14 +24,14 @@ enum KeypadButton : int8_t {
 class PageController {
 private:
 	Keypad* _myKeypad;
-	Display* _myDisplay;
+	UnitDisplay* _myDisplay;
 	Clock* _myClock;
 	Valve** _myEtv;
 	AutoCycle* _autoCycle;
 	bool _timeToEdit;
 
 public:
-	PageController(Keypad* myKeypad, Display* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
+	PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
 		_myKeypad = myKeypad;
 		_myDisplay = myDisplay;
 		_myClock = myClock;
