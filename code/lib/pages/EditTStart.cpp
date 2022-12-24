@@ -61,7 +61,7 @@ public:
 
 	void show() {
 		if(_redraw) {
-			_controller->displayPrint("Orario di avvio", _newTime.hour, ":", _newTime.min, "");
+			_controller->displayPrint((char*)"Orario di avvio", _newTime.hour, (char*)":", _newTime.min, (char*)"");
 			if(_editPhase == 2) _controller->displayShowCursor(6, 1);
 			else _controller->displayShowCursor(1, 1);
 			_redraw = false;

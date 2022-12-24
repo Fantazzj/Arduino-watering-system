@@ -30,7 +30,7 @@ public:
 
 	void show() {
 		if(_redraw) {
-			_controller->displayPrint("Imposta memoria inn.");
+			_controller->displayPrint((char*)"Imposta memoria inn.");
 			_redraw = false;
 		}
 	}

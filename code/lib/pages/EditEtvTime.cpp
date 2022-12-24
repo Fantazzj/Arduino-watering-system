@@ -53,7 +53,7 @@ public:
 
 	void show() {
 		if(_redraw) {
-			_controller->displayPrint("Etv", _etvEdit, "per", _timeEdit, "minuti");
+			_controller->displayPrint((char*)"Etv", _etvEdit, (char*)"per", _timeEdit, (char*)"minuti");
 			_controller->displayShowCursor(10, 0);
 			_redraw = false;
 		}

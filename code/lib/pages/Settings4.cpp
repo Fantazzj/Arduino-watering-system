@@ -30,7 +30,7 @@ public:
 
 	void show() {
 		if(_redraw) {
-			_controller->displayPrint("Impostazione manuale");
+			_controller->displayPrint((char*)"Impostazione manuale");
 			_redraw = false;
 		}
 	}

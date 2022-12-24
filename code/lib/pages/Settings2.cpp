@@ -30,7 +30,7 @@ public:
 
 	void show() {
 		if(_redraw) {
-			_controller->displayPrint("Cambia tempo elettrovalvole");
+			_controller->displayPrint((char*)"Cambia tempo elettrovalvole");
 			_redraw = false;
 		}
 	}

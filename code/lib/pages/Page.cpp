@@ -46,7 +46,7 @@ public:
 	}
 	virtual PageNum exec() { return Stay; }
 	virtual void show() {
-		_controller->displayPrint("PAGINA GENERALE");
+		_controller->displayPrint((char*)"PAGINA GENERALE");
 	}
 
 protected:

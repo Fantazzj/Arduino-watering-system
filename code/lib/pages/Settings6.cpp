@@ -30,7 +30,7 @@ public:
 
 	void show() {
 		if(_redraw) {
-			_controller->displayPrint("Imposta giorni");
+			_controller->displayPrint((char*)"Imposta giorni");
 			_redraw = false;
 		}
 	}

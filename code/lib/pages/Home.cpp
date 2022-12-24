@@ -33,7 +33,7 @@ public:
 			_controller->displayPrint(_newTime);
 			//_controller->displayPrint("HOMEPAGE");
 			if(_controller->getEtvOn() != 0) {
-				_controller->displayPrint("Etv", 11, 1);
+				_controller->displayPrint((char*)"Etv", 11, 1);
 				_controller->displayPrint(_controller->getEtvOn(), 14, 1);
 			} else {
 				if(_controller->autoCycleGetWatered()) _controller->displayCheck(true);

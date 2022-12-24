@@ -58,8 +58,8 @@ public:
 
 	void show() {
 		if(_redraw) {
-			if(_controller->getEtvOn() == 0) _controller->displayPrint("Accendi elettrovalvola", _num, "");
-			else _controller->displayPrint("Spegni elettrovalvola", _controller->getEtvOn(), "");
+			if(_controller->getEtvOn() == 0) _controller->displayPrint((char*)"Accendi elettrovalvola", _num, (char*)"");
+			else _controller->displayPrint((char*)"Spegni elettrovalvola", _controller->getEtvOn(), (char*)"");
 			_controller->displayShowCursor(15, 1);
 			_redraw = false;
 		}

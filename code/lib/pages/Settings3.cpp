@@ -30,7 +30,7 @@ public:
 
 	void show() {
 		if(_redraw) {
-			_controller->displayPrint("Cambia orario di avvio");
+			_controller->displayPrint((char*)"Cambia orario di avvio");
 			_redraw = false;
 		}
 	}

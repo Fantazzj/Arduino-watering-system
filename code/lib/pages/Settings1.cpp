@@ -30,7 +30,7 @@ public:
 
 	void show() {
 		if(_redraw) {
-			_controller->displayPrint("Cambia data e ora");
+			_controller->displayPrint((char*)"Cambia data e ora");
 			_redraw = false;
 		}
 	}

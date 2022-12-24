@@ -33,8 +33,8 @@ public:
 
 	void show() {
 		if(_redraw) {
-			if(!_watered) _controller->displayPrint("Imposta gia' innaffiato");
-			else _controller->displayPrint("Imposta da innaffiare");
+			if(!_watered) _controller->displayPrint((char*)"Imposta gia' innaffiato");
+			else _controller->displayPrint((char*)"Imposta da innaffiare");
 			_controller->displayShowCursor(15, 1);
 			_redraw = false;
 		}
