@@ -19,6 +19,7 @@ public:
 	virtual void clockSym() {}
 	virtual void noClockSym() {}
 	virtual void dropSym() {}
+	virtual void noDropSym() {}
 	virtual void DisplaynoDropSym() {}
 	virtual void checkSym() {}
 	virtual void noCheckSym() {}
