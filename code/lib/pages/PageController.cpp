@@ -48,13 +48,13 @@ public:
 		else return NoBtn;
 	}
 	bool getTimeToEdit() { return _timeToEdit; }
-	void setTimeToEdit(bool state) { _timeToEdit = state; }
+	bool setTimeToEdit(bool state) { _timeToEdit = state; }
 	bool keypadGeneral() { return _myKeypad->generalPressed(); }
-	void displayPrint(const char text[]) { _myDisplay->printSimpleText(text); }
-	void displayPrint(const char text[], int8_t x, int8_t y) { _myDisplay->printIn(text, x, y); }
+	void displayPrint(char text[]) { _myDisplay->printSimpleText(text); }
+	void displayPrint(char text[], int8_t x, int8_t y) { _myDisplay->printIn(text, x, y); }
 	void displayPrint(int8_t num, int8_t x, int8_t y) { _myDisplay->printIn(num, x, y); }
-	void displayPrint(const char text1[], int8_t data, const char text2[]) { _myDisplay->printData(text1, data, text2); }
-	void displayPrint(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) { _myDisplay->printData(text1, data1, text2, data2, text3); }
+	void displayPrint(char text1[], int8_t data, char text2[]) { _myDisplay->printData(text1, data, text2); }
+	void displayPrint(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) { _myDisplay->printData(text1, data1, text2, data2, text3); }
 	void displayPrint(MyTime time) { _myDisplay->showClock(time); }
 	void displayDrop(bool state) {
 		if(state) _myDisplay->dropSym();
