@@ -48,7 +48,7 @@ public:
 		else return NoBtn;
 	}
 	bool getTimeToEdit() { return _timeToEdit; }
-	bool setTimeToEdit(bool state) { _timeToEdit = state; }
+	void setTimeToEdit(bool state) { _timeToEdit = state; }
 	bool keypadGeneral() { return _myKeypad->generalPressed(); }
 	void displayPrint(char text[]) { _myDisplay->printSimpleText(text); }
 	void displayPrint(char text[], int8_t x, int8_t y) { _myDisplay->printIn(text, x, y); }
