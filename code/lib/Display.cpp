@@ -8,10 +8,10 @@ class Display {
 private:
 public:
 	Display() = default;
-	virtual void printSimpleText(char text[]) {}
-	virtual void printData(char text1[], int8_t data, char text2[]) {}
-	virtual void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) {}
-	virtual void printIn(char text[], int8_t x, int8_t y) {}
+	virtual void printSimpleText(const char text[]) {}
+	virtual void printData(const char text1[], int8_t data, const char text2[]) {}
+	virtual void printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) {}
+	virtual void printIn(const char text[], int8_t x, int8_t y) {}
 	virtual void printIn(int8_t data, int8_t x, int8_t y) {}
 	virtual void showClock(MyTime timeIn) {}
 	virtual void blinkAt(int8_t x, int8_t y) {}

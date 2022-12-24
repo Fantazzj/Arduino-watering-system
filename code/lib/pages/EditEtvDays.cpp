@@ -48,6 +48,9 @@ public:
 				if(_etvEdit > _controller->getEtvNum())
 					return HomePage;
 				else return Stay;
+
+			default:
+				return Stay;
 		}
 	}
 
