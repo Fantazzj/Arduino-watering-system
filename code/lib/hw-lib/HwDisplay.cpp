@@ -8,7 +8,7 @@
 #	include <Wire.h>
 
 
-class HwDisplay : public Display {
+class HwDisplay : public UnitDisplay {
 private:
 	LiquidCrystal_I2C* lcd;
 	byte myAArray[8] = {0x08, 0x04, 0x0E, 0x01, 0x0F, 0x11, 0x0F, 0x00};
