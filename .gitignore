@@ -1,7 +1,5 @@
-/avr-build-arduino/*
-/cmake-build-debug/*
-/code/cmake-build-debug/*
-/qt-cmake-build-debug/*
+/code/build-avr/*
+/code/build-debug/*
 /code/.idea/*
 /code/.vscode/*
 /schema/*
