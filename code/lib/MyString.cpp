@@ -16,7 +16,7 @@ public:
 	}
 #	endif
 
-#	ifdef HWARDUINO
+#	ifdef ARDUINO
 	static String toArduinoString(char text[]) {
 		String conv = "";
 		for(int8_t i = 0; text[i] != '\0'; i++) conv += text[i];

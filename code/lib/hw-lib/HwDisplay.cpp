@@ -1,5 +1,3 @@
-#include "../Config.h"
-
 #ifndef HWDISPLAY_CPP
 #	define HWDISPLAY_CPP
 

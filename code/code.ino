@@ -66,7 +66,7 @@ void setup(ControlUnit* w) {
 //endregion
 
 //region HWARDUINO
-#ifdef HWARDUINO
+#ifdef ARDUINO
 #	include "lib/hw-lib/HwClock.cpp"
 #	include "lib/hw-lib/HwDebugger.cpp"
 #	include "lib/hw-lib/HwDisplay.cpp"
