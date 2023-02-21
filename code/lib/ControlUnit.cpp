@@ -1,5 +1,3 @@
-#include "Config.h"
-
 #ifdef QTDESKTOP
 
 #	include "./ui_ControlUnit.h"

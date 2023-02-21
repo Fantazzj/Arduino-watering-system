@@ -3,7 +3,6 @@
 
 #include "lib/AutoCycle.cpp"
 #include "lib/Clock.cpp"
-#include "lib/Config.h"
 #include "lib/Keypad.cpp"
 #include "lib/Moisture.cpp"
 #include "lib/MyString.cpp"

@@ -1,5 +1,3 @@
-#include "Config.h"
-
 #ifndef CONTROL_UNIT_H
 #	define CONTROL_UNIT_H
 

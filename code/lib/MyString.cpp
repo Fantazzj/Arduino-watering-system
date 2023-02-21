@@ -1,5 +1,3 @@
-#include "Config.h"
-
 #ifndef MY_STRING_CPP
 #	define MY_STRING_CPP
 

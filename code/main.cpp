@@ -1,7 +1,6 @@
-#include "lib/Config.h"
-
 #ifdef QTDESKTOP
 
+#	include <cstdint>
 #	include "code.ino"
 #	include <QApplication>
 #	include <QThread>
