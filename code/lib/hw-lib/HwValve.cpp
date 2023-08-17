@@ -1,31 +1,18 @@
-#ifndef HW_VALVE_CPP
-#define HW_VALVE_CPP
+#include "HwValve.hpp"
 
-#include "../Valve.cpp"
+HwValve::HwValve(Clock* etvClock, int8_t minOn, int8_t days, int8_t pin) :
+	Valve(etvClock, minOn, days) {
+	this->pin = pin;
+	pinMode(pin, OUTPUT);
+	digitalWrite(pin, HIGH);
+}
 
-class HwValve : public Valve {
-private:
-	int8_t pin;
+void HwValve::turnOn() {
+	tOn = etvClock->getTime();
+	elapsedDays = 1;
+	digitalWrite(pin, LOW);
+}
 
-public:
-	HwValve(Clock* etvClock, int8_t minOn, int8_t days, int8_t pin) :
-		Valve(etvClock, minOn, days) {
-		this->pin = pin;
-		pinMode(pin, OUTPUT);
-		digitalWrite(pin, HIGH);
-	}
-
-	void turnOn() {
-		tOn = etvClock->getTime();
-		elapsedDays = 1;
-		digitalWrite(pin, LOW);
-	}
-
-	void turnOff() {
-		digitalWrite(pin, HIGH);
-	}
-
-protected:
-};
-
-#endif
+void HwValve::turnOff() {
+	digitalWrite(pin, HIGH);
+}

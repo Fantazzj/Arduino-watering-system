@@ -1,45 +1,28 @@
-#ifndef HWKEYPAD_CPP
-#define HWKEYPAD_CPP
+#include "HwKeypad.hpp"
 
-#include "../../src/Button.h"
-#include "../Keypad.cpp"
+HwKeypad::HwKeypad(int8_t cancelPin, int8_t downPin, int8_t upPin, int8_t confirmPin) {
+	cancelButton = new Button(cancelPin, INPUT_PULLUP, 250);
+	downButton = new Button(downPin, INPUT_PULLUP, 250);
+	upButton = new Button(upPin, INPUT_PULLUP, 250);
+	confirmButton = new Button(confirmPin, INPUT_PULLUP, 250);
+}
 
-class HwKeypad : public Keypad {
-private:
-	Button* cancelButton;
-	Button* downButton;
-	Button* upButton;
-	Button* confirmButton;
+bool HwKeypad::cancel() {
+	return cancelButton->readFalling();
+}
 
-public:
-	HwKeypad(int8_t cancelPin, int8_t downPin, int8_t upPin, int8_t confirmPin) {
-		cancelButton = new Button(cancelPin, INPUT_PULLUP, 250);
-		downButton = new Button(downPin, INPUT_PULLUP, 250);
-		upButton = new Button(upPin, INPUT_PULLUP, 250);
-		confirmButton = new Button(confirmPin, INPUT_PULLUP, 250);
-	}
+bool HwKeypad::down() {
+	return downButton->readFalling();
+}
 
-	bool cancel() {
-		return cancelButton->readFalling();
-	}
+bool HwKeypad::up() {
+	return upButton->readFalling();
+}
 
-	bool down() {
-		return downButton->readFalling();
-	}
+bool HwKeypad::confirm() {
+	return confirmButton->readFalling();
+}
 
-	bool up() {
-		return upButton->readFalling();
-	}
-
-	bool confirm() {
-		return confirmButton->readFalling();
-	}
-
-	bool generalPressed() {
-		return cancelButton->readLow() or downButton->readLow() or upButton->readLow() or confirmButton->readLow();
-	}
-
-protected:
-};
-
-#endif
+bool HwKeypad::generalPressed() {
+	return cancelButton->readLow() or downButton->readLow() or upButton->readLow() or confirmButton->readLow();
+}
