@@ -2,7 +2,7 @@
 #define VALVE_CPP
 
 #include "Clock.cpp"
-#include "MyTime.cpp"
+#include "MyTime.hpp"
 
 class Valve {
 private:

@@ -6,7 +6,7 @@
 #include "lib/Keypad.cpp"
 #include "lib/Moisture.cpp"
 #include "lib/MyString.cpp"
-#include "lib/MyTime.cpp"
+#include "lib/MyTime.hpp"
 #include "lib/PageSelector.cpp"
 #include "lib/UnitDisplay.cpp"
 #include "lib/Valve.cpp"
@@ -33,11 +33,11 @@ AutoCycle* autoCycle;
 #ifdef QTDESKTOP
 
 #	include "lib/ControlUnit.h"
-#	include "lib/qt-lib/QtClock.cpp"
-#	include "lib/qt-lib/QtDisplay.cpp"
-#	include "lib/qt-lib/QtKeypad.cpp"
-#	include "lib/qt-lib/QtMoisture.cpp"
-#	include "lib/qt-lib/QtValve.cpp"
+#	include "lib/qt-lib/QtClock.hpp"
+#	include "lib/qt-lib/QtDisplay.hpp"
+#	include "lib/qt-lib/QtKeypad.hpp"
+#	include "lib/qt-lib/QtMoisture.hpp"
+#	include "lib/qt-lib/QtValve.hpp"
 
 void setup(ControlUnit* w) {
 	myKeypad = new QtKeypad();

@@ -1,46 +1,33 @@
-#ifndef QT_KEYPAD_CPP
-#define QT_KEYPAD_CPP
+#include "QtKeypad.hpp"
 
-#include "lib/Keypad.cpp"
+bool QtKeypad::cancel() {
+	bool state;
+	state = cancelState;
+	cancelState = false;
+	return state;
+}
 
-class QtKeypad : public Keypad {
-private:
-public:
-	QtKeypad() = default;
+bool QtKeypad::down() {
+	bool state;
+	state = downState;
+	downState = false;
+	return state;
+}
 
-	bool cancel() {
-		bool state;
-		state = cancelState;
-		cancelState = false;
-		return state;
-	}
+bool QtKeypad::up() {
+	bool state;
+	state = upState;
+	upState = false;
+	return state;
+}
 
-	bool down() {
-		bool state;
-		state = downState;
-		downState = false;
-		return state;
-	}
+bool QtKeypad::confirm() {
+	bool state;
+	state = confirmState;
+	confirmState = false;
+	return state;
+}
 
-	bool up() {
-		bool state;
-		state = upState;
-		upState = false;
-		return state;
-	}
-
-	bool confirm() {
-		bool state;
-		state = confirmState;
-		confirmState = false;
-		return state;
-	}
-
-	/*bool generalPressed() {
+/*bool QtKeypad::generalPressed() {
         return cancelState or downState or upState or confirmState;
-    }*/
-
-protected:
-};
-
-#endif//QT_KEYPAD_CPP
+}*/

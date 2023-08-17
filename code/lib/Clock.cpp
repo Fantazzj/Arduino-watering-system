@@ -1,7 +1,7 @@
 #ifndef CLOCK_CPP
 #define CLOCK_CPP
 
-#include "MyTime.cpp"
+#include "MyTime.hpp"
 
 class Clock {
 private:

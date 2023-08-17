@@ -1,43 +1,28 @@
-#ifndef QT_CLOCK_CPP
-#define QT_CLOCK_CPP
+#include "QtClock.hpp"
 
-#include "lib/Clock.cpp"
-#include <QString>
+QtClock::QtClock(ControlUnit* w) {
+	this->_w = w;
+}
 
-class QtClock : public Clock {
-private:
-	ControlUnit* _w;
+MyTime QtClock::getTime() {
+	MyTime time;
+	std::time_t t = std::time(0);
+	std::tm* now = std::localtime(&t);
 
-public:
-	QtClock(ControlUnit* w) {
-		this->_w = w;
-	}
+	time.dow = now->tm_wday;
+	if(time.dow == 0) time.dow = Sunday;
+	time.hour = now->tm_hour;
+	time.min = now->tm_min;
+	time.sec = now->tm_sec;
+	time.date = now->tm_mday;
+	time.mon = now->tm_mon + 1;
+	time.year = now->tm_year + 1900;
 
-	MyTime getTime() {
-		MyTime time;
-		std::time_t t = std::time(0);
-		std::tm* now = std::localtime(&t);
+	return time;
+}
 
-		time.dow = now->tm_wday;
-		if(time.dow == 0) time.dow = Sunday;
-		time.hour = now->tm_hour;
-		time.min = now->tm_min;
-		time.sec = now->tm_sec;
-		time.date = now->tm_mday;
-		time.mon = now->tm_mon + 1;
-		time.year = now->tm_year + 1900;
-
-		return time;
-	}
-
-	void setTime(MyTime time) {
-		_w->printOnConsole(QString::number(time.hour) + ":" + QString::number((time.min)));
-		_w->printOnConsole(QString::number(time.dow));
-		_w->printOnConsole(QString::number(time.date) + "/" + QString::number(time.mon) + "/" + QString::number(time.sec));
-	}
-
-protected:
-};
-
-
-#endif
+void QtClock::setTime(MyTime time) {
+	_w->printOnConsole(QString::number(time.hour) + ":" + QString::number((time.min)));
+	_w->printOnConsole(QString::number(time.dow));
+	_w->printOnConsole(QString::number(time.date) + "/" + QString::number(time.mon) + "/" + QString::number(time.sec));
+}

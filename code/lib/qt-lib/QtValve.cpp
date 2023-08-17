@@ -1,31 +1,17 @@
-#ifndef QT_VALVE_CPP
-#define QT_VALVE_CPP
+#include "QtValve.hpp"
 
-#include "lib/Valve.cpp"
+QtValve::QtValve(Clock* clock, int8_t minOn, int8_t days, ControlUnit* w, int8_t num) :
+	Valve(clock, minOn, days) {
+	this->w = w;
+	this->num = num;
+}
 
-class QtValve : public Valve {
-private:
-	ControlUnit* w;
-	int num;
+void QtValve::turnOn() {
+	tOn = etvClock->getTime();
+	elapsedDays = 1;
+	w->activate(num);
+}
 
-public:
-	QtValve(Clock* clock, int minOn, int days, ControlUnit* w, int num) :
-		Valve(clock, minOn, days) {
-		this->w = w;
-		this->num = num;
-	}
-
-	void turnOn() {
-		tOn = etvClock->getTime();
-		elapsedDays = 1;
-		w->activate(num);
-	}
-
-	void turnOff() {
-		w->deactivate(num);
-	}
-
-protected:
-};
-
-#endif
+void QtValve::turnOff() {
+	w->deactivate(num);
+}

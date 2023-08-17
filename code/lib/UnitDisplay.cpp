@@ -2,7 +2,7 @@
 #define DISPLAY_CPP
 
 #include "MyString.cpp"
-#include "MyTime.cpp"
+#include "MyTime.hpp"
 
 class UnitDisplay {
 private:

@@ -23,11 +23,14 @@ find_package(Qt6Widgets REQUIRED)#
 #target_link_libraries(Arduino-watering-system Qt6::Widgets)#
 
 set(PROJECT_SOURCES
-        ./main.cpp
-        ./code.ino
-        ./lib/ControlUnit.cpp
-        ./lib/ControlUnit.h
-        ./lib/ControlUnit.ui
+        main.cpp code.ino
+        lib/ControlUnit.cpp lib/ControlUnit.h lib/ControlUnit.ui
+        lib/qt-lib/QtClock.hpp lib/qt-lib/QtClock.cpp
+        lib/qt-lib/QtDisplay.hpp lib/qt-lib/QtDisplay.cpp
+        lib/qt-lib/QtKeypad.hpp lib/qt-lib/QtKeypad.cpp
+        lib/qt-lib/QtMoisture.hpp lib/qt-lib/QtMoisture.cpp
+        lib/qt-lib/QtValve.hpp lib/qt-lib/QtValve.cpp
+        lib/MyTime.hpp lib/MyTime.cpp
         )
 
 qt_add_executable(Arduino-watering-system MANUAL_FINALIZATION ${PROJECT_SOURCES})
@@ -42,4 +45,4 @@ set_target_properties(Arduino-watering-system PROPERTIES
         WIN32_EXECUTABLE TRUE
         )
 
-    qt_finalize_executable(Arduino-watering-system)
+qt_finalize_executable(Arduino-watering-system)
