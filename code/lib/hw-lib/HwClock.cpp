@@ -47,9 +47,9 @@ private:
 
 public:
 	HwClock(int8_t rtcRst, int8_t rtcData, int8_t rtcClk) {
-		t.date = 4;
-		t.mon = 9;
-		t.year = 2022;
+		t.date = 14;
+		t.mon = 8;
+		t.year = 2023;
 
 		char z = '0';
 		t.hour = __TIME__[1] - z + (__TIME__[0] - z) * 10;

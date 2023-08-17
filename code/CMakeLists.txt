@@ -25,12 +25,27 @@ find_package(Qt6Widgets REQUIRED)#
 set(PROJECT_SOURCES
         main.cpp code.ino
         lib/ControlUnit.cpp lib/ControlUnit.h lib/ControlUnit.ui
+        lib/MyTime.hpp lib/MyTime.cpp
         lib/qt-lib/QtClock.hpp lib/qt-lib/QtClock.cpp
         lib/qt-lib/QtDisplay.hpp lib/qt-lib/QtDisplay.cpp
         lib/qt-lib/QtKeypad.hpp lib/qt-lib/QtKeypad.cpp
         lib/qt-lib/QtMoisture.hpp lib/qt-lib/QtMoisture.cpp
         lib/qt-lib/QtValve.hpp lib/qt-lib/QtValve.cpp
-        lib/MyTime.hpp lib/MyTime.cpp
+        lib/pages/EditClock.hpp lib/pages/EditClock.cpp
+        lib/pages/EditEtvDays.hpp lib/pages/EditEtvDays.cpp
+        lib/pages/EditEtvTime.hpp lib/pages/EditEtvTime.cpp
+        lib/pages/EditSRWatered.hpp lib/pages/EditSRWatered.cpp
+        lib/pages/EditTStart.hpp lib/pages/EditTStart.cpp
+        lib/pages/Home.hpp lib/pages/Home.cpp
+        lib/pages/ManualEtv.hpp lib/pages/ManualEtv.cpp
+        lib/pages/Page.hpp lib/pages/Page.cpp
+        lib/pages/PageController.hpp lib/pages/PageController.cpp
+        lib/pages/Settings1.hpp lib/pages/Settings1.cpp
+        lib/pages/Settings2.hpp lib/pages/Settings2.cpp
+        lib/pages/Settings3.hpp lib/pages/Settings3.cpp
+        lib/pages/Settings4.hpp lib/pages/Settings4.cpp
+        lib/pages/Settings5.hpp lib/pages/Settings5.cpp
+        lib/pages/Settings6.hpp lib/pages/Settings6.cpp
         )
 
 qt_add_executable(Arduino-watering-system MANUAL_FINALIZATION ${PROJECT_SOURCES})

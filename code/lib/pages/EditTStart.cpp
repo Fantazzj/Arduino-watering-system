@@ -1,74 +1,60 @@
-#ifndef EDIT_T_START_CPP
-#define EDIT_T_START_CPP
+#include "EditTStart.hpp"
 
-#include "Page.cpp"
+EditTStart::EditTStart(PageController* controller) :
+	Page(controller) {
+	_newTime = _controller->autoCycleGetTStart();
+}
 
-class EditTStart : public Page {
-private:
-	MyTime _newTime;
-	int8_t _editPhase = 1;
+PageNum EditTStart::exec() {
+	KeypadButton key = _controller->keypad();
 
-public:
-	EditTStart(PageController* controller) :
-		Page(controller) {
-		_newTime = _controller->autoCycleGetTStart();
-	}
+	if(key != NoBtn) _redraw = true;
 
-	PageNum exec() {
-		KeypadButton key = _controller->keypad();
+	switch(key) {
+		case Cancel:
+			_editPhase = 1;
+			return SettingsPage3;
 
-		if(key != NoBtn) _redraw = true;
+		case Down:
+			switch(_editPhase) {
+				case 1:
+					_newTime.hour = (_newTime.hour > 0) ? _newTime.hour - 1 : 23;
+					break;
+				case 2:
+					_newTime.min = (_newTime.min > 0) ? _newTime.min - 5 : 55;
+					break;
+			}
+			return Stay;
 
-		switch(key) {
-			case Cancel:
+		case Up:
+			switch(_editPhase) {
+				case 1:
+					_newTime.hour = (_newTime.hour < 23) ? _newTime.hour + 1 : 0;
+					break;
+				case 2:
+					_newTime.min = (_newTime.min < 55) ? _newTime.min + 5 : 0;
+					break;
+			}
+			return Stay;
+
+		case Confirm:
+			_editPhase++;
+			if(_editPhase == 3) {
 				_editPhase = 1;
-				return SettingsPage3;
+				_controller->autoCycleSetTStart(_newTime);
+				return HomePage;
+			} else return Stay;
 
-			case Down:
-				switch(_editPhase) {
-					case 1:
-						_newTime.hour = (_newTime.hour > 0) ? _newTime.hour - 1 : 23;
-						break;
-					case 2:
-						_newTime.min = (_newTime.min > 0) ? _newTime.min - 5 : 55;
-						break;
-				}
-				return Stay;
-
-			case Up:
-				switch(_editPhase) {
-					case 1:
-						_newTime.hour = (_newTime.hour < 23) ? _newTime.hour + 1 : 0;
-						break;
-					case 2:
-						_newTime.min = (_newTime.min < 55) ? _newTime.min + 5 : 0;
-						break;
-				}
-				return Stay;
-
-			case Confirm:
-				_editPhase++;
-				if(_editPhase == 3) {
-					_editPhase = 1;
-					_controller->autoCycleSetTStart(_newTime);
-					return HomePage;
-				} else return Stay;
-
-			default:
-				return Stay;
-		}
+		default:
+			return Stay;
 	}
+}
 
-	void show() {
-		if(_redraw) {
-			_controller->displayPrint((char*)"Orario di avvio", _newTime.hour, (char*)":", _newTime.min, (char*)"");
-			if(_editPhase == 2) _controller->displayShowCursor(6, 1);
-			else _controller->displayShowCursor(1, 1);
-			_redraw = false;
-		}
+void EditTStart::show() {
+	if(_redraw) {
+		_controller->displayPrint((char*) "Orario di avvio", _newTime.hour, (char*) ":", _newTime.min, (char*) "");
+		if(_editPhase == 2) _controller->displayShowCursor(6, 1);
+		else _controller->displayShowCursor(1, 1);
+		_redraw = false;
 	}
-
-protected:
-};
-
-#endif
+}

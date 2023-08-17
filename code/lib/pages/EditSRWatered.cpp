@@ -1,46 +1,33 @@
-#ifndef EDIT_SR_WATERED_CPP
-#define EDIT_SR_WATERED_CPP
+#include "EditSRWatered.hpp"
 
-#include "Page.cpp"
+EditSRWatered::EditSRWatered(PageController* controller) :
+	Page(controller) {
+	_watered = _controller->autoCycleGetWatered();
+}
 
-class EditSRWatered : public Page {
-private:
-	bool _watered = false;
+PageNum EditSRWatered::exec() {
+	KeypadButton key = _controller->keypad();
 
-public:
-	EditSRWatered(PageController* controller) :
-		Page(controller) {
-		_watered = _controller->autoCycleGetWatered();
+	if(key != NoBtn) _redraw = true;
+
+	switch(key) {
+		case Cancel:
+			return SettingsPage5;
+
+		case Confirm:
+			_controller->autoCycleSetWatered(!_watered);
+			return HomePage;
+
+		default:
+			return Stay;
 	}
+}
 
-	PageNum exec() {
-		KeypadButton key = _controller->keypad();
-
-		if(key != NoBtn) _redraw = true;
-
-		switch(key) {
-			case Cancel:
-				return SettingsPage5;
-
-			case Confirm:
-				_controller->autoCycleSetWatered(!_watered);
-				return HomePage;
-
-			default:
-				return Stay;
-		}
+void EditSRWatered::show() {
+	if(_redraw) {
+		if(!_watered) _controller->displayPrint((char*) "Imposta gia' innaffiato");
+		else _controller->displayPrint((char*) "Imposta da innaffiare");
+		_controller->displayShowCursor(15, 1);
+		_redraw = false;
 	}
-
-	void show() {
-		if(_redraw) {
-			if(!_watered) _controller->displayPrint((char*)"Imposta gia' innaffiato");
-			else _controller->displayPrint((char*)"Imposta da innaffiare");
-			_controller->displayShowCursor(15, 1);
-			_redraw = false;
-		}
-	}
-
-protected:
-};
-
-#endif
+}

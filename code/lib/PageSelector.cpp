@@ -3,27 +3,27 @@
 
 #include "AutoCycle.cpp"
 
-#include "pages/Home.cpp"
-#include "pages/Page.cpp"
-#include "pages/PageController.cpp"
+#include "pages/Home.hpp"
+#include "pages/Page.hpp"
+#include "pages/PageController.hpp"
 
-#include "pages/EditClock.cpp"
-#include "pages/Settings1.cpp"
+#include "pages/EditClock.hpp"
+#include "pages/Settings1.hpp"
 
-#include "pages/EditEtvTime.cpp"
-#include "pages/Settings2.cpp"
+#include "pages/EditEtvTime.hpp"
+#include "pages/Settings2.hpp"
 
-#include "pages/EditTStart.cpp"
-#include "pages/Settings3.cpp"
+#include "pages/EditTStart.hpp"
+#include "pages/Settings3.hpp"
 
-#include "pages/ManualEtv.cpp"
-#include "pages/Settings4.cpp"
+#include "pages/ManualEtv.hpp"
+#include "pages/Settings4.hpp"
 
-#include "pages/EditSRWatered.cpp"
-#include "pages/Settings5.cpp"
+#include "pages/EditSRWatered.hpp"
+#include "pages/Settings5.hpp"
 
-#include "pages/EditEtvDays.cpp"
-#include "pages/Settings6.cpp"
+#include "pages/EditEtvDays.hpp"
+#include "pages/Settings6.hpp"
 
 class PageSelector {
 private:
