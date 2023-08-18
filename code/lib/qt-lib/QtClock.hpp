@@ -1,7 +1,7 @@
 #ifndef QT_CLOCK_CPP
 #define QT_CLOCK_CPP
 
-#include "lib/Clock.cpp"
+#include "lib/Clock.hpp"
 #include "../ControlUnit.h"
 #include <QString>
 

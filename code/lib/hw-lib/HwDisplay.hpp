@@ -2,7 +2,7 @@
 #define HWDISPLAY_CPP
 
 #include "../../src/LiquidCrystal_I2C.h"
-#include "../UnitDisplay.cpp"
+#include "../UnitDisplay.hpp"
 #include <Wire.h>
 
 class HwDisplay : public UnitDisplay {

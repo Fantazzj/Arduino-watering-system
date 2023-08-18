@@ -1,7 +1,7 @@
 #ifndef HW_MOISTURE_CPP
 #define HW_MOISTURE_CPP
 
-#include "../Moisture.cpp"
+#include "../Moisture.hpp"
 
 class HwMoisture : public Moisture {
 private:

@@ -2,7 +2,7 @@
 #	define QT_DISPLAY_CPP
 
 #	include "../ControlUnit.h"
-#	include "lib/UnitDisplay.cpp"
+#	include "lib/UnitDisplay.hpp"
 
 class QtDisplay : public UnitDisplay {
 private:

@@ -1,8 +1,8 @@
-#ifndef MY_TIME_CPP//TODO improve
-#define MY_TIME_CPP
+#ifndef MY_TIME_HPP//TODO improve
+#define MY_TIME_HPP
 
 #ifdef QTDESKTOP
-#include <cstdint>
+#	include <cstdint>
 #endif
 
 enum Dow : uint8_t {
@@ -49,4 +49,4 @@ public:
 	static void freeze(unsigned long ms);
 };
 
-#endif//MY_TIME_CPP
+#endif//MY_TIME_HPP

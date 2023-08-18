@@ -1,11 +1,11 @@
-#ifndef PAGE_CONTROLLER_CPP
-#define PAGE_CONTROLLER_CPP
+#ifndef PAGE_CONTROLLER_HPP
+#define PAGE_CONTROLLER_HPP
 
-#include "../Clock.cpp"
-#include "../Keypad.cpp"
-#include "../UnitDisplay.cpp"
-#include "../Valve.cpp"
-#include "../AutoCycle.cpp"
+#include "../Clock.hpp"
+#include "../Keypad.hpp"
+#include "../UnitDisplay.hpp"
+#include "../Valve.hpp"
+#include "../AutoCycle.hpp"
 
 enum KeypadButton : uint8_t {
 	Cancel,

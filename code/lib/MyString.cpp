@@ -1,30 +1,17 @@
-#ifndef MY_STRING_CPP
-#	define MY_STRING_CPP
+#include "MyString.hpp"
 
-#	ifdef QTDESKTOP
-#		include <QString>
-#	endif
+#ifdef QTDESKTOP
+QString MyString::toQString(char text[]) {
+	QString conv = "";
+	for(int8_t i = 0; text[i] != '\0'; i++) conv += text[i];
+	return conv;
+}
+#endif
 
-class MyString {
-private:
-public:
-#	ifdef QTDESKTOP
-	static QString toQString(char text[]) {
-		QString conv = "";
-		for(int8_t i = 0; text[i] != '\0'; i++) conv += text[i];
-		return conv;
-	}
-#	endif
-
-#	ifdef ARDUINO
-	static String toArduinoString(char text[]) {
-		String conv = "";
-		for(int8_t i = 0; text[i] != '\0'; i++) conv += text[i];
-		return conv;
-	}
-#	endif
-
-protected:
-};
-
+#ifdef ARDUINO
+String MyString::toArduinoString(char text[]) {
+	String conv = "";
+	for(int8_t i = 0; text[i] != '\0'; i++) conv += text[i];
+	return conv;
+}
 #endif

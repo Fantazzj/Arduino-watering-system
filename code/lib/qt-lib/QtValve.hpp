@@ -2,7 +2,7 @@
 #define QT_VALVE_CPP
 
 #include "lib/ControlUnit.h"
-#include "lib/Valve.cpp"
+#include "lib/Valve.hpp"
 #include <cstdint>
 
 class QtValve : public Valve {

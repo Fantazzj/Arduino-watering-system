@@ -1,13 +1,13 @@
 #ifndef CONTROL_UNIT_H
-#	define CONTROL_UNIT_H
+#define CONTROL_UNIT_H
 
-#	ifdef QTDESKTOP
+#ifdef QTDESKTOP
 
-#		include "Keypad.cpp"
-#		include <QCheckBox>
-#		include <QLabel>
-#		include <QMainWindow>
-#		include <QSlider>
+#	include "Keypad.hpp"
+#	include <QCheckBox>
+#	include <QLabel>
+#	include <QMainWindow>
+#	include <QSlider>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -55,6 +55,6 @@ private:
 	QSlider moisture;
 };
 
-#	endif
+#endif
 
 #endif// CONTROL_UNIT_H

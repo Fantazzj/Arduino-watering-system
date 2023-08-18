@@ -2,7 +2,7 @@
 #define QT_MOISTURE_CPP
 
 #include "../ControlUnit.h"
-#include "../Moisture.cpp"
+#include "../Moisture.hpp"
 
 class QtMoisture : public Moisture {
 private:

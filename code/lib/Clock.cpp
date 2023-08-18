@@ -1,19 +1,8 @@
-#ifndef CLOCK_CPP
-#define CLOCK_CPP
+#include "Clock.hpp"
 
-#include "MyTime.hpp"
+MyTime Clock::getTime() {
+	MyTime null;
+	return null;
+}
 
-class Clock {
-private:
-public:
-	Clock() = default;
-	virtual MyTime getTime() {
-		MyTime null;
-		return null;
-	}
-	virtual void setTime(MyTime time) {}
-
-protected:
-};
-
-#endif//CLOCK_CPP
+void Clock::setTime(MyTime time) {}

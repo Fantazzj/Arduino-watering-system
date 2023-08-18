@@ -1,15 +1,15 @@
 #ifndef CODE_INO
 #define CODE_INO
 
-#include "lib/AutoCycle.cpp"
-#include "lib/Clock.cpp"
-#include "lib/Keypad.cpp"
-#include "lib/Moisture.cpp"
-#include "lib/MyString.cpp"
+#include "lib/AutoCycle.hpp"
+#include "lib/Clock.hpp"
+#include "lib/Keypad.hpp"
+#include "lib/Moisture.hpp"
+#include "lib/MyString.hpp"
 #include "lib/MyTime.hpp"
-#include "lib/PageSelector.cpp"
-#include "lib/UnitDisplay.cpp"
-#include "lib/Valve.cpp"
+#include "lib/PageSelector.hpp"
+#include "lib/UnitDisplay.hpp"
+#include "lib/Valve.hpp"
 
 Keypad* myKeypad;
 UnitDisplay* myDisplay;
@@ -67,12 +67,12 @@ void setup(ControlUnit* w) {
 
 //region HWARDUINO
 #ifdef ARDUINO
-#	include "lib/hw-lib/HwClock.cpp"
-#	include "lib/hw-lib/HwDebugger.cpp"
-#	include "lib/hw-lib/HwDisplay.cpp"
-#	include "lib/hw-lib/HwKeypad.cpp"
-#	include "lib/hw-lib/HwMoisture.cpp"
-#	include "lib/hw-lib/HwValve.cpp"
+#	include "lib/hw-lib/HwClock.hpp"
+#	include "lib/hw-lib/HwDebugger.hpp"
+#	include "lib/hw-lib/HwDisplay.hpp"
+#	include "lib/hw-lib/HwKeypad.hpp"
+#	include "lib/hw-lib/HwMoisture.hpp"
+#	include "lib/hw-lib/HwValve.hpp"
 
 //region PINS
 //UnitDisplay

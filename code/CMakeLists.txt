@@ -26,6 +26,7 @@ set(PROJECT_SOURCES
         main.cpp code.ino
         lib/ControlUnit.cpp lib/ControlUnit.h lib/ControlUnit.ui
         lib/MyTime.hpp lib/MyTime.cpp
+        lib/MyString.hpp lib/MyString.cpp
         lib/qt-lib/QtClock.hpp lib/qt-lib/QtClock.cpp
         lib/qt-lib/QtDisplay.hpp lib/qt-lib/QtDisplay.cpp
         lib/qt-lib/QtKeypad.hpp lib/qt-lib/QtKeypad.cpp
@@ -46,6 +47,13 @@ set(PROJECT_SOURCES
         lib/pages/Settings4.hpp lib/pages/Settings4.cpp
         lib/pages/Settings5.hpp lib/pages/Settings5.cpp
         lib/pages/Settings6.hpp lib/pages/Settings6.cpp
+        lib/AutoCycle.hpp lib/AutoCycle.cpp
+        lib/Clock.hpp lib/Clock.cpp
+        lib/Keypad.hpp lib/Keypad.cpp
+        lib/Moisture.hpp lib/Moisture.cpp
+        lib/PageSelector.hpp lib/PageSelector.cpp
+        lib/UnitDisplay.hpp lib/UnitDisplay.cpp
+        lib/Valve.hpp lib/Valve.cpp
         )
 
 qt_add_executable(Arduino-watering-system MANUAL_FINALIZATION ${PROJECT_SOURCES})
