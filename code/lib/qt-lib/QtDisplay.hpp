@@ -1,8 +1,8 @@
 #ifndef QT_DISPLAY_CPP
 #	define QT_DISPLAY_CPP
 
-#	include "../ControlUnit.h"
-#	include "lib/UnitDisplay.hpp"
+#	include "ControlUnit.h"
+#	include "../core/UnitDisplay.hpp"
 
 class QtDisplay : public UnitDisplay {
 private:

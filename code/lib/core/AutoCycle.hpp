@@ -1,6 +1,10 @@
 #ifndef AUTO_CYCLE_HPP
 #define AUTO_CYCLE_HPP
 
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
+
 #include "Moisture.hpp"
 #include "Valve.hpp"
 

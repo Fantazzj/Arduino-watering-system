@@ -3,7 +3,7 @@
 
 #ifdef QTDESKTOP
 
-#	include "Keypad.hpp"
+#	include "../core/Keypad.hpp"
 #	include <QCheckBox>
 #	include <QLabel>
 #	include <QMainWindow>

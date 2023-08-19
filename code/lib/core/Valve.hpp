@@ -1,6 +1,10 @@
 #ifndef VALVE_HPP
 #define VALVE_HPP
 
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
+
 #include "Clock.hpp"
 #include "MyTime.hpp"
 

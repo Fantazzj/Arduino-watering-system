@@ -2,5 +2,6 @@
 /code/build-debug/*
 /code/.idea/*
 /code/.vscode/*
+/code/.pio/*
 /schema/*
 /code/CMakeLists.txt.user

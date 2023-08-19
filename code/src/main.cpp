@@ -1,15 +1,16 @@
-#ifndef CODE_INO
-#define CODE_INO
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
 
-#include "lib/AutoCycle.hpp"
-#include "lib/Clock.hpp"
-#include "lib/Keypad.hpp"
-#include "lib/Moisture.hpp"
-#include "lib/MyString.hpp"
-#include "lib/MyTime.hpp"
-#include "lib/PageSelector.hpp"
-#include "lib/UnitDisplay.hpp"
-#include "lib/Valve.hpp"
+#include "../lib/core/AutoCycle.hpp"
+#include "../lib/core/Clock.hpp"
+#include "../lib/core/Keypad.hpp"
+#include "../lib/core/Moisture.hpp"
+#include "../lib/core/MyString.hpp"
+#include "../lib/core/MyTime.hpp"
+#include "../lib/core/PageSelector.hpp"
+#include "../lib/core/UnitDisplay.hpp"
+#include "../lib/core/Valve.hpp"
 
 Keypad* myKeypad;
 UnitDisplay* myDisplay;
@@ -29,15 +30,18 @@ Moisture* myMoisture;
 PageSelector* pageSelector;
 AutoCycle* autoCycle;
 
-//region QTDESKTOP
 #ifdef QTDESKTOP
 
-#	include "lib/ControlUnit.h"
+#	include "lib/qt-lib/ControlUnit.h"
 #	include "lib/qt-lib/QtClock.hpp"
 #	include "lib/qt-lib/QtDisplay.hpp"
 #	include "lib/qt-lib/QtKeypad.hpp"
 #	include "lib/qt-lib/QtMoisture.hpp"
 #	include "lib/qt-lib/QtValve.hpp"
+
+#	include <QApplication>
+#	include <QThread>
+#	include <thread>
 
 void setup(ControlUnit* w) {
 	myKeypad = new QtKeypad();
@@ -62,17 +66,35 @@ void setup(ControlUnit* w) {
 	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, autoCycle);
 }
 
-#endif
-//endregion
+void loop();
 
-//region HWARDUINO
-#ifdef ARDUINO
-#	include "lib/hw-lib/HwClock.hpp"
-#	include "lib/hw-lib/HwDebugger.hpp"
-#	include "lib/hw-lib/HwDisplay.hpp"
-#	include "lib/hw-lib/HwKeypad.hpp"
-#	include "lib/hw-lib/HwMoisture.hpp"
-#	include "lib/hw-lib/HwValve.hpp"
+int main(int argc, char* argv[]) {
+	QApplication a(argc, argv);
+	ControlUnit w;
+
+	setup(&w);
+
+	QThread* thread = QThread::create([] {
+		while(true) {
+			loop();
+			std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+		}
+	});
+	thread->start();
+
+	w.show();
+	return a.exec();
+}
+
+#endif
+
+#ifdef HWARDUINO
+
+#	include "../lib/hw-lib/HwClock.hpp"
+#	include "../lib/hw-lib/HwDisplay.hpp"
+#	include "../lib/hw-lib/HwKeypad.hpp"
+#	include "../lib/hw-lib/HwMoisture.hpp"
+#	include "../lib/hw-lib/HwValve.hpp"
 
 //region PINS
 //UnitDisplay
@@ -122,7 +144,6 @@ void setup() {
 	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, autoCycle);
 }
 #endif
-//endregion
 
 void loop() {
 	pageSelector->show();
@@ -131,5 +152,3 @@ void loop() {
 
 	autoCycle->exec();
 }
-
-#endif

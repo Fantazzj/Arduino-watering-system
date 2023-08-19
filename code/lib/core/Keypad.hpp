@@ -1,6 +1,10 @@
 #ifndef KEYPAD_HPP
 #define KEYPAD_HPP
 
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
+
 class Keypad {
 private:
 public:

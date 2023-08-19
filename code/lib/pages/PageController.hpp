@@ -1,11 +1,15 @@
 #ifndef PAGE_CONTROLLER_HPP
 #define PAGE_CONTROLLER_HPP
 
-#include "../Clock.hpp"
-#include "../Keypad.hpp"
-#include "../UnitDisplay.hpp"
-#include "../Valve.hpp"
-#include "../AutoCycle.hpp"
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
+
+#include "../core/AutoCycle.hpp"
+#include "../core/Clock.hpp"
+#include "../core/Keypad.hpp"
+#include "../core/UnitDisplay.hpp"
+#include "../core/Valve.hpp"
 
 enum KeypadButton : uint8_t {
 	Cancel,

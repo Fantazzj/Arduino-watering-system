@@ -1,8 +1,8 @@
 #ifndef QT_VALVE_CPP
 #define QT_VALVE_CPP
 
-#include "lib/ControlUnit.h"
-#include "lib/Valve.hpp"
+#include "../core/Valve.hpp"
+#include "ControlUnit.h"
 #include <cstdint>
 
 class QtValve : public Valve {

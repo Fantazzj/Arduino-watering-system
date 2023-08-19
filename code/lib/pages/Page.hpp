@@ -1,6 +1,10 @@
 #ifndef PAGE_CPP
 #define PAGE_CPP
 
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
+
 #include "PageController.hpp"
 
 enum PageNum : int8_t {
@@ -42,6 +46,7 @@ class Page {
 private:
 public:
 	Page(PageController* controller);
+	~Page();
 	virtual PageNum exec();
 	virtual void show();
 

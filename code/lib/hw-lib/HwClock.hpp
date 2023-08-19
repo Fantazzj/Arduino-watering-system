@@ -1,7 +1,7 @@
 #ifndef HWCLOCK_CPP
 #define HWCLOCK_CPP
 
-#include "../Clock.hpp"
+#include "../core/Clock.hpp"
 
 class HwClock : public Clock {
 private:

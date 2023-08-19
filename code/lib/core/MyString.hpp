@@ -5,6 +5,10 @@
 #	include <QString>
 #endif
 
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
+
 class MyString {
 private:
 public:

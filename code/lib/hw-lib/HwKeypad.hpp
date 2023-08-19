@@ -1,8 +1,8 @@
 #ifndef HWKEYPAD_CPP
 #define HWKEYPAD_CPP
 
-#include "../../src/Button.h"
-#include "../Keypad.hpp"
+#include "Button.h"
+#include "../core/Keypad.hpp"
 
 class HwKeypad : public Keypad {
 private:

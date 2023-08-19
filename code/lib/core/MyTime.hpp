@@ -5,6 +5,10 @@
 #	include <cstdint>
 #endif
 
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
+
 enum Dow : uint8_t {
 	Monday = 1,
 	Tuesday,

@@ -1,8 +1,8 @@
 #ifndef QT_MOISTURE_CPP
 #define QT_MOISTURE_CPP
 
-#include "../ControlUnit.h"
-#include "../Moisture.hpp"
+#include "../core/Moisture.hpp"
+#include "ControlUnit.h"
 
 class QtMoisture : public Moisture {
 private:

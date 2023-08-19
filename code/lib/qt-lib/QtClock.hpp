@@ -1,8 +1,8 @@
 #ifndef QT_CLOCK_CPP
 #define QT_CLOCK_CPP
 
-#include "lib/Clock.hpp"
-#include "../ControlUnit.h"
+#include "../core/Clock.hpp"
+#include "ControlUnit.h"
 #include <QString>
 
 class QtClock : public Clock {

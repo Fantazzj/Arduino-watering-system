@@ -1,6 +1,10 @@
 #ifndef CLOCK_HPP
 #define CLOCK_HPP
 
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
+
 #include "MyTime.hpp"
 
 class Clock {

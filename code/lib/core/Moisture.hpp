@@ -5,6 +5,10 @@
 #	include <cstdint>
 #endif
 
+#ifdef HWARDUINO
+#	include <Arduino.h>
+#endif
+
 class Moisture {
 private:
 public:
