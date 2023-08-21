@@ -9,7 +9,7 @@ private:
 
 public:
 	HwMoisture(uint8_t pin);
-	uint8_t getMoisture();
+	uint8_t getMoisture() override;
 
 protected:
 };

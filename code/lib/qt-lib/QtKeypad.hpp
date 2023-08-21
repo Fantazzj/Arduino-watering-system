@@ -7,11 +7,10 @@ class QtKeypad : public Keypad {
 private:
 public:
 	QtKeypad() = default;
-	bool cancel();
-	bool down();
-	bool up();
-	bool confirm();
-	//bool generalPressed();
+	bool cancel() override;
+	bool down() override;
+	bool up() override;
+	bool confirm() override;
 
 protected:
 };

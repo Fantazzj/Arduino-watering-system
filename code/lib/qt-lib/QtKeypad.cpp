@@ -27,7 +27,3 @@ bool QtKeypad::confirm() {
 	confirmState = false;
 	return state;
 }
-
-/*bool QtKeypad::generalPressed() {
-        return cancelState or downState or upState or confirmState;
-}*/

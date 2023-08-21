@@ -24,7 +24,6 @@ public:
 	virtual void noClockSym();
 	virtual void dropSym();
 	virtual void noDropSym();
-	virtual void DisplaynoDropSym();
 	virtual void checkSym();
 	virtual void noCheckSym();
 	virtual void noSymbols();

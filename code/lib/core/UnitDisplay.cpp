@@ -12,7 +12,6 @@ void UnitDisplay::clockSym() {}
 void UnitDisplay::noClockSym() {}
 void UnitDisplay::dropSym() {}
 void UnitDisplay::noDropSym() {}
-void UnitDisplay::DisplaynoDropSym() {}
 void UnitDisplay::checkSym() {}
 void UnitDisplay::noCheckSym() {}
 void UnitDisplay::noSymbols() {

@@ -11,8 +11,8 @@ private:
 
 public:
 	QtClock(ControlUnit* w);
-	MyDateTime getTime();
-	void setTime(MyDateTime time);
+	MyDateTime getTime() override;
+	void setTime(MyDateTime time) override;
 
 protected:
 };

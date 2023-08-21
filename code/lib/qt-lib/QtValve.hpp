@@ -12,8 +12,8 @@ private:
 
 public:
 	QtValve(Clock* clock, int8_t minOn, int8_t days, ControlUnit* w, int8_t num);
-	void turnOn();
-	void turnOff();
+	void turnOn() override;
+	void turnOff() override;
 
 protected:
 };

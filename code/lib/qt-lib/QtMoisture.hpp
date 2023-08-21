@@ -10,7 +10,7 @@ private:
 
 public:
 	QtMoisture(ControlUnit* w);
-	uint8_t getMoisture();
+	uint8_t getMoisture() override;
 
 protected:
 };

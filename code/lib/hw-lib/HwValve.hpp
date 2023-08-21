@@ -9,8 +9,8 @@ private:
 
 public:
 	HwValve(Clock* etvClock, int8_t minOn, int8_t days, int8_t pin);
-	void turnOn();
-	void turnOff();
+	void turnOn() override;
+	void turnOff() override;
 
 protected:
 };

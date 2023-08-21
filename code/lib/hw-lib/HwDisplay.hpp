@@ -37,24 +37,24 @@ private:
 
 public:
 	HwDisplay(int8_t address, int8_t lenght, int8_t height);
-	void printSimpleText(char text[]);
-	void printData(char text1[], int8_t data, char text2[]);
-	void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]);
-	void printIn(char text[], int8_t col, int8_t row);
+	void printSimpleText(char text[]) override;
+	void printData(char text1[], int8_t data, char text2[]) override;
+	void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) override;
+	void printIn(char text[], int8_t col, int8_t row) override;
 	void printIn(String text, int8_t col, int8_t row);
-	void printIn(int8_t num, int8_t col, int8_t row);
-	void showClock(MyDateTime timeIn);
-	void blinkAt(int8_t x, int8_t y);
-	void noBlink();
-	void clockSym();
-	void noClockSym();
-	void dropSym();
-	void noDropSym();
-	void checkSym();
-	void noCheckSym();
-	void noSymbols();
-	void backlight();
-	void noBacklight();
+	void printIn(int8_t num, int8_t col, int8_t row) override;
+	void showClock(MyDateTime timeIn) override;
+	void blinkAt(int8_t x, int8_t y) override;
+	void noBlink() override;
+	void clockSym() override;
+	void noClockSym() override;
+	void dropSym() override;
+	void noDropSym() override;
+	void checkSym() override;
+	void noCheckSym() override;
+	void noSymbols() override;
+	void backlight() override;
+	void noBacklight() override;
 
 protected:
 };
