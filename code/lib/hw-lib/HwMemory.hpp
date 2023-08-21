@@ -7,7 +7,7 @@
 class HwMemory : public Memory {
 private:
 public:
-	HwMemory() = default;
+	HwMemory(int8_t etvNum);
 	void saveEtvMinOn(int8_t num, int8_t minOn);
 	int8_t readEtvMinOn(int8_t num);
 	void saveEtvDays(int8_t num, int8_t days);

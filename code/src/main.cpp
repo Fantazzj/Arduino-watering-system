@@ -141,7 +141,7 @@ void setup() {
 	myEtv[8] = new HwValve(myClock, 1, 0, etvsPin[8]);
 	myEtv[9] = new HwValve(myClock, 1, 0, etvsPin[9]);
 
-	myMemory = new HwMemory();
+	myMemory = new HwMemory(etvNum);
 	for(int8_t i = 1; i <= etvNum; i++) {
 		myEtv[i]->minOn = myMemory->readEtvMinOn(i);
 		myEtv[i]->days = myMemory->readEtvDays(i);
