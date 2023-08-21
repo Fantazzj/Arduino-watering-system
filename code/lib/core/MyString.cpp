@@ -1,7 +1,7 @@
 #include "MyString.hpp"
 
 #ifdef QTDESKTOP
-QString MyString::toQString(char text[]) {
+QString MyString::toQString(const char text[]) {
 	QString conv = "";
 	for(int8_t i = 0; text[i] != '\0'; i++) conv += text[i];
 	return conv;
@@ -9,7 +9,7 @@ QString MyString::toQString(char text[]) {
 #endif
 
 #ifdef ARDUINO
-String MyString::toArduinoString(char text[]) {
+String MyString::toArduinoString(const char text[]) {
 	String conv = "";
 	for(int8_t i = 0; text[i] != '\0'; i++) conv += text[i];
 	return conv;

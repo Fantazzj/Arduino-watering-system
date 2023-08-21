@@ -9,18 +9,16 @@
 #	include <Arduino.h>
 #endif
 
-class MyString {
-private:
-public:
+namespace MyString {
+
 #ifdef QTDESKTOP
-	static QString toQString(char text[]);
+	QString toQString(const char text[]);
 #endif
 
 #ifdef ARDUINO
-	static String toArduinoString(char text[]);
+	String toArduinoString(const char text[]);
 #endif
 
-protected:
-};
+};// namespace MyString
 
 #endif//MY_STRING_HPP
