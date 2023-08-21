@@ -5,3 +5,5 @@
 /code/.pio/*
 /schema/*
 /code/CMakeLists.txt.user
+/code/*.bin
+/code/.gitignore
