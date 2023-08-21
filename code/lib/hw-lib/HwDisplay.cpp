@@ -11,7 +11,7 @@ void HwDisplay::arrangeWords(String text, String row[]) {
 	int8_t rowN = 0;
 
 	if(text.charAt(text.length() - 1) != ' ') text += " ";
-	for(int8_t i = 0; i < text.length(); i++) {
+	for(uint8_t i = 0; i < text.length(); i++) {
 		if(text.charAt(i) != ' ') buffer += text.charAt(i);
 		else {
 			if(row[rowN].length() + buffer.length() <= lenght) row[rowN] += (buffer + " ");
@@ -29,7 +29,7 @@ void HwDisplay::printRows(String row[]) {
 }
 
 void HwDisplay::myPrint(String text) {
-	for(int8_t chr = 0; chr < text.length(); chr++) {
+	for(uint8_t chr = 0; chr < text.length(); chr++) {
 		if(text.charAt(chr) == 'a' && text.charAt(chr + 1) == '\'') {
 			lcd->write(myA);
 			chr++;

@@ -21,22 +21,22 @@ PageNum EditClock::exec() {
 		case Down:
 			switch(_editPhase) {
 				case 1:
-					_newTime.date.dow = (_newTime.date.dow > Monday) ? _newTime.date.dow - (Dow)1 : Sunday;
+					_newTime.date.dow = (_newTime.date.dow > Monday) ? _newTime.date.dow - 1u : Sunday;
 					break;
 				case 2:
-					_newTime.time.hour = (_newTime.time.hour > 0) ? _newTime.time.hour - 1 : 23;
+					_newTime.time.hour = (_newTime.time.hour > 0) ? _newTime.time.hour - 1u : 23u;
 					break;
 				case 3:
-					_newTime.time.min = (_newTime.time.min > 0) ? _newTime.time.min - 1 : 59;
+					_newTime.time.min = (_newTime.time.min > 0) ? _newTime.time.min - 1u : 59u;
 					break;
 				case 4:
-					_newTime.date.day = (_newTime.date.day > 1) ? _newTime.date.day - 1 : 31;
+					_newTime.date.day = (_newTime.date.day > 1) ? _newTime.date.day - 1u : 31u;
 					break;
 				case 5:
-					_newTime.date.mon = (_newTime.date.mon > 1) ? _newTime.date.mon - 1 : 12;
+					_newTime.date.mon = (_newTime.date.mon > 1) ? _newTime.date.mon - 1u : 12u;
 					break;
 				case 6:
-					_newTime.date.year = (_newTime.date.year > 2021) ? _newTime.date.year - 1 : 2021;
+					_newTime.date.year = (_newTime.date.year > 2021) ? _newTime.date.year - 1u : 2021u;
 					break;
 			}
 			return Stay;

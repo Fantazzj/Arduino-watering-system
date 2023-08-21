@@ -46,7 +46,7 @@ class Page {
 private:
 public:
 	Page(PageController* controller);
-	~Page();
+	virtual ~Page();
 	virtual PageNum exec();
 	virtual void show();
 

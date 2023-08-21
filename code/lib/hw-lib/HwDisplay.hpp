@@ -24,9 +24,9 @@ private:
 	byte myCheck = 6;
 	byte myClockArray[8] = {0x00, 0x00, 0x0E, 0x15, 0x17, 0x11, 0x0E, 0x00};
 	byte myClock = 7;
-	int8_t height = 0;
-	int8_t lenght = 0;
-	int8_t lcdLenght = 0;
+	uint8_t height = 0;
+	uint8_t lenght = 0;
+	uint8_t lcdLenght = 0;
 	void displayError1();
 	void arrangeWords(String text, String row[]);
 	void printRows(String row[]);

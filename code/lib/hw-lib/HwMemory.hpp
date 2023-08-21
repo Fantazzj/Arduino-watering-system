@@ -2,7 +2,7 @@
 #define HWMEMORY_HPP
 
 #include "../core/Memory.hpp"
-#include <EEPROM.h>
+//#include <EEPROM.h>
 
 class HwMemory : public Memory {
 private:
