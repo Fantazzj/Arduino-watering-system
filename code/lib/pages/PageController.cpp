@@ -1,10 +1,11 @@
 #include "PageController.hpp"
 
-PageController::PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle) {
+PageController::PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], Memory* myMemory, AutoCycle* autoCycle) {
 	_myKeypad = myKeypad;
 	_myDisplay = myDisplay;
 	_myClock = myClock;
 	_myEtv = myEtv;
+	_myMemory = myMemory;
 	_autoCycle = autoCycle;
 	_timeToEdit = true;
 }
@@ -50,10 +51,20 @@ void PageController::setEtvState(int8_t num, bool state) {
 	if(state) _myEtv[num]->turnOn();
 	else _myEtv[num]->turnOff();
 }
-void PageController::setEtvDays(int8_t num, int8_t days) { _myEtv[num]->days = days; }
-int8_t PageController::getEtvDays(int8_t num) { return _myEtv[num]->days; }
-void PageController::setEtvMinOn(int8_t num, int8_t minOn) { _myEtv[num]->minOn = minOn; }
-int8_t PageController::getEtvMinOn(int8_t num) { return _myEtv[num]->minOn; }
+void PageController::setEtvDays(int8_t num, int8_t days) {
+	_myEtv[num]->days = days;
+	_myMemory->saveEtvDays(num, days);
+}
+int8_t PageController::getEtvDays(int8_t num) {
+	return _myEtv[num]->days;
+}
+void PageController::setEtvMinOn(int8_t num, int8_t minOn) {
+	_myEtv[num]->minOn = minOn;
+	_myMemory->saveEtvMinOn(num, minOn);
+}
+int8_t PageController::getEtvMinOn(int8_t num) {
+	return _myEtv[num]->minOn;
+}
 MyTime PageController::clockGetTime() { return _myClock->getTime(); }
 void PageController::clockSetTime(MyTime timeIn) {
 	_myClock->setTime(timeIn);

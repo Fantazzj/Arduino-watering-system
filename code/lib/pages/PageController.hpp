@@ -8,6 +8,7 @@
 #include "../core/AutoCycle.hpp"
 #include "../core/Clock.hpp"
 #include "../core/Keypad.hpp"
+#include "../core/Memory.hpp"
 #include "../core/UnitDisplay.hpp"
 #include "../core/Valve.hpp"
 
@@ -25,11 +26,12 @@ private:
 	UnitDisplay* _myDisplay;
 	Clock* _myClock;
 	Valve** _myEtv;
+	Memory* _myMemory;
 	AutoCycle* _autoCycle;
 	bool _timeToEdit;
 
 public:
-	PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], AutoCycle* autoCycle);
+	PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], Memory* myMemory, AutoCycle* autoCycle);
 	KeypadButton keypad();
 	bool getTimeToEdit();
 	void setTimeToEdit(bool state);

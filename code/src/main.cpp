@@ -5,6 +5,7 @@
 #include "../lib/core/AutoCycle.hpp"
 #include "../lib/core/Clock.hpp"
 #include "../lib/core/Keypad.hpp"
+#include "../lib/core/Memory.hpp"
 #include "../lib/core/Moisture.hpp"
 #include "../lib/core/MyString.hpp"
 #include "../lib/core/MyTime.hpp"
@@ -25,6 +26,7 @@ Valve* myEtv7;
 Valve* myEtv8;
 Valve* myEtv9;
 Valve* myEtv[] = {nullptr, myEtv1, myEtv2, myEtv3, myEtv4, myEtv5, myEtv6, myEtv7, myEtv8, myEtv9};
+Memory* myMemory;
 int8_t etvNum = sizeof(myEtv) / sizeof(myEtv[1]) - 1;
 Moisture* myMoisture;
 PageSelector* pageSelector;
@@ -36,6 +38,7 @@ AutoCycle* autoCycle;
 #	include "lib/qt-lib/QtClock.hpp"
 #	include "lib/qt-lib/QtDisplay.hpp"
 #	include "lib/qt-lib/QtKeypad.hpp"
+#	include "lib/qt-lib/QtMemory.hpp"
 #	include "lib/qt-lib/QtMoisture.hpp"
 #	include "lib/qt-lib/QtValve.hpp"
 
@@ -58,12 +61,18 @@ void setup(ControlUnit* w) {
 	myEtv[8] = new QtValve(myClock, 5, 0, w, 8);
 	myEtv[9] = new QtValve(myClock, 5, 0, w, 9);
 
+	myMemory = new QtMemory(etvNum);
+	for(int8_t i=1; i<=etvNum; i++) {
+		myEtv[i]->minOn = myMemory->readEtvMinOn(i);
+		myEtv[i]->days = myMemory->readEtvDays(i);
+	}
+
 	myMoisture = new QtMoisture(w);
 
 	w->setKeypad(myKeypad);
 
 	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMoisture);
-	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, autoCycle);
+	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMemory, autoCycle);
 }
 
 void loop();
@@ -93,10 +102,10 @@ int main(int argc, char* argv[]) {
 #	include "../lib/hw-lib/HwClock.hpp"
 #	include "../lib/hw-lib/HwDisplay.hpp"
 #	include "../lib/hw-lib/HwKeypad.hpp"
+#	include "../lib/hw-lib/HwMemory.hpp"
 #	include "../lib/hw-lib/HwMoisture.hpp"
 #	include "../lib/hw-lib/HwValve.hpp"
 
-//region PINS
 //UnitDisplay
 #	define lcdAddress 0x27
 #	define lcdLength 16
@@ -118,7 +127,6 @@ const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 //Sensors
 #	define humidityPin A7
-//endregion PINS
 
 void setup() {
 	myClock = new HwClock(rtcRst, rtcData, rtcClk);
@@ -133,6 +141,13 @@ void setup() {
 	myEtv[8] = new HwValve(myClock, 1, 0, etvsPin[8]);
 	myEtv[9] = new HwValve(myClock, 1, 0, etvsPin[9]);
 
+	myMemory = new HwMemory();
+	for(int8_t i = 1; i <= etvNum; i++) {
+		myEtv[i]->minOn = myMemory->readEtvMinOn(i);
+		myEtv[i]->days = myMemory->readEtvDays(i);
+	}
+
+
 	myKeypad = new HwKeypad(cancelPin, downPin, upPin, confirmPin);
 
 	myDisplay = new HwDisplay(lcdAddress, lcdLength, lcdHeight);
@@ -141,8 +156,9 @@ void setup() {
 
 	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMoisture);
 
-	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, autoCycle);
+	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMemory, autoCycle);
 }
+
 #endif
 
 void loop() {

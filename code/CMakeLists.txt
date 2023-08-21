@@ -33,12 +33,14 @@ set(PROJECT_SOURCES
         lib/core/Valve.hpp lib/core/Valve.cpp
         lib/core/MyTime.hpp lib/core/MyTime.cpp
         lib/core/MyString.hpp lib/core/MyString.cpp
+        lib/core/Memory.cpp lib/core/Memory.hpp
         lib/qt-lib/ControlUnit.cpp lib/qt-lib/ControlUnit.h lib/qt-lib/ControlUnit.ui
         lib/qt-lib/QtClock.hpp lib/qt-lib/QtClock.cpp
         lib/qt-lib/QtDisplay.hpp lib/qt-lib/QtDisplay.cpp
         lib/qt-lib/QtKeypad.hpp lib/qt-lib/QtKeypad.cpp
         lib/qt-lib/QtMoisture.hpp lib/qt-lib/QtMoisture.cpp
         lib/qt-lib/QtValve.hpp lib/qt-lib/QtValve.cpp
+        lib/qt-lib/QtMemory.cpp lib/qt-lib/QtMemory.hpp
         lib/pages/EditClock.hpp lib/pages/EditClock.cpp
         lib/pages/EditEtvDays.hpp lib/pages/EditEtvDays.cpp
         lib/pages/EditEtvTime.hpp lib/pages/EditEtvTime.cpp
