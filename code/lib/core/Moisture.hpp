@@ -15,7 +15,7 @@ public:
 	Moisture() = default;
 	virtual uint8_t getMoisture();
 
-private:
+protected:
 };
 
 #endif//MOISTURE_HPP
