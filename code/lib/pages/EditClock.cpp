@@ -21,22 +21,22 @@ PageNum EditClock::exec() {
 		case Down:
 			switch(_editPhase) {
 				case 1:
-					_newTime.dow = (_newTime.dow > Monday) ? _newTime.dow - 1 : Sunday;
+					_newTime.date.dow = (_newTime.date.dow > Monday) ? _newTime.date.dow - (Dow)1 : Sunday;
 					break;
 				case 2:
-					_newTime.hour = (_newTime.hour > 0) ? _newTime.hour - 1 : 23;
+					_newTime.time.hour = (_newTime.time.hour > 0) ? _newTime.time.hour - 1 : 23;
 					break;
 				case 3:
-					_newTime.min = (_newTime.min > 0) ? _newTime.min - 1 : 59;
+					_newTime.time.min = (_newTime.time.min > 0) ? _newTime.time.min - 1 : 59;
 					break;
 				case 4:
-					_newTime.date = (_newTime.date > 1) ? _newTime.date - 1 : 31;
+					_newTime.date.day = (_newTime.date.day > 1) ? _newTime.date.day - 1 : 31;
 					break;
 				case 5:
-					_newTime.mon = (_newTime.mon > 1) ? _newTime.mon - 1 : 12;
+					_newTime.date.mon = (_newTime.date.mon > 1) ? _newTime.date.mon - 1 : 12;
 					break;
 				case 6:
-					_newTime.year = (_newTime.year > 2021) ? _newTime.year - 1 : 2021;
+					_newTime.date.year = (_newTime.date.year > 2021) ? _newTime.date.year - 1 : 2021;
 					break;
 			}
 			return Stay;
@@ -44,22 +44,22 @@ PageNum EditClock::exec() {
 		case Up:
 			switch(_editPhase) {
 				case 1:
-					_newTime.dow = (_newTime.dow < Sunday) ? _newTime.dow + 1 : Monday;
+					_newTime.date.dow = (_newTime.date.dow < Sunday) ? _newTime.date.dow + 1 : Monday;
 					break;
 				case 2:
-					_newTime.hour = (_newTime.hour < 23) ? _newTime.hour + 1 : 0;
+					_newTime.time.hour = (_newTime.time.hour < 23) ? _newTime.time.hour + 1 : 0;
 					break;
 				case 3:
-					_newTime.min = (_newTime.min < 59) ? _newTime.min + 1 : 0;
+					_newTime.time.min = (_newTime.time.min < 59) ? _newTime.time.min + 1 : 0;
 					break;
 				case 4:
-					_newTime.date = (_newTime.date < 31) ? _newTime.date + 1 : 1;
+					_newTime.date.day = (_newTime.date.day < 31) ? _newTime.date.day + 1 : 1;
 					break;
 				case 5:
-					_newTime.mon = (_newTime.mon < 12) ? _newTime.mon + 1 : 1;
+					_newTime.date.mon = (_newTime.date.mon < 12) ? _newTime.date.mon + 1 : 1;
 					break;
 				case 6:
-					_newTime.year++;
+					_newTime.date.year++;
 					break;
 			}
 			return Stay;

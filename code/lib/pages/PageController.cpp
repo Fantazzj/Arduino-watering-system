@@ -25,7 +25,7 @@ void PageController::displayPrint(char text[], int8_t x, int8_t y) { _myDisplay-
 void PageController::displayPrint(int8_t num, int8_t x, int8_t y) { _myDisplay->printIn(num, x, y); }
 void PageController::displayPrint(char text1[], int8_t data, char text2[]) { _myDisplay->printData(text1, data, text2); }
 void PageController::displayPrint(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) { _myDisplay->printData(text1, data1, text2, data2, text3); }
-void PageController::displayPrint(MyTime time) { _myDisplay->showClock(time); }
+void PageController::displayPrint(MyDateTime time) { _myDisplay->showClock(time); }
 void PageController::displayDrop(bool state) {
 	if(state) _myDisplay->dropSym();
 	else _myDisplay->noDropSym();
@@ -65,8 +65,8 @@ void PageController::setEtvMinOn(int8_t num, int8_t minOn) {
 int8_t PageController::getEtvMinOn(int8_t num) {
 	return _myEtv[num]->minOn;
 }
-MyTime PageController::clockGetTime() { return _myClock->getTime(); }
-void PageController::clockSetTime(MyTime timeIn) {
+MyDateTime PageController::clockGetTime() { return _myClock->getTime(); }
+void PageController::clockSetTime(MyDateTime timeIn) {
 	_myClock->setTime(timeIn);
 	setTimeToEdit(false);
 }

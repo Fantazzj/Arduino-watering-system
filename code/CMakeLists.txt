@@ -32,6 +32,8 @@ set(PROJECT_SOURCES
         lib/core/UnitDisplay.hpp lib/core/UnitDisplay.cpp
         lib/core/Valve.hpp lib/core/Valve.cpp
         lib/core/MyTime.hpp lib/core/MyTime.cpp
+        lib/core/MyDate.hpp lib/core/MyDate.cpp
+        lib/core/MyDateTime.hpp lib/core/MyDateTime.cpp
         lib/core/MyString.hpp lib/core/MyString.cpp
         lib/core/Memory.cpp lib/core/Memory.hpp
         lib/qt-lib/ControlUnit.cpp lib/qt-lib/ControlUnit.h lib/qt-lib/ControlUnit.ui

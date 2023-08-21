@@ -12,7 +12,7 @@ PageNum Home::exec() {
 	if(key != NoBtn) _redraw = true;
 
 	_newTime = _controller->clockGetTime();
-	if(MyTime::isDifferent(_oldTime, _newTime)) _redraw = true;
+	if(_oldTime != _newTime) _redraw = true;
 
 	if(key == Confirm) return SettingsPage1;
 	else return Stay;
@@ -32,7 +32,7 @@ void Home::show() {
             	if(moisture) _controller->displayDrop(true);
             	else _controller->displayDrop(false);
 			*/
-			if(_newTime.year < 2022 or _controller->getTimeToEdit()) _controller->displayClock(true);
+			if(_newTime.date.year < 2022 or _controller->getTimeToEdit()) _controller->displayClock(true);
 			else _controller->displayClock(false);
 		}
 		_redraw = false;

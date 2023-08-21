@@ -29,11 +29,11 @@ void QtDisplay::_printRows(QString rows[]) {
 	}
 }
 
-QString QtDisplay::_arrangeDate(MyTime time) {
+QString QtDisplay::_arrangeDate(MyDate time) {
 	QString arrangedDate = "";
 	QString separator = "/";
-	if(time.date < 10) arrangedDate += "0";
-	arrangedDate += QString::number(time.date);
+	if(time.day < 10) arrangedDate += "0";
+	arrangedDate += QString::number(time.day);
 	arrangedDate += separator;
 	if(time.mon < 10) arrangedDate += "0";
 	arrangedDate += QString::number(time.mon);
@@ -42,7 +42,7 @@ QString QtDisplay::_arrangeDate(MyTime time) {
 	return arrangedDate;
 }
 
-QString QtDisplay::_arrangeDow(MyTime time) {
+QString QtDisplay::_arrangeDow(MyDate time) {
 	QString arrangedDow = "";
 	switch(time.dow) {
 		case Monday:
@@ -157,17 +157,17 @@ void QtDisplay::printIn(QString text, int8_t x, int8_t y) {
 	_w->printOnDisplay(text);
 }
 
-void QtDisplay::showClock(MyTime timeIn) {
+void QtDisplay::showClock(MyDateTime timeIn) {
 	_w->clearDisplay();
 
 	QString date;
-	date = _arrangeDate(timeIn);
+	date = _arrangeDate(timeIn.date);
 	printIn(date, 0, 1);
 	QString dow;
-	dow = _arrangeDow(timeIn);
+	dow = _arrangeDow(timeIn.date);
 	printIn(dow, 0, 0);
 	QString time;
-	time = _arrangeTime(timeIn);
+	time = _arrangeTime(timeIn.time);
 	printIn(time, 11, 0);
 	//printIn(QString::number(timeIn.sec),14,1);
 }

@@ -5,14 +5,14 @@
 #	include <Arduino.h>
 #endif
 
-#include "MyTime.hpp"
+#include "MyDateTime.hpp"
 
 class Clock {
 private:
 public:
 	Clock() = default;
-	virtual MyTime getTime();
-	virtual void setTime(MyTime time);
+	virtual MyDateTime getTime();
+	virtual void setTime(MyDateTime time);
 
 protected:
 };

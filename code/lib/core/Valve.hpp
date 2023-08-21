@@ -11,9 +11,9 @@
 class Valve {
 private:
 public:
-	int8_t days;
-	int8_t minOn;
-	int8_t elapsedDays = 1;
+	uint8_t days;
+	uint8_t minOn;
+	uint8_t elapsedDays = 1;
 	MyTime tOn;
 
 	Valve(Clock* etvClock, int8_t minOn, int8_t days);

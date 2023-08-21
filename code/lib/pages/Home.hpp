@@ -6,8 +6,8 @@
 
 class Home : public Page {
 private:
-	MyTime _newTime;
-	MyTime _oldTime;
+	MyDateTime _newTime;
+	MyDateTime _oldTime;
 
 public:
 	Home(PageController* controller);

@@ -31,9 +31,9 @@ private:
 	void arrangeWords(String text, String row[]);
 	void printRows(String row[]);
 	void myPrint(String text);
-	String arrangeDate(MyTime time);
-	String arrangeDow(MyTime time);
-	String arrangeTime(MyTime time);
+	String arrangeDate(MyDateTime time);
+	String arrangeDow(MyDateTime time);
+	String arrangeTime(MyDateTime time);
 
 public:
 	HwDisplay(int8_t address, int8_t lenght, int8_t height);
@@ -43,7 +43,7 @@ public:
 	void printIn(char text[], int8_t col, int8_t row);
 	void printIn(String text, int8_t col, int8_t row);
 	void printIn(int8_t num, int8_t col, int8_t row);
-	void showClock(MyTime timeIn);
+	void showClock(MyDateTime timeIn);
 	void blinkAt(int8_t x, int8_t y);
 	void noBlink();
 	void clockSym();

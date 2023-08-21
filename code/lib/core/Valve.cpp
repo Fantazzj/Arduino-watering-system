@@ -6,7 +6,7 @@ Valve::Valve(Clock* etvClock, int8_t minOn, int8_t days) {
 	this->days = days;
 }
 void Valve::turnOn() {
-	tOn = etvClock->getTime();
+	tOn = etvClock->getTime().time;
 	elapsedDays = 1;
 }
 void Valve::turnOff() {}
@@ -15,6 +15,6 @@ bool Valve::toWater() {
 	else return false;
 }
 bool Valve::wateringDone(MyTime newTime) {
-	if(MyTime::elapsedMin(tOn, newTime) >= minOn) return true;
+	if( secToMin(newTime-tOn) >= minOn) return true;
 	else return false;
 }

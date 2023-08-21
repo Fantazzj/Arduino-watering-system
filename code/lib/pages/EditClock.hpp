@@ -6,8 +6,8 @@
 
 class EditClock : public Page {
 private:
-	MyTime _newTime;
-	MyTime _oldTime;
+	MyDateTime _newTime;
+	MyDateTime _oldTime;
 	int8_t _editPhase = 1;
 
 public:

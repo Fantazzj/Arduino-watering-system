@@ -7,7 +7,7 @@ QtValve::QtValve(Clock* clock, int8_t minOn, int8_t days, ControlUnit* w, int8_t
 }
 
 void QtValve::turnOn() {
-	tOn = etvClock->getTime();
+	tOn = etvClock->getTime().time;
 	elapsedDays = 1;
 	w->activate(num);
 }

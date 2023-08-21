@@ -14,8 +14,8 @@ private:
 	void _displayError1();
 	void _arrangeWords(QString text, QString rows[]);
 	void _printRows(QString rows[]);
-	QString _arrangeDate(MyTime time);
-	QString _arrangeDow(MyTime time);
+	QString _arrangeDate(MyDate time);
+	QString _arrangeDow(MyDate time);
 	QString _arrangeTime(MyTime time);
 
 public:
@@ -26,7 +26,7 @@ public:
 	void printIn(char text[], int8_t x, int8_t y);
 	void printIn(int8_t data, int8_t x, int8_t y);
 	void printIn(QString text, int8_t x, int8_t y);
-	void showClock(MyTime timeIn);
+	void showClock(MyDateTime timeIn);
 	void blinkAt(int8_t x, int8_t y);
 	void noBlink();
 	void clockSym();

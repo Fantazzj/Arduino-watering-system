@@ -8,7 +8,7 @@ HwValve::HwValve(Clock* etvClock, int8_t minOn, int8_t days, int8_t pin) :
 }
 
 void HwValve::turnOn() {
-	tOn = etvClock->getTime();
+	tOn = etvClock->getTime().time;
 	elapsedDays = 1;
 	digitalWrite(pin, LOW);
 }

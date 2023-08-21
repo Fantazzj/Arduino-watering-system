@@ -49,22 +49,22 @@ void HwDisplay::myPrint(String text) {
 	}
 }
 
-String HwDisplay::arrangeDate(MyTime time) {
+String HwDisplay::arrangeDate(MyDateTime time) {
 	String arrangedDate = "";
 	String separator = "/";
-	if(time.date < 10) arrangedDate += "0";
-	arrangedDate += String(time.date);
+	if(time.date.day < 10) arrangedDate += "0";
+	arrangedDate += String(time.date.day);
 	arrangedDate += separator;
-	if(time.mon < 10) arrangedDate += "0";
-	arrangedDate += String(time.mon);
+	if(time.date.mon < 10) arrangedDate += "0";
+	arrangedDate += String(time.date.mon);
 	arrangedDate += separator;
-	arrangedDate += String(time.year);
+	arrangedDate += String(time.date.year);
 	return arrangedDate;
 }
 
-String HwDisplay::arrangeDow(MyTime time) {
+String HwDisplay::arrangeDow(MyDateTime time) {
 	String arrangedDow = "";
-	switch(time.dow) {
+	switch(time.date.dow) {
 		case Monday:
 			arrangedDow = "Lunedi'";
 			break;
@@ -90,14 +90,14 @@ String HwDisplay::arrangeDow(MyTime time) {
 	return arrangedDow;
 }
 
-String HwDisplay::arrangeTime(MyTime time) {
+String HwDisplay::arrangeTime(MyDateTime time) {
 	String arrangedTime = "";
 	String separator = ":";
-	if(time.hour < 10) arrangedTime += "0";
-	arrangedTime += String(time.hour);
+	if(time.time.hour < 10) arrangedTime += "0";
+	arrangedTime += String(time.time.hour);
 	arrangedTime += separator;
-	if(time.min < 10) arrangedTime += "0";
-	arrangedTime += String(time.min);
+	if(time.time.min < 10) arrangedTime += "0";
+	arrangedTime += String(time.time.min);
 	return arrangedTime;
 }
 
@@ -181,7 +181,7 @@ void HwDisplay::printIn(int8_t num, int8_t col, int8_t row) {
 	myPrint(conv);
 }
 
-void HwDisplay::showClock(MyTime timeIn) {
+void HwDisplay::showClock(MyDateTime timeIn) {
 	lcd->clear();
 	String date;
 	date = arrangeDate(timeIn);

@@ -36,7 +36,7 @@ int8_t AutoCycle::_nextEtv() {
 void AutoCycle::exec() {
 	newTime = _myClock->getTime();
 
-	if(MyTime::timeIsNextOrEq(newTime, tStart) and !watered and !started) {
+	if(/*MyTime::timeIsNextOrEq(newTime, tStart)*/newTime.time>=tStart and !watered and !started) {
 		started = true;
 		etvOn = _nextEtv();
 		if(etvOn == 0) {
@@ -48,7 +48,7 @@ void AutoCycle::exec() {
 	}
 
 	if(started) {
-		if(_myEtv[etvOn]->wateringDone(newTime)) {
+		if(_myEtv[etvOn]->wateringDone(newTime.time)) {
 			_myEtv[etvOn]->turnOff();
 			etvOn = _nextEtv();
 			if(etvOn == 0) {
@@ -60,12 +60,12 @@ void AutoCycle::exec() {
 		}
 	}
 
-	if(!started and etvOn != 0 and _myEtv[etvOn]->wateringDone(newTime)) {
+	if(!started and etvOn != 0 and _myEtv[etvOn]->wateringDone(newTime.time)) {
 		_myEtv[etvOn]->turnOff();
 		etvOn = 0;
 	}
 
-	if(tChange.hour == newTime.hour and tChange.min == newTime.min) {
+	if(tChange.hour == newTime.time.hour and tChange.min == newTime.time.min) {
 		uint8_t moisture = _myMoisture->getMoisture();
 		if(moisture < 50) watered = false;
 		else watered = true;

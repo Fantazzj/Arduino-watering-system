@@ -6,7 +6,7 @@
 #endif
 
 #include "MyString.hpp"
-#include "MyTime.hpp"
+#include "MyDateTime.hpp"
 
 class UnitDisplay {
 private:
@@ -17,7 +17,7 @@ public:
 	virtual void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]);
 	virtual void printIn(char text[], int8_t x, int8_t y);
 	virtual void printIn(int8_t data, int8_t x, int8_t y);
-	virtual void showClock(MyTime timeIn);
+	virtual void showClock(MyDateTime timeIn);
 	virtual void blinkAt(int8_t x, int8_t y);
 	virtual void noBlink();
 	virtual void clockSym();

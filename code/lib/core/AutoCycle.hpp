@@ -17,7 +17,7 @@ private:
 public:
 	MyTime tStart;
 	MyTime tChange;
-	MyTime newTime;
+	MyDateTime newTime;
 	bool watered = false;
 	bool started = false;
 	int8_t etvOn = 0;

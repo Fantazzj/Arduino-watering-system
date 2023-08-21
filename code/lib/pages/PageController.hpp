@@ -41,7 +41,7 @@ public:
 	void displayPrint(int8_t num, int8_t x, int8_t y);
 	void displayPrint(char text1[], int8_t data, char text2[]);
 	void displayPrint(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]);
-	void displayPrint(MyTime time);
+	void displayPrint(MyDateTime time);
 	void displayDrop(bool state);
 	void displayClock(bool state);
 	void displayCheck(bool state);
@@ -56,8 +56,8 @@ public:
 	int8_t getEtvDays(int8_t num);
 	void setEtvMinOn(int8_t num, int8_t minOn);
 	int8_t getEtvMinOn(int8_t num);
-	MyTime clockGetTime();
-	void clockSetTime(MyTime timeIn);
+	MyDateTime clockGetTime();
+	void clockSetTime(MyDateTime timeIn);
 	void autoCycleSetWatered(bool mode);
 	bool autoCycleGetWatered();
 	void autoCycleSetStarted(bool mode);

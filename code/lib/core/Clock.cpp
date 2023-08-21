@@ -1,8 +1,8 @@
 #include "Clock.hpp"
 
-MyTime Clock::getTime() {
-	MyTime null;
+MyDateTime Clock::getTime() {
+	MyDateTime null;
 	return null;
 }
 
-void Clock::setTime(MyTime time) {}
+void Clock::setTime(MyDateTime time) {}

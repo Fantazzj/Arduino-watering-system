@@ -1,5 +1,5 @@
-#ifndef MY_TIME_HPP//TODO improve
-#define MY_TIME_HPP
+#ifndef MYTIME_LIBRARY_H
+#define MYTIME_LIBRARY_H
 
 #ifdef QTDESKTOP
 #	include <cstdint>
@@ -9,48 +9,38 @@
 #	include <Arduino.h>
 #endif
 
-enum Dow : uint8_t {
-	Monday = 1,
-	Tuesday,
-	Wednesday,
-	Thursday,
-	Friday,
-	Saturday,
-	Sunday
-};
+#define secToMin(a) ((a) / 60)
+#define secToHour(a) ((a) / 3600)
+#define minToSec(a) ((a) *60)
+#define minToHour(a) ((a) / 60)
+#define hourToMin(a) ((a) *60)
+#define hourToSec(a) ((a) *3600)
 
-enum Month : uint8_t {
-	January = 1,
-	February,
-	March,
-	April,
-	May,
-	June,
-	July,
-	August,
-	September,
-	October,
-	November,
-	December
-};
-
-class MyTime {
-public:
+struct MyTime {
 	uint8_t hour = 0;
 	uint8_t min = 0;
 	uint8_t sec = 0;
-	uint8_t date = 1;
-	uint8_t mon = January;
-	uint16_t year = 2023;
-	uint8_t dow = Monday;
 
-	static bool isDifferent(MyTime t1, MyTime t2);
-	static bool isEqual(MyTime t1, MyTime t2);
-	static bool timeIsNextOrEq(MyTime t1, MyTime t2);
-	static uint16_t elapsedHours(MyTime t1, MyTime t2);
-	static uint16_t elapsedMin(MyTime t1, MyTime t2);
-	static uint16_t elapsedSec(MyTime t1, MyTime t2);
-	static void freeze(unsigned long ms);
+	friend class MyDateTime;
+
+	uint64_t operator+(MyTime a);
+
+	uint64_t operator-(MyTime a);
+
+	bool operator>(MyTime a);
+
+	bool operator<(MyTime a);
+
+	bool operator==(MyTime a);
+
+	bool operator!=(MyTime a);
+
+	bool operator>=(MyTime a);
+
+	bool operator<=(MyTime a);
+
+private:
+	uint64_t _toSec();
 };
 
-#endif//MY_TIME_HPP
+#endif//MYTIME_LIBRARY_H
