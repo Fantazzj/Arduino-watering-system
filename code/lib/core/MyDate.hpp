@@ -42,10 +42,12 @@ enum Month : uint8_t {
 };
 
 struct MyDate {
-	uint8_t dow = Monday;
-	uint8_t day = 1;
-	uint8_t mon = January;
-	uint16_t year = 2023;
+	MyDate(uint8_t dow = Monday, uint8_t day = 1, uint8_t mon = January, uint16_t year = 2023);
+
+	uint8_t dow;
+	uint8_t day;
+	uint8_t mon;
+	uint16_t year;
 
 	friend class MyDateTime;
 

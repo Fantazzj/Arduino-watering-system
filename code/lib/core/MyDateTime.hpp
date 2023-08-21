@@ -9,7 +9,9 @@
 #define hourToDay(a) ((a) / 24)
 #define secToDay(a) ((a) / 86400)
 
-struct MyDateTime {
+class MyDateTime {
+public:
+	MyDateTime(MyTime time = MyTime(), MyDate date = MyDate());
 	MyDate date;
 	MyTime time;
 

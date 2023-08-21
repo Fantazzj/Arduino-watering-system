@@ -17,9 +17,11 @@
 #define hourToSec(a) ((a) *3600)
 
 struct MyTime {
-	uint8_t hour = 0;
-	uint8_t min = 0;
-	uint8_t sec = 0;
+	MyTime(uint8_t hour = 0, uint8_t min = 0, uint8_t sec = 0);
+
+	uint8_t hour;
+	uint8_t min;
+	uint8_t sec;
 
 	friend class MyDateTime;
 
