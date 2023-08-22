@@ -1,13 +1,14 @@
 #include "AutoCycle.hpp"
 
-AutoCycle::AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, Moisture* myMoisture) {
+AutoCycle::AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, Moisture* myMoisture, MyTime tStart) {
 	_myClock = myClock;
 	_myEtv = myEtv;
 	this->etvNum = etvNum;
 	_myMoisture = myMoisture;
 
-	tStart.hour = 0;
-	tStart.min = 30;
+
+	this->tStart = tStart;
+
 	int16_t minToEndDay = tStart.hour * 60 + tStart.min;
 
 	int16_t minToWater = 0;
@@ -36,7 +37,7 @@ int8_t AutoCycle::_nextEtv() {
 void AutoCycle::exec() {
 	newTime = _myClock->getTime();
 
-	if(/*MyTime::timeIsNextOrEq(newTime, tStart)*/newTime.time>=tStart and !watered and !started) {
+	if(/*MyTime::timeIsNextOrEq(newTime, tStart)*/ newTime.time >= tStart and !watered and !started) {
 		started = true;
 		etvOn = _nextEtv();
 		if(etvOn == 0) {
