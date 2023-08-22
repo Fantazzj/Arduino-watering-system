@@ -24,7 +24,7 @@ public:
 	int8_t etvNum;
 	Moisture* _myMoisture;
 
-	AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, Moisture* myMoisture);
+	AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, Moisture* myMoisture, MyTime tStart);
 	void exec();
 
 protected:
