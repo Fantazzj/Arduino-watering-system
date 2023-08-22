@@ -99,12 +99,12 @@ int main(int argc, char* argv[]) {
 
 #ifdef HWARDUINO
 
-#	include "../lib/hw-lib/HwClock.hpp"
-#	include "../lib/hw-lib/HwDisplay.hpp"
-#	include "../lib/hw-lib/HwKeypad.hpp"
-#	include "../lib/hw-lib/HwMemory.hpp"
-#	include "../lib/hw-lib/HwMoisture.hpp"
-#	include "../lib/hw-lib/HwValve.hpp"
+#	include "../lib/arduino-lib/HwClock.hpp"
+#	include "../lib/arduino-lib/HwDisplay.hpp"
+#	include "../lib/arduino-lib/HwKeypad.hpp"
+#	include "../lib/arduino-lib/HwMemory.hpp"
+#	include "../lib/arduino-lib/HwMoisture.hpp"
+#	include "../lib/arduino-lib/HwValve.hpp"
 
 //UnitDisplay
 #	define lcdAddress 0x27
