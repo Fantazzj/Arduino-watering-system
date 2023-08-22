@@ -62,7 +62,7 @@ void setup(ControlUnit* w) {
 	myEtv[9] = new QtValve(myClock, 5, 0, w, 9);
 
 	myMemory = new QtMemory(etvNum);
-	for(int8_t i=1; i<=etvNum; i++) {
+	for(int8_t i = 1; i <= etvNum; i++) {
 		myEtv[i]->minOn = myMemory->readEtvMinOn(i);
 		myEtv[i]->days = myMemory->readEtvDays(i);
 	}
@@ -71,7 +71,8 @@ void setup(ControlUnit* w) {
 
 	w->setKeypad(myKeypad);
 
-	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMoisture);
+	MyTime tStart = myMemory->readStartTime();
+	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMoisture, tStart);
 	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMemory, autoCycle);
 }
 

@@ -74,5 +74,8 @@ void PageController::autoCycleSetWatered(bool mode) { _autoCycle->watered = mode
 bool PageController::autoCycleGetWatered() { return _autoCycle->watered; }
 void PageController::autoCycleSetStarted(bool mode) { _autoCycle->started = mode; }
 bool PageController::autoCycleGetStarted() { return _autoCycle->started; }
-void PageController::autoCycleSetTStart(MyTime timeIn) { _autoCycle->tStart = timeIn; }
+void PageController::autoCycleSetTStart(MyTime timeIn) {
+	_autoCycle->tStart = timeIn;
+	_myMemory->saveStartTime(timeIn);
+}
 MyTime PageController::autoCycleGetTStart() { return _autoCycle->tStart; }
