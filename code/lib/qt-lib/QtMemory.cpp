@@ -37,6 +37,7 @@ int8_t QtMemory::readEtvMinOn(int8_t num) {
 	QDataStream stream(&saveFile);
 
 	stream >> out;
+	saveFile.close();
 	return out;
 }
 
@@ -58,5 +59,28 @@ int8_t QtMemory::readEtvDays(int8_t num) {
 	QDataStream stream(&saveFile);
 
 	stream >> out;
+	saveFile.close();
+	return out;
+}
+
+void QtMemory::saveStartTime(MyTime startTime) {
+	QFile saveFile("memory.bin");
+	saveFile.open(QIODevice::ReadWrite);
+	saveFile.seek(20);
+	QDataStream stream(&saveFile);
+
+	stream << startTime.hour << startTime.min << startTime.sec;
+	saveFile.close();
+}
+
+MyTime QtMemory::readStartTime() {
+	MyTime out;
+	QFile saveFile("memory.bin");
+	saveFile.open(QIODevice::ReadWrite);
+	saveFile.seek(20);
+	QDataStream stream(&saveFile);
+
+	stream >> out.hour >> out.min >> out.sec;
+	saveFile.close();
 	return out;
 }
