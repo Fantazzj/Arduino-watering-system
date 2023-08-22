@@ -9,6 +9,8 @@
 #	include <Arduino.h>
 #endif
 
+#include "MyTime.hpp"
+
 class Memory {
 private:
 public:
@@ -17,6 +19,9 @@ public:
 	virtual int8_t readEtvMinOn(int8_t num);
 	virtual void saveEtvDays(int8_t num, int8_t days);
 	virtual int8_t readEtvDays(int8_t num);
+	virtual void saveStartTime(MyTime startTime);
+	virtual MyTime readStartTime();
+
 protected:
 	uint8_t _etvNum;
 };
