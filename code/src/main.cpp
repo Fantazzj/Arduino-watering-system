@@ -147,7 +147,7 @@ void setup() {
 		myEtv[i]->minOn = myMemory->readEtvMinOn(i);
 		myEtv[i]->days = myMemory->readEtvDays(i);
 	}
-
+	MyTime tStart = myMemory->readStartTime();
 
 	myKeypad = new HwKeypad(cancelPin, downPin, upPin, confirmPin);
 
@@ -155,7 +155,7 @@ void setup() {
 
 	myMoisture = new HwMoisture(humidityPin);
 
-	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMoisture);
+	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMoisture, tStart);
 
 	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMemory, autoCycle);
 }
