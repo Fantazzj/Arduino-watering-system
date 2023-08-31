@@ -9,7 +9,7 @@ private:
 	unsigned long prevMillis = 0;
 
 public:
-	HwClock(int8_t rtcRst, int8_t rtcData, int8_t rtcClk);
+	HwClock();
 	MyDateTime getTime() override;
 	void setTime(MyDateTime tIn) override;
 };

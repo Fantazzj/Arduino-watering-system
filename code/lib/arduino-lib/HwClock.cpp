@@ -1,12 +1,13 @@
 #include "HwClock.hpp"
 
-HwClock::HwClock(int8_t rtcRst, int8_t rtcData, int8_t rtcClk) {
-	t.date.dow = Monday;
-	t.date.day = 14;
-	t.date.mon = September;
-	t.date.year = 2023;
-
+HwClock::HwClock() {
 	char z = '0';
+
+	t.date.day = __DATE__[5] - z + (__DATE__[4] - z) * 10;
+	t.date.mon = September;
+	t.date.year = __DATE__[10] - z + (__DATE__[9] - z) * 10 + (__DATE__[8] - z) * 100 + (__DATE__[7] - z) * 1000;
+	t.date.dow = Monday;
+
 	t.time.hour = __TIME__[1] - z + (__TIME__[0] - z) * 10;
 	t.time.min = __TIME__[4] - z + (__TIME__[3] - z) * 10;
 	t.time.sec = __TIME__[7] - z + (__TIME__[6] - z) * 10;

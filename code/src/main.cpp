@@ -122,15 +122,15 @@ const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 #	define confirmPin A0
 
 //RTC
-#	define rtcRst 10
-#	define rtcData 11
-#	define rtcClk 12
+//#	define rtcRst 10
+//#	define rtcData 11
+//#	define rtcClk 12
 
 //Sensors
 #	define humidityPin A7
 
 void setup() {
-	myClock = new HwClock(rtcRst, rtcData, rtcClk);
+	myClock = new HwClock();
 
 	myEtv[1] = new HwValve(myClock, 1, 0, etvsPin[1]);
 	myEtv[2] = new HwValve(myClock, 1, 0, etvsPin[2]);
