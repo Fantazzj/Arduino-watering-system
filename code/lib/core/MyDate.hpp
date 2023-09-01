@@ -17,13 +17,13 @@
 #define yearToMon(a) ((a) *12)
 
 enum Dow : uint8_t {
-	Monday = 1,
+	Sunday = 1,
+	Monday,
 	Tuesday,
 	Wednesday,
 	Thursday,
 	Friday,
-	Saturday,
-	Sunday
+	Saturday
 };
 
 enum Month : uint8_t {

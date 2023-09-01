@@ -37,7 +37,7 @@ int8_t AutoCycle::_nextEtv() {
 void AutoCycle::exec() {
 	newTime = _myClock->getTime();
 
-	if(/*MyTime::timeIsNextOrEq(newTime, tStart)*/ newTime.time >= tStart and !watered and !started) {
+	if(newTime.time >= tStart and !watered and !started) {
 		started = true;
 		etvOn = _nextEtv();
 		if(etvOn == 0) {

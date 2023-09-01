@@ -12,7 +12,7 @@ PageNum Home::exec() {
 	if(key != NoBtn) _redraw = true;
 
 	_newTime = _controller->clockGetTime();
-	if(_oldTime != _newTime) _redraw = true;
+	if(_oldTime.time.min != _newTime.time.min) _redraw = true;
 
 	if(key == Confirm) return SettingsPage1;
 	else return Stay;
