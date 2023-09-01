@@ -21,7 +21,7 @@ PageNum EditClock::exec() {
 		case Down:
 			switch(_editPhase) {
 				case 1:
-					_newTime.date.dow = (_newTime.date.dow > Monday) ? _newTime.date.dow - 1u : Sunday;
+					_newTime.date.dow = (_newTime.date.dow > Sunday) ? _newTime.date.dow - 1u : Saturday;
 					break;
 				case 2:
 					_newTime.time.hour = (_newTime.time.hour > 0) ? _newTime.time.hour - 1u : 23u;
@@ -44,7 +44,7 @@ PageNum EditClock::exec() {
 		case Up:
 			switch(_editPhase) {
 				case 1:
-					_newTime.date.dow = (_newTime.date.dow < Sunday) ? _newTime.date.dow + 1 : Monday;
+					_newTime.date.dow = (_newTime.date.dow < Saturday) ? _newTime.date.dow + 1 : Sunday;
 					break;
 				case 2:
 					_newTime.time.hour = (_newTime.time.hour < 23) ? _newTime.time.hour + 1 : 0;
