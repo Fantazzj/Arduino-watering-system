@@ -9,12 +9,12 @@
 #	include <Arduino.h>
 #endif
 
-#define dayToMon(a) ((a) / 30)
-#define dayToYear(a) ((a) / 365)
-#define monToDay(a) ((a) *30)
-#define monToYear(a) ((a) / 12)
-#define yearToDay(a) ((a) *365)
-#define yearToMon(a) ((a) *12)
+#define dayToMon(a) ((uint64_t(a)) / 30)
+#define dayToYear(a) ((uint64_t(a)) / 365)
+#define monToDay(a) ((uint64_t(a)) *30)
+#define monToYear(a) ((uint64_t(a)) / 12)
+#define yearToDay(a) ((uint64_t(a)) *365)
+#define yearToMon(a) ((uint64_t(a)) *12)
 
 enum Dow : uint8_t {
 	Sunday = 1,

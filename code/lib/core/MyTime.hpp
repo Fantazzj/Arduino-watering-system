@@ -9,12 +9,12 @@
 #	include <Arduino.h>
 #endif
 
-#define secToMin(a) ((a) / 60)
-#define secToHour(a) ((a) / 3600)
-#define minToSec(a) ((a) *60)
-#define minToHour(a) ((a) / 60)
-#define hourToMin(a) ((a) *60)
-#define hourToSec(a) ((a) *3600)
+#define secToMin(a) ((uint64_t(a)) / 60)
+#define secToHour(a) ((uint64_t(a)) / 3600)
+#define minToSec(a) ((uint64_t(a)) *60)
+#define minToHour(a) ((uint64_t(a)) / 60)
+#define hourToMin(a) ((uint64_t(a)) *60)
+#define hourToSec(a) ((uint64_t(a)) *3600)
 
 struct MyTime {
 	MyTime(uint8_t hour = 0, uint8_t min = 0, uint8_t sec = 0);

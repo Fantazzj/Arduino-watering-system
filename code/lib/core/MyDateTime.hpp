@@ -4,10 +4,10 @@
 #include "MyDate.hpp"
 #include "MyTime.hpp"
 
-#define dayToHour(a) ((a) *24)
-#define dayToSec(a) ((a) *86400)
-#define hourToDay(a) ((a) / 24)
-#define secToDay(a) ((a) / 86400)
+#define dayToHour(a) ((uint64_t(a)) *24)
+#define dayToSec(a) ((uint64_t(a)) *86400)
+#define hourToDay(a) ((uint64_t(a)) / 24)
+#define secToDay(a) ((uint64_t(a)) / 86400)
 
 class MyDateTime {
 public:

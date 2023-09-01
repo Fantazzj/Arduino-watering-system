@@ -39,5 +39,5 @@ bool MyTime::operator<=(MyTime a) {
 }
 
 uint64_t MyTime::_toSec() {
-	return hourToSec(hour) + minToSec(min) + sec;
+	return hourToSec(this->hour) + minToSec(this->min) + this->sec;
 }
