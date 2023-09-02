@@ -11,7 +11,7 @@ void Valve::turnOn() {
 }
 void Valve::turnOff() {}
 bool Valve::toWater() {
-	if(elapsedDays >= days and days > 0 and minOn > 0) return true;
+	if(elapsedDays >= days && days > 0 && minOn > 0) return true;
 	else return false;
 }
 bool Valve::wateringDone(MyTime newTime) {

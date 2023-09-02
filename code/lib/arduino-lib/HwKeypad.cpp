@@ -24,5 +24,5 @@ bool HwKeypad::confirm() {
 }
 
 bool HwKeypad::generalPressed() {
-	return cancelButton->readLow() or downButton->readLow() or upButton->readLow() or confirmButton->readLow();
+	return cancelButton->readLow() || downButton->readLow() || upButton->readLow() || confirmButton->readLow();
 }

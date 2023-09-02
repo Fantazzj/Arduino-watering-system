@@ -74,7 +74,7 @@ void ControlUnit::printOnConsole(QString text) {
 }
 
 void ControlUnit::printOnDisplay(QString text) {
-	for(int i = x, j = 0; j < text.size() and i < length; i++, j++) {
+	for(int i = x, j = 0; j < text.size() && i < length; i++, j++) {
 		matrix[i][y]->setText(text.data()[j]);
 	}
 }
