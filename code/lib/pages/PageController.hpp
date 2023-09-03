@@ -48,6 +48,7 @@ public:
 	void displayShowCursor(int8_t x, int8_t y);
 	void displayHideCursor();
 	void displaySetBacklight(bool state);
+	bool displayGetBacklight();
 	int8_t getEtvOn();
 	void setEtvOn(int8_t num);
 	int8_t getEtvNum();

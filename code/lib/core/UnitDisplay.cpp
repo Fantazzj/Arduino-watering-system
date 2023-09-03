@@ -19,5 +19,12 @@ void UnitDisplay::noSymbols() {
 	noDropSym();
 	noCheckSym();
 }
-void UnitDisplay::backlight() {}
-void UnitDisplay::noBacklight() {}
+void UnitDisplay::backlight() {
+	backlightState = true;
+}
+void UnitDisplay::noBacklight() {
+	backlightState = false;
+}
+bool UnitDisplay::getBacklight() {
+	return backlightState;
+}

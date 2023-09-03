@@ -213,8 +213,11 @@ void QtDisplay::noCheckSym() {
 }
 
 void QtDisplay::backlight() {
+	UnitDisplay::backlight();
 	_w->backlight();
 }
+
 void QtDisplay::noBacklight() {
+	UnitDisplay::noBacklight();
 	_w->noBacklight();
 }

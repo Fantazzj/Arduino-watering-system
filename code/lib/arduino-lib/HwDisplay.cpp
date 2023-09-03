@@ -241,9 +241,11 @@ void HwDisplay::noSymbols() {
 }
 
 void HwDisplay::backlight() {
+	UnitDisplay::backlight();
 	lcd->backlight();
 }
 
 void HwDisplay::noBacklight() {
+	UnitDisplay::noBacklight();
 	lcd->noBacklight();
 }

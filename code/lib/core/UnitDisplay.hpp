@@ -29,8 +29,10 @@ public:
 	virtual void noSymbols();
 	virtual void backlight();
 	virtual void noBacklight();
+	bool getBacklight();
 
 protected:
+	bool backlightState = true;
 };
 
 #endif//DISPLAY_HPP

@@ -69,12 +69,13 @@ void PageSelector::exec() {
 }
 
 void PageSelector::show() {
-	activePage->show();
-
 	if(controller->keypadGeneral()) {
 		controller->displaySetBacklight(true);
 		lightTime = controller->clockGetTime().time;
-	} else if(secToMin(controller->clockGetTime().time-lightTime) >= 2) {
+	} else if(secToMin(controller->clockGetTime().time - lightTime) >= 2) {
 		controller->displaySetBacklight(false);
 	}
+
+	if(controller->displayGetBacklight())
+		activePage->show();
 }

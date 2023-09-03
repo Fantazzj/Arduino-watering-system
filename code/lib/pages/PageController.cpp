@@ -44,6 +44,7 @@ void PageController::displaySetBacklight(bool state) {
 	if(state) _myDisplay->backlight();
 	else _myDisplay->noBacklight();
 }
+bool PageController::displayGetBacklight() { return _myDisplay->getBacklight(); }
 int8_t PageController::getEtvOn() { return _autoCycle->etvOn; }
 void PageController::setEtvOn(int8_t num) { _autoCycle->etvOn = num; }
 int8_t PageController::getEtvNum() { return _autoCycle->etvNum; }
