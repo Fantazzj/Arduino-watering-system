@@ -14,16 +14,18 @@ private:
 	Clock* _myClock;
 	Valve** _myEtv;
 	int8_t _nextEtv();
+	MyTime _checkTReset();
 
 public:
 	MyTime tStart;
-	MyTime tChange;
+	MyTime tReset;
 	MyDateTime newTime;
 	bool watered = false;
 	bool started = false;
 	int8_t etvOn = 0;
 	int8_t etvNum;
 	Moisture* _myMoisture;
+	void updateTReset();
 
 	AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, Moisture* myMoisture, MyTime tStart);
 	void exec();

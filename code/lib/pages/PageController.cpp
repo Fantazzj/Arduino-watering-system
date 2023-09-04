@@ -77,6 +77,7 @@ void PageController::autoCycleSetStarted(bool mode) { _autoCycle->started = mode
 bool PageController::autoCycleGetStarted() { return _autoCycle->started; }
 void PageController::autoCycleSetTStart(MyTime timeIn) {
 	_autoCycle->tStart = timeIn;
+	_autoCycle->updateTReset();
 	_myMemory->saveStartTime(timeIn);
 }
 MyTime PageController::autoCycleGetTStart() { return _autoCycle->tStart; }
