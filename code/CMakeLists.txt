@@ -58,6 +58,7 @@ set(PROJECT_SOURCES
         lib/pages/Settings4.hpp lib/pages/Settings4.cpp
         lib/pages/Settings5.hpp lib/pages/Settings5.cpp
         lib/pages/Settings6.hpp lib/pages/Settings6.cpp
+        lib/core/Overrider.hpp lib/core/Overrider.cpp
         )
 
 qt_add_executable(Arduino-watering-system MANUAL_FINALIZATION ${PROJECT_SOURCES})

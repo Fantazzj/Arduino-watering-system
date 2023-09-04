@@ -7,6 +7,7 @@
 
 #include "Moisture.hpp"
 #include "Valve.hpp"
+#include "Overrider.hpp"
 
 class AutoCycle {
 private:

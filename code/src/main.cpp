@@ -44,7 +44,6 @@ AutoCycle* autoCycle;
 
 #	include <QApplication>
 #	include <QThread>
-#	include <thread>
 
 void setup(ControlUnit* w) {
 	myKeypad = new QtKeypad();
@@ -87,7 +86,8 @@ int main(int argc, char* argv[]) {
 	QThread* thread = QThread::create([] {
 		while(true) {
 			loop();
-			std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+			//std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+			QThread::usleep(1);
 		}
 	});
 	thread->start();

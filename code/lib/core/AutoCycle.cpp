@@ -51,6 +51,7 @@ void AutoCycle::exec() {
 	if(started) {
 		if(_myEtv[etvOn]->wateringDone(newTime.time)) {
 			_myEtv[etvOn]->turnOff();
+			Timer::wait(1000);
 			etvOn = _nextEtv();
 			if(etvOn == 0) {
 				watered = true;
