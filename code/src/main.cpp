@@ -121,11 +121,6 @@ const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 #	define upPin A2
 #	define confirmPin A0
 
-//RTC
-//#	define rtcRst 10
-//#	define rtcData 11
-//#	define rtcClk 12
-
 //Sensors
 #	define humidityPin A7
 
