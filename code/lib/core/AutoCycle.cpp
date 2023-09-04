@@ -9,15 +9,15 @@ AutoCycle::AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, Moisture* my
 
 	this->tStart = tStart;
 
-	int16_t minToEndDay = tStart.hour * 60 + tStart.min;
+	//TODO verify
+	int16_t minToStart = tStart.hour * 60 + tStart.min;
 
 	int16_t minToWater = 0;
-
 	for(int8_t i = 1; i <= etvNum; i++) minToWater += myEtv[i]->minOn;
 
 	tChange.hour = 12;
 	tChange.min = 0;
-	if(minToEndDay + minToWater >= 1440 /* 24*60 */) {
+	if(minToStart + minToWater >= 1440 /* 24*60 */) {
 		tChange.hour = 0;
 		tChange.min = 0;
 	}
@@ -38,12 +38,12 @@ void AutoCycle::exec() {
 	newTime = _myClock->getTime();
 
 	if(newTime.time >= tStart && !watered && !started) {
-		started = true;
 		etvOn = _nextEtv();
 		if(etvOn == 0) {
-			watered = true;
 			started = false;
+			watered = true;
 		} else {
+			started = true;
 			_myEtv[etvOn]->turnOn();
 		}
 	}
@@ -69,7 +69,7 @@ void AutoCycle::exec() {
 
 	if(tChange.hour == newTime.time.hour && tChange.min == newTime.time.min) {
 		uint8_t moisture = _myMoisture->getMoisture();
-		if(moisture < 50) watered = false;
+		if(moisture <= 50) watered = false;
 		else watered = true;
 	}
 }
