@@ -10,8 +10,8 @@ private:
 
 public:
 	EditEtvDays(PageController* controller);
-	PageNum exec();
-	void show();
+	PageNum exec() override;
+	void show() override;
 
 protected:
 };

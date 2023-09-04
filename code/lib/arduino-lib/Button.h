@@ -5,11 +5,11 @@
 
 class Button {
 public:
-	Button(int pin, int mode, unsigned long snubberT);
-	Button(int pin, int mode);
-	int getPin();
-	unsigned long getSnubberT();
-	void setSnubberT(unsigned long snubberT);
+	Button(uint8_t pin, uint8_t mode, uint32_t snubberT);
+	Button(uint8_t pin, uint8_t mode);
+	uint8_t getPin();
+	uint32_t getSnubberT();
+	void setSnubberT(uint32_t snubberT);
 	bool readRising();
 	bool readFalling();
 	bool readEdge();
@@ -17,11 +17,11 @@ public:
 	bool readHigh();
 
 private:
-	int _pin;
-	int _oldState;
-	unsigned long _prevoiusMillis;
-	unsigned long _snubberT;
-	void _init(int pin, int mode, unsigned long snubberT);
+	uint8_t _pin;
+	uint8_t _oldState;
+	uint32_t _prevoiusMillis;
+	uint32_t _snubberT;
+	void _init(uint8_t pin, uint8_t mode, uint32_t snubberT);
 };
 
 #endif

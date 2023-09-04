@@ -3,8 +3,7 @@
 EditClock::EditClock(PageController* controller) :
 	Page(controller) {
 	_editPhase = 1;
-	_oldTime = controller->clockGetTime();
-	_newTime = _oldTime;
+	_newTime = controller->clockGetTime();
 }
 
 PageNum EditClock::exec() {

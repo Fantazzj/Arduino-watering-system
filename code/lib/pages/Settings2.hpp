@@ -7,8 +7,8 @@ class Settings2 : public Page {
 private:
 public:
 	Settings2(PageController* controller);
-	PageNum exec();
-	void show();
+	PageNum exec() override;
+	void show() override;
 
 protected:
 };

@@ -7,13 +7,12 @@
 class EditClock : public Page {
 private:
 	MyDateTime _newTime;
-	MyDateTime _oldTime;
 	int8_t _editPhase = 1;
 
 public:
 	EditClock(PageController* controller);
-	PageNum exec();
-	void show();
+	PageNum exec() override;
+	void show() override;
 
 protected:
 };

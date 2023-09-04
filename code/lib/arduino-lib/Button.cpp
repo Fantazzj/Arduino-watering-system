@@ -1,14 +1,14 @@
 #include "Button.h"
 
-Button::Button(int pin, int mode, unsigned long snubberT) {
+Button::Button(uint8_t pin, uint8_t mode, uint32_t snubberT) {
 	_init(pin, mode, snubberT);
 }
 
-Button::Button(int pin, int mode) {
+Button::Button(uint8_t pin, uint8_t mode) {
 	_init(pin, mode, 0);
 }
 
-void Button::_init(int pin, int mode, unsigned long snubberT) {
+void Button::_init(uint8_t pin, uint8_t mode, uint32_t snubberT) {
 	_pin = pin;
 	pinMode(_pin, mode);
 	_oldState = digitalRead(_pin);
@@ -16,21 +16,21 @@ void Button::_init(int pin, int mode, unsigned long snubberT) {
 	_snubberT = snubberT;
 }
 
-int Button::getPin() {
+uint8_t Button::getPin() {
 	return _pin;
 }
 
-unsigned long Button::getSnubberT() {
+uint32_t Button::getSnubberT() {
 	return _snubberT;
 }
 
-void Button::setSnubberT(unsigned long snubberT) {
+void Button::setSnubberT(uint32_t snubberT) {
 	_snubberT = snubberT;
 }
 
 bool Button::readRising() {
-	int result;
-	int newState = digitalRead(_pin);
+	uint8_t result;
+	uint8_t newState = digitalRead(_pin);
 	if((millis() - _prevoiusMillis >= _snubberT) && (_oldState < newState)) {
 		_prevoiusMillis = millis();
 		result = true;
@@ -40,8 +40,8 @@ bool Button::readRising() {
 }
 
 bool Button::readFalling() {
-	int result;
-	int newState = digitalRead(_pin);
+	uint8_t result;
+	uint8_t newState = digitalRead(_pin);
 	if((millis() - _prevoiusMillis >= _snubberT) && (_oldState > newState)) {
 		_prevoiusMillis = millis();
 		result = true;
@@ -51,8 +51,8 @@ bool Button::readFalling() {
 }
 
 bool Button::readEdge() {
-	int result;
-	int newState = digitalRead(_pin);
+	uint8_t result;
+	uint8_t newState = digitalRead(_pin);
 	if((millis() - _prevoiusMillis >= _snubberT) && (_oldState != newState)) {
 		_prevoiusMillis = millis();
 		result = true;
