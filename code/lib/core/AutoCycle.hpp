@@ -15,6 +15,7 @@ private:
 	Valve** _myEtv;
 	int8_t _nextEtv();
 	MyTime _checkTReset();
+	const uint16_t msSnub = 1000;
 
 public:
 	MyTime tStart;

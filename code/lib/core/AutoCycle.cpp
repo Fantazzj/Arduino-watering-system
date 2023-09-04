@@ -31,6 +31,7 @@ MyTime AutoCycle::_checkTReset() {
 
 	uint16_t minToWater = 0;
 	for(int8_t i = 1; i <= etvNum; i++) minToWater += _myEtv[i]->minOn;
+	minToWater += msSnub * etvNum;
 
 	if(minToStart + minToWater > 1440 + minToReset) {
 		//TODO verify
@@ -69,7 +70,7 @@ void AutoCycle::exec() {
 	if(started) {
 		if(_myEtv[etvOn]->wateringDone(newTime.time)) {
 			_myEtv[etvOn]->turnOff();
-			Timer::wait(1000);
+			Timer::wait(msSnub);
 			etvOn = _nextEtv();
 			if(etvOn == 0) {
 				watered = true;
