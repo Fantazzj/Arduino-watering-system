@@ -2,14 +2,10 @@
 #define OVERRIDER_HPP
 
 #if defined(QTDESKTOP)
-#	include <cstdint>
-#	include <QThread>
+#include <QThread>
+#define wait(a) QThread::msleep(a)
 #elif defined(HWARDUINO)
-#	include <Arduino.h>
+#define wait(a) delay(a)
 #endif
-
-namespace Timer {
-	void wait(uint64_t ms);
-}// namespace Timer
 
 #endif//OVERRIDER_HPP
