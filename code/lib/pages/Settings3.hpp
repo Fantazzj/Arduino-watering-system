@@ -6,7 +6,7 @@
 class Settings3 : public Page {
 private:
 public:
-	Settings3(PageController* controller);
+	explicit Settings3(PageController* controller);
 	PageNum exec() override;
 	void show() override;
 

@@ -2,11 +2,11 @@
 
 Settings6::Settings6(PageController* controller) :
 	Page(controller) {
-	_controller->displayHideCursor();
+	_controller->display->noBlink();
 }
 
 PageNum Settings6::exec() {
-	KeypadButton key = _controller->keypad();
+	KeypadButton key = _controller->keypadButton();
 	if(key != NoBtn) _redraw = true;
 	switch(key) {
 		case Cancel:
@@ -24,7 +24,7 @@ PageNum Settings6::exec() {
 
 void Settings6::show() {
 	if(_redraw) {
-		_controller->displayPrint((char*) "Imposta giorni");
+		_controller->display->printSimpleText((char*) "Imposta giorni");
 		_redraw = false;
 	}
 }

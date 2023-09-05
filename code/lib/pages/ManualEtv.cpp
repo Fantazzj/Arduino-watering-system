@@ -6,18 +6,18 @@ ManualEtv::ManualEtv(PageController* controller) :
 }
 
 PageNum ManualEtv::exec() {
-	KeypadButton key = _controller->keypad();
+	KeypadButton key = _controller->keypadButton();
 	if(key != NoBtn) _redraw = true;
 
-	if(_controller->getEtvOn() == 0) {
+	if(_controller->autoCycle->etvOn == 0) {
 		if(key == Up) {//TODO convert in switch
 			_num++;
-			if(_num > _controller->getEtvNum()) _num = 1;
+			if(_num > _controller->etvNum) _num = 1;
 		}
 
 		if(key == Down) {
 			_num--;
-			if(_num < 1) _num = _controller->getEtvNum();
+			if(_num < 1) _num = _controller->etvNum;
 		}
 
 		if(key == Cancel) {
@@ -26,8 +26,8 @@ PageNum ManualEtv::exec() {
 		}
 
 		if(key == Confirm) {
-			_controller->setEtvState(_num, true);
-			_controller->setEtvOn(_num);
+			_controller->etv[_num]->turnOn();
+			_controller->autoCycle->etvOn = _num;
 			return HomePage;
 		}
 	} else {
@@ -36,10 +36,10 @@ PageNum ManualEtv::exec() {
 		}
 
 		if(key == Confirm) {
-			_controller->setEtvState(_controller->getEtvOn(), false);
-			_controller->setEtvOn(0);
-			_controller->autoCycleSetWatered(true);
-			_controller->autoCycleSetStarted(false);
+			_controller->etv[_controller->autoCycle->etvOn]->turnOff();
+			_controller->autoCycle->etvOn = 0;
+			_controller->autoCycle->watered = true;
+			_controller->autoCycle->started = false;
 			return HomePage;
 		}
 	}
@@ -49,9 +49,9 @@ PageNum ManualEtv::exec() {
 
 void ManualEtv::show() {
 	if(_redraw) {
-		if(_controller->getEtvOn() == 0) _controller->displayPrint((char*) "Accendi elettrovalvola", _num, (char*) "");
-		else _controller->displayPrint((char*) "Spegni elettrovalvola", _controller->getEtvOn(), (char*) "");
-		_controller->displayShowCursor(15, 1);
+		if(_controller->autoCycle->etvOn == 0) _controller->display->printData((char*) "Accendi elettrovalvola", _num, (char*) "");
+		else _controller->display->printData((char*) "Spegni elettrovalvola", _controller->autoCycle->etvOn, (char*) "");
+		_controller->display->blinkAt(15, 1);
 		_redraw = false;
 	}
 }

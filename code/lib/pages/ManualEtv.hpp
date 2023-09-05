@@ -9,7 +9,7 @@ private:
 	int8_t _num = 1;
 
 public:
-	ManualEtv(PageController* controller);
+	explicit ManualEtv(PageController* controller);
 	PageNum exec() override;
 	void show() override;
 

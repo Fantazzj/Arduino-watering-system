@@ -45,7 +45,7 @@ enum PageNum : int8_t {
 class Page {
 private:
 public:
-	Page(PageController* controller);
+	explicit Page(PageController* controller);
 	virtual ~Page();
 	virtual PageNum exec();
 	virtual void show();

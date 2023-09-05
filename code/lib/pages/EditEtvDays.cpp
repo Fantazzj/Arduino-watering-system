@@ -3,18 +3,18 @@
 EditEtvDays::EditEtvDays(PageController* controller) :
 	Page(controller) {
 	_etvEdit = 1;
-	_daysEdit = _controller->getEtvDays(1);
+	_daysEdit = _controller->etv[1]->days;
 }
 
 PageNum EditEtvDays::exec() {
-	KeypadButton key = _controller->keypad();
+	KeypadButton key = _controller->keypadButton();
 	if(key != NoBtn) _redraw = true;
 
 	switch(key) {
 		case Cancel:
 			if(_etvEdit >= 2) {
 				_etvEdit--;
-				_daysEdit = _controller->getEtvDays(_etvEdit);
+				_daysEdit = _controller->etv[_etvEdit]->days;
 				return Stay;
 			} else {
 				_etvEdit = 1;
@@ -34,9 +34,11 @@ PageNum EditEtvDays::exec() {
 			return Stay;
 
 		case Confirm:
-			_controller->setEtvDays(_etvEdit++, _daysEdit);
-			_daysEdit = _controller->getEtvDays(_etvEdit);
-			if(_etvEdit > _controller->getEtvNum())
+			_controller->etv[_etvEdit]->days = _daysEdit;
+			_controller->memory->saveEtvDays(_etvEdit,_daysEdit);
+			_etvEdit++;
+			_daysEdit = _controller->etv[_etvEdit]->days;
+			if(_etvEdit > _controller->etvNum)
 				return HomePage;
 			else return Stay;
 
@@ -47,8 +49,8 @@ PageNum EditEtvDays::exec() {
 
 void EditEtvDays::show() {
 	if(_redraw) {
-		_controller->displayPrint((char*) "Etv", _etvEdit, (char*) "ogni", _daysEdit, (char*) "giorni");
-		_controller->displayShowCursor(11, 0);
+		_controller->display->printData((char*) "Etv", _etvEdit, (char*) "ogni", _daysEdit, (char*) "giorni");
+		_controller->display->blinkAt(11, 0);
 		_redraw = false;
 	}
 }

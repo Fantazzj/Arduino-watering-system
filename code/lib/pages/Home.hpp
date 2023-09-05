@@ -10,7 +10,7 @@ private:
 	MyDateTime _oldTime;
 
 public:
-	Home(PageController* controller);
+	explicit Home(PageController* controller);
 	PageNum exec() override;
 	void show() override;
 

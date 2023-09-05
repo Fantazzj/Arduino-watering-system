@@ -8,7 +8,7 @@ private:
 	bool _watered = false;
 
 public:
-	EditSRWatered(PageController* controller);
+	explicit EditSRWatered(PageController* controller);
 	PageNum exec() override;
 	void show() override;
 

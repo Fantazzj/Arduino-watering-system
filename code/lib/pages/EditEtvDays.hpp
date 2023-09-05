@@ -6,10 +6,10 @@
 class EditEtvDays : public Page {
 private:
 	int8_t _etvEdit = 1;
-	int8_t _daysEdit = _controller->getEtvDays(1);
+	int8_t _daysEdit = _controller->etv[1]->days;
 
 public:
-	EditEtvDays(PageController* controller);
+	explicit EditEtvDays(PageController* controller);
 	PageNum exec() override;
 	void show() override;
 

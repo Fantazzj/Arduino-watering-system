@@ -5,11 +5,10 @@ Page::Page(PageController* controller) {
 }
 
 Page::~Page() {
-	
 }
 
 PageNum Page::exec() { return Stay; }
 
 void Page::show() {
-	_controller->displayPrint((char*) "PAGINA GENERALE");
+	_controller->display->printSimpleText((char*) "PAGINA GENERALE");
 }

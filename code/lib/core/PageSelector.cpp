@@ -5,7 +5,7 @@ PageSelector::PageSelector(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myCl
 
 	activePage = new Home(controller);
 
-	lightTime = controller->clockGetTime().time;
+	lightTime = controller->clock->getTime().time;
 }
 
 void PageSelector::exec() {
@@ -69,13 +69,13 @@ void PageSelector::exec() {
 }
 
 void PageSelector::show() {
-	if(controller->keypadGeneral()) {
-		controller->displaySetBacklight(true);
-		lightTime = controller->clockGetTime().time;
-	} else if(secToMin(controller->clockGetTime().time - lightTime) >= 2) {
-		controller->displaySetBacklight(false);
+	if(controller->keypad->generalPressed()) {
+		controller->display->backlight(true);
+		lightTime = controller->clock->getTime().time;
+	} else if(secToMin(controller->clock->getTime().time - lightTime) >= 2) {
+		controller->display->backlight(false);
 	}
 
-	if(controller->displayGetBacklight())
+	if(controller->display->getBacklight())
 		activePage->show();
 }
