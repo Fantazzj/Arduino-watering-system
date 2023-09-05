@@ -1,7 +1,3 @@
-#ifdef HWARDUINO
-#	include <Arduino.h>
-#endif
-
 #include "../lib/core/AutoCycle.hpp"
 #include "../lib/core/Clock.hpp"
 #include "../lib/core/Keypad.hpp"
