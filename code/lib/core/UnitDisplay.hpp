@@ -20,15 +20,10 @@ public:
 	virtual void showClock(MyDateTime timeIn);
 	virtual void blinkAt(int8_t x, int8_t y);
 	virtual void noBlink();
-	virtual void clockSym();
-	virtual void noClockSym();
-	virtual void dropSym();
-	virtual void noDropSym();
-	virtual void checkSym();
-	virtual void noCheckSym();
-	virtual void noSymbols();
-	virtual void backlight();
-	virtual void noBacklight();
+	virtual void clockSym(bool state);
+	virtual void dropSym(bool state);
+	virtual void checkSym(bool state);
+	virtual void backlight(bool state);
 	bool getBacklight();
 
 protected:

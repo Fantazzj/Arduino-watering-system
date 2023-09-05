@@ -182,42 +182,26 @@ void QtDisplay::noBlink() {
 	_w->hideCursorDisplay();
 }
 
-void QtDisplay::clockSym() {
+void QtDisplay::clockSym(bool state) {
 	_w->setCursorDisplay(12, 1);
-	_w->printOnDisplay("c");
+	if(state) _w->printOnDisplay("c");
+	else _w->printOnDisplay(" ");
 }
 
-void QtDisplay::noClockSym() {
-	_w->setCursorDisplay(12, 1);
-	_w->printOnDisplay(" ");
-}
-
-void QtDisplay::dropSym() {
+void QtDisplay::dropSym(bool state) {
 	_w->setCursorDisplay(13, 1);
-	_w->printOnDisplay("d");
+	if(state) _w->printOnDisplay("d");
+	else _w->printOnDisplay(" ");
 }
 
-void QtDisplay::noDropSym() {
-	_w->setCursorDisplay(13, 1);
-	_w->printOnDisplay(" ");
-}
-
-void QtDisplay::checkSym() {
+void QtDisplay::checkSym(bool state) {
 	_w->setCursorDisplay(14, 1);
-	_w->printOnDisplay("c");
+	if(state) _w->printOnDisplay("c");
+	else _w->printOnDisplay(" ");
 }
 
-void QtDisplay::noCheckSym() {
-	_w->setCursorDisplay(14, 1);
-	_w->printOnDisplay(" ");
-}
-
-void QtDisplay::backlight() {
-	UnitDisplay::backlight();
-	_w->backlight();
-}
-
-void QtDisplay::noBacklight() {
-	UnitDisplay::noBacklight();
-	_w->noBacklight();
+void QtDisplay::backlight(bool state) {
+	UnitDisplay::backlight(state);
+	if(state) _w->backlight();
+	else _w->noBacklight();
 }

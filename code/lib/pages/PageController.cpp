@@ -26,24 +26,12 @@ void PageController::displayPrint(int8_t num, int8_t x, int8_t y) { _myDisplay->
 void PageController::displayPrint(char text1[], int8_t data, char text2[]) { _myDisplay->printData(text1, data, text2); }
 void PageController::displayPrint(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) { _myDisplay->printData(text1, data1, text2, data2, text3); }
 void PageController::displayPrint(MyDateTime time) { _myDisplay->showClock(time); }
-void PageController::displayDrop(bool state) {
-	if(state) _myDisplay->dropSym();
-	else _myDisplay->noDropSym();
-}
-void PageController::displayClock(bool state) {
-	if(state) _myDisplay->clockSym();
-	else _myDisplay->noClockSym();
-}
-void PageController::displayCheck(bool state) {
-	if(state) _myDisplay->checkSym();
-	else _myDisplay->noCheckSym();
-}
+void PageController::displayDrop(bool state) { _myDisplay->dropSym(state); }
+void PageController::displayClock(bool state) { _myDisplay->clockSym(state); }
+void PageController::displayCheck(bool state) { _myDisplay->checkSym(state); }
 void PageController::displayShowCursor(int8_t x, int8_t y) { _myDisplay->blinkAt(x, y); }
 void PageController::displayHideCursor() { _myDisplay->noBlink(); }
-void PageController::displaySetBacklight(bool state) {
-	if(state) _myDisplay->backlight();
-	else _myDisplay->noBacklight();
-}
+void PageController::displaySetBacklight(bool state) { _myDisplay->backlight(state); }
 bool PageController::displayGetBacklight() { return _myDisplay->getBacklight(); }
 int8_t PageController::getEtvOn() { return _autoCycle->etvOn; }
 void PageController::setEtvOn(int8_t num) { _autoCycle->etvOn = num; }

@@ -29,14 +29,10 @@ public:
 	void showClock(MyDateTime timeIn) override;
 	void blinkAt(int8_t x, int8_t y) override;
 	void noBlink() override;
-	void clockSym() override;
-	void noClockSym() override;
-	void dropSym() override;
-	void noDropSym() override;
-	void checkSym() override;
-	void noCheckSym() override;
-	void backlight() override;
-	void noBacklight() override;
+	void clockSym(bool state) override;
+	void dropSym(bool state) override;
+	void checkSym(bool state) override;
+	void backlight(bool state) override;
 };
 
 #endif

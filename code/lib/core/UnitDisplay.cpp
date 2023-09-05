@@ -8,22 +8,11 @@ void UnitDisplay::printIn(int8_t data, int8_t x, int8_t y) {}
 void UnitDisplay::showClock(MyDateTime timeIn) {}
 void UnitDisplay::blinkAt(int8_t x, int8_t y) {}
 void UnitDisplay::noBlink() {}
-void UnitDisplay::clockSym() {}
-void UnitDisplay::noClockSym() {}
-void UnitDisplay::dropSym() {}
-void UnitDisplay::noDropSym() {}
-void UnitDisplay::checkSym() {}
-void UnitDisplay::noCheckSym() {}
-void UnitDisplay::noSymbols() {
-	noClockSym();
-	noDropSym();
-	noCheckSym();
-}
-void UnitDisplay::backlight() {
-	backlightState = true;
-}
-void UnitDisplay::noBacklight() {
-	backlightState = false;
+void UnitDisplay::clockSym(bool state) {}
+void UnitDisplay::dropSym(bool state) {}
+void UnitDisplay::checkSym(bool state) {}
+void UnitDisplay::backlight(bool state) {
+	backlightState = state;
 }
 bool UnitDisplay::getBacklight() {
 	return backlightState;

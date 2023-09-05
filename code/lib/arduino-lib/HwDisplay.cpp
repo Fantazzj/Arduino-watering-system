@@ -204,48 +204,26 @@ void HwDisplay::noBlink() {
 	lcd->noBlink();
 }
 
-void HwDisplay::clockSym() {
+void HwDisplay::clockSym(bool state) {
 	lcd->setCursor(12, 1);
-	lcd->write(myClock);
+	if(state) lcd->write(myClock);
+	else lcd->print(" ");
 }
 
-void HwDisplay::noClockSym() {
-	lcd->setCursor(12, 1);
-	lcd->print(" ");
-}
-
-void HwDisplay::dropSym() {
+void HwDisplay::dropSym(bool state) {
 	lcd->setCursor(13, 1);
-	lcd->write(myDrop);
+	if(state) lcd->write(myDrop);
+	else lcd->print(" ");
 }
 
-void HwDisplay::noDropSym() {
-	lcd->setCursor(13, 1);
-	lcd->print(" ");
-}
-
-void HwDisplay::checkSym() {
+void HwDisplay::checkSym(bool state) {
 	lcd->setCursor(14, 1);
-	lcd->write(myCheck);
+	if(state) lcd->write(myCheck);
+	else lcd->print(" ");
 }
 
-void HwDisplay::noCheckSym() {
-	lcd->setCursor(14, 1);
-	lcd->print(" ");
-}
-
-void HwDisplay::noSymbols() {
-	noClockSym();
-	noDropSym();
-	noCheckSym();
-}
-
-void HwDisplay::backlight() {
-	UnitDisplay::backlight();
-	lcd->backlight();
-}
-
-void HwDisplay::noBacklight() {
-	UnitDisplay::noBacklight();
-	lcd->noBacklight();
+void HwDisplay::backlight(bool state) {
+	UnitDisplay::backlight(state);
+	if(state) lcd->backlight();
+	else lcd->noBacklight();
 }
