@@ -108,14 +108,14 @@ HwDisplay::HwDisplay(int8_t address, int8_t lenght, int8_t height) {
 	this->lenght = lenght;
 	lcd->init();
 	lcd->backlight();
-	lcd->createChar(myA, myAArray);
-	lcd->createChar(myE, myEArray);
-	lcd->createChar(myI, myIArray);
-	lcd->createChar(myO, myOArray);
-	lcd->createChar(myU, myUArray);
-	lcd->createChar(myDrop, myDropArray);
-	lcd->createChar(myCheck, myCheckArray);
-	lcd->createChar(myClock, myClockArray);
+	lcd->createChar((byte)myA, (byte*)myAArray);
+	lcd->createChar((byte)myE, (byte*)myEArray);
+	lcd->createChar((byte)myI, (byte*)myIArray);
+	lcd->createChar((byte)myO, (byte*)myOArray);
+	lcd->createChar((byte)myU, (byte*)myUArray);
+	lcd->createChar((byte)myDrop, (byte*)myDropArray);
+	lcd->createChar((byte)myCheck, (byte*)myCheckArray);
+	lcd->createChar((byte)myClock, (byte*)myClockArray);
 	lcd->home();
 }
 
