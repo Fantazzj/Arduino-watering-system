@@ -4,6 +4,8 @@ const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 const int8_t etvNum = 9;
 
 void setup() {
+	pinMode(1, OUTPUT);
+	digitalWrite(1, LOW);
 	for(int i = 1; i <= etvNum; i++) {
 		pinMode(etvsPin[i], OUTPUT);
 		digitalWrite(etvsPin[i], HIGH);
@@ -23,5 +25,5 @@ void loop() {
 		digitalWrite(etvsPin[e], LOW);
 	}
 	i++;
-	delay(100);
+	delay(1000);
 }
