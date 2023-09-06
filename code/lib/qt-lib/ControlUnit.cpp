@@ -1,8 +1,6 @@
-#ifdef QTDESKTOP
-
-#	include "./ui_ControlUnit.h"
-#	include "ControlUnit.h"
-#	include "ui_ControlUnit.h"
+#include "ControlUnit.h"
+#include "./ui_ControlUnit.h"
+#include "ui_ControlUnit.h"
 
 ControlUnit::ControlUnit(QWidget* parent) :
 	QMainWindow(parent), ui(new Ui::ControlUnit) {
@@ -106,11 +104,11 @@ void ControlUnit::hideCursorDisplay() {
 	higlighted->setStyleSheet("QLabel { color : black; }");
 }
 
-void ControlUnit::activate(int num) {
+void ControlUnit::activateValve(int num) {
 	etv[num - 1]->setChecked(true);
 }
 
-void ControlUnit::deactivate(int num) {
+void ControlUnit::deactivateValve(int num) {
 	etv[num - 1]->setChecked(false);
 }
 
@@ -142,4 +140,12 @@ void ControlUnit::on_cancelButton_clicked() {
 	keypad->cancelState = true;
 }
 
-#endif
+void ControlUnit::enableValves() {
+	for(auto& e: etv)
+		e->setEnabled(true);
+}
+
+void ControlUnit::disableValves() {
+	for(auto& e: etv)
+		e->setEnabled(false);
+}

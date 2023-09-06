@@ -5,6 +5,7 @@
 #	include <Arduino.h>
 #endif
 
+#include "MainSwitch.hpp"
 #include "Moisture.hpp"
 #include "Valve.hpp"
 #include "Overrider.hpp"
@@ -13,6 +14,8 @@ class AutoCycle {
 private:
 	Clock* _myClock;
 	Valve** _myEtv;
+	MainSwitch* _myMainSwitch;
+	Moisture* _myMoisture;
 	int8_t _nextEtv();
 	MyTime _checkTReset();
 	const uint16_t msSnub = 1000;
@@ -25,10 +28,9 @@ public:
 	bool started = false;
 	int8_t etvOn = 0;
 	int8_t etvNum;
-	Moisture* _myMoisture;
 	void updateTReset();
 
-	AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, Moisture* myMoisture, MyTime tStart);
+	AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, MainSwitch* myMainSwitch, Moisture* myMoisture, MyTime tStart);
 	void exec();
 
 protected:

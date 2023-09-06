@@ -29,8 +29,10 @@ public:
 	void hideCursorDisplay();
 	void homeDisplay();
 	void clearDisplay();
-	void activate(int num);
-	void deactivate(int num);
+	void activateValve(int num);
+	void deactivateValve(int num);
+	void enableValves();
+	void disableValves();
 	void backlight();
 	void noBacklight();
 	int getMoisture();

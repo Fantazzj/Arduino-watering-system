@@ -1,6 +1,7 @@
 #include "../lib/core/AutoCycle.hpp"
 #include "../lib/core/Clock.hpp"
 #include "../lib/core/Keypad.hpp"
+#include "../lib/core/MainSwitch.hpp"
 #include "../lib/core/Memory.hpp"
 #include "../lib/core/Moisture.hpp"
 #include "../lib/core/MyString.hpp"
@@ -13,7 +14,8 @@ Keypad* myKeypad;
 UnitDisplay* myDisplay;
 Clock* myClock;
 const int8_t etvNum = 9;
-Valve* myEtv[etvNum+1];
+Valve* myEtv[etvNum + 1];
+MainSwitch* myMainSwitch;
 Memory* myMemory;
 Moisture* myMoisture;
 PageSelector* pageSelector;
@@ -25,6 +27,7 @@ AutoCycle* autoCycle;
 #	include "lib/qt-lib/QtClock.hpp"
 #	include "lib/qt-lib/QtDisplay.hpp"
 #	include "lib/qt-lib/QtKeypad.hpp"
+#	include "lib/qt-lib/QtMainSwitch.hpp"
 #	include "lib/qt-lib/QtMemory.hpp"
 #	include "lib/qt-lib/QtMoisture.hpp"
 #	include "lib/qt-lib/QtValve.hpp"
@@ -36,6 +39,8 @@ void setup(ControlUnit* w) {
 	myKeypad = new QtKeypad();
 	myDisplay = new QtDisplay(w, 16, 2);
 	myClock = new QtClock(w);
+
+	myMainSwitch = new QtMainSwitch(w);
 
 	myEtv[1] = new QtValve(myClock, 5, 0, w, 1);
 	myEtv[2] = new QtValve(myClock, 5, 0, w, 2);
@@ -58,8 +63,8 @@ void setup(ControlUnit* w) {
 	w->setKeypad(myKeypad);
 
 	MyTime tStart = myMemory->readStartTime();
-	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMoisture, tStart);
-	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMemory, autoCycle);
+	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMainSwitch, myMoisture, tStart);
+	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
 }
 
 void loop();
@@ -90,6 +95,7 @@ int main(int argc, char* argv[]) {
 #	include "../lib/arduino-lib/HwClock.hpp"
 #	include "../lib/arduino-lib/HwDisplay.hpp"
 #	include "../lib/arduino-lib/HwKeypad.hpp"
+#	include "../lib/arduino-lib/HwMainSwitch.hpp"
 #	include "../lib/arduino-lib/HwMemory.hpp"
 #	include "../lib/arduino-lib/HwMoisture.hpp"
 #	include "../lib/arduino-lib/HwValve.hpp"
@@ -101,6 +107,7 @@ int main(int argc, char* argv[]) {
 
 //Etv
 const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+#	define mainSwitchPin 1
 
 //Buttons
 #	define cancelPin A3
@@ -113,6 +120,8 @@ const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 void setup() {
 	myClock = new HwClock();
+
+	myMainSwitch = new HwMainSwitch(mainSwitchPin);
 
 	myEtv[1] = new HwValve(myClock, 1, 0, etvsPin[1]);
 	myEtv[2] = new HwValve(myClock, 1, 0, etvsPin[2]);
@@ -137,9 +146,9 @@ void setup() {
 
 	myMoisture = new HwMoisture(humidityPin);
 
-	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMoisture, tStart);
+	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMainSwitch, myMoisture, tStart);
 
-	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMemory, autoCycle);
+	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
 }
 
 #endif

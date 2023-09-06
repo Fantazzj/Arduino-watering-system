@@ -1,7 +1,7 @@
 #include "PageSelector.hpp"
 
-PageSelector::PageSelector(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], Memory* myMemory, AutoCycle* autoCycle) {
-	this->controller = new PageController(myKeypad, myDisplay, myClock, myEtv, myMemory, autoCycle);
+PageSelector::PageSelector(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], MainSwitch* _myMainSwitch, Memory* myMemory, AutoCycle* autoCycle) {
+	this->controller = new PageController(myKeypad, myDisplay, myClock, myEtv, _myMainSwitch, myMemory, autoCycle);
 
 	activePage = new Home(controller);
 

@@ -1,11 +1,11 @@
 #include "AutoCycle.hpp"
 
-AutoCycle::AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, Moisture* myMoisture, MyTime tStart) {
+AutoCycle::AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, MainSwitch* myMainSwitch, Moisture* myMoisture, MyTime tStart) {
 	_myClock = myClock;
 	_myEtv = myEtv;
+	_myMainSwitch = myMainSwitch;
 	this->etvNum = etvNum;
 	_myMoisture = myMoisture;
-
 
 	this->tStart = tStart;
 
@@ -63,6 +63,8 @@ void AutoCycle::exec() {
 			watered = true;
 		} else {
 			started = true;
+			_myMainSwitch->turnOn();
+			wait(msSnub);
 			_myEtv[etvOn]->turnOn();
 		}
 	}
@@ -73,6 +75,7 @@ void AutoCycle::exec() {
 			wait(msSnub);
 			etvOn = _nextEtv();
 			if(etvOn == 0) {
+				_myMainSwitch->turnOff();
 				watered = true;
 				started = false;
 			} else {
@@ -83,6 +86,8 @@ void AutoCycle::exec() {
 
 	if(!started && etvOn != 0 && _myEtv[etvOn]->wateringDone(newTime.time)) {
 		_myEtv[etvOn]->turnOff();
+		wait(msSnub);
+		_myMainSwitch->turnOff();
 		etvOn = 0;
 	}
 }

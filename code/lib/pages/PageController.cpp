@@ -1,10 +1,11 @@
 #include "PageController.hpp"
 
-PageController::PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], Memory* myMemory, AutoCycle* autoCycle) {
+PageController::PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], MainSwitch* myMainSwitch, Memory* myMemory, AutoCycle* autoCycle) {
 	keypad = myKeypad;
 	display = myDisplay;
 	clock = myClock;
 	etv = myEtv;
+	mainSwitch = myMainSwitch;
 	memory = myMemory;
 	this->autoCycle = autoCycle;
 	timeToEdit = true;

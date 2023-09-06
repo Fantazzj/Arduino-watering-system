@@ -8,6 +8,7 @@
 #include "../core/AutoCycle.hpp"
 #include "../core/Clock.hpp"
 #include "../core/Keypad.hpp"
+#include "../core/MainSwitch.hpp"
 #include "../core/Memory.hpp"
 #include "../core/UnitDisplay.hpp"
 #include "../core/Valve.hpp"
@@ -21,11 +22,12 @@ enum KeypadButton : uint8_t {
 };
 
 struct PageController {
-	explicit PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], Memory* myMemory, AutoCycle* autoCycle);
+	explicit PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], MainSwitch* myMainSwitch, Memory* myMemory, AutoCycle* autoCycle);
 	Keypad* keypad;
 	UnitDisplay* display;
 	Clock* clock;
 	Valve** etv;
+	MainSwitch* mainSwitch;
 	Memory* memory;
 	AutoCycle* autoCycle;
 	bool timeToEdit;

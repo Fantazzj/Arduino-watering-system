@@ -29,6 +29,7 @@ set(PROJECT_SOURCES
         lib/core/Keypad.hpp lib/core/Keypad.cpp
         lib/core/Moisture.hpp lib/core/Moisture.cpp
         lib/core/PageSelector.hpp lib/core/PageSelector.cpp
+        lib/core/MainSwitch.hpp lib/core/MainSwitch.cpp
         lib/core/UnitDisplay.hpp lib/core/UnitDisplay.cpp
         lib/core/Valve.hpp lib/core/Valve.cpp
         lib/core/MyTime.hpp lib/core/MyTime.cpp
@@ -40,6 +41,7 @@ set(PROJECT_SOURCES
         lib/qt-lib/QtClock.hpp lib/qt-lib/QtClock.cpp
         lib/qt-lib/QtDisplay.hpp lib/qt-lib/QtDisplay.cpp
         lib/qt-lib/QtKeypad.hpp lib/qt-lib/QtKeypad.cpp
+        lib/qt-lib/QtMainSwitch.cpp lib/qt-lib/QtMainSwitch.hpp
         lib/qt-lib/QtMoisture.hpp lib/qt-lib/QtMoisture.cpp
         lib/qt-lib/QtValve.hpp lib/qt-lib/QtValve.cpp
         lib/qt-lib/QtMemory.cpp lib/qt-lib/QtMemory.hpp
