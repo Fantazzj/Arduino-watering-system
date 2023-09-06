@@ -8,6 +8,7 @@ class Home : public Page {
 private:
 	MyDateTime _newTime;
 	MyDateTime _oldTime;
+	uint8_t oldEtvNum;
 
 public:
 	explicit Home(PageController* controller);
