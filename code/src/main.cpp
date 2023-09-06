@@ -21,7 +21,7 @@ Moisture* myMoisture;
 PageSelector* pageSelector;
 AutoCycle* autoCycle;
 
-#ifdef QTDESKTOP
+#if defined(QTDESKTOP)
 
 #	include "lib/qt-lib/ControlUnit.h"
 #	include "lib/qt-lib/QtClock.hpp"
@@ -78,7 +78,6 @@ int main(int argc, char* argv[]) {
 	QThread* thread = QThread::create([] {
 		while(true) {
 			loop();
-			//std::this_thread::sleep_for(std::chrono::nanoseconds(100));
 			QThread::usleep(1);
 		}
 	});
@@ -88,9 +87,7 @@ int main(int argc, char* argv[]) {
 	return a.exec();
 }
 
-#endif
-
-#ifdef HWARDUINO
+#elif defined(HWARDUINO)
 
 #	include "../lib/arduino-lib/HwClock.hpp"
 #	include "../lib/arduino-lib/HwDisplay.hpp"
@@ -150,6 +147,9 @@ void setup() {
 
 	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
 }
+
+#else
+#	error Missing setup() definition
 
 #endif
 
