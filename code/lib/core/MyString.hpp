@@ -1,21 +1,17 @@
 #ifndef MY_STRING_HPP
 #define MY_STRING_HPP
 
-#ifdef QTDESKTOP
+#if defined(QTDESKTOP)
 #	include <QString>
-#endif
-
-#ifdef HWARDUINO
+#elif defined(HWARDUINO)
 #	include <Arduino.h>
 #endif
 
 namespace MyString {
 
-#ifdef QTDESKTOP
+#if defined(QTDESKTOP)
 	QString toQString(const char text[]);
-#endif
-
-#ifdef ARDUINO
+#elif defined(HWARDUINO)
 	String toArduinoString(const char text[]);
 #endif
 

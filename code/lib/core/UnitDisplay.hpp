@@ -1,12 +1,8 @@
 #ifndef DISPLAY_HPP
 #define DISPLAY_HPP
 
-#ifdef HWARDUINO
-#	include <Arduino.h>
-#endif
-
-#include "MyString.hpp"
 #include "MyDateTime.hpp"
+#include "MyString.hpp"
 
 class UnitDisplay {
 private:

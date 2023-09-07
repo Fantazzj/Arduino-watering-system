@@ -1,10 +1,6 @@
 #ifndef PAGE_CONTROLLER_HPP
 #define PAGE_CONTROLLER_HPP
 
-#ifdef HWARDUINO
-#	include <Arduino.h>
-#endif
-
 #include "../core/AutoCycle.hpp"
 #include "../core/Clock.hpp"
 #include "../core/Keypad.hpp"

@@ -1,11 +1,11 @@
 #ifndef OVERRIDER_HPP
 #define OVERRIDER_HPP
 
-#if defined QTDESKTOP
+#if defined(QTDESKTOP)
 #	include <QThread>
 #	define wait(a) QThread::msleep(a)
 
-#elif defined HWARDUINO
+#elif defined(HWARDUINO)
 #	define wait(a) delay(a)
 
 #endif
