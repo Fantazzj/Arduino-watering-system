@@ -1,6 +1,6 @@
 #include "HwMemory.hpp"
 
-HwMemory::HwMemory(int8_t etvNum) :
+HwMemory::HwMemory(uint8_t etvNum) :
 	Memory(etvNum) {
 	if(EEPROM[0x00] != 0) {
 		uint8_t i;
@@ -13,19 +13,19 @@ HwMemory::HwMemory(int8_t etvNum) :
 	}
 }
 
-void HwMemory::saveEtvMinOn(int8_t num, int8_t minOn) {
+void HwMemory::saveEtvMinOn(uint8_t num, uint8_t minOn) {
 	EEPROM.update(num, minOn);
 }
 
-int8_t HwMemory::readEtvMinOn(int8_t num) {
+uint8_t HwMemory::readEtvMinOn(uint8_t num) {
 	return EEPROM[num];
 }
 
-void HwMemory::saveEtvDays(int8_t num, int8_t days) {
+void HwMemory::saveEtvDays(uint8_t num, uint8_t days) {
 	EEPROM.update(num + _etvNum + 1, days);
 }
 
-int8_t HwMemory::readEtvDays(int8_t num) {
+uint8_t HwMemory::readEtvDays(uint8_t num) {
 	return EEPROM[num + _etvNum + 1];
 }
 

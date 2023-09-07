@@ -14,11 +14,11 @@
 class Memory {
 private:
 public:
-	Memory(int8_t etvNum);
-	virtual void saveEtvMinOn(int8_t num, int8_t minOn);
-	virtual int8_t readEtvMinOn(int8_t num);
-	virtual void saveEtvDays(int8_t num, int8_t days);
-	virtual int8_t readEtvDays(int8_t num);
+	explicit Memory(uint8_t etvNum);
+	virtual void saveEtvMinOn(uint8_t num, uint8_t minOn);
+	virtual uint8_t readEtvMinOn(uint8_t num);
+	virtual void saveEtvDays(uint8_t num, uint8_t days);
+	virtual uint8_t readEtvDays(uint8_t num);
 	virtual void saveStartTime(MyTime startTime);
 	virtual MyTime readStartTime();
 

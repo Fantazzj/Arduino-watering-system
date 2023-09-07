@@ -1,13 +1,13 @@
 #include "Memory.hpp"
 
-Memory::Memory(int8_t etvNum) {
+Memory::Memory(uint8_t etvNum) {
 	_etvNum = etvNum;
 }
 
-void Memory::saveEtvMinOn(int8_t num, int8_t minOn) {}
-int8_t Memory::readEtvMinOn(int8_t num) { return 0; }
-void Memory::saveEtvDays(int8_t num, int8_t days) {}
-int8_t Memory::readEtvDays(int8_t num) { return 0; }
+void Memory::saveEtvMinOn(uint8_t num, uint8_t minOn) {}
+uint8_t Memory::readEtvMinOn(uint8_t num) { return 0; }
+void Memory::saveEtvDays(uint8_t num, uint8_t days) {}
+uint8_t Memory::readEtvDays(uint8_t num) { return 0; }
 void Memory::saveStartTime(MyTime startTime) {}
 MyTime Memory::readStartTime() {
 	return {0, 30, 0};
