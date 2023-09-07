@@ -22,7 +22,7 @@ public:
 	ControlUnit(QWidget* parent = nullptr);
 	void setKeypad(Keypad* keypad);
 	void setDimensions(int length, int height);
-	void printOnConsole(QString text);
+	void printOnConsole(const QString& text);
 	void printOnDisplay(QString text);
 	void setCursorDisplay(int length, int height);
 	void showCursorDisplay();
@@ -47,13 +47,13 @@ private slots:
 private:
 	Ui::ControlUnit* ui;
 	Keypad* keypad;
-	int length = 16;
-	int height = 2;
+	int8_t length = 16;
+	int8_t height = 2;
 	QCheckBox* etv[9];
 	QLabel* matrix[16][2];
 	QLabel* higlighted;
-	int x = 0;
-	int y = 0;
+	int8_t x = 0;
+	int8_t y = 0;
 	QSlider moisture;
 };
 

@@ -67,7 +67,7 @@ void ControlUnit::setDimensions(int length, int height) {
 	clearDisplay();
 }
 
-void ControlUnit::printOnConsole(QString text) {
+void ControlUnit::printOnConsole(const QString& text) {
 	ui->textConsole->append(text);
 }
 
