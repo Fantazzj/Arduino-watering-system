@@ -103,8 +103,8 @@ int main(int argc, char* argv[]) {
 #	define lcdHeight 2
 
 //Etv
-const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-#	define mainSwitchPin 1
+const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+#	define mainSwitchPin 11
 
 //Buttons
 #	define cancelPin A3
