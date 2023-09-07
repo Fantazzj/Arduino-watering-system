@@ -1,10 +1,6 @@
 #ifndef PAGE_CPP
 #define PAGE_CPP
 
-#ifdef HWARDUINO
-#	include <Arduino.h>
-#endif
-
 #include "PageController.hpp"
 
 enum PageNum : int8_t {
