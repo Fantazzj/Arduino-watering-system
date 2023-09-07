@@ -12,7 +12,7 @@ private:
 	Button* confirmButton;
 
 public:
-	HwKeypad(int8_t cancelPin, int8_t downPin, int8_t upPin, int8_t confirmPin);
+	HwKeypad(uint8_t cancelPin, uint8_t downPin, uint8_t upPin, uint8_t confirmPin);
 	bool cancel() override;
 	bool down() override;
 	bool up() override;
