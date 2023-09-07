@@ -1,20 +1,18 @@
 #ifndef MYDATE_HPP
 #define MYDATE_HPP
 
-#ifdef QTDESKTOP
+#if defined(QTDESKTOP)
 #	include <cstdint>
-#endif
-
-#ifdef HWARDUINO
+#elif defined(HWARDUINO)
 #	include <Arduino.h>
 #endif
 
 #define dayToMon(a) ((uint64_t(a)) / 30)
 #define dayToYear(a) ((uint64_t(a)) / 365)
-#define monToDay(a) ((uint64_t(a)) *30)
+#define monToDay(a) ((uint64_t(a)) * 30)
 #define monToYear(a) ((uint64_t(a)) / 12)
-#define yearToDay(a) ((uint64_t(a)) *365)
-#define yearToMon(a) ((uint64_t(a)) *12)
+#define yearToDay(a) ((uint64_t(a)) * 365)
+#define yearToMon(a) ((uint64_t(a)) * 12)
 
 enum Dow : uint8_t {
 	Sunday = 1,
@@ -64,7 +62,7 @@ struct MyDate {
 	bool operator<=(MyDate a);
 
 private:
-	uint64_t _toDays();
+	uintmax_t _toDays();
 };
 
 #endif//MYDATE_HPP
