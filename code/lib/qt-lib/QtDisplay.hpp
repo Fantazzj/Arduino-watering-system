@@ -14,9 +14,9 @@ private:
 	void _displayError1();
 	void _arrangeWords(QString text, QString rows[]);
 	void _printRows(QString rows[]);
-	QString _arrangeDate(MyDate time);
-	QString _arrangeDow(MyDate time);
-	QString _arrangeTime(MyTime time);
+	static QString _arrangeDate(MyDate time);
+	static QString _arrangeDow(MyDate time);
+	static QString _arrangeTime(MyTime time);
 
 public:
 	QtDisplay(ControlUnit* w, int8_t length, int8_t height);
