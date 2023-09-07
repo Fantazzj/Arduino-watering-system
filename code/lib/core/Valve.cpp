@@ -1,6 +1,6 @@
 #include "Valve.hpp"
 
-Valve::Valve(Clock* etvClock, int8_t minOn, int8_t days) {
+Valve::Valve(Clock* etvClock, uint8_t minOn, uint8_t days) {
 	this->etvClock = etvClock;
 	this->minOn = minOn;
 	this->days = days;

@@ -5,10 +5,10 @@
 
 class HwValve : public Valve {
 private:
-	int8_t pin;
+	uint8_t pin;
 
 public:
-	HwValve(Clock* etvClock, int8_t minOn, int8_t days, int8_t pin);
+	HwValve(Clock* etvClock, uint8_t minOn, uint8_t days, uint8_t pin);
 	void turnOn() override;
 	void turnOff() override;
 

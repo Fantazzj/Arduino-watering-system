@@ -8,10 +8,10 @@
 class QtValve : public Valve {
 private:
 	ControlUnit* w;
-	int num;
+	uint8_t num;
 
 public:
-	QtValve(Clock* clock, int8_t minOn, int8_t days, ControlUnit* w, int8_t num);
+	QtValve(Clock* clock, uint8_t minOn, uint8_t days, ControlUnit* w, uint8_t num);
 	void turnOn() override;
 	void turnOff() override;
 
