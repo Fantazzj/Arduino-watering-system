@@ -1,6 +1,6 @@
 #include "AutoCycle.hpp"
 
-AutoCycle::AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, MainSwitch* myMainSwitch, Moisture* myMoisture, MyTime tStart) {
+AutoCycle::AutoCycle(Clock* myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch* myMainSwitch, Moisture* myMoisture, MyTime tStart) {
 	_myClock = myClock;
 	_myEtv = myEtv;
 	_myMainSwitch = myMainSwitch;
@@ -12,7 +12,7 @@ AutoCycle::AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, MainSwitch* 
 	tReset = _checkTReset();
 }
 
-int8_t AutoCycle::_nextEtv() {
+uint8_t AutoCycle::_nextEtv() {
 	for(int8_t etv = etvOn + 1; etv <= etvNum; etv++) {
 		if(_myEtv[etv]->toWater()) {
 			return etv;

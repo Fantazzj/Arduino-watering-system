@@ -16,7 +16,7 @@ private:
 	Valve** _myEtv;
 	MainSwitch* _myMainSwitch;
 	Moisture* _myMoisture;
-	int8_t _nextEtv();
+	uint8_t _nextEtv();
 	MyTime _checkTReset();
 	const uint16_t msSnub = 1500;
 
@@ -26,11 +26,11 @@ public:
 	MyDateTime newTime;
 	bool watered = false;
 	bool started = false;
-	int8_t etvOn = 0;
-	int8_t etvNum;
+	uint8_t etvOn = 0;
+	uint8_t etvNum;
 	void updateTReset();
 
-	AutoCycle(Clock* myClock, Valve* myEtv[], int8_t etvNum, MainSwitch* myMainSwitch, Moisture* myMoisture, MyTime tStart);
+	AutoCycle(Clock* myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch* myMainSwitch, Moisture* myMoisture, MyTime tStart);
 	void exec();
 
 protected:
