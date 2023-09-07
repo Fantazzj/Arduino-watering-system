@@ -3,7 +3,7 @@
 
 #include "PageController.hpp"
 
-enum PageNum : int8_t {
+enum PageNum : uint8_t {
 	Stay = 0,
 	HomePage,
 	SettingsPage1,

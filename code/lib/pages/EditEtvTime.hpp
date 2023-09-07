@@ -5,8 +5,8 @@
 
 class EditEtvTime : public Page {
 private:
-	int8_t _etvEdit = 1;
-	int8_t _timeEdit = _controller->etv[1]->minOn;
+	uint8_t _etvEdit = 1;
+	uint8_t _timeEdit = _controller->etv[1]->minOn;
 
 public:
 	explicit EditEtvTime(PageController* controller);
