@@ -12,7 +12,7 @@ void QtDisplay::_arrangeWords(QString text, QString rows[]) {
 
 	if(!text.endsWith(' ')) text += " ";
 
-	for(int8_t i = 0; i < text.length(); i++) {
+	for(int64_t i = 0; i < text.length(); i++) {
 		if(text.data()[i] != ' ') buffer += text.data()[i];
 		else {
 			if(rows[row].length() + buffer.length() <= _length) rows[row] += (buffer + " ");
