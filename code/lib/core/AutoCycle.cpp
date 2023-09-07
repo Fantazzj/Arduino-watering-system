@@ -67,9 +67,7 @@ void AutoCycle::exec() {
 			wait(msSnub);
 			_myEtv[etvOn]->turnOn();
 		}
-	}
-
-	if(started) {
+	} else if(started) {
 		if(_myEtv[etvOn]->wateringDone(newTime.time)) {
 			_myEtv[etvOn]->turnOff();
 			wait(msSnub);

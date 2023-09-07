@@ -18,7 +18,7 @@ private:
 	Moisture* _myMoisture;
 	int8_t _nextEtv();
 	MyTime _checkTReset();
-	const uint16_t msSnub = 1000;
+	const uint16_t msSnub = 1500;
 
 public:
 	MyTime tStart;
