@@ -42,6 +42,7 @@ PageNum EditTStart::exec() {
 			if(_editPhase == 3) {
 				_editPhase = 1;
 				_controller->autoCycle->tStart = _newTime;
+				_controller->autoCycle->updateTReset();
 				_controller->memory->saveStartTime(_newTime);
 				return HomePage;
 			} else return Stay;
