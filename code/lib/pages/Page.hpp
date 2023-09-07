@@ -24,7 +24,7 @@ class Page {
 private:
 public:
 	explicit Page(PageController* controller);
-	virtual ~Page();
+	virtual ~Page() = default;
 	virtual PageNum exec();
 	virtual void show();
 
