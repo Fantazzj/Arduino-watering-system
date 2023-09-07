@@ -81,12 +81,11 @@ QString QtDisplay::_arrangeTime(MyTime time) {
 	return arrangedTime;
 }
 
-QtDisplay::QtDisplay(ControlUnit* w, int8_t length, int8_t height) {
+QtDisplay::QtDisplay(ControlUnit* w) {
 	this->_w = w;
-	this->_length = length;
-	this->_height = height;
-	w->setDimensions(length, height);
-	_displayChars = length * height;
+	this->_length = w->getLength();
+	this->_height = w->getHeight();
+	_displayChars = _length * _height;
 	w->backlight();
 }
 
@@ -95,7 +94,6 @@ void QtDisplay::printSimpleText(char text[]) {
 	QString conv;
 
 	conv = MyString::toQString(text);
-
 
 	_w->clearDisplay();
 

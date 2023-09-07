@@ -21,9 +21,10 @@ class ControlUnit : public QMainWindow {
 public:
 	ControlUnit(QWidget* parent = nullptr);
 	void setKeypad(Keypad* keypad);
-	void setDimensions(int length, int height);
 	void printOnConsole(const QString& text);
 	void printOnDisplay(QString text);
+	int8_t getLength();
+	int8_t getHeight();
 	void setCursorDisplay(int length, int height);
 	void showCursorDisplay();
 	void hideCursorDisplay();
@@ -47,14 +48,17 @@ private slots:
 private:
 	Ui::ControlUnit* ui;
 	Keypad* keypad;
-	int8_t length = 16;
-	int8_t height = 2;
-	QCheckBox* etv[9];
-	QLabel* matrix[16][2];
+	static const int8_t length = 16;
+	static const int8_t height = 2;
+	static const int8_t etvNum = 9;
+	//QCheckBox* etv[etvNum];
+	//QLabel* matrix[length][height];
+	QCheckBox* etv[etvNum];
+	QLabel* matrix[length][height];
 	QLabel* higlighted;
+
 	int8_t x = 0;
 	int8_t y = 0;
-	QSlider moisture;
 };
 
 #endif

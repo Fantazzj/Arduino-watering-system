@@ -19,7 +19,7 @@ private:
 	static QString _arrangeTime(MyTime time);
 
 public:
-	QtDisplay(ControlUnit* w, int8_t length, int8_t height);
+	QtDisplay(ControlUnit* w);
 	void printSimpleText(char text[]) override;
 	void printData(char text1[], int8_t data, char text2[]) override;
 	void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) override;

@@ -37,7 +37,7 @@ AutoCycle* autoCycle;
 
 void setup(ControlUnit* w) {
 	myKeypad = new QtKeypad();
-	myDisplay = new QtDisplay(w, 16, 2);
+	myDisplay = new QtDisplay(w);
 	myClock = new QtClock(w);
 
 	myMainSwitch = new QtMainSwitch(w);

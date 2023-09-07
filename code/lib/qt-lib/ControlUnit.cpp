@@ -61,12 +61,6 @@ void ControlUnit::setKeypad(Keypad* keypad) {
 	this->keypad = keypad;
 }
 
-void ControlUnit::setDimensions(int length, int height) {
-	this->length = length;
-	this->height = height;
-	clearDisplay();
-}
-
 void ControlUnit::printOnConsole(const QString& text) {
 	ui->textConsole->append(text);
 }
@@ -75,6 +69,14 @@ void ControlUnit::printOnDisplay(QString text) {
 	for(int i = x, j = 0; j < text.size() && i < length; i++, j++) {
 		matrix[i][y]->setText(text.data()[j]);
 	}
+}
+
+int8_t ControlUnit::getLength() {
+	return length;
+}
+
+int8_t ControlUnit::getHeight() {
+	return height;
 }
 
 void ControlUnit::setCursorDisplay(int x, int y) {
