@@ -112,10 +112,23 @@ const int8_t etvsPin[] = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 #	define upPin A2
 #	define confirmPin A0
 
+#	define DEBUG 1
+#	if DEBUG
+#		warning Debug mode on
+#		include <SoftwareSerial.h>
+HardwareSerial* mySerial;
+#	endif
+
 //Sensors
 #	define humidityPin A7
 
 void setup() {
+
+#	if DEBUG
+	mySerial = &Serial;
+	mySerial->begin(9600);
+#	endif
+
 	myClock = new HwClock();
 
 	myMainSwitch = new HwMainSwitch(mainSwitchPin);
