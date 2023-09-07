@@ -10,7 +10,7 @@ private:
 	ControlUnit* _w;
 
 public:
-	QtClock(ControlUnit* w);
+	explicit QtClock(ControlUnit* w);
 	MyDateTime getTime() override;
 	void setTime(MyDateTime time) override;
 
