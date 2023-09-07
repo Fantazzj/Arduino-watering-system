@@ -14,8 +14,8 @@ PageNum Home::exec() {
 	_newTime = _controller->clock->getTime();
 	if(_oldTime.time.min != _newTime.time.min) _redraw = true;
 
-	if(_controller->autoCycle->etvNum != oldEtvNum) _redraw = true;
-	oldEtvNum = _controller->autoCycle->etvNum;
+	if(_controller->autoCycle->etvOn != oldEtvOn) _redraw = true;
+	oldEtvOn = _controller->autoCycle->etvOn;
 
 	if(key == Confirm) return SettingsPage1;
 	else return Stay;
