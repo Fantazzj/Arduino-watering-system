@@ -31,7 +31,7 @@ MyTime AutoCycle::_checkTReset() {
 
 	uint16_t minToWater = 0;
 	for(int8_t i = 1; i <= etvNum; i++) minToWater += _myEtv[i]->minOn;
-	minToWater += msSnub * etvNum;
+	//minToWater += msSnub/3600 * etvNum;
 
 	if(minToStart + minToWater > 1440 + minToReset) {
 		//TODO verify
@@ -52,8 +52,11 @@ void AutoCycle::exec() {
 
 	if(tReset.hour == newTime.time.hour && tReset.min == newTime.time.min && !started) {
 		uint8_t moisture = _myMoisture->getMoisture();
-		if(moisture <= 50) watered = false;
-		else watered = true;
+		if(moisture <= 90) {
+			watered = false;
+		} else {
+			watered = true;
+		}
 	}
 
 	if(newTime.time >= tStart && !watered && !started) {
