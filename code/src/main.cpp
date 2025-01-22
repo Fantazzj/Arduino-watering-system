@@ -23,14 +23,14 @@ AutoCycle* autoCycle;
 
 #if defined(QTDESKTOP)
 
-#	include "lib/qt-lib/ControlUnit.h"
-#	include "lib/qt-lib/QtClock.hpp"
-#	include "lib/qt-lib/QtDisplay.hpp"
-#	include "lib/qt-lib/QtKeypad.hpp"
-#	include "lib/qt-lib/QtMainSwitch.hpp"
-#	include "lib/qt-lib/QtMemory.hpp"
-#	include "lib/qt-lib/QtMoisture.hpp"
-#	include "lib/qt-lib/QtValve.hpp"
+#	include "../lib/qt-lib/ControlUnit.h"
+#	include "../lib/qt-lib/QtClock.hpp"
+#	include "../lib/qt-lib/QtDisplay.hpp"
+#	include "../lib/qt-lib/QtKeypad.hpp"
+#	include "../lib/qt-lib/QtMainSwitch.hpp"
+#	include "../lib/qt-lib/QtMemory.hpp"
+#	include "../lib/qt-lib/QtMoisture.hpp"
+#	include "../lib/qt-lib/QtValve.hpp"
 
 #	include <QApplication>
 #	include <QThread>
