@@ -15,8 +15,7 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6Widgets REQUIRED)
 
-set(PROJECT_SOURCES
-        src/main.cpp
+qt_add_library(core-lib
         lib/core/AutoCycle.hpp lib/core/AutoCycle.cpp
         lib/core/Clock.hpp lib/core/Clock.cpp
         lib/core/Keypad.hpp lib/core/Keypad.cpp
@@ -29,15 +28,8 @@ set(PROJECT_SOURCES
         lib/core/MyDate.hpp lib/core/MyDate.cpp
         lib/core/MyDateTime.hpp lib/core/MyDateTime.cpp
         lib/core/MyString.hpp lib/core/MyString.cpp
-        lib/core/Memory.cpp lib/core/Memory.hpp
-        lib/qt-lib/ControlUnit.cpp lib/qt-lib/ControlUnit.h lib/qt-lib/ControlUnit.ui
-        lib/qt-lib/QtClock.hpp lib/qt-lib/QtClock.cpp
-        lib/qt-lib/QtDisplay.hpp lib/qt-lib/QtDisplay.cpp
-        lib/qt-lib/QtKeypad.hpp lib/qt-lib/QtKeypad.cpp
-        lib/qt-lib/QtMainSwitch.cpp lib/qt-lib/QtMainSwitch.hpp
-        lib/qt-lib/QtMoisture.hpp lib/qt-lib/QtMoisture.cpp
-        lib/qt-lib/QtValve.hpp lib/qt-lib/QtValve.cpp
-        lib/qt-lib/QtMemory.cpp lib/qt-lib/QtMemory.hpp
+        lib/core/Memory.hpp lib/core/Memory.cpp
+        lib/core/Overrider.hpp
         lib/pages/EditClock.hpp lib/pages/EditClock.cpp
         lib/pages/EditEtvDays.hpp lib/pages/EditEtvDays.cpp
         lib/pages/EditEtvTime.hpp lib/pages/EditEtvTime.cpp
@@ -53,12 +45,34 @@ set(PROJECT_SOURCES
         lib/pages/Settings4.hpp lib/pages/Settings4.cpp
         lib/pages/Settings5.hpp lib/pages/Settings5.cpp
         lib/pages/Settings6.hpp lib/pages/Settings6.cpp
-        lib/core/Overrider.hpp
-        )
+)
 
-qt_add_executable(Arduino-watering-system MANUAL_FINALIZATION ${PROJECT_SOURCES})
+target_link_libraries(core-lib
+        PUBLIC Qt6::Widgets
+)
 
-target_link_libraries(Arduino-watering-system PRIVATE Qt6::Widgets)
+qt_add_library(qt-lib
+        lib/qt-lib/ControlUnit.ui lib/qt-lib/ControlUnit.h lib/qt-lib/ControlUnit.cpp
+        lib/qt-lib/QtClock.hpp lib/qt-lib/QtClock.cpp
+        lib/qt-lib/QtDisplay.hpp lib/qt-lib/QtDisplay.cpp
+        lib/qt-lib/QtKeypad.hpp lib/qt-lib/QtKeypad.cpp
+        lib/qt-lib/QtMainSwitch.hpp lib/qt-lib/QtMainSwitch.cpp
+        lib/qt-lib/QtMoisture.hpp lib/qt-lib/QtMoisture.cpp
+        lib/qt-lib/QtValve.hpp lib/qt-lib/QtValve.cpp
+        lib/qt-lib/QtMemory.hpp lib/qt-lib/QtMemory.cpp
+)
+
+target_link_libraries(qt-lib
+        PUBLIC core-lib
+)
+
+qt_add_executable(Arduino-watering-system
+        MANUAL_FINALIZATION src/main.cpp
+)
+
+target_link_libraries(Arduino-watering-system
+        PRIVATE qt-lib
+)
 
 set_target_properties(Arduino-watering-system PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
@@ -66,6 +80,6 @@ set_target_properties(Arduino-watering-system PROPERTIES
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
         MACOSX_BUNDLE TRUE
         WIN32_EXECUTABLE TRUE
-        )
+)
 
 qt_finalize_executable(Arduino-watering-system)
