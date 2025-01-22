@@ -27,7 +27,7 @@ PageNum ManualEtv::exec() {
 
 		if(key == Confirm) {
 			_controller->mainSwitch->turnOn();
-			wait(100);
+			wait(1000);
 			_controller->etv[_num]->turnOn();
 			_controller->autoCycle->etvOn = _num;
 			return HomePage;
@@ -39,7 +39,7 @@ PageNum ManualEtv::exec() {
 
 		if(key == Confirm) {
 			_controller->etv[_controller->autoCycle->etvOn]->turnOff();
-			wait(100);
+			wait(1000);
 			_controller->mainSwitch->turnOff();
 			_controller->autoCycle->etvOn = 0;
 			_controller->autoCycle->watered = true;
