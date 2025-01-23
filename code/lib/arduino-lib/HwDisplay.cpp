@@ -108,20 +108,20 @@ HwDisplay::HwDisplay(int8_t address, int8_t lenght, int8_t height) {
 	this->lenght = lenght;
 	lcd->init();
 	lcd->backlight();
-	lcd->createChar((byte)myA, (byte*)myAArray);
-	lcd->createChar((byte)myE, (byte*)myEArray);
-	lcd->createChar((byte)myI, (byte*)myIArray);
-	lcd->createChar((byte)myO, (byte*)myOArray);
-	lcd->createChar((byte)myU, (byte*)myUArray);
-	lcd->createChar((byte)myDrop, (byte*)myDropArray);
-	lcd->createChar((byte)myCheck, (byte*)myCheckArray);
-	lcd->createChar((byte)myClock, (byte*)myClockArray);
+	lcd->createChar((byte) myA, (byte*) myAArray);
+	lcd->createChar((byte) myE, (byte*) myEArray);
+	lcd->createChar((byte) myI, (byte*) myIArray);
+	lcd->createChar((byte) myO, (byte*) myOArray);
+	lcd->createChar((byte) myU, (byte*) myUArray);
+	lcd->createChar((byte) myDrop, (byte*) myDropArray);
+	lcd->createChar((byte) myCheck, (byte*) myCheckArray);
+	lcd->createChar((byte) myClock, (byte*) myClockArray);
 	lcd->home();
 }
 
 void HwDisplay::printSimpleText(char text[]) {
 	String rows[height];
-	String conv = MyString::toArduinoString(text);
+	String conv(text);
 
 	lcd->clear();
 
@@ -134,8 +134,8 @@ void HwDisplay::printSimpleText(char text[]) {
 void HwDisplay::printData(char text1[], int8_t data, char text2[]) {
 	String row[height];
 
-	String conv1 = MyString::toArduinoString(text1);
-	String conv2 = MyString::toArduinoString(text2);
+	String conv1(text1);
+	String conv2(text2);
 
 	String conv = conv1 + " " + String(data) + " " + conv2;
 
@@ -149,9 +149,9 @@ void HwDisplay::printData(char text1[], int8_t data, char text2[]) {
 void HwDisplay::printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) {
 	String row[height];
 
-	String conv1 = MyString::toArduinoString(text1);
-	String conv2 = MyString::toArduinoString(text2);
-	String conv3 = MyString::toArduinoString(text3);
+	String conv1(text1);
+	String conv2(text2);
+	String conv3(text3);
 
 	String conv = conv1 + " " + String(data1) + " " + conv2 + " " + String(data2) + " " + conv3;
 
@@ -163,7 +163,7 @@ void HwDisplay::printData(char text1[], int8_t data1, char text2[], int8_t data2
 }
 
 void HwDisplay::printIn(char text[], int8_t col, int8_t row) {
-	String conv = MyString::toArduinoString(text);
+	String conv(text);
 
 	lcd->setCursor(col, row);
 	myPrint(conv);

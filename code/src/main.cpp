@@ -4,7 +4,6 @@
 #include "../lib/core/MainSwitch.hpp"
 #include "../lib/core/Memory.hpp"
 #include "../lib/core/Moisture.hpp"
-#include "../lib/core/MyString.hpp"
 #include "../lib/core/MyTime.hpp"
 #include "../lib/core/PageSelector.hpp"
 #include "../lib/core/UnitDisplay.hpp"

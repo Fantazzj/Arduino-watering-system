@@ -91,9 +91,7 @@ QtDisplay::QtDisplay(ControlUnit* w) {
 
 void QtDisplay::printSimpleText(char text[]) {
 	QString rows[_height];
-	QString conv;
-
-	conv = MyString::toQString(text);
+	QString conv(text);
 
 	_w->clearDisplay();
 
@@ -106,8 +104,8 @@ void QtDisplay::printSimpleText(char text[]) {
 void QtDisplay::printData(char text1[], int8_t data, char text2[]) {
 	QString rows[_height];
 
-	QString conv1 = MyString::toQString(text1);
-	QString conv2 = MyString::toQString(text2);
+	QString conv1(text1);
+	QString conv2(text2);
 
 	QString conv = conv1 + " " + QString::number(data) + " " + conv2;
 
@@ -122,9 +120,9 @@ void QtDisplay::printData(char text1[], int8_t data, char text2[]) {
 void QtDisplay::printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) {
 	QString rows[_height];
 
-	QString conv1 = MyString::toQString(text1);
-	QString conv2 = MyString::toQString(text2);
-	QString conv3 = MyString::toQString(text3);
+	QString conv1(text1);
+	QString conv2(text2);
+	QString conv3(text3);
 
 	QString conv = conv1 + " " + QString::number(data1) + " " + conv2 + " " + QString::number(data2) + " " + conv3;
 
@@ -137,7 +135,7 @@ void QtDisplay::printData(char text1[], int8_t data1, char text2[], int8_t data2
 }
 
 void QtDisplay::printIn(char text[], int8_t x, int8_t y) {
-	QString conv = MyString::toQString(text);
+	QString conv(text);
 
 	_w->setCursorDisplay(x, y);
 	_w->printOnDisplay(conv);

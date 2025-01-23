@@ -27,7 +27,6 @@ qt_add_library(core-lib
         lib/core/MyTime.hpp lib/core/MyTime.cpp
         lib/core/MyDate.hpp lib/core/MyDate.cpp
         lib/core/MyDateTime.hpp lib/core/MyDateTime.cpp
-        lib/core/MyString.hpp lib/core/MyString.cpp
         lib/core/Memory.hpp lib/core/Memory.cpp
         lib/core/Overrider.hpp
         lib/pages/EditClock.hpp lib/pages/EditClock.cpp

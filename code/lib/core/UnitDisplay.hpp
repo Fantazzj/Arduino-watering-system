@@ -2,7 +2,6 @@
 #define DISPLAY_HPP
 
 #include "MyDateTime.hpp"
-#include "MyString.hpp"
 
 class UnitDisplay {
 private:
