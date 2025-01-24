@@ -3,7 +3,7 @@
 HwMainSwitch::HwMainSwitch(int8_t pin) {
 	this->pin = pin;
 	pinMode(pin, OUTPUT);
-    turnOff();
+	turnOff();
 }
 
 void HwMainSwitch::turnOff() {

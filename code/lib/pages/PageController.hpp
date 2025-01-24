@@ -28,7 +28,7 @@ struct PageController {
 	AutoCycle* autoCycle;
 	bool timeToEdit;
 	uint8_t etvNum;
-	KeypadButton keypadButton();
+	KeypadButton keypadButton() const;
 
 protected:
 };

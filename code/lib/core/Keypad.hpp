@@ -4,7 +4,7 @@
 class Keypad {
 private:
 public:
-	Keypad() = default;
+	explicit Keypad() = default;
 
 	virtual bool cancel() = 0;
 	virtual bool down() = 0;

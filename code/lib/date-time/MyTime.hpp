@@ -15,7 +15,7 @@
 #define hourToSec(a) ((uint64_t(a)) * 3600)
 
 struct MyTime {
-	MyTime(uint8_t hour = 0, uint8_t min = 0, uint8_t sec = 0);
+	explicit MyTime(uint8_t hour = 0, uint8_t min = 0, uint8_t sec = 0);
 
 	uint8_t hour;
 	uint8_t min;
@@ -40,7 +40,7 @@ struct MyTime {
 	bool operator<=(MyTime a);
 
 private:
-	uintmax_t _toSec();
+	uintmax_t _toSec() const;
 };
 
 #endif//MYTIME_LIBRARY_H

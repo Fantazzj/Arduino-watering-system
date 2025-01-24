@@ -9,11 +9,11 @@ void Valve::turnOn() {
 	tOn = etvClock->getTime().time;
 	elapsedDays = 1;
 }
-bool Valve::toWater() {
+bool Valve::toWater() const {
 	if(elapsedDays >= days && days > 0 && minOn > 0) return true;
 	else return false;
 }
-bool Valve::wateringDone(MyTime newTime) {
-	if( secToMin(newTime-tOn) >= minOn) return true;
+bool Valve::wateringDone(MyTime newTime) const {
+	if(secToMin(newTime - tOn) >= minOn) return true;
 	else return false;
 }

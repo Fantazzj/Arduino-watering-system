@@ -6,7 +6,7 @@ void QtDisplay::_displayError1() {
 	_w->printOnDisplay("too big");
 }
 
-void QtDisplay::_arrangeWords(QString text, QString rows[]) {
+void QtDisplay::_arrangeWords(QString text, QString rows[]) const {
 	QString buffer = "";
 	int8_t row = 0;
 

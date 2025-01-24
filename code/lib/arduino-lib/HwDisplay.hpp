@@ -1,9 +1,10 @@
 #ifndef HWDISPLAY_CPP
 #define HWDISPLAY_CPP
 
-#include <LiquidCrystal_I2C.h>
 #include "../core/UnitDisplay.hpp"
+#include <LiquidCrystal_I2C.h>
 #include <Wire.h>
+
 
 class HwDisplay : public UnitDisplay {
 private:
@@ -36,7 +37,7 @@ private:
 	String arrangeTime(MyDateTime time);
 
 public:
-	HwDisplay(int8_t address, int8_t lenght, int8_t height);
+	explicit HwDisplay(int8_t address, int8_t lenght, int8_t height);
 	void printSimpleText(char text[]) override;
 	void printData(char text1[], int8_t data, char text2[]) override;
 	void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) override;

@@ -31,6 +31,6 @@ bool MyDate::operator<=(MyDate a) {
 	return this->_toDays() <= a._toDays();
 }
 
-uint64_t MyDate::_toDays() {
+uint64_t MyDate::_toDays() const {
 	return yearToDay(year) + monToDay(mon) + day;
 }

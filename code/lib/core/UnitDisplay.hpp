@@ -6,7 +6,7 @@
 class UnitDisplay {
 private:
 public:
-	UnitDisplay() = default;
+	explicit UnitDisplay() = default;
 	virtual void printSimpleText(char text[]) = 0;
 	virtual void printData(char text1[], int8_t data, char text2[]) = 0;
 	virtual void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) = 0;
@@ -19,7 +19,7 @@ public:
 	virtual void dropSym(bool state) = 0;
 	virtual void checkSym(bool state) = 0;
 	virtual void backlight(bool state);
-	bool getBacklight();
+	bool getBacklight() const;
 
 protected:
 	bool backlightState = true;

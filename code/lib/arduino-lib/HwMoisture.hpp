@@ -8,7 +8,7 @@ private:
 	uint8_t _pin;
 
 public:
-	HwMoisture(uint8_t pin);
+	explicit HwMoisture(uint8_t pin);
 	uint8_t getMoisture() override;
 
 protected:

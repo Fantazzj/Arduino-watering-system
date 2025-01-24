@@ -2,7 +2,7 @@
 
 QtMainSwitch::QtMainSwitch(ControlUnit* w) {
 	this->w = w;
-	turnOff();
+	w->disableValves();
 }
 
 void QtMainSwitch::turnOn() {

@@ -35,7 +35,7 @@ PageNum EditEtvDays::exec() {
 
 		case Confirm:
 			_controller->etv[_etvEdit]->days = _daysEdit;
-			_controller->memory->saveEtvDays(_etvEdit,_daysEdit);
+			_controller->memory->saveEtvDays(_etvEdit, _daysEdit);
 			_etvEdit++;
 			_daysEdit = _controller->etv[_etvEdit]->days;
 			if(_etvEdit > _controller->etvNum)

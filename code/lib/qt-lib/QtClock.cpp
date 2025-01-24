@@ -6,7 +6,7 @@ QtClock::QtClock(ControlUnit* w) {
 
 MyDateTime QtClock::getTime() {
 	MyDateTime time;
-	std::time_t t = std::time(0);
+	std::time_t t = std::time(nullptr);
 	std::tm* now = std::localtime(&t);
 
 	time.date.dow = now->tm_wday;

@@ -13,7 +13,7 @@ AutoCycle::AutoCycle(Clock* myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch*
 }
 
 uint8_t AutoCycle::_nextEtv() {
-	for(int8_t etv = etvOn + 1; etv <= etvNum; etv++) {
+	for(uint8_t etv = etvOn + 1; etv <= etvNum; etv++) {
 		if(_myEtv[etv]->toWater()) {
 			return etv;
 		} else {
@@ -24,13 +24,13 @@ uint8_t AutoCycle::_nextEtv() {
 }
 
 MyTime AutoCycle::_checkTReset() {
-	MyTime out = {0, 0, 0};
+	MyTime out(0, 0, 0);
 
 	uint16_t minToStart = tStart.hour * 60 + tStart.min;
 	uint16_t minToReset = out.hour * 60 + out.min;
 
 	uint16_t minToWater = 0;
-	for(int8_t i = 1; i <= etvNum; i++) minToWater += _myEtv[i]->minOn;
+	for(uint8_t i = 1; i <= etvNum; i++) minToWater += _myEtv[i]->minOn;
 	//minToWater += msSnub/3600 * etvNum;
 
 	if(minToStart + minToWater > 1440 + minToReset) {

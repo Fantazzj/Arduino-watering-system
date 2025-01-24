@@ -10,7 +10,7 @@
 class Clock {
 private:
 public:
-	Clock() = default;
+	explicit Clock() = default;
 	virtual MyDateTime getTime() = 0;
 	virtual void setTime(MyDateTime time) = 0;
 

@@ -19,7 +19,7 @@ class ControlUnit : public QMainWindow {
 	Q_OBJECT
 
 public:
-	ControlUnit(QWidget* parent = nullptr);
+	explicit ControlUnit(QWidget* parent = nullptr);
 	void setKeypad(QtKeypad* keypad);
 	void printOnConsole(const QString& text);
 	void printOnDisplay(QString text);
@@ -37,7 +37,7 @@ public:
 	void backlight();
 	void noBacklight();
 	int getMoisture();
-	~ControlUnit();
+	~ControlUnit() override;
 
 private slots:
 	void on_confirmButton_clicked();
@@ -55,7 +55,7 @@ private:
 	//QLabel* matrix[length][height];
 	QCheckBox* etv[etvNum];
 	QLabel* matrix[length][height];
-	QLabel* higlighted;
+	QLabel* highlighted;
 
 	int8_t x = 0;
 	int8_t y = 0;

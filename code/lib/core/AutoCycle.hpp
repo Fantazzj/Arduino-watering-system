@@ -7,8 +7,8 @@
 
 #include "MainSwitch.hpp"
 #include "Moisture.hpp"
-#include "Valve.hpp"
 #include "Overrider.hpp"
+#include "Valve.hpp"
 
 class AutoCycle {
 private:
@@ -30,7 +30,7 @@ public:
 	uint8_t etvNum;
 	void updateTReset();
 
-	AutoCycle(Clock* myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch* myMainSwitch, Moisture* myMoisture, MyTime tStart);
+	explicit AutoCycle(Clock* myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch* myMainSwitch, Moisture* myMoisture, MyTime tStart);
 	void exec();
 
 protected:

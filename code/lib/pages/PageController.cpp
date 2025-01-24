@@ -12,7 +12,7 @@ PageController::PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* 
 	etvNum = autoCycle->etvNum;
 }
 
-KeypadButton PageController::keypadButton() {
+KeypadButton PageController::keypadButton() const {
 	if(keypad->cancel()) return Cancel;
 	if(keypad->down()) return Down;
 	if(keypad->up()) return Up;

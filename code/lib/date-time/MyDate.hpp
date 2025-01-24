@@ -40,7 +40,7 @@ enum Month : uint8_t {
 };
 
 struct MyDate {
-	MyDate(uint8_t dow = Monday, uint8_t day = 1, uint8_t mon = January, uint16_t year = 2023);
+	explicit MyDate(uint8_t dow = Monday, uint8_t day = 1, uint8_t mon = January, uint16_t year = 2023);
 
 	uint8_t dow;
 	uint8_t day;
@@ -62,7 +62,7 @@ struct MyDate {
 	bool operator<=(MyDate a);
 
 private:
-	uintmax_t _toDays();
+	uintmax_t _toDays() const;
 };
 
 #endif//MYDATE_HPP

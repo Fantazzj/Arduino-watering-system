@@ -6,6 +6,8 @@ ControlUnit::ControlUnit(QWidget* parent) :
 	QMainWindow(parent), ui(new Ui::ControlUnit) {
 	ui->setupUi(this);
 
+	keypad = nullptr;
+
 	matrix[0][0] = ui->label_00;
 	matrix[1][0] = ui->label_01;
 	matrix[2][0] = ui->label_02;
@@ -39,7 +41,7 @@ ControlUnit::ControlUnit(QWidget* parent) :
 	matrix[14][1] = ui->label_30;
 	matrix[15][1] = ui->label_31;
 
-	higlighted = matrix[0][0];
+	highlighted = matrix[0][0];
 
 	etv[0] = ui->etv1;
 	etv[1] = ui->etv2;
@@ -99,11 +101,11 @@ void ControlUnit::clearDisplay() {
 
 void ControlUnit::showCursorDisplay() {
 	matrix[x][y]->setStyleSheet("QLabel { color : red; }");
-	higlighted = matrix[x][y];
+	highlighted = matrix[x][y];
 }
 
 void ControlUnit::hideCursorDisplay() {
-	higlighted->setStyleSheet("QLabel { color : black; }");
+	highlighted->setStyleSheet("QLabel { color : black; }");
 }
 
 void ControlUnit::activateValve(int num) {

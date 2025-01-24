@@ -8,7 +8,7 @@ private:
 	uint8_t pin;
 
 public:
-	HwValve(Clock* etvClock, uint8_t minOn, uint8_t days, uint8_t pin);
+	explicit HwValve(Clock* etvClock, uint8_t minOn, uint8_t days, uint8_t pin);
 	void turnOn() override;
 	void turnOff() override;
 

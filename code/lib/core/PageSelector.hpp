@@ -33,7 +33,7 @@ private:
 	MyTime lightTime;
 
 public:
-	PageSelector(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], MainSwitch* _myMainSwitch, Memory* myMemory, AutoCycle* autoCycle);
+	explicit PageSelector(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], MainSwitch* _myMainSwitch, Memory* myMemory, AutoCycle* autoCycle);
 	void exec();
 	void show();
 

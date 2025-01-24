@@ -8,6 +8,7 @@
 class QtMainSwitch : public MainSwitch {
 private:
 	ControlUnit* w;
+
 public:
 	explicit QtMainSwitch(ControlUnit* w);
 	void turnOn() override;

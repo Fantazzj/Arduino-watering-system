@@ -38,6 +38,6 @@ bool MyTime::operator<=(MyTime a) {
 	return this->_toSec() <= a._toSec();
 }
 
-uint64_t MyTime::_toSec() {
+uint64_t MyTime::_toSec() const {
 	return hourToSec(this->hour) + minToSec(this->min) + this->sec;
 }

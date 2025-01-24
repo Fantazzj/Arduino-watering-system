@@ -6,7 +6,7 @@
 class QtKeypad : public Keypad {
 private:
 public:
-	QtKeypad() = default;
+	explicit QtKeypad() = default;
 	bool cancel() override;
 	bool down() override;
 	bool up() override;

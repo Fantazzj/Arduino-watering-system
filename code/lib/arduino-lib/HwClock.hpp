@@ -1,13 +1,14 @@
 #ifndef HWCLOCK_CPP
 #define HWCLOCK_CPP
 
-#include <TimeLib.h>
 #include "../core/Clock.hpp"
+#include <TimeLib.h>
+
 
 class HwClock : public Clock {
 private:
 public:
-	HwClock();
+	explicit HwClock();
 	MyDateTime getTime() override;
 	void setTime(MyDateTime tIn) override;
 };
