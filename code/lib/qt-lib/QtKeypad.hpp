@@ -5,6 +5,11 @@
 
 class QtKeypad : public Keypad {
 private:
+	bool cancelState = false;
+	bool downState = false;
+	bool upState = false;
+	bool confirmState = false;
+
 public:
 	explicit QtKeypad() = default;
 	bool cancel() override;
@@ -12,11 +17,7 @@ public:
 	bool up() override;
 	bool confirm() override;
 	bool generalPressed() override;
-
-	bool cancelState = false;
-	bool downState = false;
-	bool upState = false;
-	bool confirmState = false;
+	friend class ControlUnit;
 
 protected:
 };
