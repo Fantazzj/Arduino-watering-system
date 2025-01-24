@@ -59,7 +59,7 @@ void setup(ControlUnit* w) {
 
 	myMoisture = new QtMoisture(w);
 
-	w->setKeypad(myKeypad);
+	w->setKeypad((QtKeypad*) myKeypad);
 
 	MyTime tStart = myMemory->readStartTime();
 	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMainSwitch, myMoisture, tStart);

@@ -57,7 +57,7 @@ ControlUnit::~ControlUnit() {
 	//exit(0);
 }
 
-void ControlUnit::setKeypad(Keypad* keypad) {
+void ControlUnit::setKeypad(QtKeypad* keypad) {
 	this->keypad = keypad;
 }
 

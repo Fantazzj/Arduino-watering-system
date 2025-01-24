@@ -11,6 +11,12 @@ public:
 	bool down() override;
 	bool up() override;
 	bool confirm() override;
+	bool generalPressed() override;
+
+	bool cancelState = false;
+	bool downState = false;
+	bool upState = false;
+	bool confirmState = false;
 
 protected:
 };

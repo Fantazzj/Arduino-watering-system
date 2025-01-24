@@ -6,16 +6,11 @@ private:
 public:
 	Keypad() = default;
 
-	bool cancelState = false;
-	bool downState = false;
-	bool upState = false;
-	bool confirmState = false;
-
-	virtual bool cancel();
-	virtual bool down();
-	virtual bool up();
-	virtual bool confirm();
-	virtual bool generalPressed();
+	virtual bool cancel() = 0;
+	virtual bool down() = 0;
+	virtual bool up() = 0;
+	virtual bool confirm() = 0;
+	virtual bool generalPressed() = 0;
 
 protected:
 };

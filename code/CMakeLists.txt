@@ -24,7 +24,7 @@ add_library(date-time-lib
 qt_add_library(core-lib
         lib/core/AutoCycle.hpp lib/core/AutoCycle.cpp
         lib/core/Clock.hpp
-        lib/core/Keypad.hpp lib/core/Keypad.cpp
+        lib/core/Keypad.hpp
         lib/core/Moisture.hpp
         lib/core/PageSelector.hpp lib/core/PageSelector.cpp
         lib/core/MainSwitch.hpp

@@ -3,7 +3,7 @@
 
 #ifdef QTDESKTOP
 
-#	include "../core/Keypad.hpp"
+#	include "QtKeypad.hpp"
 #	include <QCheckBox>
 #	include <QLabel>
 #	include <QMainWindow>
@@ -20,7 +20,7 @@ class ControlUnit : public QMainWindow {
 
 public:
 	ControlUnit(QWidget* parent = nullptr);
-	void setKeypad(Keypad* keypad);
+	void setKeypad(QtKeypad* keypad);
 	void printOnConsole(const QString& text);
 	void printOnDisplay(QString text);
 	int8_t getLength();
@@ -47,7 +47,7 @@ private slots:
 
 private:
 	Ui::ControlUnit* ui;
-	Keypad* keypad;
+	QtKeypad* keypad;
 	static const int8_t length = 16;
 	static const int8_t height = 2;
 	static const int8_t etvNum = 9;
