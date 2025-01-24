@@ -155,7 +155,7 @@ void setup() {
 
 	myMoisture = new HwMoisture(humidityPin);
 
-	autoCycle = new AutoCycle(myClock, myEtv, etvNum, myMainSwitch, myMoisture, tStart);
+	autoCycle = new AutoCycle(*myClock, myEtv, etvNum, *myMainSwitch, *myMoisture, tStart);
 
 	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
 }
