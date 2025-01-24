@@ -12,10 +12,10 @@
 
 class AutoCycle {
 private:
-	Clock* _myClock;
+	Clock& _myClock;
 	Valve** _myEtv;
-	MainSwitch* _myMainSwitch;
-	Moisture* _myMoisture;
+	MainSwitch& _myMainSwitch;
+	Moisture& _myMoisture;
 	uint8_t _nextEtv();
 	MyTime _checkTReset();
 	const uint16_t msSnub = 1500;
@@ -30,7 +30,7 @@ public:
 	uint8_t etvNum;
 	void updateTReset();
 
-	explicit AutoCycle(Clock* myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch* myMainSwitch, Moisture* myMoisture, MyTime tStart);
+	explicit AutoCycle(Clock& myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, MyTime tStart);
 	void exec();
 
 protected:
