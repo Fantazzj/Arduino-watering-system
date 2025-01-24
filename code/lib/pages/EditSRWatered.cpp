@@ -2,7 +2,7 @@
 
 EditSRWatered::EditSRWatered(PageController* controller) :
 	Page(controller) {
-	_watered = _controller->autoCycle->watered;
+	_watered = _controller->autoCycle.watered;
 }
 
 PageNum EditSRWatered::exec() {
@@ -15,7 +15,7 @@ PageNum EditSRWatered::exec() {
 			return SettingsPage5;
 
 		case Confirm:
-			_controller->autoCycle->watered = !_watered;
+			_controller->autoCycle.watered = !_watered;
 			return HomePage;
 
 		default:
@@ -25,9 +25,9 @@ PageNum EditSRWatered::exec() {
 
 void EditSRWatered::show() {
 	if(_redraw) {
-		if(!_watered) _controller->display->printSimpleText((char*) "Imposta gia' innaffiato");
-		else _controller->display->printSimpleText((char*) "Imposta da innaffiare");
-		_controller->display->blinkAt(15, 1);
+		if(!_watered) _controller->display.printSimpleText((char*) "Imposta gia' innaffiato");
+		else _controller->display.printSimpleText((char*) "Imposta da innaffiare");
+		_controller->display.blinkAt(15, 1);
 		_redraw = false;
 	}
 }

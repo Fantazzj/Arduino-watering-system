@@ -2,7 +2,7 @@
 
 Settings5::Settings5(PageController* controller) :
 	Page(controller) {
-	_controller->display->noBlink();
+	_controller->display.noBlink();
 }
 
 PageNum Settings5::exec() {
@@ -24,7 +24,7 @@ PageNum Settings5::exec() {
 
 void Settings5::show() {
 	if(_redraw) {
-		_controller->display->printSimpleText((char*) "Imposta memoria inn.");
+		_controller->display.printSimpleText((char*) "Imposta memoria inn.");
 		_redraw = false;
 	}
 }

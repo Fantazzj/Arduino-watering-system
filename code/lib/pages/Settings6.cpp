@@ -2,7 +2,7 @@
 
 Settings6::Settings6(PageController* controller) :
 	Page(controller) {
-	_controller->display->noBlink();
+	_controller->display.noBlink();
 }
 
 PageNum Settings6::exec() {
@@ -24,7 +24,7 @@ PageNum Settings6::exec() {
 
 void Settings6::show() {
 	if(_redraw) {
-		_controller->display->printSimpleText((char*) "Imposta giorni");
+		_controller->display.printSimpleText((char*) "Imposta giorni");
 		_redraw = false;
 	}
 }

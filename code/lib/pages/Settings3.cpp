@@ -2,7 +2,7 @@
 
 Settings3::Settings3(PageController* controller) :
 	Page(controller) {
-	_controller->display->noBlink();
+	_controller->display.noBlink();
 }
 
 PageNum Settings3::exec() {
@@ -24,7 +24,7 @@ PageNum Settings3::exec() {
 
 void Settings3::show() {
 	if(_redraw) {
-		_controller->display->printSimpleText((char*) "Cambia orario di avvio");
+		_controller->display.printSimpleText((char*) "Cambia orario di avvio");
 		_redraw = false;
 	}
 }

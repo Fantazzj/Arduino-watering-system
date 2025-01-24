@@ -1,23 +1,18 @@
 #include "PageController.hpp"
 
-PageController::PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], MainSwitch* myMainSwitch, Memory* myMemory, AutoCycle* autoCycle) {
-	keypad = myKeypad;
-	display = myDisplay;
-	clock = myClock;
+PageController::PageController(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, Valve* myEtv[], MainSwitch& myMainSwitch, Memory& myMemory, AutoCycle& autoCycle) :
+	keypad(myKeypad), display(myDisplay), clock(myClock), mainSwitch(myMainSwitch), memory(myMemory), autoCycle(autoCycle) {
 	etv = myEtv;
-	mainSwitch = myMainSwitch;
-	memory = myMemory;
-	this->autoCycle = autoCycle;
 	timeToEdit = true;
-	etvNum = autoCycle->etvNum;
+	etvNum = autoCycle.etvNum;
 }
 
 KeypadButton PageController::keypadButton() const {
-	if(keypad->cancel()) return Cancel;
-	if(keypad->down()) return Down;
-	if(keypad->up()) return Up;
-	if(keypad->confirm()) return Confirm;
-	else return NoBtn;
+	if(keypad.cancel()) return Cancel;
+	if(keypad.down()) return Down;
+	if(keypad.up()) return Up;
+	if(keypad.confirm()) return Confirm;
+	return NoBtn;
 }
 /*
 bool PageController::getTimeToEdit() { return _timeToEdit; }

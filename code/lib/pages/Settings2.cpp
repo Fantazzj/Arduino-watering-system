@@ -2,7 +2,7 @@
 
 Settings2::Settings2(PageController* controller) :
 	Page(controller) {
-	_controller->display->noBlink();
+	_controller->display.noBlink();
 }
 
 PageNum Settings2::exec() {
@@ -24,7 +24,7 @@ PageNum Settings2::exec() {
 
 void Settings2::show() {
 	if(_redraw) {
-		_controller->display->printSimpleText((char*) "Cambia tempo elettrovalvole");
+		_controller->display.printSimpleText((char*) "Cambia tempo elettrovalvole");
 		_redraw = false;
 	}
 }

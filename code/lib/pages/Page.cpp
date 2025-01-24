@@ -7,5 +7,5 @@ Page::Page(PageController* controller) {
 PageNum Page::exec() { return Stay; }
 
 void Page::show() {
-	_controller->display->printSimpleText((char*) "PAGINA GENERALE");
+	_controller->display.printSimpleText((char*) "PAGINA GENERALE");
 }

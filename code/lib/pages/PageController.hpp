@@ -18,14 +18,14 @@ enum KeypadButton : uint8_t {
 };
 
 struct PageController {
-	explicit PageController(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], MainSwitch* myMainSwitch, Memory* myMemory, AutoCycle* autoCycle);
-	Keypad* keypad;
-	UnitDisplay* display;
-	Clock* clock;
+	explicit PageController(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, Valve* myEtv[], MainSwitch& myMainSwitch, Memory& myMemory, AutoCycle& autoCycle);
+	Keypad& keypad;
+	UnitDisplay& display;
+	Clock& clock;
 	Valve** etv;
-	MainSwitch* mainSwitch;
-	Memory* memory;
-	AutoCycle* autoCycle;
+	MainSwitch& mainSwitch;
+	Memory& memory;
+	AutoCycle& autoCycle;
 	bool timeToEdit;
 	uint8_t etvNum;
 	KeypadButton keypadButton() const;

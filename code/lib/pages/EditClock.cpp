@@ -3,7 +3,7 @@
 EditClock::EditClock(PageController* controller) :
 	Page(controller) {
 	_editPhase = 1;
-	_newTime = controller->clock->getTime();
+	_newTime = controller->clock.getTime();
 }
 
 PageNum EditClock::exec() {
@@ -66,7 +66,7 @@ PageNum EditClock::exec() {
 		case Confirm:
 			_editPhase++;
 			if(_editPhase > 6) {
-				_controller->clock->setTime(_newTime);
+				_controller->clock.setTime(_newTime);
 				_controller->timeToEdit = false;
 				return HomePage;
 			} else return Stay;
@@ -78,27 +78,27 @@ PageNum EditClock::exec() {
 
 void EditClock::show() {
 	if(_redraw) {
-		_controller->display->showClock(_newTime);
+		_controller->display.showClock(_newTime);
 		_redraw = false;
 
 		switch(_editPhase) {
 			case 1:
-				_controller->display->blinkAt(0, 0);
+				_controller->display.blinkAt(0, 0);
 				break;
 			case 2:
-				_controller->display->blinkAt(12, 0);
+				_controller->display.blinkAt(12, 0);
 				break;
 			case 3:
-				_controller->display->blinkAt(15, 0);
+				_controller->display.blinkAt(15, 0);
 				break;
 			case 4:
-				_controller->display->blinkAt(1, 1);
+				_controller->display.blinkAt(1, 1);
 				break;
 			case 5:
-				_controller->display->blinkAt(4, 1);
+				_controller->display.blinkAt(4, 1);
 				break;
 			case 6:
-				_controller->display->blinkAt(9, 1);
+				_controller->display.blinkAt(9, 1);
 				break;
 		}
 	}

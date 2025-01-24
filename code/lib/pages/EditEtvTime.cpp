@@ -35,7 +35,7 @@ PageNum EditEtvTime::exec() {
 
 		case Confirm:
 			_controller->etv[_etvEdit]->minOn = _timeEdit;
-			_controller->memory->saveEtvMinOn(_etvEdit, _timeEdit);
+			_controller->memory.saveEtvMinOn(_etvEdit, _timeEdit);
 			_etvEdit++;
 			_timeEdit = _controller->etv[_etvEdit]->minOn;
 			if(_etvEdit > _controller->etvNum)
@@ -49,8 +49,8 @@ PageNum EditEtvTime::exec() {
 
 void EditEtvTime::show() {
 	if(_redraw) {
-		_controller->display->printData((char*) "Etv", _etvEdit, (char*) "per", _timeEdit, (char*) "minuti");
-		_controller->display->blinkAt(10, 0);
+		_controller->display.printData((char*) "Etv", _etvEdit, (char*) "per", _timeEdit, (char*) "minuti");
+		_controller->display.blinkAt(10, 0);
 		_redraw = false;
 	}
 }

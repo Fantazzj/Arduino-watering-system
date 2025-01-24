@@ -1,10 +1,10 @@
 #include "PageSelector.hpp"
 
 PageSelector::PageSelector(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, Valve* myEtv[], MainSwitch& _myMainSwitch, Memory& myMemory, AutoCycle& autoCycle) :
-	controller(&myKeypad, &myDisplay, &myClock, myEtv, &_myMainSwitch, &myMemory, &autoCycle) {
+	controller(myKeypad, myDisplay, myClock, myEtv, _myMainSwitch, myMemory, autoCycle) {
 	activePage = new Home(&controller);
 
-	lightTime = controller.clock->getTime().time;
+	lightTime = controller.clock.getTime().time;
 }
 
 void PageSelector::exec() {
@@ -68,13 +68,13 @@ void PageSelector::exec() {
 }
 
 void PageSelector::show() {
-	if(controller.keypad->generalPressed()) {
-		controller.display->backlight(true);
-		lightTime = controller.clock->getTime().time;
-	} else if(secToMin(controller.clock->getTime().time - lightTime) >= 2) {
-		controller.display->backlight(false);
+	if(controller.keypad.generalPressed()) {
+		controller.display.backlight(true);
+		lightTime = controller.clock.getTime().time;
+	} else if(secToMin(controller.clock.getTime().time - lightTime) >= 2) {
+		controller.display.backlight(false);
 	}
 
-	if(controller.display->getBacklight())
+	if(controller.display.getBacklight())
 		activePage->show();
 }

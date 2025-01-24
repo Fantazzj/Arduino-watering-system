@@ -2,7 +2,7 @@
 
 Settings4::Settings4(PageController* controller) :
 	Page(controller) {
-	_controller->display->noBlink();
+	_controller->display.noBlink();
 }
 
 PageNum Settings4::exec() {
@@ -24,7 +24,7 @@ PageNum Settings4::exec() {
 
 void Settings4::show() {
 	if(_redraw) {
-		_controller->display->printSimpleText((char*) "Impostazione manuale");
+		_controller->display.printSimpleText((char*) "Impostazione manuale");
 		_redraw = false;
 	}
 }
