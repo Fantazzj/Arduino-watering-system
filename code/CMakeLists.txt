@@ -15,6 +15,12 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6Widgets REQUIRED)
 
+add_library(date-time-lib
+        lib/date-time/MyTime.hpp lib/date-time/MyTime.cpp
+        lib/date-time/MyDate.hpp lib/date-time/MyDate.cpp
+        lib/date-time/MyDateTime.hpp lib/date-time/MyDateTime.cpp
+)
+
 qt_add_library(core-lib
         lib/core/AutoCycle.hpp lib/core/AutoCycle.cpp
         lib/core/Clock.hpp
@@ -24,9 +30,6 @@ qt_add_library(core-lib
         lib/core/MainSwitch.hpp
         lib/core/UnitDisplay.hpp lib/core/UnitDisplay.cpp
         lib/core/Valve.hpp lib/core/Valve.cpp
-        lib/core/MyTime.hpp lib/core/MyTime.cpp
-        lib/core/MyDate.hpp lib/core/MyDate.cpp
-        lib/core/MyDateTime.hpp lib/core/MyDateTime.cpp
         lib/core/Memory.hpp lib/core/Memory.cpp
         lib/core/Overrider.hpp
         lib/pages/EditClock.hpp lib/pages/EditClock.cpp
@@ -47,7 +50,8 @@ qt_add_library(core-lib
 )
 
 target_link_libraries(core-lib
-        PUBLIC Qt6::Widgets
+        PRIVATE Qt6::Widgets
+        PUBLIC date-time-lib
 )
 
 qt_add_library(qt-lib
@@ -62,6 +66,7 @@ qt_add_library(qt-lib
 )
 
 target_link_libraries(qt-lib
+        PUBLIC Qt6::Widgets
         PUBLIC core-lib
 )
 
