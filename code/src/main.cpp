@@ -41,15 +41,15 @@ void setup(ControlUnit* w) {
 
 	myMainSwitch = new QtMainSwitch(w);
 
-	myEtv[1] = new QtValve(myClock, 5, 0, w, 1);
-	myEtv[2] = new QtValve(myClock, 5, 0, w, 2);
-	myEtv[3] = new QtValve(myClock, 5, 0, w, 3);
-	myEtv[4] = new QtValve(myClock, 5, 0, w, 4);
-	myEtv[5] = new QtValve(myClock, 5, 0, w, 5);
-	myEtv[6] = new QtValve(myClock, 5, 0, w, 6);
-	myEtv[7] = new QtValve(myClock, 5, 0, w, 7);
-	myEtv[8] = new QtValve(myClock, 5, 0, w, 8);
-	myEtv[9] = new QtValve(myClock, 5, 0, w, 9);
+	myEtv[1] = new QtValve(*myClock, 5, 0, w, 1);
+	myEtv[2] = new QtValve(*myClock, 5, 0, w, 2);
+	myEtv[3] = new QtValve(*myClock, 5, 0, w, 3);
+	myEtv[4] = new QtValve(*myClock, 5, 0, w, 4);
+	myEtv[5] = new QtValve(*myClock, 5, 0, w, 5);
+	myEtv[6] = new QtValve(*myClock, 5, 0, w, 6);
+	myEtv[7] = new QtValve(*myClock, 5, 0, w, 7);
+	myEtv[8] = new QtValve(*myClock, 5, 0, w, 8);
+	myEtv[9] = new QtValve(*myClock, 5, 0, w, 9);
 
 	myMemory = new QtMemory(etvNum);
 	for(int8_t i = 1; i <= etvNum; i++) {
@@ -132,15 +132,15 @@ void setup() {
 
 	myMainSwitch = new HwMainSwitch(mainSwitchPin);
 
-	myEtv[1] = new HwValve(myClock, 1, 0, etvsPin[1]);
-	myEtv[2] = new HwValve(myClock, 1, 0, etvsPin[2]);
-	myEtv[3] = new HwValve(myClock, 1, 0, etvsPin[3]);
-	myEtv[4] = new HwValve(myClock, 1, 0, etvsPin[4]);
-	myEtv[5] = new HwValve(myClock, 1, 0, etvsPin[5]);
-	myEtv[6] = new HwValve(myClock, 1, 0, etvsPin[6]);
-	myEtv[7] = new HwValve(myClock, 1, 0, etvsPin[7]);
-	myEtv[8] = new HwValve(myClock, 1, 0, etvsPin[8]);
-	myEtv[9] = new HwValve(myClock, 1, 0, etvsPin[9]);
+	myEtv[1] = new HwValve(*myClock, 1, 0, etvsPin[1]);
+	myEtv[2] = new HwValve(*myClock, 1, 0, etvsPin[2]);
+	myEtv[3] = new HwValve(*myClock, 1, 0, etvsPin[3]);
+	myEtv[4] = new HwValve(*myClock, 1, 0, etvsPin[4]);
+	myEtv[5] = new HwValve(*myClock, 1, 0, etvsPin[5]);
+	myEtv[6] = new HwValve(*myClock, 1, 0, etvsPin[6]);
+	myEtv[7] = new HwValve(*myClock, 1, 0, etvsPin[7]);
+	myEtv[8] = new HwValve(*myClock, 1, 0, etvsPin[8]);
+	myEtv[9] = new HwValve(*myClock, 1, 0, etvsPin[9]);
 
 	myMemory = new HwMemory(etvNum);
 	for(int8_t i = 1; i <= etvNum; i++) {

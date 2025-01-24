@@ -12,14 +12,14 @@ public:
 	uint8_t elapsedDays = 1;
 	MyTime tOn;
 
-	Valve(Clock* etvClock, uint8_t minOn, uint8_t days);
+	Valve(Clock& etvClock, uint8_t minOn, uint8_t days);
 	virtual void turnOn();
 	virtual void turnOff() = 0;
 	bool toWater() const;
 	bool wateringDone(MyTime newTime) const;
 
 protected:
-	Clock* etvClock;
+	Clock& etvClock;
 };
 
 #endif//VALVE_HPP

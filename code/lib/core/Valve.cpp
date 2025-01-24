@@ -1,12 +1,12 @@
 #include "Valve.hpp"
 
-Valve::Valve(Clock* etvClock, uint8_t minOn, uint8_t days) {
-	this->etvClock = etvClock;
+Valve::Valve(Clock& etvClock, uint8_t minOn, uint8_t days) :
+	etvClock(etvClock) {
 	this->minOn = minOn;
 	this->days = days;
 }
 void Valve::turnOn() {
-	tOn = etvClock->getTime().time;
+	tOn = etvClock.getTime().time;
 	elapsedDays = 1;
 }
 bool Valve::toWater() const {
