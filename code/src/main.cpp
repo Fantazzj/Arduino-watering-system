@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
 	setup(&w);
 
 	QThread* thread = QThread::create([] {
-		while(true) {
+		Q_FOREVER {
 			loop();
 			QThread::usleep(1);
 		}
