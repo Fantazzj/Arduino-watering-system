@@ -30,7 +30,8 @@ public:
 	uint8_t etvNum;
 	void updateTReset();
 
-	explicit AutoCycle(Clock& myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, MyTime tStart);
+	explicit AutoCycle(Clock& myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture);
+	void begin(MyTime tStart);
 	void exec();
 
 protected:

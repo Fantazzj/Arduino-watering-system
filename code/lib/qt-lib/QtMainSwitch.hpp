@@ -10,7 +10,8 @@ private:
 	ControlUnit* w;
 
 public:
-	explicit QtMainSwitch(ControlUnit* w);
+	explicit QtMainSwitch();
+	void begin(ControlUnit* w);
 	void turnOn() override;
 	void turnOff() override;
 };

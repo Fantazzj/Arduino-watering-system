@@ -9,17 +9,6 @@
 #include "../lib/core/Valve.hpp"
 #include "../lib/date-time/MyTime.hpp"
 
-Keypad* myKeypad;
-UnitDisplay* myDisplay;
-Clock* myClock;
-const int8_t etvNum = 9;
-Valve* myEtv[etvNum + 1];
-MainSwitch* myMainSwitch;
-Memory* myMemory;
-Moisture* myMoisture;
-PageSelector* pageSelector;
-AutoCycle* autoCycle;
-
 #if defined(QTDESKTOP)
 
 #	include "../lib/qt-lib/ControlUnit.h"
@@ -34,36 +23,35 @@ AutoCycle* autoCycle;
 #	include <QApplication>
 #	include <QThread>
 
+QtKeypad myKeypad;
+QtDisplay myDisplay;
+QtClock myClock;
+const int8_t etvNum = 9;
+Valve* myEtv[etvNum + 1];
+QtMainSwitch myMainSwitch;
+QtMemory myMemory(etvNum);
+QtMoisture myMoisture;
+
+AutoCycle autoCycle(myClock, myEtv, etvNum, myMainSwitch, myMoisture);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
+
 void setup(ControlUnit* w) {
-	myKeypad = new QtKeypad();
-	myDisplay = new QtDisplay(w);
-	myClock = new QtClock(w);
+	myDisplay.begin(w);
+	myClock.begin(w);
+	myMainSwitch.begin(w);
+	myMemory.begin();
+	myMoisture.begin(w);
 
-	myMainSwitch = new QtMainSwitch(w);
-
-	myEtv[1] = new QtValve(*myClock, 5, 0, w, 1);
-	myEtv[2] = new QtValve(*myClock, 5, 0, w, 2);
-	myEtv[3] = new QtValve(*myClock, 5, 0, w, 3);
-	myEtv[4] = new QtValve(*myClock, 5, 0, w, 4);
-	myEtv[5] = new QtValve(*myClock, 5, 0, w, 5);
-	myEtv[6] = new QtValve(*myClock, 5, 0, w, 6);
-	myEtv[7] = new QtValve(*myClock, 5, 0, w, 7);
-	myEtv[8] = new QtValve(*myClock, 5, 0, w, 8);
-	myEtv[9] = new QtValve(*myClock, 5, 0, w, 9);
-
-	myMemory = new QtMemory(etvNum);
-	for(int8_t i = 1; i <= etvNum; i++) {
-		myEtv[i]->minOn = myMemory->readEtvMinOn(i);
-		myEtv[i]->days = myMemory->readEtvDays(i);
+	myEtv[0] = nullptr;
+	for(int8_t i = 1; i < etvNum + 1; i++) {
+		uint8_t minOn = myMemory.readEtvMinOn(i);
+		uint8_t days = myMemory.readEtvDays(i);
+		myEtv[i] = new QtValve(myClock, minOn, days, w, i);
 	}
+	MyTime tStart = myMemory.readStartTime();
 
-	myMoisture = new QtMoisture(w);
-
-	w->setKeypad((QtKeypad*) myKeypad);
-
-	MyTime tStart = myMemory->readStartTime();
-	autoCycle = new AutoCycle(*myClock, myEtv, etvNum, *myMainSwitch, *myMoisture, tStart);
-	pageSelector = new PageSelector(*myKeypad, *myDisplay, *myClock, myEtv, *myMainSwitch, *myMemory, *autoCycle);
+	autoCycle.begin(tStart);
+	pageSelector.begin();
 }
 
 void loop();
@@ -72,12 +60,13 @@ int main(int argc, char* argv[]) {
 	QApplication a(argc, argv);
 	ControlUnit w;
 
+	w.setKeypad(&myKeypad);
 	setup(&w);
 
 	QThread* thread = QThread::create([] {
 		Q_FOREVER {
 			loop();
-			QThread::usleep(1);
+			QThread::usleep(10);
 		}
 	});
 	thread->start();
@@ -121,6 +110,18 @@ HardwareSerial* mySerial;
 //Sensors
 #	define humidityPin A7
 
+HwKeypad myKeypad(cancelPin, downPin, upPin, confirmPin);
+HwDisplay myDisplay(lcdAddress, lcdLength, lcdHeight);
+HwClock myClock;
+const int8_t etvNum = 9;
+Valve* myEtv[etvNum + 1];
+HwMainSwitch myMainSwitch(mainSwitchPin);
+HwMemory myMemory(etvNum);
+HwMoisture myMoisture(humidityPin);
+
+AutoCycle autoCycle(myClock, myEtv, etvNum, myMainSwitch, myMoisture);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
+
 void setup() {
 
 #	if DEBUG
@@ -128,36 +129,22 @@ void setup() {
 	mySerial->begin(9600);
 #	endif
 
-	myClock = new HwClock();
+	myDisplay.begin();
+	myClock.begin();
+	myMainSwitch.begin();
+	myMemory.begin();
 
-	myMainSwitch = new HwMainSwitch(mainSwitchPin);
-
-	myEtv[1] = new HwValve(*myClock, 1, 0, etvsPin[1]);
-	myEtv[2] = new HwValve(*myClock, 1, 0, etvsPin[2]);
-	myEtv[3] = new HwValve(*myClock, 1, 0, etvsPin[3]);
-	myEtv[4] = new HwValve(*myClock, 1, 0, etvsPin[4]);
-	myEtv[5] = new HwValve(*myClock, 1, 0, etvsPin[5]);
-	myEtv[6] = new HwValve(*myClock, 1, 0, etvsPin[6]);
-	myEtv[7] = new HwValve(*myClock, 1, 0, etvsPin[7]);
-	myEtv[8] = new HwValve(*myClock, 1, 0, etvsPin[8]);
-	myEtv[9] = new HwValve(*myClock, 1, 0, etvsPin[9]);
-
-	myMemory = new HwMemory(etvNum);
-	for(int8_t i = 1; i <= etvNum; i++) {
-		myEtv[i]->minOn = myMemory->readEtvMinOn(i);
-		myEtv[i]->days = myMemory->readEtvDays(i);
+	myEtv[0] = nullptr;
+	for(int8_t i = 1; i < etvNum + 1; i++) {
+		uint8_t minOn = myMemory.readEtvMinOn(i);
+		uint8_t days = myMemory.readEtvDays(i);
+		myEtv[i] = new HwValve(myClock, minOn, days, etvsPin[i]);
 	}
-	MyTime tStart = myMemory->readStartTime();
 
-	myKeypad = new HwKeypad(cancelPin, downPin, upPin, confirmPin);
+	MyTime tStart = myMemory.readStartTime();
 
-	myDisplay = new HwDisplay(lcdAddress, lcdLength, lcdHeight);
-
-	myMoisture = new HwMoisture(humidityPin);
-
-	autoCycle = new AutoCycle(*myClock, myEtv, etvNum, *myMainSwitch, *myMoisture, tStart);
-
-	pageSelector = new PageSelector(*myKeypad, *myDisplay, *myClock, myEtv, *myMainSwitch, *myMemory, *autoCycle);
+	autoCycle.begin(tStart);
+	pageSelector.begin();
 }
 
 #else
@@ -166,9 +153,9 @@ void setup() {
 #endif
 
 void loop() {
-	pageSelector->show();
+	pageSelector.show();
 
-	pageSelector->exec();
+	pageSelector.exec();
 
-	autoCycle->exec();
+	autoCycle.exec();
 }

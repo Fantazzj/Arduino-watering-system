@@ -9,7 +9,8 @@ private:
 	ControlUnit* _w;
 
 public:
-	explicit QtMoisture(ControlUnit* w);
+	explicit QtMoisture();
+	void begin(ControlUnit* w);
 	uint8_t getMoisture() override;
 
 protected:

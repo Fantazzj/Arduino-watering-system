@@ -1,6 +1,8 @@
 #include "QtMoisture.hpp"
 
-QtMoisture::QtMoisture(ControlUnit* w) {
+QtMoisture::QtMoisture() = default;
+
+void QtMoisture::begin(ControlUnit* w) {
 	_w = w;
 }
 

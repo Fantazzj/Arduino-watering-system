@@ -1,6 +1,8 @@
 #include "HwClock.hpp"
 
-HwClock::HwClock() {
+HwClock::HwClock() = default;
+
+void HwClock::begin() {
 	char z = '0';
 
 	uint8_t day = __DATE__[5] - z + (((__DATE__[4] - z) * 10) >= 0 ? (__DATE__[4] - z) * 10 : 0);

@@ -1,6 +1,8 @@
 #include "QtMainSwitch.hpp"
 
-QtMainSwitch::QtMainSwitch(ControlUnit* w) {
+QtMainSwitch::QtMainSwitch() = default;
+
+void QtMainSwitch::begin(ControlUnit* w) {
 	this->w = w;
 	w->disableValves();
 }

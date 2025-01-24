@@ -1,8 +1,8 @@
 #ifndef QT_DISPLAY_CPP
 #define QT_DISPLAY_CPP
 
-#include "ControlUnit.h"
 #include "../core/UnitDisplay.hpp"
+#include "ControlUnit.h"
 
 class QtDisplay : public UnitDisplay {
 private:
@@ -19,7 +19,8 @@ private:
 	static QString _arrangeTime(MyTime time);
 
 public:
-	explicit QtDisplay(ControlUnit* w);
+	explicit QtDisplay();
+	void begin(ControlUnit* w);
 	void printSimpleText(char text[]) override;
 	void printData(char text1[], int8_t data, char text2[]) override;
 	void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) override;

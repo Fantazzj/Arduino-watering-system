@@ -34,6 +34,7 @@ private:
 
 public:
 	explicit PageSelector(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, Valve* myEtv[], MainSwitch& _myMainSwitch, Memory& myMemory, AutoCycle& autoCycle);
+	void begin();
 	void exec();
 	void show();
 

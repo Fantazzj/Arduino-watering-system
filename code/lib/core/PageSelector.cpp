@@ -2,6 +2,9 @@
 
 PageSelector::PageSelector(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, Valve* myEtv[], MainSwitch& _myMainSwitch, Memory& myMemory, AutoCycle& autoCycle) :
 	controller(myKeypad, myDisplay, myClock, myEtv, _myMainSwitch, myMemory, autoCycle) {
+}
+
+void PageSelector::begin() {
 	activePage = new Home(controller);
 
 	lightTime = controller.clock.getTime().time;

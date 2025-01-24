@@ -1,12 +1,13 @@
 #include "AutoCycle.hpp"
 
-AutoCycle::AutoCycle(Clock& myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, MyTime tStart) :
+AutoCycle::AutoCycle(Clock& myClock, Valve* myEtv[], uint8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture) :
 	_myClock(myClock), _myMainSwitch(myMainSwitch), _myMoisture(myMoisture) {
 	_myEtv = myEtv;
 	this->etvNum = etvNum;
+}
 
+void AutoCycle::begin(MyTime tStart) {
 	this->tStart = tStart;
-
 	tReset = _checkTReset();
 }
 

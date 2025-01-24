@@ -1,10 +1,12 @@
 #include "HwMemory.hpp"
 
 HwMemory::HwMemory(uint8_t etvNum) :
-	Memory(etvNum) {
+	Memory(etvNum) {}
+
+void HwMemory::begin() {
 	if(EEPROM[0x00] != 0) {
 		uint8_t i;
-		for(i = 0; i < 2 * (etvNum + 1); i++)
+		for(i = 0; i < 2 * (_etvNum + 1); i++)
 			EEPROM.update(i, 0);
 
 		EEPROM.update(i++, 0);

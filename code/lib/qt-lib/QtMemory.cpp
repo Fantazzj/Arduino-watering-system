@@ -1,7 +1,9 @@
 #include "QtMemory.hpp"
 
 QtMemory::QtMemory(uint8_t etvNum) :
-	Memory(etvNum) {
+	Memory(etvNum) {}
+
+void QtMemory::begin() {
 	QFile saveFile("memory.bin");
 	saveFile.open(QIODevice::ReadWrite);
 	saveFile.seek(0);
@@ -10,10 +12,10 @@ QtMemory::QtMemory(uint8_t etvNum) :
 	uint8_t buffer;
 	uint8_t i, j;
 
-	for(i = 0; i < 2 * (etvNum + 1) && !saveFile.atEnd(); i++)
+	for(i = 0; i < 2 * (_etvNum + 1) && !saveFile.atEnd(); i++)
 		stream >> buffer;
 
-	for(j = i; j < 2 * (etvNum + 1); j++)
+	for(j = i; j < 2 * (_etvNum + 1); j++)
 		stream << uint8_t(0);
 
 	for(i = 0; i < 3 && !saveFile.atEnd(); i++)

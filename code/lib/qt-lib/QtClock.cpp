@@ -1,6 +1,8 @@
 #include "QtClock.hpp"
 
-QtClock::QtClock(ControlUnit* w) {
+QtClock::QtClock() = default;
+
+void QtClock::begin(ControlUnit* w) {
 	this->_w = w;
 }
 

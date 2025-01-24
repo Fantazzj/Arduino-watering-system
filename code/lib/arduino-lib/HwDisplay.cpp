@@ -106,6 +106,9 @@ HwDisplay::HwDisplay(int8_t address, int8_t lenght, int8_t height) {
 	lcdLenght = height * lenght;
 	this->height = height;
 	this->lenght = lenght;
+}
+
+void HwDisplay::begin() {
 	lcd->init();
 	lcd->backlight();
 	lcd->createChar((byte) myA, (byte*) myAArray);

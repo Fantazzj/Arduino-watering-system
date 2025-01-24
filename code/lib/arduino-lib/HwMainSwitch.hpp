@@ -10,6 +10,7 @@ private:
 
 public:
 	explicit HwMainSwitch(int8_t pin);
+	void begin();
 	void turnOn() override;
 	void turnOff() override;
 };

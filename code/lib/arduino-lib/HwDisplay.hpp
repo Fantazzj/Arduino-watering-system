@@ -38,6 +38,7 @@ private:
 
 public:
 	explicit HwDisplay(int8_t address, int8_t lenght, int8_t height);
+	void begin();
 	void printSimpleText(char text[]) override;
 	void printData(char text1[], int8_t data, char text2[]) override;
 	void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) override;

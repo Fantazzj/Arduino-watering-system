@@ -9,6 +9,7 @@ class HwClock : public Clock {
 private:
 public:
 	explicit HwClock();
+	void begin();
 	MyDateTime getTime() override;
 	void setTime(MyDateTime tIn) override;
 };

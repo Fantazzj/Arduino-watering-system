@@ -8,6 +8,7 @@ class HwMemory : public Memory {
 private:
 public:
 	explicit HwMemory(uint8_t etvNum);
+	void begin();
 	void saveEtvMinOn(uint8_t num, uint8_t minOn) override;
 	uint8_t readEtvMinOn(uint8_t num) override;
 	void saveEtvDays(uint8_t num, uint8_t days) override;
