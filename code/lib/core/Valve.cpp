@@ -9,7 +9,6 @@ void Valve::turnOn() {
 	tOn = etvClock->getTime().time;
 	elapsedDays = 1;
 }
-void Valve::turnOff() {}
 bool Valve::toWater() {
 	if(elapsedDays >= days && days > 0 && minOn > 0) return true;
 	else return false;

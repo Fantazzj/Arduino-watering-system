@@ -14,7 +14,7 @@ public:
 
 	Valve(Clock* etvClock, uint8_t minOn, uint8_t days);
 	virtual void turnOn();
-	virtual void turnOff();
+	virtual void turnOff() = 0;
 	bool toWater();
 	bool wateringDone(MyTime newTime);
 

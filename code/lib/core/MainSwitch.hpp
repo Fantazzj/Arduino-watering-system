@@ -4,9 +4,9 @@
 class MainSwitch {
 private:
 public:
-	MainSwitch();
-	virtual void turnOn();
-	virtual void turnOff();
+	MainSwitch() = default;
+	virtual void turnOn() = 0;
+	virtual void turnOff() = 0;
 };
 
 #endif//GENERALSWITCH_HPP

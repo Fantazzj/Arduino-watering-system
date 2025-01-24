@@ -11,8 +11,8 @@ class Clock {
 private:
 public:
 	Clock() = default;
-	virtual MyDateTime getTime();
-	virtual void setTime(MyDateTime time);
+	virtual MyDateTime getTime() = 0;
+	virtual void setTime(MyDateTime time) = 0;
 
 protected:
 };

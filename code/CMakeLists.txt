@@ -17,11 +17,11 @@ find_package(Qt6Widgets REQUIRED)
 
 qt_add_library(core-lib
         lib/core/AutoCycle.hpp lib/core/AutoCycle.cpp
-        lib/core/Clock.hpp lib/core/Clock.cpp
+        lib/core/Clock.hpp
         lib/core/Keypad.hpp lib/core/Keypad.cpp
-        lib/core/Moisture.hpp lib/core/Moisture.cpp
+        lib/core/Moisture.hpp
         lib/core/PageSelector.hpp lib/core/PageSelector.cpp
-        lib/core/MainSwitch.hpp lib/core/MainSwitch.cpp
+        lib/core/MainSwitch.hpp
         lib/core/UnitDisplay.hpp lib/core/UnitDisplay.cpp
         lib/core/Valve.hpp lib/core/Valve.cpp
         lib/core/MyTime.hpp lib/core/MyTime.cpp
