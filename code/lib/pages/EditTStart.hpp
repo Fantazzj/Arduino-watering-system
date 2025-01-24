@@ -9,7 +9,7 @@ private:
 	uint8_t _editPhase = 1;
 
 public:
-	explicit EditTStart(PageController* controller);
+	explicit EditTStart(PageController& controller);
 	PageNum exec() override;
 	void show() override;
 

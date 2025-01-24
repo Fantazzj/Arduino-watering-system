@@ -1,12 +1,12 @@
 #include "EditTStart.hpp"
 
-EditTStart::EditTStart(PageController* controller) :
+EditTStart::EditTStart(PageController& controller) :
 	Page(controller) {
-	_newTime = _controller->autoCycle.tStart;
+	_newTime = _controller.autoCycle.tStart;
 }
 
 PageNum EditTStart::exec() {
-	KeypadButton key = _controller->keypadButton();
+	KeypadButton key = _controller.keypadButton();
 
 	if(key != NoBtn) _redraw = true;
 
@@ -41,9 +41,9 @@ PageNum EditTStart::exec() {
 			_editPhase++;
 			if(_editPhase == 3) {
 				_editPhase = 1;
-				_controller->autoCycle.tStart = _newTime;
-				_controller->autoCycle.updateTReset();
-				_controller->memory.saveStartTime(_newTime);
+				_controller.autoCycle.tStart = _newTime;
+				_controller.autoCycle.updateTReset();
+				_controller.memory.saveStartTime(_newTime);
 				return HomePage;
 			} else return Stay;
 
@@ -54,9 +54,9 @@ PageNum EditTStart::exec() {
 
 void EditTStart::show() {
 	if(_redraw) {
-		_controller->display.printData((char*) "Orario di avvio", _newTime.hour, (char*) ":", _newTime.min, (char*) "");
-		if(_editPhase == 2) _controller->display.blinkAt(6, 1);
-		else _controller->display.blinkAt(1, 1);
+		_controller.display.printData((char*) "Orario di avvio", _newTime.hour, (char*) ":", _newTime.min, (char*) "");
+		if(_editPhase == 2) _controller.display.blinkAt(6, 1);
+		else _controller.display.blinkAt(1, 1);
 		_redraw = false;
 	}
 }

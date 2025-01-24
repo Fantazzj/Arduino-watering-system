@@ -10,7 +10,7 @@ private:
 	uint8_t _editPhase = 1;
 
 public:
-	explicit EditClock(PageController* controller);
+	explicit EditClock(PageController& controller);
 	PageNum exec() override;
 	void show() override;
 

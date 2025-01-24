@@ -11,7 +11,7 @@ private:
 	uint8_t oldEtvOn = 0;
 
 public:
-	explicit Home(PageController* controller);
+	explicit Home(PageController& controller);
 	PageNum exec() override;
 	void show() override;
 

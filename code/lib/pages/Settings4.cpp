@@ -1,12 +1,12 @@
 #include "Settings4.hpp"
 
-Settings4::Settings4(PageController* controller) :
+Settings4::Settings4(PageController& controller) :
 	Page(controller) {
-	_controller->display.noBlink();
+	_controller.display.noBlink();
 }
 
 PageNum Settings4::exec() {
-	KeypadButton key = _controller->keypadButton();
+	KeypadButton key = _controller.keypadButton();
 	if(key != NoBtn) _redraw = true;
 	switch(key) {
 		case Cancel:
@@ -24,7 +24,7 @@ PageNum Settings4::exec() {
 
 void Settings4::show() {
 	if(_redraw) {
-		_controller->display.printSimpleText((char*) "Impostazione manuale");
+		_controller.display.printSimpleText((char*) "Impostazione manuale");
 		_redraw = false;
 	}
 }

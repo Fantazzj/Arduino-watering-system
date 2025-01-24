@@ -1,12 +1,12 @@
 #include "Settings2.hpp"
 
-Settings2::Settings2(PageController* controller) :
+Settings2::Settings2(PageController& controller) :
 	Page(controller) {
-	_controller->display.noBlink();
+	_controller.display.noBlink();
 }
 
 PageNum Settings2::exec() {
-	KeypadButton key = _controller->keypadButton();
+	KeypadButton key = _controller.keypadButton();
 	if(key != NoBtn) _redraw = true;
 	switch(key) {
 		case Cancel:
@@ -24,7 +24,7 @@ PageNum Settings2::exec() {
 
 void Settings2::show() {
 	if(_redraw) {
-		_controller->display.printSimpleText((char*) "Cambia tempo elettrovalvole");
+		_controller.display.printSimpleText((char*) "Cambia tempo elettrovalvole");
 		_redraw = false;
 	}
 }

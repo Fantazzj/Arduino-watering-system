@@ -1,12 +1,12 @@
 #include "Settings3.hpp"
 
-Settings3::Settings3(PageController* controller) :
+Settings3::Settings3(PageController& controller) :
 	Page(controller) {
-	_controller->display.noBlink();
+	_controller.display.noBlink();
 }
 
 PageNum Settings3::exec() {
-	KeypadButton key = _controller->keypadButton();
+	KeypadButton key = _controller.keypadButton();
 	if(key != NoBtn) _redraw = true;
 	switch(key) {
 		case Cancel:
@@ -24,7 +24,7 @@ PageNum Settings3::exec() {
 
 void Settings3::show() {
 	if(_redraw) {
-		_controller->display.printSimpleText((char*) "Cambia orario di avvio");
+		_controller.display.printSimpleText((char*) "Cambia orario di avvio");
 		_redraw = false;
 	}
 }

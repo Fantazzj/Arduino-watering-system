@@ -23,13 +23,13 @@ enum PageNum : uint8_t {
 class Page {
 private:
 public:
-	explicit Page(PageController* controller);
+	explicit Page(PageController& controller);
 	virtual ~Page() = default;
 	virtual PageNum exec();
 	virtual void show();
 
 protected:
-	PageController* _controller;
+	PageController& _controller;
 	bool _redraw = true;
 };
 

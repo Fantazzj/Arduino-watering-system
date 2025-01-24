@@ -6,10 +6,10 @@
 class EditEtvTime : public Page {
 private:
 	uint8_t _etvEdit = 1;
-	uint8_t _timeEdit = _controller->etv[1]->minOn;
+	uint8_t _timeEdit = _controller.etv[1]->minOn;
 
 public:
-	explicit EditEtvTime(PageController* controller);
+	explicit EditEtvTime(PageController& controller);
 	PageNum exec() override;
 	void show() override;
 

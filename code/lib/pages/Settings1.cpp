@@ -1,12 +1,12 @@
 #include "Settings1.hpp"
 
-Settings1::Settings1(PageController* controller) :
+Settings1::Settings1(PageController& controller) :
 	Page(controller) {
-	_controller->display.noBlink();
+	_controller.display.noBlink();
 }
 
 PageNum Settings1::exec() {
-	KeypadButton key = _controller->keypadButton();
+	KeypadButton key = _controller.keypadButton();
 	if(key != NoBtn) _redraw = true;
 	switch(key) {
 		case Cancel:
@@ -24,7 +24,7 @@ PageNum Settings1::exec() {
 
 void Settings1::show() {
 	if(_redraw) {
-		_controller->display.printSimpleText((char*) "Cambia data e ora");
+		_controller.display.printSimpleText((char*) "Cambia data e ora");
 		_redraw = false;
 	}
 }
