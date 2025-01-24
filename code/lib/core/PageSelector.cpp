@@ -1,11 +1,10 @@
 #include "PageSelector.hpp"
 
-PageSelector::PageSelector(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], MainSwitch* _myMainSwitch, Memory* myMemory, AutoCycle* autoCycle) {
-	this->controller = new PageController(myKeypad, myDisplay, myClock, myEtv, _myMainSwitch, myMemory, autoCycle);
+PageSelector::PageSelector(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, Valve* myEtv[], MainSwitch& _myMainSwitch, Memory& myMemory, AutoCycle& autoCycle) :
+	controller(&myKeypad, &myDisplay, &myClock, myEtv, &_myMainSwitch, &myMemory, &autoCycle) {
+	activePage = new Home(&controller);
 
-	activePage = new Home(controller);
-
-	lightTime = controller->clock->getTime().time;
+	lightTime = controller.clock->getTime().time;
 }
 
 void PageSelector::exec() {
@@ -15,67 +14,67 @@ void PageSelector::exec() {
 			break;
 		case HomePage:
 			delete activePage;
-			activePage = new Home(controller);
+			activePage = new Home(&controller);
 			break;
 		case SettingsPage1:
 			delete activePage;
-			activePage = new Settings1(controller);
+			activePage = new Settings1(&controller);
 			break;
 		case EditClockPage:
 			delete activePage;
-			activePage = new EditClock(controller);
+			activePage = new EditClock(&controller);
 			break;
 		case SettingsPage2:
 			delete activePage;
-			activePage = new Settings2(controller);
+			activePage = new Settings2(&controller);
 			break;
 		case EditEtvTimePage:
 			delete activePage;
-			activePage = new EditEtvTime(controller);
+			activePage = new EditEtvTime(&controller);
 			break;
 		case SettingsPage3:
 			delete activePage;
-			activePage = new Settings3(controller);
+			activePage = new Settings3(&controller);
 			break;
 		case EditTStartPage:
 			delete activePage;
-			activePage = new EditTStart(controller);
+			activePage = new EditTStart(&controller);
 			break;
 		case SettingsPage4:
 			delete activePage;
-			activePage = new Settings4(controller);
+			activePage = new Settings4(&controller);
 			break;
 		case ManualEtvPage:
 			delete activePage;
-			activePage = new ManualEtv(controller);
+			activePage = new ManualEtv(&controller);
 			break;
 		case SettingsPage5:
 			delete activePage;
-			activePage = new Settings5(controller);
+			activePage = new Settings5(&controller);
 			break;
 		case EditSRWateredPage:
 			delete activePage;
-			activePage = new EditSRWatered(controller);
+			activePage = new EditSRWatered(&controller);
 			break;
 		case SettingsPage6:
 			delete activePage;
-			activePage = new Settings6(controller);
+			activePage = new Settings6(&controller);
 			break;
 		case EditEtvDaysPage:
 			delete activePage;
-			activePage = new EditEtvDays(controller);
+			activePage = new EditEtvDays(&controller);
 			break;
 	}
 }
 
 void PageSelector::show() {
-	if(controller->keypad->generalPressed()) {
-		controller->display->backlight(true);
-		lightTime = controller->clock->getTime().time;
-	} else if(secToMin(controller->clock->getTime().time - lightTime) >= 2) {
-		controller->display->backlight(false);
+	if(controller.keypad->generalPressed()) {
+		controller.display->backlight(true);
+		lightTime = controller.clock->getTime().time;
+	} else if(secToMin(controller.clock->getTime().time - lightTime) >= 2) {
+		controller.display->backlight(false);
 	}
 
-	if(controller->display->getBacklight())
+	if(controller.display->getBacklight())
 		activePage->show();
 }

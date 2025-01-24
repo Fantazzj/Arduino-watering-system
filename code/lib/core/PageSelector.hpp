@@ -27,13 +27,13 @@
 
 class PageSelector {
 private:
-	PageController* controller;
+	PageController controller;
 	Page* activePage;
 	PageNum newPage = Stay;
 	MyTime lightTime;
 
 public:
-	explicit PageSelector(Keypad* myKeypad, UnitDisplay* myDisplay, Clock* myClock, Valve* myEtv[], MainSwitch* _myMainSwitch, Memory* myMemory, AutoCycle* autoCycle);
+	explicit PageSelector(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, Valve* myEtv[], MainSwitch& _myMainSwitch, Memory& myMemory, AutoCycle& autoCycle);
 	void exec();
 	void show();
 

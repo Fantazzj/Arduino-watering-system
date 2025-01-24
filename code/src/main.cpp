@@ -63,7 +63,7 @@ void setup(ControlUnit* w) {
 
 	MyTime tStart = myMemory->readStartTime();
 	autoCycle = new AutoCycle(*myClock, myEtv, etvNum, *myMainSwitch, *myMoisture, tStart);
-	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
+	pageSelector = new PageSelector(*myKeypad, *myDisplay, *myClock, myEtv, *myMainSwitch, *myMemory, *autoCycle);
 }
 
 void loop();
@@ -157,7 +157,7 @@ void setup() {
 
 	autoCycle = new AutoCycle(*myClock, myEtv, etvNum, *myMainSwitch, *myMoisture, tStart);
 
-	pageSelector = new PageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
+	pageSelector = new PageSelector(*myKeypad, *myDisplay, *myClock, myEtv, *myMainSwitch, *myMemory, *autoCycle);
 }
 
 #else
