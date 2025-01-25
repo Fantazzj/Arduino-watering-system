@@ -1,94 +1,86 @@
 #include "QtMemory.hpp"
 
 QtMemory::QtMemory(uint8_t etvNum) :
-	Memory(etvNum) {}
+	Memory(etvNum), saveFile("memory.bin") {
+	maxFileSize = 2 * _etvNum * sizeof(uint8_t) + 3 * sizeof(uint8_t);
+}
 
 void QtMemory::begin() {
-	QFile saveFile("memory.bin");
-	saveFile.open(QIODevice::ReadWrite);
-	saveFile.seek(0);
-	QDataStream stream(&saveFile);
+	if(saveFile.size() >= maxFileSize)
+		return;
 
-	uint8_t buffer;
-	uint8_t i, j;
+	QByteArray memory;
+	for(int8_t i = 0; i < maxFileSize; i++)
+		memory.append((int8_t) 0);
 
-	for(i = 0; i < 2 * (_etvNum + 1) && !saveFile.atEnd(); i++)
-		stream >> buffer;
-
-	for(j = i; j < 2 * (_etvNum + 1); j++)
-		stream << uint8_t(0);
-
-	for(i = 0; i < 3 && !saveFile.atEnd(); i++)
-		stream >> buffer;
-
-	for(j = i; j < 3; j++)
-		stream << uint8_t(5);
-
+	saveFile.open(QIODevice::WriteOnly);
+	saveFile.write(memory);
 	saveFile.close();
 }
 
 void QtMemory::saveEtvMinOn(uint8_t num, uint8_t minOn) {
-	QFile saveFile("memory.bin");
-	saveFile.open(QIODevice::ReadWrite);
-	saveFile.seek(num);
-	QDataStream stream(&saveFile);
+	saveFile.open(QIODevice::ReadOnly);
+	QByteArray memory = saveFile.readAll();
+	saveFile.close();
 
-	stream << minOn;
+	memory[num] = minOn;
+
+	saveFile.open(QIODevice::WriteOnly);
+	saveFile.write(memory);
 	saveFile.close();
 }
 
 uint8_t QtMemory::readEtvMinOn(uint8_t num) {
-	uint8_t out;
-	QFile saveFile("memory.bin");
-	saveFile.open(QIODevice::ReadWrite);
-	saveFile.seek(num);
-	QDataStream stream(&saveFile);
-
-	stream >> out;
+	saveFile.open(QIODevice::ReadOnly);
+	QByteArray memory = saveFile.readAll();
 	saveFile.close();
-	return out;
+
+	return memory[num];
 }
 
 void QtMemory::saveEtvDays(uint8_t num, uint8_t days) {
-	QFile saveFile("memory.bin");
-	saveFile.open(QIODevice::ReadWrite);
-	saveFile.seek(num + _etvNum + 1);
-	QDataStream stream(&saveFile);
+	saveFile.open(QIODevice::ReadOnly);
+	QByteArray memory = saveFile.readAll();
+	saveFile.close();
 
-	stream << days;
+	memory[num + _etvNum] = days;
+
+	saveFile.open(QIODevice::WriteOnly);
+	saveFile.write(memory);
 	saveFile.close();
 }
 
 uint8_t QtMemory::readEtvDays(uint8_t num) {
-	uint8_t out;
-	QFile saveFile("memory.bin");
-	saveFile.open(QIODevice::ReadWrite);
-	saveFile.seek(num + _etvNum + 1);
-	QDataStream stream(&saveFile);
-
-	stream >> out;
+	saveFile.open(QIODevice::ReadOnly);
+	QByteArray memory = saveFile.readAll();
 	saveFile.close();
-	return out;
+
+	return memory[num + _etvNum];
 }
 
 void QtMemory::saveStartTime(MyTime startTime) {
-	QFile saveFile("memory.bin");
-	saveFile.open(QIODevice::ReadWrite);
-	saveFile.seek(20);
-	QDataStream stream(&saveFile);
+	saveFile.open(QIODevice::ReadOnly);
+	QByteArray memory = saveFile.readAll();
+	saveFile.close();
 
-	stream << startTime.hour << startTime.min << startTime.sec;
+	memory[2 * _etvNum + 0] = startTime.hour;
+	memory[2 * _etvNum + 1] = startTime.min;
+	memory[2 * _etvNum + 2] = startTime.sec;
+
+	saveFile.open(QIODevice::WriteOnly);
+	saveFile.write(memory);
 	saveFile.close();
 }
 
 MyTime QtMemory::readStartTime() {
 	MyTime out;
-	QFile saveFile("memory.bin");
-	saveFile.open(QIODevice::ReadWrite);
-	saveFile.seek(20);
-	QDataStream stream(&saveFile);
 
-	stream >> out.hour >> out.min >> out.sec;
+	saveFile.open(QIODevice::ReadOnly);
+	QByteArray memory = saveFile.readAll();
 	saveFile.close();
+
+	out.hour = memory[2 * _etvNum + 0];
+	out.min = memory[2 * _etvNum + 1];
+	out.sec = memory[2 * _etvNum + 2];
 	return out;
 }

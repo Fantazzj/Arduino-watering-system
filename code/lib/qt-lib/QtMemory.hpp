@@ -6,6 +6,9 @@
 
 class QtMemory : public Memory {
 private:
+	int8_t maxFileSize;
+	QFile saveFile;
+
 public:
 	explicit QtMemory(uint8_t etvNum);
 	void begin();
