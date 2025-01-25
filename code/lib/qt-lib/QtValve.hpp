@@ -11,7 +11,9 @@ private:
 	uint8_t num;
 
 public:
-	explicit QtValve(Clock& clock, uint8_t minOn, uint8_t days, ControlUnit* w, uint8_t num);
+	explicit QtValve(Clock& clock, uint8_t minOn, uint8_t days, uint8_t num);
+	explicit QtValve(Clock& clock, uint8_t num);
+	void begin(ControlUnit* w);
 	void turnOn() override;
 	void turnOff() override;
 

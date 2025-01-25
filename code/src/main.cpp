@@ -1,13 +1,5 @@
 #include "../lib/core/AutoCycle.hpp"
-#include "../lib/core/Clock.hpp"
-#include "../lib/core/Keypad.hpp"
-#include "../lib/core/MainSwitch.hpp"
-#include "../lib/core/Memory.hpp"
-#include "../lib/core/Moisture.hpp"
 #include "../lib/core/PageSelector.hpp"
-#include "../lib/core/UnitDisplay.hpp"
-#include "../lib/core/Valve.hpp"
-#include "../lib/date-time/MyTime.hpp"
 
 #if defined(QTDESKTOP)
 
@@ -27,13 +19,13 @@ QtKeypad myKeypad;
 QtDisplay myDisplay;
 QtClock myClock;
 const int8_t etvNum = 9;
-Valve* myEtv[etvNum];
+QtValve* myEtv[etvNum];
 QtMainSwitch myMainSwitch;
 QtMemory myMemory(etvNum);
 QtMoisture myMoisture;
 
-AutoCycle autoCycle(myClock, myEtv, etvNum, myMainSwitch, myMoisture);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
+AutoCycle autoCycle(myClock, (Valve**) myEtv, etvNum, myMainSwitch, myMoisture);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, (Valve**) myEtv, myMainSwitch, myMemory, autoCycle);
 
 void setup(ControlUnit* w) {
 	myDisplay.begin(w);
@@ -42,14 +34,20 @@ void setup(ControlUnit* w) {
 	myMemory.begin();
 	myMoisture.begin(w);
 
-	for(int8_t i = 0; i < etvNum; i++) {
-		uint8_t minOn = myMemory.readEtvMinOn(i);
-		uint8_t days = myMemory.readEtvDays(i);
-		myEtv[i] = new QtValve(myClock, minOn, days, w, i);
-	}
-	MyTime tStart = myMemory.readStartTime();
+	for(int8_t i = 0; i < etvNum; i++)
+		myEtv[i] = new QtValve(myClock, i);
 
+	for(int8_t i = 0; i < etvNum; i++)
+		myEtv[i]->begin(w);
+
+	for(int8_t i = 0; i < etvNum; i++) {
+		myEtv[i]->minOn = myMemory.readEtvMinOn(i);
+		myEtv[i]->days = myMemory.readEtvDays(i);
+	}
+
+	MyTime tStart = myMemory.readStartTime();
 	autoCycle.begin(tStart);
+
 	pageSelector.begin();
 }
 
@@ -90,7 +88,7 @@ int main(int argc, char* argv[]) {
 #	define lcdHeight 2
 
 //Etv
-const int8_t etvsPin[] = {-1, 6, 7, 2, 3, 4, 5, 8, 9, 10};
+const int8_t etvsPin[] = {6, 7, 2, 3, 4, 5, 8, 9, 10};
 #	define mainSwitchPin 11
 
 //Buttons
@@ -113,13 +111,13 @@ HwKeypad myKeypad(cancelPin, downPin, upPin, confirmPin);
 HwDisplay myDisplay(lcdAddress, lcdLength, lcdHeight);
 HwClock myClock;
 const int8_t etvNum = 9;
-Valve* myEtv[etvNum];
+HwValve* myEtv[etvNum];
 HwMainSwitch myMainSwitch(mainSwitchPin);
 HwMemory myMemory(etvNum);
 HwMoisture myMoisture(humidityPin);
 
-AutoCycle autoCycle(myClock, myEtv, etvNum, myMainSwitch, myMoisture);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
+AutoCycle autoCycle(myClock, (Valve**) myEtv, etvNum, myMainSwitch, myMoisture);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, (Valve**) myEtv, myMainSwitch, myMemory, autoCycle);
 
 void setup() {
 
@@ -133,11 +131,15 @@ void setup() {
 	myMainSwitch.begin();
 	myMemory.begin();
 
-	myEtv[0] = nullptr;
+	for(int8_t i = 0; i < etvNum; i++)
+		myEtv[i] = new HwValve(myClock, etvsPin[i]);
+
+	for(int8_t i = 0; i < etvNum; i++)
+		myEtv[i]->begin();
+
 	for(int8_t i = 0; i < etvNum; i++) {
-		uint8_t minOn = myMemory.readEtvMinOn(i);
-		uint8_t days = myMemory.readEtvDays(i);
-		myEtv[i] = new HwValve(myClock, minOn, days, etvsPin[i]);
+		myEtv[i]->minOn = myMemory.readEtvMinOn(i);
+		myEtv[i]->days = myMemory.readEtvDays(i);
 	}
 
 	MyTime tStart = myMemory.readStartTime();
