@@ -113,7 +113,7 @@ HwKeypad myKeypad(cancelPin, downPin, upPin, confirmPin);
 HwDisplay myDisplay(lcdAddress, lcdLength, lcdHeight);
 HwClock myClock;
 const int8_t etvNum = 9;
-Valve* myEtv[etvNum + 1];
+Valve* myEtv[etvNum];
 HwMainSwitch myMainSwitch(mainSwitchPin);
 HwMemory myMemory(etvNum);
 HwMoisture myMoisture(humidityPin);
@@ -134,7 +134,7 @@ void setup() {
 	myMemory.begin();
 
 	myEtv[0] = nullptr;
-	for(int8_t i = 1; i < etvNum + 1; i++) {
+	for(int8_t i = 0; i < etvNum; i++) {
 		uint8_t minOn = myMemory.readEtvMinOn(i);
 		uint8_t days = myMemory.readEtvDays(i);
 		myEtv[i] = new HwValve(myClock, minOn, days, etvsPin[i]);
