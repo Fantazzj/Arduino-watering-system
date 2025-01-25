@@ -27,7 +27,7 @@ QtKeypad myKeypad;
 QtDisplay myDisplay;
 QtClock myClock;
 const int8_t etvNum = 9;
-Valve* myEtv[etvNum + 1];
+Valve* myEtv[etvNum];
 QtMainSwitch myMainSwitch;
 QtMemory myMemory(etvNum);
 QtMoisture myMoisture;
@@ -42,8 +42,7 @@ void setup(ControlUnit* w) {
 	myMemory.begin();
 	myMoisture.begin(w);
 
-	myEtv[0] = nullptr;
-	for(int8_t i = 1; i < etvNum + 1; i++) {
+	for(int8_t i = 0; i < etvNum; i++) {
 		uint8_t minOn = myMemory.readEtvMinOn(i);
 		uint8_t days = myMemory.readEtvDays(i);
 		myEtv[i] = new QtValve(myClock, minOn, days, w, i);

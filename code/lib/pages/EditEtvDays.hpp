@@ -5,8 +5,8 @@
 
 class EditEtvDays : public Page {
 private:
-	uint8_t _etvEdit = 1;
-	uint8_t _daysEdit = _controller.etv[1]->days;
+	int8_t _etvEdit;
+	uint8_t _daysEdit;
 
 public:
 	explicit EditEtvDays(PageController& controller);

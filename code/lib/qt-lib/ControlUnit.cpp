@@ -109,11 +109,11 @@ void ControlUnit::hideCursorDisplay() {
 }
 
 void ControlUnit::activateValve(int num) {
-	etv[num - 1]->setChecked(true);
+	etv[num]->setChecked(true);
 }
 
 void ControlUnit::deactivateValve(int num) {
-	etv[num - 1]->setChecked(false);
+	etv[num]->setChecked(false);
 }
 
 void ControlUnit::backlight() {

@@ -2,8 +2,8 @@
 
 EditEtvTime::EditEtvTime(PageController& controller) :
 	Page(controller) {
-	_etvEdit = 1;
-	_timeEdit = _controller.etv[1]->minOn;
+	_etvEdit = 0;
+	_timeEdit = _controller.etv[0]->minOn;
 }
 
 PageNum EditEtvTime::exec() {
@@ -12,12 +12,12 @@ PageNum EditEtvTime::exec() {
 
 	switch(key) {
 		case Cancel:
-			if(_etvEdit >= 2) {
+			if(_etvEdit > 0) {
 				_etvEdit--;
 				_timeEdit = _controller.etv[_etvEdit]->minOn;
 				return Stay;
 			} else {
-				_etvEdit = 1;
+				_etvEdit = 0;
 				_timeEdit = 0;
 				return SettingsPage2;
 			}
@@ -38,7 +38,7 @@ PageNum EditEtvTime::exec() {
 			_controller.memory.saveEtvMinOn(_etvEdit, _timeEdit);
 			_etvEdit++;
 			_timeEdit = _controller.etv[_etvEdit]->minOn;
-			if(_etvEdit > _controller.etvNum)
+			if(_etvEdit >= _controller.etvNum)
 				return HomePage;
 			else return Stay;
 
