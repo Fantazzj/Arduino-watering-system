@@ -3,7 +3,7 @@
 EditEtvDays::EditEtvDays(PageController& controller) :
 	Page(controller) {
 	_etvEdit = 0;
-	_daysEdit = _controller.etv[0].days;
+	_daysEdit = _controller.etv[0]->days;
 }
 
 PageNum EditEtvDays::exec() {
@@ -14,7 +14,7 @@ PageNum EditEtvDays::exec() {
 		case Cancel:
 			if(_etvEdit > 0) {
 				_etvEdit--;
-				_daysEdit = _controller.etv[_etvEdit].days;
+				_daysEdit = _controller.etv[_etvEdit]->days;
 				return Stay;
 			} else {
 				_etvEdit = 0;
@@ -34,10 +34,10 @@ PageNum EditEtvDays::exec() {
 			return Stay;
 
 		case Confirm:
-			_controller.etv[_etvEdit].days = _daysEdit;
+			_controller.etv[_etvEdit]->days = _daysEdit;
 			_controller.memory.saveEtvDays(_etvEdit, _daysEdit);
 			_etvEdit++;
-			_daysEdit = _controller.etv[_etvEdit].days;
+			_daysEdit = _controller.etv[_etvEdit]->days;
 			if(_etvEdit >= _controller.etvNum)
 				return HomePage;
 			else return Stay;

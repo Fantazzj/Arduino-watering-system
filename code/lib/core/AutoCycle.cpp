@@ -1,6 +1,6 @@
 #include "AutoCycle.hpp"
 
-AutoCycle::AutoCycle(Clock& myClock, Valve* myEtv, int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture) :
+AutoCycle::AutoCycle(Clock& myClock, Valve* myEtv[], int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture) :
 	_myClock(myClock), _myMainSwitch(myMainSwitch), _myMoisture(myMoisture) {
 	_myEtv = myEtv;
 	this->etvNum = etvNum;
@@ -13,10 +13,10 @@ void AutoCycle::begin(MyTime tStart) {
 
 int8_t AutoCycle::_nextEtv() {
 	for(int8_t etv = etvOn + 1; etv < etvNum; etv++) {
-		if(_myEtv[etv].toWater()) {
+		if(_myEtv[etv]->toWater()) {
 			return etv;
 		} else {
-			_myEtv[etv].elapsedDays++;
+			_myEtv[etv]->elapsedDays++;
 		}
 	}
 	return -1;
@@ -29,7 +29,7 @@ MyTime AutoCycle::_checkTReset() {
 	uint16_t minToReset = out.hour * 60 + out.min;
 
 	uint16_t minToWater = 0;
-	for(uint8_t i = 0; i < etvNum; i++) minToWater += _myEtv[i].minOn;
+	for(uint8_t i = 0; i < etvNum; i++) minToWater += _myEtv[i]->minOn;
 	//minToWater += msSnub/3600 * etvNum;
 
 	if(minToStart + minToWater > 1440 + minToReset) {
@@ -67,11 +67,11 @@ void AutoCycle::exec() {
 			started = true;
 			_myMainSwitch.turnOn();
 			wait(msSnub);
-			_myEtv[etvOn].turnOn();
+			_myEtv[etvOn]->turnOn();
 		}
 	} else if(started) {
-		if(_myEtv[etvOn].wateringDone(newTime.time)) {
-			_myEtv[etvOn].turnOff();
+		if(_myEtv[etvOn]->wateringDone(newTime.time)) {
+			_myEtv[etvOn]->turnOff();
 			wait(msSnub);
 			etvOn = _nextEtv();
 			if(etvOn == -1) {
@@ -79,13 +79,13 @@ void AutoCycle::exec() {
 				watered = true;
 				started = false;
 			} else {
-				_myEtv[etvOn].turnOn();
+				_myEtv[etvOn]->turnOn();
 			}
 		}
 	}
 
-	if(!started && etvOn != -1 && _myEtv[etvOn].wateringDone(newTime.time)) {
-		_myEtv[etvOn].turnOff();
+	if(!started && etvOn != -1 && _myEtv[etvOn]->wateringDone(newTime.time)) {
+		_myEtv[etvOn]->turnOff();
 		wait(msSnub);
 		_myMainSwitch.turnOff();
 		etvOn = -1;
