@@ -13,7 +13,7 @@
 class AutoCycle {
 private:
 	Clock& _myClock;
-	Valve** _myEtv;
+	Valve* _myEtv;
 	MainSwitch& _myMainSwitch;
 	Moisture& _myMoisture;
 	int8_t _nextEtv();
@@ -30,7 +30,7 @@ public:
 	int8_t etvNum;
 	void updateTReset();
 
-	explicit AutoCycle(Clock& myClock, Valve* myEtv[], int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture);
+	explicit AutoCycle(Clock& myClock, Valve* myEtv, int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture);
 	void begin(MyTime tStart);
 	void exec();
 
