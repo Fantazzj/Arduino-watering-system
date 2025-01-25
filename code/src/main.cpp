@@ -47,8 +47,8 @@ void setup(ControlUnit* w) {
 		myEtv[i].begin(w);
 
 	for(int8_t i = 0; i < etvNum; i++) {
-		myEtv[i].minOn = myMemory.readEtvMinOn(i);
-		myEtv[i].days = myMemory.readEtvDays(i);
+		myEtv[i].minOn = 1;//myMemory.readEtvMinOn(i);
+		myEtv[i].days = 1;//myMemory.readEtvDays(i);
 	}
 
 	MyTime tStart = myMemory.readStartTime();
