@@ -34,13 +34,9 @@ void setup(ControlUnit* w) {
 	myMemory.begin();
 	myMoisture.begin(w);
 
-	for(int8_t i = 0; i < etvNum; i++)
-		myEtv[i] = new QtValve(myClock, i);
-
-	for(int8_t i = 0; i < etvNum; i++)
-		myEtv[i]->begin(w);
-
 	for(int8_t i = 0; i < etvNum; i++) {
+		myEtv[i] = new QtValve(myClock, i);
+		myEtv[i]->begin(w);
 		myEtv[i]->minOn = myMemory.readEtvMinOn(i);
 		myEtv[i]->days = myMemory.readEtvDays(i);
 	}
@@ -131,13 +127,9 @@ void setup() {
 	myMainSwitch.begin();
 	myMemory.begin();
 
-	for(int8_t i = 0; i < etvNum; i++)
-		myEtv[i] = new HwValve(myClock, etvsPin[i]);
-
-	for(int8_t i = 0; i < etvNum; i++)
-		myEtv[i]->begin();
-
 	for(int8_t i = 0; i < etvNum; i++) {
+		myEtv[i] = new HwValve(myClock, etvsPin[i]);
+		myEtv[i]->begin();
 		myEtv[i]->minOn = myMemory.readEtvMinOn(i);
 		myEtv[i]->days = myMemory.readEtvDays(i);
 	}
