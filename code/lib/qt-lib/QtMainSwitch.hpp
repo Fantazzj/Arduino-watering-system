@@ -1,7 +1,7 @@
 #ifndef QTGENERALSWITCH_HPP
 #define QTGENERALSWITCH_HPP
 
-#include "../core/MainSwitch.hpp"
+#include "../core-lib/MainSwitch.hpp"
 #include "ControlUnit.h"
 #include <cstdint>
 

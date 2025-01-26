@@ -1,7 +1,7 @@
 #ifndef HWMAINSWITCH_HPP
 #define HWMAINSWITCH_HPP
 
-#include "../core/MainSwitch.hpp"
+#include "../core-lib/MainSwitch.hpp"
 #include <Arduino.h>
 
 class HwMainSwitch : public MainSwitch {

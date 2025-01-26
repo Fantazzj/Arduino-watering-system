@@ -1,7 +1,7 @@
 #ifndef QT_KEYPAD_CPP
 #define QT_KEYPAD_CPP
 
-#include "../core/Keypad.hpp"
+#include "../core-lib/Keypad.hpp"
 
 class QtKeypad : public Keypad {
 private:

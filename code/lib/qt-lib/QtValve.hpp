@@ -1,7 +1,7 @@
 #ifndef QT_VALVE_CPP
 #define QT_VALVE_CPP
 
-#include "../core/Valve.hpp"
+#include "../core-lib/Valve.hpp"
 #include "ControlUnit.h"
 #include <cstdint>
 

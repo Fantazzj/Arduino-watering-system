@@ -9,7 +9,7 @@
 #	include <Arduino.h>
 #endif
 
-#include "../date-time/MyTime.hpp"
+#include "../date-time-lib/MyTime.hpp"
 
 class Memory {
 private:

@@ -5,7 +5,7 @@
 #	include <Arduino.h>
 #endif
 
-#include "../date-time/MyDateTime.hpp"
+#include "../date-time-lib/MyDateTime.hpp"
 
 class Clock {
 private:

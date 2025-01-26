@@ -1,7 +1,7 @@
 #ifndef HWCLOCK_CPP
 #define HWCLOCK_CPP
 
-#include "../core/Clock.hpp"
+#include "../core-lib/Clock.hpp"
 #include <TimeLib.h>
 
 

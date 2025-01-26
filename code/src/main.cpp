@@ -1,5 +1,5 @@
-#include "../lib/core/AutoCycle.hpp"
-#include "../lib/core/PageSelector.hpp"
+#include "../lib/core-lib/AutoCycle.hpp"
+#include "../lib/core-lib/PageSelector.hpp"
 
 #if defined(QTDESKTOP)
 

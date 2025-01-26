@@ -1,13 +1,13 @@
 #ifndef PAGE_CONTROLLER_HPP
 #define PAGE_CONTROLLER_HPP
 
-#include "../core/AutoCycle.hpp"
-#include "../core/Clock.hpp"
-#include "../core/Keypad.hpp"
-#include "../core/MainSwitch.hpp"
-#include "../core/Memory.hpp"
-#include "../core/UnitDisplay.hpp"
-#include "../core/Valve.hpp"
+#include "../core-lib/AutoCycle.hpp"
+#include "../core-lib/Clock.hpp"
+#include "../core-lib/Keypad.hpp"
+#include "../core-lib/MainSwitch.hpp"
+#include "../core-lib/Memory.hpp"
+#include "../core-lib/UnitDisplay.hpp"
+#include "../core-lib/Valve.hpp"
 
 enum KeypadButton : uint8_t {
 	Cancel,

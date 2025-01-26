@@ -1,7 +1,7 @@
 #ifndef QTMEMORY_HPP
 #define QTMEMORY_HPP
 
-#include "../core/Memory.hpp"
+#include "../core-lib/Memory.hpp"
 #include <QFile>
 
 class QtMemory : public Memory {

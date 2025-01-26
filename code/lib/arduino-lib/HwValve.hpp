@@ -1,7 +1,7 @@
 #ifndef HW_VALVE_CPP
 #define HW_VALVE_CPP
 
-#include "../core/Valve.hpp"
+#include "../core-lib/Valve.hpp"
 
 class HwValve : public Valve {
 private:

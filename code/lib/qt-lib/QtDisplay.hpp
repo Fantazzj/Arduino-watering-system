@@ -1,7 +1,7 @@
 #ifndef QT_DISPLAY_CPP
 #define QT_DISPLAY_CPP
 
-#include "../core/UnitDisplay.hpp"
+#include "../core-lib/UnitDisplay.hpp"
 #include "ControlUnit.h"
 
 class QtDisplay : public UnitDisplay {

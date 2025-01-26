@@ -1,7 +1,7 @@
 #ifndef HWMEMORY_HPP
 #define HWMEMORY_HPP
 
-#include "../core/Memory.hpp"
+#include "../core-lib/Memory.hpp"
 #include <EEPROM.h>
 
 class HwMemory : public Memory {
