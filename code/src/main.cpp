@@ -65,7 +65,12 @@ int main(int argc, char* argv[]) {
 	thread->start();
 
 	w.show();
-	return a.exec();
+	int exit = a.exec();
+
+	for(int8_t i = 0; i < etvNum; i++)
+		delete myEtv[i];
+
+	return exit;
 }
 
 #elif defined(HWARDUINO)
