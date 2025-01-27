@@ -29,3 +29,28 @@ template<uint8_t n>
 bool ValveGroup<n>::wateringDone(uint8_t num, MyTime newTime) const {
 	return (secToMin(newTime - tOn[num]) >= minOn[num]);
 }
+
+template<uint8_t n>
+MyTime ValveGroup<n>::getTOn(uint8_t i) const {
+	return tOn[i];
+}
+
+template<uint8_t n>
+void ValveGroup<n>::setMinOn(uint8_t i, uint8_t minOn) {
+	this->minOn[i] = minOn;
+}
+
+template<uint8_t n>
+uint8_t ValveGroup<n>::getMinOn(uint8_t i) const {
+	return this->minOn[i];
+}
+
+template<uint8_t n>
+void ValveGroup<n>::setDays(uint8_t i, uint8_t days) {
+	this->days[i] = days;
+}
+
+template<uint8_t n>
+uint8_t ValveGroup<n>::getDays(uint8_t i) const {
+	return this->days[i];
+}
