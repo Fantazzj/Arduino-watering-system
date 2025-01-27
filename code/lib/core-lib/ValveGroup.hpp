@@ -8,12 +8,12 @@ template<uint8_t n>
 class ValveGroup {
 private:
 public:
-	ValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn);
-	ValveGroup(Clock& clock);
+	explicit ValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn);
+	explicit ValveGroup(Clock& clock);
 	virtual void turnOn(uint8_t num) = 0;
 	virtual void turnOff(uint8_t num) = 0;
-	bool toWater(uint8_t num) const;
-	bool wateringDone(uint8_t num, MyTime newTime) const;
+	[[nodiscard]] bool toWater(uint8_t num) const;
+	[[nodiscard]] bool wateringDone(uint8_t num, MyTime newTime) const;
 
 protected:
 	Clock& clock;
