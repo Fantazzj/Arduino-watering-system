@@ -15,6 +15,7 @@ qt_add_library(qt-lib
         QtMoisture.hpp QtMoisture.cpp
         QtValve.hpp QtValve.cpp
         QtMemory.hpp QtMemory.cpp
+        QtValveGroup.hpp QtValveGroup.cpp
 )
 
 target_link_libraries(qt-lib

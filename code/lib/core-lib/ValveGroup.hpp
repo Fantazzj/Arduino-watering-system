@@ -8,7 +8,8 @@ template<uint8_t n>
 class ValveGroup {
 private:
 public:
-	ValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn, uint8_t* elapsedDays);
+	ValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn);
+	ValveGroup(Clock& clock);
 	virtual void turnOn(uint8_t num) = 0;
 	virtual void turnOff(uint8_t num) = 0;
 	bool toWater(uint8_t num) const;

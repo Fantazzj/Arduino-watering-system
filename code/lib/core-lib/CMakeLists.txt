@@ -13,6 +13,7 @@ qt_add_library(core-lib
         Valve.hpp Valve.cpp
         Memory.hpp Memory.cpp
         Overrider.hpp
+        ValveGroup.hpp ValveGroup.cpp
         ../pages/EditClock.hpp ../pages/EditClock.cpp
         ../pages/EditEtvDays.hpp ../pages/EditEtvDays.cpp
         ../pages/EditEtvTime.hpp ../pages/EditEtvTime.cpp

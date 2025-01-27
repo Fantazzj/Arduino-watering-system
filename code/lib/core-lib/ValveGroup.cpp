@@ -1,12 +1,22 @@
 #include "ValveGroup.hpp"
 
 template<uint8_t n>
-ValveGroup<n>::ValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn, uint8_t* elapsedDays) :
+ValveGroup<n>::ValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn) :
 	clock(clock) {
 	for(uint8_t i = 0; i < n; i++) {
 		this->days[i] = days[i];
 		this->minOn[i] = minOn[i];
-		this->elapsedDays[i] = elapsedDays[i];
+		this->elapsedDays[i] = 1;
+	}
+}
+
+template<uint8_t n>
+ValveGroup<n>::ValveGroup(Clock& clock) :
+	clock(clock) {
+	for(uint8_t i = 0; i < n; i++) {
+		this->days[i] = 1;
+		this->minOn[i] = 0;
+		this->elapsedDays[i] = 1;
 	}
 }
 
