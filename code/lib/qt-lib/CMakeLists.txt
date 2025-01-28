@@ -7,15 +7,15 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6Widgets REQUIRED)
 
 qt_add_library(qt-lib
-        ControlUnit.ui ControlUnit.h ControlUnit.cpp
-        QtClock.hpp QtClock.cpp
-        QtDisplay.hpp QtDisplay.cpp
-        QtKeypad.hpp QtKeypad.cpp
-        QtMainSwitch.hpp QtMainSwitch.cpp
-        QtMoisture.hpp QtMoisture.cpp
-        QtValve.hpp QtValve.cpp
-        QtMemory.hpp QtMemory.cpp
-        QtValveGroup.hpp QtValveGroup.cpp
+        ControlUnit.ui ControlUnit.cpp
+        QtClock.cpp
+        QtDisplay.cpp
+        QtKeypad.cpp
+        QtMainSwitch.cpp
+        QtMoisture.cpp
+        QtValve.cpp
+        QtMemory.cpp
+        QtValveGroup.cpp
 )
 
 target_link_libraries(qt-lib
