@@ -17,7 +17,7 @@ PageNum ManualEtv::exec() {
 
 		if(key == Down) {
 			_num--;
-			if(_num < 0) _num = _controller.etvNum-1;
+			if(_num < 0) _num = _controller.etvNum - 1;
 		}
 
 		if(key == Cancel) {
@@ -28,7 +28,7 @@ PageNum ManualEtv::exec() {
 		if(key == Confirm) {
 			_controller.mainSwitch.turnOn();
 			wait(1000);
-			_controller.etv[_num]->turnOn();
+			_controller.etv.turnOn(_num);
 			_controller.autoCycle.etvOn = _num;
 			return HomePage;
 		}
@@ -38,7 +38,7 @@ PageNum ManualEtv::exec() {
 		}
 
 		if(key == Confirm) {
-			_controller.etv[_controller.autoCycle.etvOn]->turnOff();
+			_controller.etv.turnOff(_controller.autoCycle.etvOn);
 			wait(1000);
 			_controller.mainSwitch.turnOff();
 			_controller.autoCycle.etvOn = -1;
@@ -53,8 +53,8 @@ PageNum ManualEtv::exec() {
 
 void ManualEtv::show() {
 	if(_redraw) {
-		if(_controller.autoCycle.etvOn == -1) _controller.display.printData((char*) "Accendi elettrovalvola", _num+1, (char*) "");
-		else _controller.display.printData((char*) "Spegni elettrovalvola", _controller.autoCycle.etvOn+1, (char*) "");
+		if(_controller.autoCycle.etvOn == -1) _controller.display.printData((char*) "Accendi elettrovalvola", _num + 1, (char*) "");
+		else _controller.display.printData((char*) "Spegni elettrovalvola", _controller.autoCycle.etvOn + 1, (char*) "");
 		_controller.display.blinkAt(15, 1);
 		_redraw = false;
 	}

@@ -10,7 +10,7 @@
 #	include "../lib/qt-lib/QtMainSwitch.hpp"
 #	include "../lib/qt-lib/QtMemory.hpp"
 #	include "../lib/qt-lib/QtMoisture.hpp"
-#	include "../lib/qt-lib/QtValve.hpp"
+#	include "../lib/qt-lib/QtValveGroup.hpp"
 
 #	include <QApplication>
 #	include <QThread>
@@ -18,14 +18,13 @@
 QtKeypad myKeypad;
 QtDisplay myDisplay;
 QtClock myClock;
-const int8_t etvNum = 9;
-QtValve* myEtv[etvNum];
+QtValveGroup myValveGroup(myClock);
 QtMainSwitch myMainSwitch;
-QtMemory myMemory(etvNum);
+QtMemory myMemory(VALVE_NUM);
 QtMoisture myMoisture;
 
-AutoCycle autoCycle(myClock, (Valve**) myEtv, etvNum, myMainSwitch, myMoisture);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, (Valve**) myEtv, myMainSwitch, myMemory, autoCycle);
+AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, autoCycle);
 
 void setup(ControlUnit* w) {
 	myDisplay.begin(w);
@@ -33,12 +32,11 @@ void setup(ControlUnit* w) {
 	myMainSwitch.begin(w);
 	myMemory.begin();
 	myMoisture.begin(w);
+	myValveGroup.begin(w);
 
-	for(int8_t i = 0; i < etvNum; i++) {
-		myEtv[i] = new QtValve(myClock, i);
-		myEtv[i]->begin(w);
-		myEtv[i]->minOn = myMemory.readEtvMinOn(i);
-		myEtv[i]->days = myMemory.readEtvDays(i);
+	for(int8_t i = 0; i < VALVE_NUM; i++) {
+		myValveGroup.setDays(i, myMemory.readEtvDays(i));
+		myValveGroup.setMinOn(i, myMemory.readEtvMinOn(i));
 	}
 
 	MyTime tStart = myMemory.readStartTime();
@@ -66,9 +64,6 @@ int main(int argc, char* argv[]) {
 
 	w.show();
 	int exit = a.exec();
-
-	for(int8_t i = 0; i < etvNum; i++)
-		delete myEtv[i];
 
 	return exit;
 }

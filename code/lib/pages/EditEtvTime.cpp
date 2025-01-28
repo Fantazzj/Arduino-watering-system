@@ -3,7 +3,7 @@
 EditEtvTime::EditEtvTime(PageController& controller) :
 	Page(controller) {
 	_etvEdit = 0;
-	_timeEdit = _controller.etv[0]->minOn;
+	_timeEdit = _controller.etv.getMinOn(0);
 }
 
 PageNum EditEtvTime::exec() {
@@ -14,7 +14,7 @@ PageNum EditEtvTime::exec() {
 		case Cancel:
 			if(_etvEdit > 0) {
 				_etvEdit--;
-				_timeEdit = _controller.etv[_etvEdit]->minOn;
+				_timeEdit = _controller.etv.getMinOn(_etvEdit);
 				return Stay;
 			} else {
 				_etvEdit = 0;
@@ -34,10 +34,10 @@ PageNum EditEtvTime::exec() {
 			return Stay;
 
 		case Confirm:
-			_controller.etv[_etvEdit]->minOn = _timeEdit;
+			_controller.etv.setMinOn(_etvEdit, _timeEdit);
 			_controller.memory.saveEtvMinOn(_etvEdit, _timeEdit);
 			_etvEdit++;
-			_timeEdit = _controller.etv[_etvEdit]->minOn;
+			_timeEdit = _controller.etv.getMinOn(_etvEdit);
 			if(_etvEdit >= _controller.etvNum)
 				return HomePage;
 			else return Stay;
@@ -49,7 +49,7 @@ PageNum EditEtvTime::exec() {
 
 void EditEtvTime::show() {
 	if(_redraw) {
-		_controller.display.printData((char*) "Etv", _etvEdit+1, (char*) "per", _timeEdit, (char*) "minuti");
+		_controller.display.printData((char*) "Etv", _etvEdit + 1, (char*) "per", _timeEdit, (char*) "minuti");
 		_controller.display.blinkAt(10, 0);
 		_redraw = false;
 	}

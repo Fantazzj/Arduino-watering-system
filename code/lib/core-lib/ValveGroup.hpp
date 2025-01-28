@@ -28,4 +28,12 @@ protected:
 	MyTime tOn[n];
 };
 
+#include "ValveGroup.inl"
+
+#ifdef VALVE_NUM
+typedef ValveGroup<VALVE_NUM> ValveGroupN;
+#else
+#	error "undefined number of valves"
+#endif
+
 #endif//VALVEGROUP_HPP

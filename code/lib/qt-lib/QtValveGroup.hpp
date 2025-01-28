@@ -4,19 +4,18 @@
 #include "../core-lib/ValveGroup.hpp"
 #include "ControlUnit.h"
 
-template<uint8_t n>
-class QtValveGroup : public ValveGroup<n> {
+class QtValveGroup : public ValveGroupN {
 private:
 	ControlUnit* w;
 
 public:
-	QtValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn);
-	QtValveGroup(Clock& clock);
+	explicit QtValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn);
+	explicit QtValveGroup(Clock& clock);
+	void begin(ControlUnit* w);
 	void turnOn(uint8_t num) override;
 	void turnOff(uint8_t num) override;
 
 protected:
 };
-
 
 #endif//QTVALVEGROUP_HPP

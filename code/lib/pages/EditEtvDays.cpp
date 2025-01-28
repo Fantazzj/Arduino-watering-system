@@ -3,7 +3,7 @@
 EditEtvDays::EditEtvDays(PageController& controller) :
 	Page(controller) {
 	_etvEdit = 0;
-	_daysEdit = _controller.etv[0]->days;
+	_daysEdit = _controller.etv.getDays(0);
 }
 
 PageNum EditEtvDays::exec() {
@@ -14,7 +14,7 @@ PageNum EditEtvDays::exec() {
 		case Cancel:
 			if(_etvEdit > 0) {
 				_etvEdit--;
-				_daysEdit = _controller.etv[_etvEdit]->days;
+				_daysEdit = _controller.etv.getDays(_etvEdit);
 				return Stay;
 			} else {
 				_etvEdit = 0;
@@ -34,10 +34,10 @@ PageNum EditEtvDays::exec() {
 			return Stay;
 
 		case Confirm:
-			_controller.etv[_etvEdit]->days = _daysEdit;
+			_controller.etv.setDays(_etvEdit, _daysEdit);
 			_controller.memory.saveEtvDays(_etvEdit, _daysEdit);
 			_etvEdit++;
-			_daysEdit = _controller.etv[_etvEdit]->days;
+			_daysEdit = _controller.etv.getDays(_etvEdit);
 			if(_etvEdit >= _controller.etvNum)
 				return HomePage;
 			else return Stay;
@@ -49,7 +49,7 @@ PageNum EditEtvDays::exec() {
 
 void EditEtvDays::show() {
 	if(_redraw) {
-		_controller.display.printData((char*) "Etv", _etvEdit+1, (char*) "ogni", _daysEdit, (char*) "giorni");
+		_controller.display.printData((char*) "Etv", _etvEdit + 1, (char*) "ogni", _daysEdit, (char*) "giorni");
 		_controller.display.blinkAt(11, 0);
 		_redraw = false;
 	}

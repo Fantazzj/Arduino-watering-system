@@ -7,7 +7,7 @@
 #include "../core-lib/MainSwitch.hpp"
 #include "../core-lib/Memory.hpp"
 #include "../core-lib/UnitDisplay.hpp"
-#include "../core-lib/Valve.hpp"
+#include "../core-lib/ValveGroup.hpp"
 
 enum KeypadButton : uint8_t {
 	Cancel,
@@ -18,11 +18,11 @@ enum KeypadButton : uint8_t {
 };
 
 struct PageController {
-	explicit PageController(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, Valve* myEtv[], MainSwitch& myMainSwitch, Memory& myMemory, AutoCycle& autoCycle);
+	explicit PageController(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, ValveGroupN& myEtv, MainSwitch& myMainSwitch, Memory& myMemory, AutoCycle& autoCycle);
 	Keypad& keypad;
 	UnitDisplay& display;
 	Clock& clock;
-	Valve** etv;
+	ValveGroupN& etv;
 	MainSwitch& mainSwitch;
 	Memory& memory;
 	AutoCycle& autoCycle;

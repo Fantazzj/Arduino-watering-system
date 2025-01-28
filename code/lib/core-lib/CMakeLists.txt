@@ -2,6 +2,8 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6Widgets REQUIRED)
 
+add_definitions(-DVALVE_NUM=9)
+
 qt_add_library(core-lib
         AutoCycle.hpp AutoCycle.cpp
         Clock.hpp
@@ -13,7 +15,7 @@ qt_add_library(core-lib
         Valve.hpp Valve.cpp
         Memory.hpp Memory.cpp
         Overrider.hpp
-        ValveGroup.hpp ValveGroup.cpp
+        ValveGroup.hpp ValveGroup.inl
         ../pages/EditClock.hpp ../pages/EditClock.cpp
         ../pages/EditEtvDays.hpp ../pages/EditEtvDays.cpp
         ../pages/EditEtvTime.hpp ../pages/EditEtvTime.cpp
