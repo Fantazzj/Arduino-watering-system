@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
 #	include "../lib/arduino-lib/HwMainSwitch.hpp"
 #	include "../lib/arduino-lib/HwMemory.hpp"
 #	include "../lib/arduino-lib/HwMoisture.hpp"
-#	include "../lib/arduino-lib/HwValve.hpp"
+#	include "../lib/arduino-lib/HwValveGroup.hpp"
 
 //UnitDisplay
 #	define lcdAddress 0x27
@@ -106,14 +106,13 @@ HardwareSerial* mySerial;
 HwKeypad myKeypad(cancelPin, downPin, upPin, confirmPin);
 HwDisplay myDisplay(lcdAddress, lcdLength, lcdHeight);
 HwClock myClock;
-const int8_t etvNum = 9;
-HwValve* myEtv[etvNum];
+HwValveGroup myEtv(myClock, etvsPin);
 HwMainSwitch myMainSwitch(mainSwitchPin);
-HwMemory myMemory(etvNum);
+HwMemory myMemory(VALVE_NUM);
 HwMoisture myMoisture(humidityPin);
 
-AutoCycle autoCycle(myClock, (Valve**) myEtv, etvNum, myMainSwitch, myMoisture);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, (Valve**) myEtv, myMainSwitch, myMemory, autoCycle);
+AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
 
 void setup() {
 
@@ -126,12 +125,11 @@ void setup() {
 	myClock.begin();
 	myMainSwitch.begin();
 	myMemory.begin();
+	myEtv.begin();
 
-	for(int8_t i = 0; i < etvNum; i++) {
-		myEtv[i] = new HwValve(myClock, etvsPin[i]);
-		myEtv[i]->begin();
-		myEtv[i]->minOn = myMemory.readEtvMinOn(i);
-		myEtv[i]->days = myMemory.readEtvDays(i);
+	for(int8_t i = 0; i < VALVE_NUM; i++) {
+		myEtv.setMinOn(i, myMemory.readEtvMinOn(i));
+		myEtv.setDays(i, myMemory.readEtvDays(i));
 	}
 
 	MyTime tStart = myMemory.readStartTime();
