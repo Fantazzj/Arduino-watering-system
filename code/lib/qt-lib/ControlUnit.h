@@ -22,6 +22,9 @@ public:
 	explicit ControlUnit(QWidget* parent = nullptr);
 	void setKeypad(QtKeypad* keypad);
 	void printOnConsole(const QString& text);
+	void printOnConsole(const char* text);
+	void printOnConsole(const char c);
+	void printOnConsole(const int n);
 	void printOnDisplay(QString text);
 	int8_t getLength();
 	int8_t getHeight();

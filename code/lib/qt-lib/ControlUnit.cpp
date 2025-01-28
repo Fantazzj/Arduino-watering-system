@@ -67,6 +67,18 @@ void ControlUnit::printOnConsole(const QString& text) {
 	ui->textConsole->append(text);
 }
 
+void ControlUnit::printOnConsole(const char* text) {
+	ui->textConsole->append(text);
+}
+
+void ControlUnit::printOnConsole(const char c) {
+	ui->textConsole->append(QChar(c));
+}
+
+void ControlUnit::printOnConsole(const int n) {
+	ui->textConsole->append(QString::number(n));
+}
+
 void ControlUnit::printOnDisplay(QString text) {
 	for(int i = x, j = 0; j < text.size() && i < length; i++, j++) {
 		matrix[i][y]->setText(text.data()[j]);

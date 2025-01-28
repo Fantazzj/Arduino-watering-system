@@ -2,14 +2,18 @@
 
 QtDebugger::QtDebugger() = default;
 
+void QtDebugger::begin(ControlUnit* w) {
+	this->w = w;
+}
+
 void QtDebugger::print(const char* text) {
-	qDebug() << text;
+	w->printOnConsole(text);
 }
 
 void QtDebugger::print(char c) {
-	qDebug() << c;
+	w->printOnConsole(c);
 }
 
 void QtDebugger::print(int n) {
-	qDebug() << n;
+	w->printOnConsole(n);
 }
