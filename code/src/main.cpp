@@ -11,6 +11,7 @@
 #	include "../lib/qt-lib/QtMemory.hpp"
 #	include "../lib/qt-lib/QtMoisture.hpp"
 #	include "../lib/qt-lib/QtValveGroup.hpp"
+#	include "../lib/qt-lib/QtDebugger.hpp"
 
 #	include <QApplication>
 #	include <QThread>
@@ -22,6 +23,7 @@ QtValveGroup myValveGroup(myClock);
 QtMainSwitch myMainSwitch;
 QtMemory myMemory(VALVE_NUM);
 QtMoisture myMoisture;
+QtDebugger myDebugger;
 
 AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, autoCycle);
@@ -77,6 +79,7 @@ int main(int argc, char* argv[]) {
 #	include "../lib/arduino-lib/HwMemory.hpp"
 #	include "../lib/arduino-lib/HwMoisture.hpp"
 #	include "../lib/arduino-lib/HwValveGroup.hpp"
+#	include "../lib/arduino-lib/HwDebugger.hpp"
 
 //UnitDisplay
 #	define lcdAddress 0x27
@@ -93,15 +96,11 @@ const int8_t etvsPin[] = {6, 7, 2, 3, 4, 5, 8, 9, 10};
 #	define upPin A2
 #	define confirmPin A0
 
-#	define DEBUG 1
-#	if DEBUG
-#		warning Debug mode on
-#		include <SoftwareSerial.h>
-HardwareSerial* mySerial;
-#	endif
-
 //Sensors
 #	define humidityPin A7
+
+//Serial
+#	define baud 115200
 
 HwKeypad myKeypad(cancelPin, downPin, upPin, confirmPin);
 HwDisplay myDisplay(lcdAddress, lcdLength, lcdHeight);
@@ -110,22 +109,18 @@ HwValveGroup myEtv(myClock, etvsPin);
 HwMainSwitch myMainSwitch(mainSwitchPin);
 HwMemory myMemory(VALVE_NUM);
 HwMoisture myMoisture(humidityPin);
+HwDebugger myDebugger;
 
 AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
 
 void setup() {
-
-#	if DEBUG
-	mySerial = &Serial;
-	mySerial->begin(9600);
-#	endif
-
 	myDisplay.begin();
 	myClock.begin();
 	myMainSwitch.begin();
 	myMemory.begin();
 	myEtv.begin();
+	myDebugger.begin(115200);
 
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
 		myEtv.setMinOn(i, myMemory.readEtvMinOn(i));

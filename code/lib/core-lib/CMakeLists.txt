@@ -8,6 +8,7 @@ qt_add_library(core-lib
         UnitDisplay.cpp
         Valve.cpp
         Memory.cpp
+        Debugger.cpp
         ../pages/EditClock.cpp
         ../pages/EditEtvDays.cpp
         ../pages/EditEtvTime.cpp
