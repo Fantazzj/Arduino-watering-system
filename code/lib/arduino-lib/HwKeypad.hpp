@@ -6,10 +6,10 @@
 
 class HwKeypad : public Keypad {
 private:
-	Button* cancelButton;
-	Button* downButton;
-	Button* upButton;
-	Button* confirmButton;
+	Button cancelButton;
+	Button downButton;
+	Button upButton;
+	Button confirmButton;
 
 public:
 	explicit HwKeypad(uint8_t cancelPin, uint8_t downPin, uint8_t upPin, uint8_t confirmPin);
