@@ -1,9 +1,5 @@
-find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
-find_package(Qt6Widgets REQUIRED)
-
-qt_add_executable(Arduino-watering-system
-        MANUAL_FINALIZATION main.cpp
+add_executable(Arduino-watering-system
+        main.cpp
 )
 
 target_link_libraries(Arduino-watering-system
@@ -17,5 +13,3 @@ set_target_properties(Arduino-watering-system PROPERTIES
         MACOSX_BUNDLE TRUE
         WIN32_EXECUTABLE TRUE
 )
-
-qt_finalize_executable(Arduino-watering-system)
