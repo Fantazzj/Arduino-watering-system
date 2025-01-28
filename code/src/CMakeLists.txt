@@ -2,9 +2,13 @@ add_executable(Arduino-watering-system
         main.cpp
 )
 
-target_link_libraries(Arduino-watering-system
-        PUBLIC qt-lib
-)
+if ($ENV{TYPE} STREQUAL "QTDESKTOP")
+    target_link_libraries(Arduino-watering-system PUBLIC qt-lib)
+
+elseif ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
+    target_link_libraries(Arduino-watering-system PUBLIC clay-lib)
+
+endif ()
 
 set_target_properties(Arduino-watering-system PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

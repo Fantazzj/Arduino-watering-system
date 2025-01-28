@@ -17,8 +17,11 @@ add_compile_definitions(VALVE_NUM=9)
 
 if ($ENV{TYPE} STREQUAL "QTDESKTOP")
     add_subdirectory(lib/qt-lib)
+
 elseif ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
+    add_subdirectory(lib/clay-lib)
     message(FATAL_ERROR "CLAY not yet supported")
+
 endif ()
 
 add_subdirectory(src)
