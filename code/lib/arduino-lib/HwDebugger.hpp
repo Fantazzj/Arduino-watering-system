@@ -8,7 +8,7 @@ class HwDebugger : public Debugger {
 private:
 public:
 	explicit HwDebugger();
-	void begin(int baud);
+	void begin(unsigned long baud);
 	void print(const char* text) override;
 	void print(char c) override;
 	void print(int n) override;

@@ -2,7 +2,7 @@
 
 HwDebugger::HwDebugger() = default;
 
-void HwDebugger::begin(int baud) {
+void HwDebugger::begin(unsigned long baud) {
 	Serial.begin(baud);
 }
 
