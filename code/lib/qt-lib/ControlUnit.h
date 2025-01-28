@@ -1,13 +1,11 @@
 #ifndef CONTROL_UNIT_H
 #define CONTROL_UNIT_H
 
-#ifdef QTDESKTOP
-
-#	include "QtKeypad.hpp"
-#	include <QCheckBox>
-#	include <QLabel>
-#	include <QMainWindow>
-#	include <QSlider>
+#include "QtKeypad.hpp"
+#include <QCheckBox>
+#include <QLabel>
+#include <QMainWindow>
+#include <QSlider>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,11 +21,11 @@ public:
 	void setKeypad(QtKeypad* keypad);
 	void printOnConsole(const QString& text);
 	void printOnConsole(const char* text);
-	void printOnConsole(const char c);
-	void printOnConsole(const int n);
+	void printOnConsole(char c);
+	void printOnConsole(int n);
 	void printOnDisplay(QString text);
-	int8_t getLength();
-	int8_t getHeight();
+	static int8_t getLength();
+	static int8_t getHeight();
 	void setCursorDisplay(int length, int height);
 	void showCursorDisplay();
 	void hideCursorDisplay();
@@ -54,8 +52,6 @@ private:
 	static const int8_t length = 16;
 	static const int8_t height = 2;
 	static const int8_t etvNum = 9;
-	//QCheckBox* etv[etvNum];
-	//QLabel* matrix[length][height];
 	QCheckBox* etv[etvNum];
 	QLabel* matrix[length][height];
 	QLabel* highlighted;
@@ -63,7 +59,5 @@ private:
 	int8_t x = 0;
 	int8_t y = 0;
 };
-
-#endif
 
 #endif// CONTROL_UNIT_H

@@ -56,7 +56,6 @@ ControlUnit::ControlUnit(QWidget* parent) :
 
 ControlUnit::~ControlUnit() {
 	delete ui;
-	//exit(0);
 }
 
 void ControlUnit::setKeypad(QtKeypad* keypad) {
@@ -71,11 +70,11 @@ void ControlUnit::printOnConsole(const char* text) {
 	ui->textConsole->append(text);
 }
 
-void ControlUnit::printOnConsole(const char c) {
+void ControlUnit::printOnConsole(char c) {
 	ui->textConsole->append(QChar(c));
 }
 
-void ControlUnit::printOnConsole(const int n) {
+void ControlUnit::printOnConsole(int n) {
 	ui->textConsole->append(QString::number(n));
 }
 
@@ -103,9 +102,9 @@ void ControlUnit::homeDisplay() {
 }
 
 void ControlUnit::clearDisplay() {
-	for(int i = 0; i < length; i++) {
-		for(int j = 0; j < height; j++) {
-			matrix[i][j]->clear();
+	for(auto& labels: matrix) {
+		for(auto& l: labels) {
+			l->clear();
 		}
 	}
 	homeDisplay();
