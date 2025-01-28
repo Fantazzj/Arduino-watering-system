@@ -1,6 +1,6 @@
 #include "HwDebugger.hpp"
 
-explicit HwDebugger::HwDebugger() = default;
+HwDebugger::HwDebugger() = default;
 
 void HwDebugger::begin(int baud) {
 	Serial.begin(baud);

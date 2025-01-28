@@ -12,6 +12,7 @@
 #	include "../lib/qt-lib/QtMoisture.hpp"
 #	include "../lib/qt-lib/QtValveGroup.hpp"
 #	include "../lib/qt-lib/QtDebugger.hpp"
+#	include "../lib/qt-lib/QtTimer.hpp"
 
 #	include <QApplication>
 #	include <QThread>
@@ -24,9 +25,10 @@ QtMainSwitch myMainSwitch;
 QtMemory myMemory(VALVE_NUM);
 QtMoisture myMoisture;
 QtDebugger myDebugger;
+QtTimer myTimer;
 
-AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, autoCycle);
+AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, autoCycle);
 
 void setup(ControlUnit* w) {
 	myDisplay.begin(w);
@@ -80,6 +82,7 @@ int main(int argc, char* argv[]) {
 #	include "../lib/arduino-lib/HwMoisture.hpp"
 #	include "../lib/arduino-lib/HwValveGroup.hpp"
 #	include "../lib/arduino-lib/HwDebugger.hpp"
+#	include "../lib/arduino-lib/HwTimer.hpp"
 
 //UnitDisplay
 #	define lcdAddress 0x27
@@ -110,9 +113,10 @@ HwMainSwitch myMainSwitch(mainSwitchPin);
 HwMemory myMemory(VALVE_NUM);
 HwMoisture myMoisture(humidityPin);
 HwDebugger myDebugger;
+HwTimer myTimer;
 
-AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, autoCycle);
+AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, myTimer, autoCycle);
 
 void setup() {
 	myDisplay.begin();

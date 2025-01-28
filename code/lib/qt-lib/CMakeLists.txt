@@ -17,6 +17,7 @@ qt_add_library(qt-lib
         QtMemory.cpp
         QtValveGroup.cpp
         QtDebugger.cpp
+        QtTimer.cpp
 )
 
 target_link_libraries(qt-lib

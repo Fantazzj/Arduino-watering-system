@@ -1,19 +1,19 @@
 #include "Debugger.hpp"
 
 void Debugger::print(MyTime time) {
-	print(time.hour);
+	print((int) time.hour);
 	print(':');
-	print(time.min);
+	print((int) time.min);
 	print(':');
-	print(time.sec);
+	print((int) time.sec);
 }
 
 void Debugger::print(MyDate date) {
-	print(date.day);
+	print((int) date.day);
 	print(':');
-	print(date.mon);
+	print((int) date.mon);
 	print(':');
-	print(date.year);
+	print((int) date.year);
 }
 
 void Debugger::print(MyDateTime dateTime) {

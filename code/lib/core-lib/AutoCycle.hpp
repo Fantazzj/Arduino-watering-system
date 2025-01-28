@@ -7,7 +7,7 @@
 
 #include "MainSwitch.hpp"
 #include "Moisture.hpp"
-#include "Overrider.hpp"
+#include "Timer.hpp"
 #include "ValveGroup.hpp"
 
 class AutoCycle {
@@ -16,6 +16,7 @@ private:
 	ValveGroupN& _myEtv;
 	MainSwitch& _myMainSwitch;
 	Moisture& _myMoisture;
+	Timer& _myTimer;
 	int8_t _nextEtv();
 	MyTime _checkTReset();
 	const uint16_t msSnub = 1500;
@@ -30,7 +31,7 @@ public:
 	int8_t etvNum;
 	void updateTReset();
 
-	explicit AutoCycle(Clock& myClock, ValveGroupN& myEtv, int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture);
+	explicit AutoCycle(Clock& myClock, ValveGroupN& myEtv, int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& timer);
 	void begin(MyTime tStart);
 	void exec();
 
