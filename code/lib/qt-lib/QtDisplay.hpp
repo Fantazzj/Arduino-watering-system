@@ -21,10 +21,10 @@ private:
 public:
 	explicit QtDisplay();
 	void begin(ControlUnit* w);
-	void printSimpleText(char text[]) override;
-	void printData(char text1[], int8_t data, char text2[]) override;
-	void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) override;
-	void printIn(char text[], int8_t x, int8_t y) override;
+	void printSimpleText(const char text[]) override;
+	void printData(const char text1[], int8_t data, const char text2[]) override;
+	void printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) override;
+	void printIn(const char text[], int8_t x, int8_t y) override;
 	void printIn(int8_t data, int8_t x, int8_t y) override;
 	void printIn(QString text, int8_t x, int8_t y);
 	void showClock(MyDateTime timeIn) override;

@@ -53,8 +53,8 @@ PageNum ManualEtv::exec() {
 
 void ManualEtv::show() {
 	if(_redraw) {
-		if(_controller.autoCycle.etvOn == -1) _controller.display.printData((char*) "Accendi elettrovalvola", _num + 1, (char*) "");
-		else _controller.display.printData((char*) "Spegni elettrovalvola", _controller.autoCycle.etvOn + 1, (char*) "");
+		if(_controller.autoCycle.etvOn == -1) _controller.display.printData("Accendi elettrovalvola", _num + 1, "");
+		else _controller.display.printData("Spegni elettrovalvola", _controller.autoCycle.etvOn + 1, "");
 		_controller.display.blinkAt(15, 1);
 		_redraw = false;
 	}

@@ -49,7 +49,7 @@ PageNum EditEtvTime::exec() {
 
 void EditEtvTime::show() {
 	if(_redraw) {
-		_controller.display.printData((char*) "Etv", _etvEdit + 1, (char*) "per", _timeEdit, (char*) "minuti");
+		_controller.display.printData("Etv", _etvEdit + 1, "per", _timeEdit, "minuti");
 		_controller.display.blinkAt(10, 0);
 		_redraw = false;
 	}

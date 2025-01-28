@@ -25,8 +25,8 @@ PageNum EditSRWatered::exec() {
 
 void EditSRWatered::show() {
 	if(_redraw) {
-		if(!_watered) _controller.display.printSimpleText((char*) "Imposta gia' innaffiato");
-		else _controller.display.printSimpleText((char*) "Imposta da innaffiare");
+		if(!_watered) _controller.display.printSimpleText("Imposta gia' innaffiato");
+		else _controller.display.printSimpleText("Imposta da innaffiare");
 		_controller.display.blinkAt(15, 1);
 		_redraw = false;
 	}

@@ -7,10 +7,10 @@ class UnitDisplay {
 private:
 public:
 	explicit UnitDisplay() = default;
-	virtual void printSimpleText(char text[]) = 0;
-	virtual void printData(char text1[], int8_t data, char text2[]) = 0;
-	virtual void printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) = 0;
-	virtual void printIn(char text[], int8_t x, int8_t y) = 0;
+	virtual void printSimpleText(const char text[]) = 0;
+	virtual void printData(const char text1[], int8_t data, const char text2[]) = 0;
+	virtual void printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) = 0;
+	virtual void printIn(const char text[], int8_t x, int8_t y) = 0;
 	virtual void printIn(int8_t data, int8_t x, int8_t y) = 0;
 	virtual void showClock(MyDateTime timeIn) = 0;
 	virtual void blinkAt(int8_t x, int8_t y) = 0;
@@ -19,7 +19,7 @@ public:
 	virtual void dropSym(bool state) = 0;
 	virtual void checkSym(bool state) = 0;
 	virtual void backlight(bool state);
-	bool getBacklight() const;
+	[[nodiscard]] bool getBacklight() const;
 
 protected:
 	bool backlightState = true;

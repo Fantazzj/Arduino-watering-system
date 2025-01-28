@@ -26,7 +26,7 @@ void Home::show() {
 		_controller.display.showClock(_newTime);
 		//_controller.displayPrint("HOMEPAGE");
 		if(_controller.autoCycle.etvOn != -1) {
-			_controller.display.printIn((char*) "Etv", 11, 1);
+			_controller.display.printIn("Etv", 11, 1);
 			_controller.display.printIn(_controller.autoCycle.etvOn+1, 14, 1);
 		} else {
 			if(_controller.autoCycle.watered) _controller.display.checkSym(true);

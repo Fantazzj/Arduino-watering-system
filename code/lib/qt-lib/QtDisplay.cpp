@@ -91,7 +91,7 @@ void QtDisplay::begin(ControlUnit* w) {
 	w->backlight();
 }
 
-void QtDisplay::printSimpleText(char text[]) {
+void QtDisplay::printSimpleText(const char text[]) {
 	QString rows[_height];
 	QString conv(text);
 
@@ -103,7 +103,7 @@ void QtDisplay::printSimpleText(char text[]) {
 	} else _displayError1();
 }
 
-void QtDisplay::printData(char text1[], int8_t data, char text2[]) {
+void QtDisplay::printData(const char text1[], int8_t data, const char text2[]) {
 	QString rows[_height];
 
 	QString conv1(text1);
@@ -119,7 +119,7 @@ void QtDisplay::printData(char text1[], int8_t data, char text2[]) {
 	} else _displayError1();
 }
 
-void QtDisplay::printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) {
+void QtDisplay::printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) {
 	QString rows[_height];
 
 	QString conv1(text1);
@@ -136,7 +136,7 @@ void QtDisplay::printData(char text1[], int8_t data1, char text2[], int8_t data2
 	} else _displayError1();
 }
 
-void QtDisplay::printIn(char text[], int8_t x, int8_t y) {
+void QtDisplay::printIn(const char text[], int8_t x, int8_t y) {
 	QString conv(text);
 
 	_w->setCursorDisplay(x, y);

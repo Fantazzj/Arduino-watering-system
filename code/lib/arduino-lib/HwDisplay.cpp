@@ -122,7 +122,7 @@ void HwDisplay::begin() {
 	lcd->home();
 }
 
-void HwDisplay::printSimpleText(char text[]) {
+void HwDisplay::printSimpleText(const char text[]) {
 	String rows[height];
 	String conv(text);
 
@@ -134,7 +134,7 @@ void HwDisplay::printSimpleText(char text[]) {
 	} else displayError1();
 }
 
-void HwDisplay::printData(char text1[], int8_t data, char text2[]) {
+void HwDisplay::printData(const char text1[], int8_t data, const char text2[]) {
 	String row[height];
 
 	String conv1(text1);
@@ -149,7 +149,7 @@ void HwDisplay::printData(char text1[], int8_t data, char text2[]) {
 	} else displayError1();
 }
 
-void HwDisplay::printData(char text1[], int8_t data1, char text2[], int8_t data2, char text3[]) {
+void HwDisplay::printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) {
 	String row[height];
 
 	String conv1(text1);
@@ -165,7 +165,7 @@ void HwDisplay::printData(char text1[], int8_t data1, char text2[], int8_t data2
 	} else displayError1();
 }
 
-void HwDisplay::printIn(char text[], int8_t col, int8_t row) {
+void HwDisplay::printIn(const char text[], int8_t col, int8_t row) {
 	String conv(text);
 
 	lcd->setCursor(col, row);

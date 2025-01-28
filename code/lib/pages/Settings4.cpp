@@ -24,7 +24,7 @@ PageNum Settings4::exec() {
 
 void Settings4::show() {
 	if(_redraw) {
-		_controller.display.printSimpleText((char*) "Impostazione manuale");
+		_controller.display.printSimpleText("Impostazione manuale");
 		_redraw = false;
 	}
 }

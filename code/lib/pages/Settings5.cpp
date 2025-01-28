@@ -24,7 +24,7 @@ PageNum Settings5::exec() {
 
 void Settings5::show() {
 	if(_redraw) {
-		_controller.display.printSimpleText((char*) "Imposta memoria inn.");
+		_controller.display.printSimpleText("Imposta memoria inn.");
 		_redraw = false;
 	}
 }

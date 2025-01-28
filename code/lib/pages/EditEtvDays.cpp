@@ -49,7 +49,7 @@ PageNum EditEtvDays::exec() {
 
 void EditEtvDays::show() {
 	if(_redraw) {
-		_controller.display.printData((char*) "Etv", _etvEdit + 1, (char*) "ogni", _daysEdit, (char*) "giorni");
+		_controller.display.printData("Etv", _etvEdit + 1, "ogni", _daysEdit, "giorni");
 		_controller.display.blinkAt(11, 0);
 		_redraw = false;
 	}
