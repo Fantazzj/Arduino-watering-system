@@ -6,7 +6,7 @@ Valve::Valve(Clock& etvClock, uint8_t minOn, uint8_t days) :
 	this->days = days;
 }
 void Valve::turnOn() {
-	tOn = etvClock.getTime().time;
+	tOn = etvClock.getDateTime().time;
 	elapsedDays = 1;
 }
 bool Valve::toWater() const {

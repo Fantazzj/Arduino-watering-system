@@ -7,7 +7,7 @@ PageSelector::PageSelector(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myCl
 void PageSelector::begin() {
 	activePage = new Home(controller);
 
-	lightTime = controller.clock.getTime().time;
+	lightTime = controller.clock.getDateTime().time;
 }
 
 void PageSelector::exec() {
@@ -73,8 +73,8 @@ void PageSelector::exec() {
 void PageSelector::show() {
 	if(controller.keypad.generalPressed()) {
 		controller.display.backlight(true);
-		lightTime = controller.clock.getTime().time;
-	} else if(secToMin(controller.clock.getTime().time - lightTime) >= 2) {
+		lightTime = controller.clock.getDateTime().time;
+	} else if(secToMin(controller.clock.getDateTime().time - lightTime) >= 2) {
 		controller.display.backlight(false);
 	}
 

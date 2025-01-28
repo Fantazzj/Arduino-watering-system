@@ -18,7 +18,7 @@ void HwValve::begin() {
 }
 
 void HwValve::turnOn() {
-	tOn = etvClock.getTime().time;
+	tOn = etvClock.getDateTime().time;
 	elapsedDays = 1;
 	digitalWrite(pin, LOW);
 }

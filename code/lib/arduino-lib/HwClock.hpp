@@ -10,8 +10,8 @@ private:
 public:
 	explicit HwClock();
 	void begin();
-	MyDateTime getTime() override;
-	void setTime(MyDateTime tIn) override;
+	MyDateTime getDateTime() override;
+	void setDateTime(MyDateTime tIn) override;
 };
 
 #endif

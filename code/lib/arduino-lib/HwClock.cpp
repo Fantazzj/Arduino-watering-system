@@ -16,7 +16,7 @@ void HwClock::begin() {
 	::setTime(hour, min, sec, day, mon, year);
 }
 
-MyDateTime HwClock::getTime() {
+MyDateTime HwClock::getDateTime() {
 	MyDateTime out;
 
 	out.time.hour = hour();
@@ -31,7 +31,7 @@ MyDateTime HwClock::getTime() {
 	return out;
 }
 
-void HwClock::setTime(MyDateTime t) {
+void HwClock::setDateTime(MyDateTime t) {
 	::setTime(t.time.hour, t.time.min, t.time.sec,
 			  t.date.day, t.date.mon, t.date.year);
 }

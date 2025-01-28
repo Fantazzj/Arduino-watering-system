@@ -3,7 +3,7 @@
 Home::Home(PageController& controller) :
 	Page(controller) {
 	_controller.display.noBlink();
-	_newTime = _controller.clock.getTime();
+	_newTime = _controller.clock.getDateTime();
 }
 
 PageNum Home::exec() {
@@ -11,7 +11,7 @@ PageNum Home::exec() {
 
 	if(key != NoBtn) _redraw = true;
 
-	_newTime = _controller.clock.getTime();
+	_newTime = _controller.clock.getDateTime();
 	if(_oldTime.time.min != _newTime.time.min) _redraw = true;
 
 	if(_controller.autoCycle.etvOn != oldEtvOn) _redraw = true;

@@ -3,7 +3,7 @@
 EditClock::EditClock(PageController& controller) :
 	Page(controller) {
 	_editPhase = 1;
-	_newTime = controller.clock.getTime();
+	_newTime = controller.clock.getDateTime();
 }
 
 PageNum EditClock::exec() {
@@ -66,7 +66,7 @@ PageNum EditClock::exec() {
 		case Confirm:
 			_editPhase++;
 			if(_editPhase > 6) {
-				_controller.clock.setTime(_newTime);
+				_controller.clock.setDateTime(_newTime);
 				_controller.timeToEdit = false;
 				return HomePage;
 			} else return Stay;

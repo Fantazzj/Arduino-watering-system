@@ -11,7 +11,7 @@ void QtValveGroup::begin(ControlUnit* w) {
 }
 
 void QtValveGroup::turnOn(uint8_t i) {
-	this->tOn[i] = this->clock.getTime().time;
+	this->tOn[i] = this->clock.getDateTime().time;
 	this->elapsedDays[i] = 1;
 	w->activateValve(i);
 }

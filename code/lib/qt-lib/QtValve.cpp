@@ -15,7 +15,7 @@ void QtValve::begin(ControlUnit* w) {
 }
 
 void QtValve::turnOn() {
-	tOn = etvClock.getTime().time;
+	tOn = etvClock.getDateTime().time;
 	elapsedDays = 1;
 	w->activateValve(num);
 }

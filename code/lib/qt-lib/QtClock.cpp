@@ -1,12 +1,14 @@
 #include "QtClock.hpp"
 
-QtClock::QtClock() = default;
+QtClock::QtClock() {
+	this->_w = nullptr;
+};
 
 void QtClock::begin(ControlUnit* w) {
 	this->_w = w;
 }
 
-MyDateTime QtClock::getTime() {
+MyDateTime QtClock::getDateTime() {
 	MyDateTime time;
 	std::time_t t = std::time(nullptr);
 	std::tm* now = std::localtime(&t);
@@ -23,7 +25,7 @@ MyDateTime QtClock::getTime() {
 	return time;
 }
 
-void QtClock::setTime(MyDateTime time) {
+void QtClock::setDateTime(MyDateTime time) {
 	_w->printOnConsole(QString::number(time.time.hour) + ":" + QString::number((time.time.min)));
 	_w->printOnConsole(QString::number(time.date.dow));
 	_w->printOnConsole(QString::number(time.date.day) + "/" + QString::number(time.date.mon) + "/" + QString::number(time.date.year));

@@ -12,11 +12,10 @@ private:
 public:
 	explicit QtClock();
 	void begin(ControlUnit* w);
-	MyDateTime getTime() override;
-	void setTime(MyDateTime time) override;
+	MyDateTime getDateTime() override;
+	void setDateTime(MyDateTime time) override;
 
 protected:
 };
-
 
 #endif

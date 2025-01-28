@@ -46,7 +46,7 @@ MyTime AutoCycle::_checkTReset() {
 }
 
 void AutoCycle::exec() {
-	newTime = _myClock.getTime();
+	newTime = _myClock.getDateTime();
 
 	if(tReset.hour == newTime.time.hour && tReset.min == newTime.time.min && !started) {
 		uint8_t moisture = _myMoisture.getMoisture();
