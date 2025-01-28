@@ -1,9 +1,30 @@
 #include "HwDisplay.hpp"
 
+HwDisplay::HwDisplay(int8_t address, int8_t lenght, int8_t height) :
+	lcd(address, lenght, height) {
+	lcdLenght = height * lenght;
+	this->height = height;
+	this->lenght = lenght;
+}
+
+void HwDisplay::begin() {
+	lcd.init();
+	lcd.backlight();
+	lcd.createChar((byte) myA, (byte*) myAArray);
+	lcd.createChar((byte) myE, (byte*) myEArray);
+	lcd.createChar((byte) myI, (byte*) myIArray);
+	lcd.createChar((byte) myO, (byte*) myOArray);
+	lcd.createChar((byte) myU, (byte*) myUArray);
+	lcd.createChar((byte) myDrop, (byte*) myDropArray);
+	lcd.createChar((byte) myCheck, (byte*) myCheckArray);
+	lcd.createChar((byte) myClock, (byte*) myClockArray);
+	lcd.home();
+}
+
 void HwDisplay::displayError1() {
-	lcd->print("Err. string");
-	lcd->setCursor(0, 1);
-	lcd->print("too big");
+	lcd.print("Err. string");
+	lcd.setCursor(0, 1);
+	lcd.print("too big");
 }
 
 void HwDisplay::arrangeWords(String text, String row[]) {
@@ -23,7 +44,7 @@ void HwDisplay::arrangeWords(String text, String row[]) {
 
 void HwDisplay::printRows(String row[]) {
 	for(int8_t rowN = 0; rowN < height; rowN++) {
-		lcd->setCursor(0, rowN);
+		lcd.setCursor(0, rowN);
 		myPrint(row[rowN]);
 	}
 }
@@ -31,21 +52,21 @@ void HwDisplay::printRows(String row[]) {
 void HwDisplay::myPrint(String text) {
 	for(uint8_t chr = 0; chr < text.length(); chr++) {
 		if(text.charAt(chr) == 'a' && text.charAt(chr + 1) == '\'') {
-			lcd->write(myA);
+			lcd.write(myA);
 			chr++;
 		} else if(text.charAt(chr) == 'e' && text.charAt(chr + 1) == '\'') {
-			lcd->write(myE);
+			lcd.write(myE);
 			chr++;
 		} else if(text.charAt(chr) == 'i' && text.charAt(chr + 1) == '\'') {
-			lcd->write(myI);
+			lcd.write(myI);
 			chr++;
 		} else if(text.charAt(chr) == 'o' && text.charAt(chr + 1) == '\'') {
-			lcd->write(myO);
+			lcd.write(myO);
 			chr++;
 		} else if(text.charAt(chr) == 'u' && text.charAt(chr + 1) == '\'') {
-			lcd->write(myU);
+			lcd.write(myU);
 			chr++;
-		} else lcd->print(text.charAt(chr));
+		} else lcd.print(text.charAt(chr));
 	}
 }
 
@@ -101,32 +122,11 @@ String HwDisplay::arrangeTime(MyDateTime time) {
 	return arrangedTime;
 }
 
-HwDisplay::HwDisplay(int8_t address, int8_t lenght, int8_t height) {
-	lcd = new LiquidCrystal_I2C(address, lenght, height);
-	lcdLenght = height * lenght;
-	this->height = height;
-	this->lenght = lenght;
-}
-
-void HwDisplay::begin() {
-	lcd->init();
-	lcd->backlight();
-	lcd->createChar((byte) myA, (byte*) myAArray);
-	lcd->createChar((byte) myE, (byte*) myEArray);
-	lcd->createChar((byte) myI, (byte*) myIArray);
-	lcd->createChar((byte) myO, (byte*) myOArray);
-	lcd->createChar((byte) myU, (byte*) myUArray);
-	lcd->createChar((byte) myDrop, (byte*) myDropArray);
-	lcd->createChar((byte) myCheck, (byte*) myCheckArray);
-	lcd->createChar((byte) myClock, (byte*) myClockArray);
-	lcd->home();
-}
-
 void HwDisplay::printSimpleText(const char text[]) {
 	String rows[height];
 	String conv(text);
 
-	lcd->clear();
+	lcd.clear();
 
 	if(conv.length() <= lcdLenght) {
 		arrangeWords(conv, rows);
@@ -142,7 +142,7 @@ void HwDisplay::printData(const char text1[], int8_t data, const char text2[]) {
 
 	String conv = conv1 + " " + String(data) + " " + conv2;
 
-	lcd->clear();
+	lcd.clear();
 	if(conv.length() <= lcdLenght) {
 		arrangeWords(conv, row);
 		printRows(row);
@@ -158,7 +158,7 @@ void HwDisplay::printData(const char text1[], int8_t data1, const char text2[], 
 
 	String conv = conv1 + " " + String(data1) + " " + conv2 + " " + String(data2) + " " + conv3;
 
-	lcd->clear();
+	lcd.clear();
 	if(conv.length() <= lcdLenght) {
 		arrangeWords(conv, row);
 		printRows(row);
@@ -168,24 +168,24 @@ void HwDisplay::printData(const char text1[], int8_t data1, const char text2[], 
 void HwDisplay::printIn(const char text[], int8_t col, int8_t row) {
 	String conv(text);
 
-	lcd->setCursor(col, row);
+	lcd.setCursor(col, row);
 	myPrint(conv);
 }
 
 void HwDisplay::printIn(String text, int8_t col, int8_t row) {
-	lcd->setCursor(col, row);
+	lcd.setCursor(col, row);
 	myPrint(text);
 }
 
 void HwDisplay::printIn(int8_t num, int8_t col, int8_t row) {
 	String conv = String(num);
 
-	lcd->setCursor(col, row);
+	lcd.setCursor(col, row);
 	myPrint(conv);
 }
 
 void HwDisplay::showClock(MyDateTime timeIn) {
-	lcd->clear();
+	lcd.clear();
 	String date;
 	date = arrangeDate(timeIn);
 	printIn(date, 0, 1);
@@ -199,34 +199,34 @@ void HwDisplay::showClock(MyDateTime timeIn) {
 }
 
 void HwDisplay::blinkAt(int8_t x, int8_t y) {
-	lcd->setCursor(x, y);
-	lcd->blink();
+	lcd.setCursor(x, y);
+	lcd.blink();
 }
 
 void HwDisplay::noBlink() {
-	lcd->noBlink();
+	lcd.noBlink();
 }
 
 void HwDisplay::clockSym(bool state) {
-	lcd->setCursor(12, 1);
-	if(state) lcd->write(myClock);
-	else lcd->print(" ");
+	lcd.setCursor(12, 1);
+	if(state) lcd.write(myClock);
+	else lcd.print(" ");
 }
 
 void HwDisplay::dropSym(bool state) {
-	lcd->setCursor(13, 1);
-	if(state) lcd->write(myDrop);
-	else lcd->print(" ");
+	lcd.setCursor(13, 1);
+	if(state) lcd.write(myDrop);
+	else lcd.print(" ");
 }
 
 void HwDisplay::checkSym(bool state) {
-	lcd->setCursor(14, 1);
-	if(state) lcd->write(myCheck);
-	else lcd->print(" ");
+	lcd.setCursor(14, 1);
+	if(state) lcd.write(myCheck);
+	else lcd.print(" ");
 }
 
 void HwDisplay::backlight(bool state) {
 	UnitDisplay::backlight(state);
-	if(state) lcd->backlight();
-	else lcd->noBacklight();
+	if(state) lcd.backlight();
+	else lcd.noBacklight();
 }
