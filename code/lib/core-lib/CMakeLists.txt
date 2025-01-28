@@ -1,8 +1,4 @@
-find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
-find_package(Qt6Widgets REQUIRED)
-
-qt_add_library(core-lib
+add_library(core-lib
         AutoCycle.cpp
         PageSelector.cpp
         UnitDisplay.cpp
@@ -27,6 +23,5 @@ qt_add_library(core-lib
 )
 
 target_link_libraries(core-lib
-        PRIVATE Qt6::Widgets
         PUBLIC date-time-lib
 )
