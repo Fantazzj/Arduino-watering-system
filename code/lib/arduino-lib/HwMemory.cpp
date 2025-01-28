@@ -1,4 +1,5 @@
 #include "HwMemory.hpp"
+#include <EEPROM.h>
 
 HwMemory::HwMemory(uint8_t etvNum) :
 	Memory(etvNum) {}
