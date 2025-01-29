@@ -20,7 +20,7 @@ if ($ENV{TYPE} STREQUAL "QTDESKTOP")
 
 elseif ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
     add_subdirectory(lib/clay-lib)
-    message(FATAL_ERROR "CLAY not yet supported")
+    message("CLAY support in development")
 
 endif ()
 

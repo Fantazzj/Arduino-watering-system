@@ -25,7 +25,6 @@ QtMemory myMemory(VALVE_NUM);
 QtMoisture myMoisture;
 QtDebugger myDebugger;
 QtTimer myTimer;
-
 #elif defined(HWARDUINO)
 #	include "../lib/arduino-lib/HwClock.hpp"
 #	include "../lib/arduino-lib/HwDisplay.hpp"
@@ -68,6 +67,29 @@ HwMoisture myMoisture(humidityPin);
 HwDebugger myDebugger;
 HwTimer myTimer;
 #elif defined(CLAYDESKTOP)
+#	include "../lib/clay-lib/ClayControlUnit.hpp"
+#	include "../lib/clay-lib/ClayClock.hpp"
+#	include "../lib/clay-lib/ClayDisplay.hpp"
+#	include "../lib/clay-lib/ClayKeypad.hpp"
+#	include "../lib/clay-lib/ClayMainSwitch.hpp"
+#	include "../lib/clay-lib/ClayMemory.hpp"
+#	include "../lib/clay-lib/ClayMoisture.hpp"
+#	include "../lib/clay-lib/ClayValveGroup.hpp"
+#	include "../lib/clay-lib/ClayDebugger.hpp"
+#	include "../lib/clay-lib/ClayTimer.hpp"
+
+#	include <chrono>
+#	include <thread>
+
+ClayKeypad myKeypad;
+ClayDisplay myDisplay;
+ClayClock myClock;
+ClayValveGroup myValveGroup(myClock);
+ClayMainSwitch myMainSwitch;
+ClayMemory myMemory(VALVE_NUM);
+ClayMoisture myMoisture;
+ClayDebugger myDebugger;
+ClayTimer myTimer;
 #else
 #	error "No variable definition"
 #endif
@@ -137,11 +159,7 @@ void setup() {
 	pageSelector.begin();
 }
 #elif defined(CLAYDESKTOP)
-
-#	include "../lib/clay-lib/ClayControlUnit.hpp"
-
-/*
-void setup(ControlUnit* w) {
+void setup(ClayControlUnit* w) {
 	myDisplay.begin(w);
 	myClock.begin(w);
 	myMainSwitch.begin(w);
@@ -159,15 +177,15 @@ void setup(ControlUnit* w) {
 
 	pageSelector.begin();
 }
- */
 
-void loop();
+
+		void loop();
 
 int main(int argc, char* argv[]) {
 	ClayControlUnit w;
 
-	//w.setKeypad(&myKeypad);
-	//setup(&w);
+	w.setKeypad(&myKeypad);
+	setup(&w);
 
 	QThread* thread = QThread::create([] {
 		for(;;) {
@@ -178,7 +196,6 @@ int main(int argc, char* argv[]) {
 	thread->start();
 
 	w.show();
-	int exit = a.exec();
 
 	return exit;
 }
