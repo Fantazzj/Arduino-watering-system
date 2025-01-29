@@ -80,6 +80,7 @@ HwTimer myTimer;
 
 #	include <chrono>
 #	include <thread>
+#	include <iostream>
 
 ClayKeypad myKeypad;
 ClayDisplay myDisplay;
@@ -179,7 +180,7 @@ void setup(ClayControlUnit* w) {
 }
 
 
-		void loop();
+void loop();
 
 int main(int argc, char* argv[]) {
 	ClayControlUnit w;
@@ -187,17 +188,20 @@ int main(int argc, char* argv[]) {
 	w.setKeypad(&myKeypad);
 	setup(&w);
 
-	QThread* thread = QThread::create([] {
+	std::cout << "Creation" << std::endl;
+	std::thread thread([] {
 		for(;;) {
-			loop();
-			QThread::usleep(10);
+			//loop();
+			std::cout << "Created" << std::endl;
+			std::this_thread::sleep_for(std::chrono::microseconds(10));
 		}
 	});
-	thread->start();
 
-	w.show();
+	thread.join();
+	std::cout << "Joined" << std::endl;
+	//w.show();
 
-	return exit;
+	return 0;
 }
 
 #else
