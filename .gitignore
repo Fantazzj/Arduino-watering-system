@@ -1,9 +1,9 @@
-/code/build-avr/*
-/code/build-debug/*
-/code/.idea/*
-/code/.vscode/*
-/code/.pio/*
+/code/build*
+/code/.idea
+/code/.vscode
+/code/.pio
 /schema/*
 /code/CMakeLists.txt.user
 /code/*.bin
 /code/.gitignore
+
