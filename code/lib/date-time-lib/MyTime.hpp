@@ -1,10 +1,12 @@
 #ifndef MYTIME_LIBRARY_H
 #define MYTIME_LIBRARY_H
 
-#if defined(QTDESKTOP)
-#	include <cstdint>
-#elif defined(HWARDUINO)
-#	include <Arduino.h>
+#if defined __has_include
+#	if __has_include(<cstdlib>)
+#		include <cstdint>
+#	else
+#		include <stdint.h>
+#	endif
 #endif
 
 #define secToMin(a) ((uint64_t(a)) / 60)

@@ -1,4 +1,5 @@
 #include "HwValve.hpp"
+#include <Arduino.h>
 
 HwValve::HwValve(Clock& etvClock, uint8_t minOn, uint8_t days, uint8_t pin) :
 	Valve(etvClock, minOn, days) {
