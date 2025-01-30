@@ -82,6 +82,10 @@ HwTimer myTimer;
 #	include <thread>
 #	include <iostream>
 
+using std::thread;
+using std::chrono::microseconds;
+using std::this_thread::sleep_for;
+
 ClayKeypad myKeypad;
 ClayDisplay myDisplay;
 ClayClock myClock;
@@ -179,31 +183,29 @@ void setup(ClayControlUnit* w) {
 	pageSelector.begin();
 }
 
-
 void loop();
 
 int main(int argc, char* argv[]) {
 	ClayControlUnit w;
+	bool finished = false;
 
 	w.setKeypad(&myKeypad);
 	setup(&w);
 
-	std::cout << "Creation" << std::endl;
-	std::thread thread([] {
-		for(;;) {
+	bool* pfinished = &finished;
+	thread thread([pfinished] {
+		while(!*pfinished) {
 			//loop();
-			std::cout << "Created" << std::endl;
-			std::this_thread::sleep_for(std::chrono::microseconds(10));
+			sleep_for(microseconds(10));
 		}
 	});
 
+	w.show();
+	finished = true;
 	thread.join();
-	std::cout << "Joined" << std::endl;
-	//w.show();
 
 	return 0;
 }
-
 #else
 #	error "No setup() definition"
 #endif
