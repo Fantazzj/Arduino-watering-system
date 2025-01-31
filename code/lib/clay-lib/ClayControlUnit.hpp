@@ -4,7 +4,7 @@
 #include "ClayKeypad.hpp"
 
 extern "C" {
-#include "ClayUi.h"
+#include "UI/clayUi.h"
 };
 
 class ClayControlUnit {

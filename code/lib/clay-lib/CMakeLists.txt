@@ -11,7 +11,7 @@ add_library(clay-lib
         ClayValveGroup.cpp
         ClayDebugger.cpp
         ClayTimer.cpp
-        ClayUi.c
+        UI/clayUi.c
 )
 
 target_link_directories(clay-lib PRIVATE ${RAYLIB_DIR})

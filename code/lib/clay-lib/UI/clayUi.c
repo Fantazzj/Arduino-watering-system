@@ -1,8 +1,8 @@
-#include "ClayUi.h"
+#include "clayUi.h"
 
 #define CLAY_IMPLEMENTATION
 #include "clay.h"
-#include "renderer/clay_renderer_raylib.c"
+#include "clay_renderer_raylib.c"
 #include "stdlib.h"
 
 #define CHILD (void) NULL
