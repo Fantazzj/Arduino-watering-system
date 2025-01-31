@@ -9,7 +9,6 @@
 
 #define D_LENGHT 16
 #define D_HEIGHT 2
-#define ETV_NUM 9
 
 const char text[D_HEIGHT][D_LENGHT] = {
 		"simple text row1",
@@ -44,8 +43,8 @@ void init() {
 
 void createDisplayChars(int8_t row, int8_t columns) {
 	Clay_Sizing charSize = {
-			.height = 50,
-			.width = 35,
+			.height = CLAY_SIZING_FIXED(50),
+			.width = CLAY_SIZING_FIXED(35),
 	};
 
 	Clay_Color charBgColor = {
@@ -63,7 +62,7 @@ void createDisplayChars(int8_t row, int8_t columns) {
 
 	for(int8_t c = 0; c < columns; c++) {
 		Clay_String displayText = {
-				.chars = text[row]+c,
+				.chars = text[row] + c,
 				.length = 1,
 		};
 
@@ -81,8 +80,8 @@ void createDisplayChars(int8_t row, int8_t columns) {
 
 void createDisplayRows(int8_t rows, int8_t columns) {
 	Clay_Sizing rowSize = {
-			.height = CLAY_SIZING_GROW(),
-			.width = CLAY_SIZING_GROW(),
+			.height = CLAY_SIZING_FIT(),
+			.width = CLAY_SIZING_FIT(),
 	};
 
 	for(int8_t r = 0; r < rows; r++) {
@@ -114,6 +113,38 @@ void createDisplay(int8_t rows, int8_t columns) {
 	}
 }
 
+void createControlUnit() {
+	createDisplay(D_HEIGHT, D_LENGHT);
+	//createButtons();
+	//createEtvs();
+}
+
+void createDebugger() {
+	Clay_TextElementConfig debugText = {
+			.fontId = 0,
+			.fontSize = 30,
+			.textColor = {255, 255, 255, 255},
+	};
+
+	CLAY(CLAY_ID("Debugger"),
+		 CLAY_RECTANGLE({.color = {255, 0, 0, 255}}),
+		 CLAY_SCROLL({.vertical = true}),
+		 CLAY_LAYOUT({
+				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
+				 .sizing = {
+						 .height = CLAY_SIZING_GROW(),
+						 .width = CLAY_SIZING_GROW(),
+				 },
+				 .childGap = 5,
+				 .padding = {5, 5, 5, 5},
+		 }),
+		 CHILD) {
+		CLAY_TEXT(CLAY_STRING("A really much long string to prove that text automatically goes to new line"), CLAY_TEXT_CONFIG(debugText));
+		CLAY_TEXT(CLAY_STRING("A really much long string to prove that text automatically goes to new line"), CLAY_TEXT_CONFIG(debugText));
+		CLAY_TEXT(CLAY_STRING("A really much long string to prove that text automatically goes to new line"), CLAY_TEXT_CONFIG(debugText));
+	}
+}
+
 void show() {
 	while(!WindowShouldClose()) {
 		Clay_BeginLayout();
@@ -125,7 +156,7 @@ void show() {
 		CLAY(CLAY_ID("Container"),
 			 CLAY_RECTANGLE({.color = {209, 209, 209, 110}}),
 			 CLAY_LAYOUT({
-					 .layoutDirection = CLAY_TOP_TO_BOTTOM,
+					 .layoutDirection = CLAY_LEFT_TO_RIGHT,
 					 .sizing =
 							 {
 									 .height = CLAY_SIZING_GROW(),
@@ -133,10 +164,10 @@ void show() {
 							 },
 					 .padding = {25, 25, 25, 25},
 					 .childGap = 25,
-			 })) {
-			createDisplay(D_HEIGHT, D_LENGHT);
-			//createButtons();
-			//createEtvs();
+			 }),
+			 CHILD) {
+			createControlUnit();
+			createDebugger();
 		}
 
 		Clay_RenderCommandArray renderCommands = Clay_EndLayout();
