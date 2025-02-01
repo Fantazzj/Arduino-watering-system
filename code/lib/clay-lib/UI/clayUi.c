@@ -3,12 +3,12 @@
 #define CLAY_IMPLEMENTATION
 #include "clay.h"
 #include "clay_renderer_raylib.c"
-#include "stdlib.h"
+#include <stdlib.h>
 
 #define CHILD (void) NULL
 
-#define D_LENGHT 16
 #define D_HEIGHT 2
+#define D_LENGHT 16
 
 const char text[D_HEIGHT][D_LENGHT] = {
 		"simple text row1",
@@ -26,18 +26,21 @@ void init() {
 	uint64_t clayRequiredMemory = Clay_MinMemorySize();
 	Clay_Arena clayMemory = (Clay_Arena){
 			.capacity = clayRequiredMemory,
-			.memory = (char*) malloc(clayRequiredMemory)};
+			.memory = (char*) malloc(clayRequiredMemory),
+	};
 
 	Clay_Initialize(
 			clayMemory,
 			(Clay_Dimensions){
 					.width = (float) GetScreenWidth(),
-					.height = (float) GetScreenHeight()},
+					.height = (float) GetScreenHeight(),
+			},
 			(Clay_ErrorHandler){HandleClayErrors});
 
 	Raylib_fonts[0] = (Raylib_Font){
 			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", 48, 0, 400),
-			.fontId = 0};
+			.fontId = 0,
+	};
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 }
 
@@ -151,7 +154,8 @@ void show() {
 
 		Clay_SetLayoutDimensions((Clay_Dimensions){
 				.width = (float) GetScreenWidth(),
-				.height = (float) GetScreenHeight()});
+				.height = (float) GetScreenHeight(),
+		});
 
 		CLAY(CLAY_ID("Container"),
 			 CLAY_RECTANGLE({.color = {209, 209, 209, 110}}),
