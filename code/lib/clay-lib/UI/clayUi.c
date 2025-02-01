@@ -10,6 +10,7 @@
 #define D_HEIGHT 2
 #define D_LENGHT 16
 
+
 const char text[D_HEIGHT][D_LENGHT] = {
 		"simple text row1",
 		"simple text row2",
@@ -38,7 +39,7 @@ void init() {
 			(Clay_ErrorHandler){HandleClayErrors});
 
 	Raylib_fonts[0] = (Raylib_Font){
-			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", 48, 0, 400),
+			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", 48, 0, 250),
 			.fontId = 0,
 	};
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
@@ -69,8 +70,9 @@ void createDisplayChars(int8_t row, int8_t columns) {
 				.length = 1,
 		};
 
-		CLAY(CLAY_RECTANGLE(
-					 {.color = charBgColor}),
+		CLAY(CLAY_RECTANGLE({
+					 .color = charBgColor,
+			 }),
 			 CLAY_LAYOUT({
 					 .sizing = charSize,
 					 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
@@ -100,8 +102,12 @@ void createDisplayRows(int8_t rows, int8_t columns) {
 }
 
 void createDisplay(int8_t rows, int8_t columns) {
+	Clay_Color displayColor = {209, 209, 209, 220};
+
 	CLAY(CLAY_ID("Display"),
-		 CLAY_RECTANGLE({.color = {209, 209, 209, 220}}),
+		 CLAY_RECTANGLE({
+				 .color = displayColor,
+		 }),
 		 CLAY_LAYOUT({
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 				 .sizing = {
@@ -130,8 +136,12 @@ void createDebugger() {
 	};
 
 	CLAY(CLAY_ID("Debugger"),
-		 CLAY_RECTANGLE({.color = {255, 0, 0, 255}}),
-		 CLAY_SCROLL({.vertical = true}),
+		 CLAY_RECTANGLE({
+				 .color = {255, 0, 0, 255},
+		 }),
+		 CLAY_SCROLL({
+				 .vertical = true,
+		 }),
 		 CLAY_LAYOUT({
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 				 .sizing = {
@@ -158,14 +168,15 @@ void show() {
 		});
 
 		CLAY(CLAY_ID("Container"),
-			 CLAY_RECTANGLE({.color = {209, 209, 209, 110}}),
+			 CLAY_RECTANGLE({
+					 .color = {209, 209, 209, 110},
+			 }),
 			 CLAY_LAYOUT({
 					 .layoutDirection = CLAY_LEFT_TO_RIGHT,
-					 .sizing =
-							 {
-									 .height = CLAY_SIZING_GROW(),
-									 .width = CLAY_SIZING_GROW(),
-							 },
+					 .sizing = {
+							 .height = CLAY_SIZING_GROW(),
+							 .width = CLAY_SIZING_GROW(),
+					 },
 					 .padding = {25, 25, 25, 25},
 					 .childGap = 25,
 			 }),
