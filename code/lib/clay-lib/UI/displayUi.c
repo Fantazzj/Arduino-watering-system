@@ -1,5 +1,4 @@
 #include "displayUi.h"
-
 #include "clay.h"
 
 const char text[D_HEIGHT][D_LENGTH] = {
@@ -7,21 +6,31 @@ const char text[D_HEIGHT][D_LENGTH] = {
 		"simple text row2",
 };
 
-void createDisplayChars(int8_t row, int8_t columns) {
+uint16_t textId;
+
+void setCharTextId(uint16_t id) {
+	textId = id;
+}
+
+uint16_t getCharTextId() {
+	return textId;
+}
+
+void createDisplayChars(int8_t row) {
 	Clay_Sizing charSize = {
 			.height = CLAY_SIZING_FIXED(50),
 			.width = CLAY_SIZING_FIXED(35),
 	};
 
-	Clay_Color charBgColor = {255, 0, 0, 255};
+	Clay_Color charBgColor = CHAR_BG_COLOR;
 
 	Clay_TextElementConfig charText = {
-			.fontId = 0,
-			.fontSize = 48,
-			.textColor = {255, 255, 255, 255},
+			.fontId = textId,
+			.fontSize = CHAR_TEXT_SIZE,
+			.textColor = CHAR_TEXT_COLOR,
 	};
 
-	for(int8_t c = 0; c < columns; c++) {
+	for(int8_t c = 0; c < D_LENGTH; c++) {
 		Clay_String displayText = {
 				.chars = text[row] + c,
 				.length = 1,
@@ -39,24 +48,24 @@ void createDisplayChars(int8_t row, int8_t columns) {
 	}
 }
 
-void createDisplayRows(int8_t rows, int8_t columns) {
+void createDisplayRows() {
 	Clay_Sizing rowSize = {
 			.height = CLAY_SIZING_FIT(),
 			.width = CLAY_SIZING_FIT(),
 	};
 
-	for(int8_t r = 0; r < rows; r++) {
+	for(int8_t r = 0; r < D_HEIGHT; r++) {
 		CLAY(CLAY_LAYOUT({
 				.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				.childGap = 5,
 				.sizing = rowSize,
 		})) {
-			createDisplayChars(r, columns);
+			createDisplayChars(r);
 		}
 	}
 }
 
-void createDisplay(int8_t rows, int8_t columns) {
+void createDisplay() {
 	Clay_Color displayColor = {209, 209, 209, 220};
 
 	CLAY(CLAY_ID("Display"),
@@ -72,6 +81,6 @@ void createDisplay(int8_t rows, int8_t columns) {
 				 .childGap = 5,
 				 .padding = {5, 5, 5, 5},
 		 })) {
-		createDisplayRows(rows, columns);
+		createDisplayRows();
 	}
 }

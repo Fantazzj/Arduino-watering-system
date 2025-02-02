@@ -29,9 +29,10 @@ void init() {
 			},
 			(Clay_ErrorHandler){HandleClayErrors});
 
+	setCharTextId(0);
 	Raylib_fonts[0] = (Raylib_Font){
-			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", 48, 0, 250),
-			.fontId = 0,
+			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", CHAR_TEXT_SIZE, 0, 250),
+			.fontId = getCharTextId(),
 	};
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 }
@@ -42,7 +43,7 @@ void createControlUnit() {
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 				 .childGap = 5,
 		 })) {
-		createDisplay(D_HEIGHT, D_LENGTH);
+		createDisplay();
 		createButtons();
 		//createEtvs();
 	}
