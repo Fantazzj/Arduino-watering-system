@@ -4,6 +4,7 @@
 #include "buttonsUi.h"
 #include "clay.h"
 #include "clay_renderer_raylib.c"
+#include "debuggerUi.h"
 #include "displayUi.h"
 #include <stdlib.h>
 
@@ -34,6 +35,13 @@ void init() {
 			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DISPLAY_TEXT_SIZE, 0, 250),
 			.fontId = getDisplayTextId(),
 	};
+
+	setDebuggerTextId(1);
+	Raylib_fonts[1] = (Raylib_Font){
+			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DEBUGGER_TEXT_SIZE, 0, 250),
+			.fontId = getDebuggerTextId(),
+	};
+
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 }
 
@@ -46,35 +54,6 @@ void createControlUnit() {
 		createDisplay();
 		createButtons();
 		//createEtvs();
-	}
-}
-
-void createDebugger() {
-	Clay_TextElementConfig debugText = {
-			.fontId = 0,
-			.fontSize = 30,
-			.textColor = {255, 255, 255, 255},
-	};
-
-	CLAY(CLAY_ID("Debugger"),
-		 CLAY_RECTANGLE({
-				 .color = {255, 0, 0, 255},
-		 }),
-		 CLAY_SCROLL({
-				 .vertical = true,
-		 }),
-		 CLAY_LAYOUT({
-				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
-				 .sizing = {
-						 .height = CLAY_SIZING_GROW(),
-						 .width = CLAY_SIZING_GROW(),
-				 },
-				 .childGap = 5,
-				 .padding = {5, 5, 5, 5},
-		 })) {
-		CLAY_TEXT(CLAY_STRING("A really much long string to prove that text automatically goes to new line"), CLAY_TEXT_CONFIG(debugText));
-		CLAY_TEXT(CLAY_STRING("A really much long string to prove that text automatically goes to new line"), CLAY_TEXT_CONFIG(debugText));
-		CLAY_TEXT(CLAY_STRING("A really much long string to prove that text automatically goes to new line"), CLAY_TEXT_CONFIG(debugText));
 	}
 }
 

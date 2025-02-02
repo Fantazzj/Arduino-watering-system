@@ -6,14 +6,14 @@ const char text[D_HEIGHT][D_LENGTH] = {
 		"simple text row2",
 };
 
-uint16_t textId;
+uint16_t displayTextId;
 
 void setDisplayTextId(uint16_t id) {
-	textId = id;
+	displayTextId = id;
 }
 
 uint16_t getDisplayTextId() {
-	return textId;
+	return displayTextId;
 }
 
 void createDisplayChars(int8_t row) {
@@ -25,7 +25,7 @@ void createDisplayChars(int8_t row) {
 	Clay_Color charBgColor = DISPLAY_BG_COLOR;
 
 	Clay_TextElementConfig charText = {
-			.fontId = textId,
+			.fontId = displayTextId,
 			.fontSize = DISPLAY_TEXT_SIZE,
 			.textColor = DISPLAY_TEXT_COLOR,
 	};
