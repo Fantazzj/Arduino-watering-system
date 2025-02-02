@@ -42,6 +42,12 @@ void init() {
 			.fontId = getDebuggerTextId(),
 	};
 
+	setButtonsTextId(2);
+	Raylib_fonts[2] = (Raylib_Font){
+			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", BUTTONS_TEXT_SIZE, 0, 250),
+			.fontId = getButtonsTextId(),
+	};
+
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 }
 
