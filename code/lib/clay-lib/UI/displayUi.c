@@ -8,11 +8,11 @@ const char text[D_HEIGHT][D_LENGTH] = {
 
 uint16_t textId;
 
-void setCharTextId(uint16_t id) {
+void setDisplayTextId(uint16_t id) {
 	textId = id;
 }
 
-uint16_t getCharTextId() {
+uint16_t getDisplayTextId() {
 	return textId;
 }
 
@@ -22,12 +22,12 @@ void createDisplayChars(int8_t row) {
 			.width = CLAY_SIZING_FIXED(35),
 	};
 
-	Clay_Color charBgColor = CHAR_BG_COLOR;
+	Clay_Color charBgColor = DISPLAY_BG_COLOR;
 
 	Clay_TextElementConfig charText = {
 			.fontId = textId,
-			.fontSize = CHAR_TEXT_SIZE,
-			.textColor = CHAR_TEXT_COLOR,
+			.fontSize = DISPLAY_TEXT_SIZE,
+			.textColor = DISPLAY_TEXT_COLOR,
 	};
 
 	for(int8_t c = 0; c < D_LENGTH; c++) {

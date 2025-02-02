@@ -29,10 +29,10 @@ void init() {
 			},
 			(Clay_ErrorHandler){HandleClayErrors});
 
-	setCharTextId(0);
+	setDisplayTextId(0);
 	Raylib_fonts[0] = (Raylib_Font){
-			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", CHAR_TEXT_SIZE, 0, 250),
-			.fontId = getCharTextId(),
+			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DISPLAY_TEXT_SIZE, 0, 250),
+			.fontId = getDisplayTextId(),
 	};
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 }

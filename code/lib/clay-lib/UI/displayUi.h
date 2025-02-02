@@ -6,12 +6,12 @@
 #define D_HEIGHT 2
 #define D_LENGTH 16
 
-#define CHAR_BG_COLOR {255, 0, 0, 255}
-#define CHAR_TEXT_COLOR {255, 255, 255, 255}
-#define CHAR_TEXT_SIZE 48
+#define DISPLAY_BG_COLOR {255, 0, 0, 255}
+#define DISPLAY_TEXT_COLOR {255, 255, 255, 255}
+#define DISPLAY_TEXT_SIZE 48
 
-void setCharTextId(uint16_t id);
-uint16_t getCharTextId(void);
+void setDisplayTextId(uint16_t id);
+uint16_t getDisplayTextId(void);
 
 void createDisplay(void);
 
