@@ -1,0 +1,6 @@
+#ifndef CLAYCONSTANTS_H
+#define CLAYCONSTANTS_H
+
+
+
+#endif//CLAYCONSTANTS_H

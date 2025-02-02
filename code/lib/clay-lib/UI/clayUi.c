@@ -8,10 +8,10 @@
 #define CHILD (void) NULL
 
 #define D_HEIGHT 2
-#define D_LENGHT 16
+#define D_LENGTH 16
 
 
-const char text[D_HEIGHT][D_LENGHT] = {
+const char text[D_HEIGHT][D_LENGTH] = {
 		"simple text row1",
 		"simple text row2",
 };
@@ -51,12 +51,7 @@ void createDisplayChars(int8_t row, int8_t columns) {
 			.width = CLAY_SIZING_FIXED(35),
 	};
 
-	Clay_Color charBgColor = {
-			255,
-			0,
-			0,
-			255,
-	};
+	Clay_Color charBgColor = {255, 0, 0, 255};
 
 	Clay_TextElementConfig charText = {
 			.fontId = 0,
@@ -123,7 +118,7 @@ void createDisplay(int8_t rows, int8_t columns) {
 }
 
 void createControlUnit() {
-	createDisplay(D_HEIGHT, D_LENGHT);
+	createDisplay(D_HEIGHT, D_LENGTH);
 	//createButtons();
 	//createEtvs();
 }
