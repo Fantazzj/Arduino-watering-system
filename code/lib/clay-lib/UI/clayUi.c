@@ -6,6 +6,7 @@
 #include "clay_renderer_raylib.c"
 #include "debuggerUi.h"
 #include "displayUi.h"
+#include "etvsUi.h"
 #include <stdlib.h>
 
 void HandleClayErrors(Clay_ErrorData errorData) {
@@ -48,6 +49,12 @@ void init() {
 			.fontId = getButtonsTextId(),
 	};
 
+	setEtvsTextId(3);
+	Raylib_fonts[3] = (Raylib_Font){
+			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", ETVS_TEXT_SIZE, 0, 250),
+			.fontId = getEtvsTextId(),
+	};
+
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 }
 
@@ -58,8 +65,8 @@ void createControlUnit() {
 				 .childGap = 5,
 		 })) {
 		createDisplay();
-		//createEtvs();
 		createButtonGroup();
+		createEtvGroup();
 	}
 }
 
