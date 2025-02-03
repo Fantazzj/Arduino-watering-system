@@ -3,9 +3,9 @@
 #include "clay.h"
 #include <stdint.h>
 
-#define B_NUM 4
+#define BUTTONS_NUM 4
 
-const Clay_String buttonNames[B_NUM] = {
+const Clay_String buttonNames[BUTTONS_NUM] = {
 		{
 				.chars = "Cancel",
 				.length = 6,
@@ -68,7 +68,7 @@ void createButtons() {
 						 .height = CLAY_SIZING_FIT(),
 				 },
 		 })) {
-		for(int8_t i = 0; i < B_NUM; i++)
+		for(int8_t i = 0; i < BUTTONS_NUM; i++)
 			createButton(i);
 	}
 }
