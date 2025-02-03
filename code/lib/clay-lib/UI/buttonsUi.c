@@ -45,7 +45,7 @@ void createButton(int8_t i) {
 		 CLAY_LAYOUT({
 				 .sizing = {
 						 .width = CLAY_SIZING_GROW(),
-						 .height = CLAY_SIZING_FIT(BUTTONS_TEXT_SIZE+5,  BUTTONS_TEXT_SIZE+25),
+						 .height = CLAY_SIZING_FIT(BUTTONS_TEXT_SIZE + 5, BUTTONS_TEXT_SIZE + 25),
 				 },
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 		 })) {
@@ -53,7 +53,7 @@ void createButton(int8_t i) {
 	}
 }
 
-void createButtons() {
+void createButtonGroup() {
 	CLAY(CLAY_ID("Buttons"),
 		 CLAY_RECTANGLE({
 				 .color = BUTTONS_BG_COLOR,

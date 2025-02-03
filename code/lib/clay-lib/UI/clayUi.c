@@ -58,8 +58,8 @@ void createControlUnit() {
 				 .childGap = 5,
 		 })) {
 		createDisplay();
-		createButtons();
 		//createEtvs();
+		createButtonGroup();
 	}
 }
 

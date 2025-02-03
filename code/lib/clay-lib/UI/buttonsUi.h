@@ -8,7 +8,7 @@
 #define BUTTONS_TEXT_COLOR {255, 255, 255, 255}
 #define BUTTONS_TEXT_SIZE 30
 
-void createButtons();
+void createButtonGroup();
 
 void setButtonsTextId(uint16_t id);
 uint16_t getButtonsTextId(void);
