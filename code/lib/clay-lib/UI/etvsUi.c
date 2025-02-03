@@ -63,6 +63,7 @@ void createEtv(int8_t i) {
 
 	CLAY(CLAY_RECTANGLE({
 				 .color = false ? etvsOnColor : etvsOffColor,
+				 .cornerRadius = {10, 10, 10, 10},
 		 }),
 		 CLAY_LAYOUT({
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
@@ -76,22 +77,38 @@ void createEtv(int8_t i) {
 	}
 }
 
+void createEtvRow(int8_t from, int8_t to) {
+	CLAY(CLAY_LAYOUT({
+			.layoutDirection = CLAY_LEFT_TO_RIGHT,
+			.childGap = 10,
+			.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
+			.sizing = {
+					.width = CLAY_SIZING_GROW(),
+					.height = CLAY_SIZING_GROW(),
+			},
+	})) {
+		for(int8_t i = from; i <= to; i++)
+			createEtv(i);
+	}
+}
+
 void createEtvGroup() {
 	CLAY(CLAY_ID("Etvs"),
 		 CLAY_RECTANGLE({
 				 .color = ETVS_BG_COLOR,
+				 .cornerRadius = {5, 5, 5, 5},
 		 }),
 		 CLAY_LAYOUT({
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
-				 .padding = {5, 5, 5, 5},
-				 .childGap = 5,
+				 .padding = {10, 10, 10, 10},
+				 .childGap = 10,
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				 .sizing = {
 						 .width = CLAY_SIZING_GROW(),
-						 .height = CLAY_SIZING_FIT(),
+						 .height = CLAY_SIZING_GROW(),
 				 },
 		 })) {
-		for(int8_t i = 0; i < ETV_NUM; i++)
-			createEtv(i);
+		for(int8_t i = 0; i < ETV_NUM / 3; i++)
+			createEtvRow(i * 3, i * 3 + 2);
 	}
 }

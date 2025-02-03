@@ -15,7 +15,7 @@ void HandleClayErrors(Clay_ErrorData errorData) {
 }
 
 void init() {
-	Clay_Raylib_Initialize(1024, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
+	Clay_Raylib_Initialize(1500, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	uint64_t clayRequiredMemory = Clay_MinMemorySize();
 	Clay_Arena clayMemory = (Clay_Arena){
@@ -62,7 +62,11 @@ void createControlUnit() {
 	CLAY(CLAY_ID("ControlUnit"),
 		 CLAY_LAYOUT({
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
-				 .childGap = 5,
+				 .childGap = 25,
+				 .sizing = {
+						 .height = CLAY_SIZING_GROW(),
+						 .width = CLAY_SIZING_FIT(),
+				 }
 		 })) {
 		createDisplay();
 		createButtonGroup();
@@ -81,7 +85,7 @@ void show() {
 
 		CLAY(CLAY_ID("Container"),
 			 CLAY_RECTANGLE({
-					 .color = {209, 209, 209, 110},
+					 .color = BG_COLOR,
 			 }),
 			 CLAY_LAYOUT({
 					 .layoutDirection = CLAY_LEFT_TO_RIGHT,

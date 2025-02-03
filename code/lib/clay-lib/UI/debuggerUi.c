@@ -22,6 +22,7 @@ void createDebugger() {
 	CLAY(CLAY_ID("Debugger"),
 		 CLAY_RECTANGLE({
 				 .color = DEBUGGER_BG_COLOR,
+				 .cornerRadius = {5,5,5,5}
 		 }),
 		 CLAY_SCROLL({
 				 .vertical = true,
