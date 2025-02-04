@@ -83,6 +83,9 @@ void show() {
 	setDisplayChar(0,4,'E');
 	setDisplayChar(0,5,'D');
 
+	setEtvState(3, true);
+	setEtvState(8, true);
+
 	while(!WindowShouldClose()) {
 		Clay_BeginLayout();
 

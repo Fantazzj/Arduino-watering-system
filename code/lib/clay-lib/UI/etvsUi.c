@@ -17,6 +17,18 @@ static const Clay_String etvsNames[ETV_NUM] = {
 		CLAY_STRING("Etv9"),
 };
 
+static bool etvStates[ETV_NUM] = {
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+};
+
 static uint16_t textId;
 
 void setEtvsTextId(uint16_t id) {
@@ -35,7 +47,7 @@ static void createEtv(int8_t i) {
 	};
 
 	CLAY(CLAY_RECTANGLE({
-				 .color = false ? etvsOnColor : etvsOffColor,
+				 .color = etvStates[i] ? etvsOnColor : etvsOffColor,
 				 .cornerRadius = {10, 10, 10, 10},
 		 }),
 		 CLAY_LAYOUT({
@@ -84,4 +96,8 @@ void createEtvGroup() {
 		for(int8_t i = 0; i < ETV_NUM / 3; i++)
 			createEtvRow(i * 3, i * 3 + 2);
 	}
+}
+
+void setEtvState(int8_t n, bool state) {
+	etvStates[n] = state;
 }

@@ -15,5 +15,6 @@ void createEtvGroup();
 
 void setEtvsTextId(uint16_t id);
 uint16_t getEtvsTextId();
+void setEtvState(int8_t n, bool state);
 
 #endif//ETVUI_H
