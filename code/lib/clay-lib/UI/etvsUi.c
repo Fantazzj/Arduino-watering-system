@@ -6,42 +6,15 @@ static const Clay_Color etvsOnColor = ETVS_ON_COLOR;
 static const Clay_Color etvsOffColor = ETVS_OFF_COLOR;
 
 static const Clay_String etvsNames[ETV_NUM] = {
-		{
-				.chars = "Etv1",
-				.length = 4,
-		},
-		{
-				.chars = "Etv2",
-				.length = 4,
-		},
-		{
-				.chars = "Etv3",
-				.length = 4,
-		},
-		{
-				.chars = "Etv4",
-				.length = 4,
-		},
-		{
-				.chars = "Etv5",
-				.length = 4,
-		},
-		{
-				.chars = "Etv6",
-				.length = 4,
-		},
-		{
-				.chars = "Etv7",
-				.length = 4,
-		},
-		{
-				.chars = "Etv8",
-				.length = 4,
-		},
-		{
-				.chars = "Etv9",
-				.length = 4,
-		},
+		CLAY_STRING("Etv1"),
+		CLAY_STRING("Etv2"),
+		CLAY_STRING("Etv3"),
+		CLAY_STRING("Etv4"),
+		CLAY_STRING("Etv5"),
+		CLAY_STRING("Etv6"),
+		CLAY_STRING("Etv7"),
+		CLAY_STRING("Etv8"),
+		CLAY_STRING("Etv9"),
 };
 
 static uint16_t textId;

@@ -6,22 +6,10 @@
 #define BUTTONS_NUM 4
 
 static const Clay_String buttonNames[BUTTONS_NUM] = {
-		{
-				.chars = "Cancel",
-				.length = 6,
-		},
-		{
-				.chars = "Down",
-				.length = 4,
-		},
-		{
-				.chars = "Up",
-				.length = 2,
-		},
-		{
-				.chars = "Confirm",
-				.length = 7,
-		},
+		CLAY_STRING("Cancel"),
+		CLAY_STRING("Down"),
+		CLAY_STRING("Up"),
+		CLAY_STRING("Confirm"),
 };
 
 static uint16_t textId;
