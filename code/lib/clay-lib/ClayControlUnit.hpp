@@ -3,10 +3,6 @@
 
 #include "ClayKeypad.hpp"
 
-extern "C" {
-#include "UI/clayUi.h"
-};
-
 class ClayControlUnit {
 private:
 	ClayKeypad* keypad;

@@ -1,5 +1,9 @@
 #include "ClayControlUnit.hpp"
 
+extern "C" {
+#include "UI/clayUi.h"
+}
+
 ClayControlUnit::ClayControlUnit() {
 	this->keypad = nullptr;
 
