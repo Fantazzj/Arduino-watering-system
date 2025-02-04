@@ -5,7 +5,7 @@
 
 #define BUTTONS_NUM 4
 
-const Clay_String buttonNames[BUTTONS_NUM] = {
+static const Clay_String buttonNames[BUTTONS_NUM] = {
 		{
 				.chars = "Cancel",
 				.length = 6,
@@ -24,19 +24,19 @@ const Clay_String buttonNames[BUTTONS_NUM] = {
 		},
 };
 
-uint16_t buttonsTextId;
+static uint16_t textId;
 
 void setButtonsTextId(uint16_t id) {
-	buttonsTextId = id;
+	textId = id;
 }
 
 uint16_t getButtonsTextId() {
-	return buttonsTextId;
+	return textId;
 }
 
-void createButton(int8_t i) {
+static void createButton(int8_t i) {
 	Clay_TextElementConfig buttonText = {
-			.fontId = buttonsTextId,
+			.fontId = textId,
 			.fontSize = BUTTONS_TEXT_SIZE,
 			.textColor = BUTTONS_TEXT_COLOR,
 	};
@@ -69,7 +69,7 @@ void createButtonGroup() {
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				 .sizing = {
 						 .width = CLAY_SIZING_GROW(),
-						 .height = CLAY_SIZING_FIT(0,0),
+						 .height = CLAY_SIZING_FIT(0, 0),
 				 },
 		 })) {
 		for(int8_t i = 0; i < BUTTONS_NUM; i++)

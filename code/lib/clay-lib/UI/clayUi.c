@@ -9,7 +9,7 @@
 #include "etvsUi.h"
 #include <stdlib.h>
 
-void HandleClayErrors(Clay_ErrorData errorData) {
+static void HandleClayErrors(Clay_ErrorData errorData) {
 	printf("%s", errorData.errorText.chars);
 	exit(errorData.errorType);
 }
@@ -58,16 +58,14 @@ void init() {
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 }
 
-void createControlUnit() {
+static void createControlUnit() {
 	CLAY(CLAY_ID("ControlUnit"),
-		 CLAY_LAYOUT({
-				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
-				 .childGap = 25,
-				 .sizing = {
-						 .height = CLAY_SIZING_GROW(),
-						 .width = CLAY_SIZING_FIT(),
-				 }
-		 })) {
+		 CLAY_LAYOUT({.layoutDirection = CLAY_TOP_TO_BOTTOM,
+					  .childGap = 25,
+					  .sizing = {
+							  .height = CLAY_SIZING_GROW(),
+							  .width = CLAY_SIZING_FIT(),
+					  }})) {
 		createDisplay();
 		createButtonGroup();
 		createEtvGroup();

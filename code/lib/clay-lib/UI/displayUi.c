@@ -1,24 +1,24 @@
 #include "displayUi.h"
 #include "clay.h"
 
-const char text[D_HEIGHT][D_LENGTH] = {
+static const char text[D_HEIGHT][D_LENGTH] = {
 		"SAMPLE TEXT ROW1",
 		"SAMPLE TEXT ROW2",
 };
 
-uint16_t displayTextId;
+static uint16_t textId;
 
 void setDisplayTextId(uint16_t id) {
-	displayTextId = id;
+	textId = id;
 }
 
 uint16_t getDisplayTextId() {
-	return displayTextId;
+	return textId;
 }
 
-void createDisplayChars(int8_t row) {
+static void createDisplayChars(int8_t row) {
 	Clay_TextElementConfig charText = {
-			.fontId = displayTextId,
+			.fontId = textId,
 			.fontSize = DISPLAY_TEXT_SIZE,
 			.textColor = DISPLAY_TEXT_COLOR,
 	};
@@ -45,7 +45,7 @@ void createDisplayChars(int8_t row) {
 	}
 }
 
-void createDisplayRows() {
+static void createDisplayRows() {
 	for(int8_t r = 0; r < D_HEIGHT; r++) {
 		CLAY(CLAY_LAYOUT({
 				.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},

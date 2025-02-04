@@ -2,19 +2,19 @@
 
 #include "clay.h"
 
-uint16_t debuggerTextId;
+static uint16_t textId;
 
 void setDebuggerTextId(uint16_t id) {
-	debuggerTextId = id;
+	textId = id;
 }
 
 uint16_t getDebuggerTextId(void) {
-	return debuggerTextId;
+	return textId;
 }
 
 void createDebugger() {
 	Clay_TextElementConfig debugText = {
-			.fontId = debuggerTextId,
+			.fontId = textId,
 			.fontSize = DEBUGGER_TEXT_SIZE,
 			.textColor = DEBUGGER_TEXT_COLOR,
 	};

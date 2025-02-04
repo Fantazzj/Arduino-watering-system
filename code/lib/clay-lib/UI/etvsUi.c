@@ -2,10 +2,10 @@
 
 #define ETV_NUM 9
 
-const Clay_Color etvsOnColor = ETVS_ON_COLOR;
-const Clay_Color etvsOffColor = ETVS_OFF_COLOR;
+static const Clay_Color etvsOnColor = ETVS_ON_COLOR;
+static const Clay_Color etvsOffColor = ETVS_OFF_COLOR;
 
-const Clay_String etvsNames[ETV_NUM] = {
+static const Clay_String etvsNames[ETV_NUM] = {
 		{
 				.chars = "Etv1",
 				.length = 4,
@@ -44,19 +44,19 @@ const Clay_String etvsNames[ETV_NUM] = {
 		},
 };
 
-uint16_t etvsTextId;
+static uint16_t textId;
 
 void setEtvsTextId(uint16_t id) {
-	etvsTextId = id;
+	textId = id;
 }
 
 uint16_t getEtvsTextId() {
-	return etvsTextId;
+	return textId;
 }
 
-void createEtv(int8_t i) {
+static void createEtv(int8_t i) {
 	Clay_TextElementConfig etvsText = {
-			.fontId = etvsTextId,
+			.fontId = textId,
 			.fontSize = ETVS_TEXT_SIZE,
 			.textColor = ETVS_TEXT_COLOR,
 	};
@@ -77,7 +77,7 @@ void createEtv(int8_t i) {
 	}
 }
 
-void createEtvRow(int8_t from, int8_t to) {
+static void createEtvRow(int8_t from, int8_t to) {
 	CLAY(CLAY_LAYOUT({
 			.layoutDirection = CLAY_LEFT_TO_RIGHT,
 			.childGap = 10,

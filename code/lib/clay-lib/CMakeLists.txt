@@ -11,6 +11,9 @@ add_library(clay-lib
         ClayValveGroup.cpp
         ClayDebugger.cpp
         ClayTimer.cpp
+)
+
+add_library(clayUi-lib
         UI/clayUi.c
         UI/displayUi.c
         UI/buttonsUi.c
@@ -18,9 +21,14 @@ add_library(clay-lib
         UI/etvsUi.c
 )
 
-target_link_directories(clay-lib PRIVATE ${RAYLIB_DIR})
+target_link_directories(clayUi-lib PRIVATE ${RAYLIB_DIR})
+
+target_link_libraries(clayUi-lib
+        PUBLIC raylib
+)
+
 
 target_link_libraries(clay-lib
+        PRIVATE clayUi-lib
         PRIVATE core-lib
-        PRIVATE raylib
 )
