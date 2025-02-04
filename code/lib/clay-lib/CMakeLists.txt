@@ -1,6 +1,6 @@
 find_package(raylib CONFIG REQUIRED)
 
-add_library(clay-lib
+add_library(clay-lib SHARED
         ClayControlUnit.cpp
         ClayClock.cpp
         ClayDisplay.cpp
@@ -27,8 +27,7 @@ target_link_libraries(clayUi-lib
         PUBLIC raylib
 )
 
-
 target_link_libraries(clay-lib
         PRIVATE clayUi-lib
-        PRIVATE core-lib
+        PUBLIC core-lib
 )
