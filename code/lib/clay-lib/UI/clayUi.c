@@ -73,6 +73,9 @@ static void createControlUnit() {
 }
 
 void show() {
+	appendDebuggerText(CLAY_STRING("A really long string to prove that the debugger can automatically go to new line if space ends"));
+	appendDebuggerText(CLAY_STRING("A string to prove that the function appendDebuggerText() correctly appends text"));
+
 	while(!WindowShouldClose()) {
 		Clay_BeginLayout();
 
