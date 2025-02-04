@@ -1,7 +1,7 @@
 #include "displayUi.h"
 #include "clay.h"
 
-static const char text[D_HEIGHT][D_LENGTH] = {
+static char text[D_HEIGHT][D_LENGTH] = {
 		"SAMPLE TEXT ROW1",
 		"SAMPLE TEXT ROW2",
 };
@@ -77,4 +77,8 @@ void createDisplay() {
 		 })) {
 		createDisplayRows();
 	}
+}
+
+void setDisplayChar(int8_t row, int8_t col, char c) {
+	text[row][col] = c;
 }

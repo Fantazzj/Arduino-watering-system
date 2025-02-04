@@ -16,4 +16,6 @@ uint16_t getDisplayTextId(void);
 
 void createDisplay(void);
 
+void setDisplayChar(int8_t row, int8_t col, char c);
+
 #endif//DISPLAYUI_H

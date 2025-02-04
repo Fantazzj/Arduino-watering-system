@@ -76,6 +76,13 @@ void show() {
 	appendDebuggerText(CLAY_STRING("A really long string to prove that the debugger can automatically go to new line if space ends"));
 	appendDebuggerText(CLAY_STRING("A string to prove that the function appendDebuggerText() correctly appends text"));
 
+	setDisplayChar(0,0,'E');
+	setDisplayChar(0,1,'D');
+	setDisplayChar(0,2,'I');
+	setDisplayChar(0,3,'T');
+	setDisplayChar(0,4,'E');
+	setDisplayChar(0,5,'D');
+
 	while(!WindowShouldClose()) {
 		Clay_BeginLayout();
 
