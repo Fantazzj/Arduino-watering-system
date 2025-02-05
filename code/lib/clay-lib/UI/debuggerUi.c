@@ -47,8 +47,10 @@ void createDebugger() {
 	}
 }
 
-void appendDebuggerText(Clay_String s) { //TODO: solve problem about firs newline
-	int32_t newLength = text.length + s.length + 1;
+void appendDebuggerText(Clay_String s) {
+	bool newLine = text.length > 0;
+
+	int32_t newLength = text.length + s.length + newLine;
 	char* newChars = (char*) malloc(newLength);
 
 	int32_t i = 0;
@@ -57,8 +59,10 @@ void appendDebuggerText(Clay_String s) { //TODO: solve problem about firs newlin
 		i++;
 	}
 
-	newChars[i] = '\n';
-	i++;
+	if(newLine) {
+		newChars[i] = '\n';
+		i++;
+	}
 
 	for(int32_t j = 0; j < s.length; j++) {
 		newChars[i] = s.chars[j];
