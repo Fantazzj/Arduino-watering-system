@@ -20,7 +20,6 @@ private:
 
 public:
 	explicit DisplayUi(uint16_t id);
-	void setDisplayTextId(uint16_t id);
 	[[nodiscard]] uint16_t getDisplayTextId() const;
 	void createDisplay();
 	void setDisplayChar(int8_t row, int8_t col, char c);

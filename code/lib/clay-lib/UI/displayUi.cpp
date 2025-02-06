@@ -9,10 +9,6 @@ DisplayUi::DisplayUi(uint16_t id) {
 	};
 }
 
-void DisplayUi::setDisplayTextId(uint16_t id) {
-	textId = id;
-}
-
 uint16_t DisplayUi::getDisplayTextId() const {
 	return textId;
 }
