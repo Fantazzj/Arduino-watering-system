@@ -13,6 +13,7 @@ ClayValveGroupUi::ClayValveGroupUi(uint16_t id) {
 			false,
 			false,
 	};
+	mainSwitchState = false;
 }
 
 uint16_t ClayValveGroupUi::getEtvsTextId() const {
@@ -64,7 +65,7 @@ void ClayValveGroupUi::createEtvRow(int8_t from, int8_t to) {
 void ClayValveGroupUi::createEtvGroup() {
 	CLAY(CLAY_ID("Etvs"),
 		 CLAY_RECTANGLE({
-				 .color = VALVE_BG_COLOR,
+				 .color = mainSwitchState ? VALVE_MAINSWITCH_ON_COLOR : VALVE_MAINSWITCH_OFF_COLOR,
 				 .cornerRadius = {5, 5, 5, 5},
 		 }),
 		 CLAY_LAYOUT({
@@ -84,4 +85,8 @@ void ClayValveGroupUi::createEtvGroup() {
 
 void ClayValveGroupUi::setEtvState(int8_t n, bool state) {
 	etvStates[n] = state;
+}
+
+void ClayValveGroupUi::setMainSwitchState(bool state) {
+	mainSwitchState = state;
 }

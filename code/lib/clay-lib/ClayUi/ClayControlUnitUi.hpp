@@ -19,6 +19,8 @@ public:
 	void appendDebuggerText(std::string string);
 	void activateEtv(int8_t n);
 	void deactivateEtv(int8_t n);
+	void activateMainSwitch();
+	void deactivateMainSwitch();
 	void setKeypad(ClayKeypad* keypad);
 
 private:

@@ -132,3 +132,10 @@ void ClayControlUnitUi::deactivateEtv(int8_t n) {
 void ClayControlUnitUi::setKeypad(ClayKeypad* keypad) {
 	buttons.setKeypad(keypad);
 }
+
+void ClayControlUnitUi::activateMainSwitch() {
+	etvs.setMainSwitchState(true);
+}
+void ClayControlUnitUi::deactivateMainSwitch() {
+	etvs.setMainSwitchState(false);
+}

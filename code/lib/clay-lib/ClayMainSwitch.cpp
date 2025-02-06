@@ -1,7 +1,7 @@
 #include "ClayMainSwitch.hpp"
 
 ClayMainSwitch::ClayMainSwitch() {
-	//TODO: add definition
+	w = nullptr;
 }
 
 void ClayMainSwitch::begin(ClayControlUnit* w) {
@@ -9,9 +9,9 @@ void ClayMainSwitch::begin(ClayControlUnit* w) {
 }
 
 void ClayMainSwitch::turnOn() {
-	//TODO: add definition
+	w->activateMainSwitch();
 }
 
 void ClayMainSwitch::turnOff() {
-	//TODO: add definition
+	w->deactivateMainSwitch();
 }

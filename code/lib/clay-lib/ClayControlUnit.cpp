@@ -41,3 +41,11 @@ void ClayControlUnit::clearDisplay() {
 		for(int8_t j = 0; j < DISPLAY_LENGTH; j++)
 			ui.setDisplayChar(i, j, ' ');
 }
+
+void ClayControlUnit::activateMainSwitch() {
+	ui.activateMainSwitch();
+}
+
+void ClayControlUnit::deactivateMainSwitch() {
+	ui.deactivateMainSwitch();
+}
