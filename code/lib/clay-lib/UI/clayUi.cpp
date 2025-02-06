@@ -10,7 +10,7 @@ void HandleClayErrors(Clay_ErrorData errorData) {
 }
 
 ClayUi::ClayUi() :
-	display(0), debugger(1), buttons(2), etvs(3) {
+	display(1), debugger(2), buttons(3), etvs(4) {
 	Clay_Raylib_Initialize(1500, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	uint64_t clayRequiredMemory = Clay_MinMemorySize();
@@ -28,23 +28,28 @@ ClayUi::ClayUi() :
 			(Clay_ErrorHandler){HandleClayErrors});
 
 	Raylib_fonts[0] = (Raylib_Font){
-			.fontId = display.getDisplayTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DISPLAY_TEXT_SIZE, 0, 250),
+			.fontId = 0,
+			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", 28, nullptr, 250),
 	};
 
 	Raylib_fonts[1] = (Raylib_Font){
-			.fontId = debugger.getDebuggerTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DEBUGGER_TEXT_SIZE, 0, 250),
+			.fontId = display.getDisplayTextId(),
+			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", DISPLAY_TEXT_SIZE, nullptr, 250),
 	};
 
 	Raylib_fonts[2] = (Raylib_Font){
-			.fontId = buttons.getButtonsTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", BUTTONS_TEXT_SIZE, 0, 250),
+			.fontId = debugger.getDebuggerTextId(),
+			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", DEBUGGER_TEXT_SIZE, nullptr, 250),
 	};
 
 	Raylib_fonts[3] = (Raylib_Font){
+			.fontId = buttons.getButtonsTextId(),
+			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", BUTTONS_TEXT_SIZE, nullptr, 250),
+	};
+
+	Raylib_fonts[4] = (Raylib_Font){
 			.fontId = etvs.getEtvsTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", ETVS_TEXT_SIZE, 0, 250),
+			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ETVS_TEXT_SIZE, nullptr, 250),
 	};
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
