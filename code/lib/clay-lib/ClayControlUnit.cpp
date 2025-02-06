@@ -1,9 +1,7 @@
 #include "ClayControlUnit.hpp"
 
 ClayControlUnit::ClayControlUnit() :
-	ui() {
-	//TODO: add definition
-}
+	ui() {}
 
 void ClayControlUnit::show() {
 	ui.show();
