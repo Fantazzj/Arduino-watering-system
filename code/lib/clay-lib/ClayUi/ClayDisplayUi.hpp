@@ -1,17 +1,18 @@
 #ifndef CLAY_DISPLAY_UI_HPP
 #define CLAY_DISPLAY_UI_HPP
 
+#include "clay.h"
 #include <array>
 #include <cstdint>
 #include <string>
 
-#define D_HEIGHT 2
-#define D_LENGTH 16
+constexpr uint8_t DISPLAY_HEIGHT = 2;
+constexpr uint8_t DISPLAY_LENGTH = 16;
 
-#define DISPLAY_BG_COLOR {100, 120, 150, 255}
-#define DISPLAY_CHAR_COLOR {101, 157, 213, 255}
-#define DISPLAY_TEXT_COLOR {50, 50, 50, 255}
-#define DISPLAY_TEXT_SIZE 48
+constexpr Clay_Color DISPLAY_BG_COLOR = {100, 120, 150, 255};
+constexpr Clay_Color DISPLAY_CHAR_COLOR = {101, 157, 213, 255};
+constexpr Clay_Color DISPLAY_TEXT_COLOR = {50, 50, 50, 255};
+constexpr uint16_t DISPLAY_TEXT_SIZE = 48;
 
 class ClayDisplayUi {
 private:

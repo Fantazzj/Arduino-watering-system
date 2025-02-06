@@ -1,18 +1,19 @@
 #ifndef CLAY_VALVE_GROUP_UI_HPP
 #define CLAY_VALVE_GROUP_UI_HPP
 
+#include "clay.h"
 #include <array>
 #include <cstdint>
 #include <string>
 
-#define ETVS_ON_COLOR {149, 182, 120, 255}
-#define ETVS_OFF_COLOR {101, 157, 213, 255}
+constexpr uint8_t ETV_NUM = 9;
 
-#define ETVS_BG_COLOR {100, 120, 150, 255}
-#define ETVS_TEXT_COLOR {50, 50, 50, 255}
-#define ETVS_TEXT_SIZE 30
+constexpr Clay_Color ETVS_ON_COLOR = {149, 182, 120, 255};
+constexpr Clay_Color ETVS_OFF_COLOR = {101, 157, 213, 255};
 
-#define ETV_NUM 9
+constexpr Clay_Color ETVS_BG_COLOR = {100, 120, 150, 255};
+constexpr Clay_Color ETVS_TEXT_COLOR = {50, 50, 50, 255};
+constexpr uint8_t ETVS_TEXT_SIZE = 30;
 
 class ClayValveGroupUi {
 private:

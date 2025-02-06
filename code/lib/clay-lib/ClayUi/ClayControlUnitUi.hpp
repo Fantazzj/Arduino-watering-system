@@ -1,14 +1,15 @@
 #ifndef CLAY_CONTROL_UNIT_UI_HPP
 #define CLAY_CONTROL_UNIT_UI_HPP
 
-#define BG_COLOR {74, 95, 115, 255}
-
 #include "../ClayKeypad.hpp"
 #include "ClayDebuggerUi.hpp"
 #include "ClayDisplayUi.hpp"
 #include "ClayKeypadUi.hpp"
 #include "ClayValveGroupUi.hpp"
+#include "clay.h"
 #include <cstdint>
+
+constexpr Clay_Color BG_COLOR = {74, 95, 115, 255};
 
 class ClayControlUnitUi {
 public:

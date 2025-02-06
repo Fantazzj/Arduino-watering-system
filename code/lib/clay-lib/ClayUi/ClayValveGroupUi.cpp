@@ -1,9 +1,5 @@
 #include "ClayValveGroupUi.hpp"
 
-extern "C" {
-#include "clay.h"
-}
-
 ClayValveGroupUi::ClayValveGroupUi(uint16_t id) {
 	textId = id;
 	etvStates = {

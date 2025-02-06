@@ -1,9 +1,5 @@
 #include "ClayDisplayUi.hpp"
 
-extern "C" {
-#include "clay.h"
-}
-
 ClayDisplayUi::ClayDisplayUi(uint16_t id) {
 	textId = id;
 	text = {
@@ -23,7 +19,7 @@ void ClayDisplayUi::createDisplayChars(int8_t row) {
 			.fontSize = DISPLAY_TEXT_SIZE,
 	};
 
-	for(int8_t c = 0; c < D_LENGTH; c++) {
+	for(int8_t c = 0; c < DISPLAY_LENGTH; c++) {
 		Clay_String displayText = {
 				.length = 1,
 				.chars = &text[row][c],
@@ -46,7 +42,7 @@ void ClayDisplayUi::createDisplayChars(int8_t row) {
 }
 
 void ClayDisplayUi::createDisplayRows() {
-	for(int8_t r = 0; r < D_HEIGHT; r++) {
+	for(int8_t r = 0; r < DISPLAY_HEIGHT; r++) {
 		CLAY(CLAY_LAYOUT({
 				.sizing = {
 						.width = CLAY_SIZING_FIT(),

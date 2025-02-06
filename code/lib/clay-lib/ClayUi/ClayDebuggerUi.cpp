@@ -1,9 +1,5 @@
 #include "ClayDebuggerUi.hpp"
 
-extern "C" {
-#include "clay.h"
-}
-
 ClayDebuggerUi::ClayDebuggerUi(uint16_t id) {
 	textId = id;
 }

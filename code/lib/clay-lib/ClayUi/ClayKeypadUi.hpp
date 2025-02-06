@@ -2,16 +2,17 @@
 #define CLAY_KEYPAD_UI_HPP
 
 #include "../ClayKeypad.hpp"
+#include "clay.h"
 #include <array>
 #include <cstdint>
 #include <string>
 
-#define BUTTONS_COLOR {101, 157, 213, 255}
-#define BUTTONS_BG_COLOR {100, 120, 150, 255}
-#define BUTTONS_TEXT_COLOR {50, 50, 50, 255}
-#define BUTTONS_TEXT_SIZE 30
+constexpr uint8_t BUTTONS_NUM = 4;
 
-#define BUTTONS_NUM 4
+constexpr Clay_Color BUTTONS_COLOR = {101, 157, 213, 255};
+constexpr Clay_Color BUTTONS_BG_COLOR = {100, 120, 150, 255};
+constexpr Clay_Color BUTTONS_TEXT_COLOR = {50, 50, 50, 255};
+constexpr uint16_t BUTTONS_TEXT_SIZE = 30;
 
 class ClayKeypadUi {
 private:

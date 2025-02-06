@@ -1,9 +1,5 @@
 #include "ClayKeypadUi.hpp"
 
-extern "C" {
-#include "clay.h"
-}
-
 ClayKeypadUi::ClayKeypadUi(uint16_t id) {
 	textId = id;
 }

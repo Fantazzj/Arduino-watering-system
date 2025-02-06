@@ -1,12 +1,13 @@
 #ifndef CLAY_DEBUGGER_UI_HPP
 #define CLAY_DEBUGGER_UI_HPP
 
+#include "clay.h"
 #include <cstdint>
 #include <string>
 
-#define DEBUGGER_BG_COLOR {100, 120, 150, 255}
-#define DEBUGGER_TEXT_COLOR {50, 50, 50, 255}
-#define DEBUGGER_TEXT_SIZE 30
+constexpr Clay_Color DEBUGGER_BG_COLOR = {100, 120, 150, 255};
+constexpr Clay_Color DEBUGGER_TEXT_COLOR = {50, 50, 50, 255};
+constexpr uint16_t DEBUGGER_TEXT_SIZE = 30;
 
 class ClayDebuggerUi {
 private:
