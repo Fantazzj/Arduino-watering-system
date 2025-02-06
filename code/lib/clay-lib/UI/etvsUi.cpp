@@ -1,6 +1,8 @@
 #include "etvsUi.hpp"
 
+extern "C" {
 #include "clay.h"
+}
 
 EtvsUi::EtvsUi(uint16_t id) {
 	textId = id;
@@ -89,12 +91,4 @@ void EtvsUi::createEtvGroup() {
 
 void EtvsUi::setEtvState(int8_t n, bool state) {
 	etvStates[n] = state;
-}
-
-void EtvsUi::activateEtv(int8_t n) {
-	setEtvState(n, true);
-}
-
-void EtvsUi::deactivateEtv(int8_t n) {
-	setEtvState(n, false);
 }

@@ -1,11 +1,13 @@
 #include "clayUi.hpp"
 
+extern "C" {
 #include "clay.h"
+}
 #include "clay_renderer_raylib.c"
-#include <cstdlib>
+#include <iostream>
 
 void HandleClayErrors(Clay_ErrorData errorData) {
-	printf("%s", errorData.errorText.chars);
+	std::cout << errorData.errorText.chars << std::endl;
 	exit(errorData.errorType);
 }
 
@@ -54,7 +56,7 @@ ClayUi::ClayUi() :
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 
-	Clay_SetDebugModeEnabled(true);
+	//Clay_SetDebugModeEnabled(true);
 }
 
 void ClayUi::createControlUnit() {
@@ -74,20 +76,6 @@ void ClayUi::createControlUnit() {
 }
 
 void ClayUi::show() {
-	//appendDebuggerText("A really long string to prove that the debugger can automatically go to new line if space ends");
-	//appendDebuggerText("A string to prove that the function appendDebuggerText() correctly appends text");
-	//appendDebuggerText("A string to prove that the function appendDebuggerLog() correctly converts the string");
-
-	//setDisplayChar(0, 0, 'E');
-	//setDisplayChar(0, 1, 'D');
-	//setDisplayChar(0, 2, 'I');
-	//setDisplayChar(0, 3, 'T');
-	//setDisplayChar(0, 4, 'E');
-	//setDisplayChar(0, 5, 'D');
-
-	//activateEtv(3);
-	//activateEtv(8);
-
 	while(!WindowShouldClose()) {
 		Clay_SetLayoutDimensions((Clay_Dimensions){
 				.width = (float) GetScreenWidth(),

@@ -1,6 +1,8 @@
 #include "debuggerUi.hpp"
 
+extern "C" {
 #include "clay.h"
+}
 
 DebuggerUi::DebuggerUi(uint16_t id) {
 	textId = id;

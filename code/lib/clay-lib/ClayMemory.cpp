@@ -23,7 +23,7 @@ void ClayMemory::saveEtvDays(uint8_t num, uint8_t days) {
 
 uint8_t ClayMemory::readEtvDays(uint8_t num) {
 	//TODO: add definition
-	return 0;
+	return 1;
 }
 
 void ClayMemory::saveStartTime(MyTime startTime) {

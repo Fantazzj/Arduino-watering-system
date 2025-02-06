@@ -1,7 +1,8 @@
 #include "buttonsUi.hpp"
 
+extern "C" {
 #include "clay.h"
-#include <iostream>
+}
 
 ButtonsUi::ButtonsUi(uint16_t id) {
 	textId = id;
@@ -13,11 +14,9 @@ uint16_t ButtonsUi::getButtonsTextId() const {
 
 ClayKeypad* keypad = nullptr;
 
-static void pressHandler(Clay_ElementId elementId, Clay_PointerData pointerData, intptr_t i) {
+static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t i) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-
-	std::cout << "Pressed button n°" << (int) i << std::endl;
 
 	switch(i) {
 		case 0:

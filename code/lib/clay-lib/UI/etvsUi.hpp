@@ -2,8 +2,8 @@
 #define ETVUI_H
 
 #include <array>
-#include <string>
 #include <cstdint>
+#include <string>
 
 #define ETVS_ON_COLOR {149, 182, 120, 255}
 #define ETVS_OFF_COLOR {101, 157, 213, 255}
@@ -37,8 +37,6 @@ public:
 	void setEtvState(int8_t n, bool state);
 	void createEtv(int8_t i);
 	void createEtvRow(int8_t from, int8_t to);
-	void activateEtv(int8_t n);
-	void deactivateEtv(int8_t n);
 };
 
 #endif//ETVUI_H

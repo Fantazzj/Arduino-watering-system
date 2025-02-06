@@ -1,5 +1,8 @@
 #include "displayUi.hpp"
+
+extern "C" {
 #include "clay.h"
+}
 
 DisplayUi::DisplayUi(uint16_t id) {
 	textId = id;
@@ -32,7 +35,7 @@ void DisplayUi::createDisplayChars(int8_t row) {
 			 }),
 			 CLAY_LAYOUT({
 					 .sizing = {
-							 .width = CLAY_SIZING_FIT(60),
+							 .width = CLAY_SIZING_FIT(40),
 							 .height = CLAY_SIZING_FIT(70),
 					 },
 					 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
