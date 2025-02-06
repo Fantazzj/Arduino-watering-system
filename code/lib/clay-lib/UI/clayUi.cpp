@@ -1,6 +1,5 @@
 #include "clayUi.hpp"
 
-#define CLAY_IMPLEMENTATION
 #include "clay.h"
 #include "clay_renderer_raylib.c"
 #include <cstdlib>

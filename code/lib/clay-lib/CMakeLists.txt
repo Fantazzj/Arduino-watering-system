@@ -21,6 +21,7 @@ add_library(clayUi-lib
         UI/buttonsUi.cpp
         UI/debuggerUi.cpp
         UI/etvsUi.cpp
+        UI/clay.c
 )
 
 target_link_directories(clayUi-lib PRIVATE ${RAYLIB_DIR})
