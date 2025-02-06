@@ -2,7 +2,7 @@
 
 ClayValveGroup::ClayValveGroup(Clock& clock) :
 	ValveGroup(clock) {
-	//TODO: add definition
+	w = nullptr;
 }
 
 void ClayValveGroup::begin(ClayControlUnit* w) {
