@@ -54,3 +54,8 @@ template<uint8_t n>
 uint8_t ValveGroup<n>::getDays(uint8_t i) const {
 	return this->days[i];
 }
+
+template<uint8_t n>
+void ValveGroup<n>::increaseElapsedDays(uint8_t i) {
+	elapsedDays[i]++;
+}

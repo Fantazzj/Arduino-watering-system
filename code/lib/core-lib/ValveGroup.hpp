@@ -19,6 +19,7 @@ public:
 	[[nodiscard]] uint8_t getMinOn(uint8_t i) const;
 	void setMinOn(uint8_t i, uint8_t minOn);
 	[[nodiscard]] MyTime getTOn(uint8_t i) const;
+	void increaseElapsedDays(uint8_t i);
 
 protected:
 	Clock& clock;

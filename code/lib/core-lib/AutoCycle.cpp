@@ -15,7 +15,7 @@ int8_t AutoCycle::_nextEtv() {
 		if(_myEtv.toWater(etv)) {
 			return etv;
 		} else {
-			_myEtv.setDays(etv, _myEtv.getDays(etv) + 1);
+			_myEtv.increaseElapsedDays(etv);
 		}
 	}
 	return -1;
