@@ -2,10 +2,12 @@
 #define CLAYCONTROLUNIT_HPP
 
 #include "ClayKeypad.hpp"
+#include "UI/clayUi.hpp"
 
 class ClayControlUnit {
 private:
 	ClayKeypad* keypad;
+	ClayUi ui;
 
 public:
 	explicit ClayControlUnit();

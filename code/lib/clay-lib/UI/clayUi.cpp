@@ -2,19 +2,19 @@
 #include "clayUi.hpp"
 
 #include "buttonsUi.hpp"
-#include "etvsUi.hpp"
-#include "debuggerUi.hpp"
-#include "displayUi.hpp"
 #include "clay_renderer_raylib.c"
+#include "debuggerUi.hpp"
+#include "etvsUi.hpp"
 
 #include <cstdlib>
 
-void ClayUi::HandleClayErrors(Clay_ErrorData errorData) {
+void HandleClayErrors(Clay_ErrorData errorData) {
 	printf("%s", errorData.errorText.chars);
 	exit(errorData.errorType);
 }
 
-void ClayUi::init() {
+ClayUi::ClayUi() :
+	display(0) {
 	Clay_Raylib_Initialize(1500, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	uint64_t clayRequiredMemory = Clay_MinMemorySize();
@@ -31,9 +31,8 @@ void ClayUi::init() {
 			},
 			(Clay_ErrorHandler){HandleClayErrors});
 
-	DisplayUi::setDisplayTextId(0);
 	Raylib_fonts[0] = (Raylib_Font){
-			.fontId = DisplayUi::getDisplayTextId(),
+			.fontId = display.getDisplayTextId(),
 			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DISPLAY_TEXT_SIZE, 0, 250),
 	};
 
@@ -70,7 +69,7 @@ void ClayUi::createControlUnit() {
 				 .childGap = 25,
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
-		DisplayUi::createDisplay();
+		display.createDisplay();
 		ButtonsUi::createButtonGroup();
 		EtvsUi::createEtvGroup();
 	}
@@ -139,7 +138,7 @@ void ClayUi::appendDebuggerText(const char* string) {
 }
 
 void ClayUi::setDisplayChar(int8_t row, int8_t col, char c) {
-	DisplayUi::setDisplayChar(row, col, c);
+	display.setDisplayChar(row, col, c);
 }
 
 void ClayUi::activateEtv(int8_t n) {

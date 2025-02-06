@@ -1,7 +1,9 @@
 #ifndef DISPLAYUI_H
 #define DISPLAYUI_H
 
+#include <array>
 #include <cstdint>
+#include <string>
 
 #define D_HEIGHT 2
 #define D_LENGTH 16
@@ -12,13 +14,18 @@
 #define DISPLAY_TEXT_SIZE 48
 
 class DisplayUi {
+private:
+	uint16_t textId;
+	std::array<std::string, 2> text;
+
 public:
-	static void setDisplayTextId(uint16_t id);
-	static uint16_t getDisplayTextId();
-	static void createDisplay();
-	static void setDisplayChar(int8_t row, int8_t col, char c);
-	static void createDisplayChars(int8_t row);
-	static void createDisplayRows();
+	explicit DisplayUi(uint16_t id);
+	void setDisplayTextId(uint16_t id);
+	[[nodiscard]] uint16_t getDisplayTextId() const;
+	void createDisplay();
+	void setDisplayChar(int8_t row, int8_t col, char c);
+	void createDisplayChars(int8_t row);
+	void createDisplayRows();
 };
 
 #endif//DISPLAYUI_H

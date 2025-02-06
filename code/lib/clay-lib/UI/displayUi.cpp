@@ -1,18 +1,19 @@
 #include "displayUi.hpp"
 #include "clay.h"
 
-static char text[D_HEIGHT][D_LENGTH + 1] = {
-		"SAMPLE TEXT ROW1",
-		"SAMPLE TEXT ROW2",
-};
-
-static uint16_t textId;
+DisplayUi::DisplayUi(uint16_t id) {
+	textId = id;
+	text = {
+			"Sample text row1",
+			"Sample text row2",
+	};
+}
 
 void DisplayUi::setDisplayTextId(uint16_t id) {
 	textId = id;
 }
 
-uint16_t DisplayUi::getDisplayTextId() {
+uint16_t DisplayUi::getDisplayTextId() const {
 	return textId;
 }
 
@@ -26,7 +27,7 @@ void DisplayUi::createDisplayChars(int8_t row) {
 	for(int8_t c = 0; c < D_LENGTH; c++) {
 		Clay_String displayText = {
 				.length = 1,
-				.chars = text[row] + c,
+				.chars = &text[row][c],
 		};
 
 		CLAY(CLAY_RECTANGLE({

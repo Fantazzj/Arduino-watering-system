@@ -3,22 +3,22 @@
 
 #define BG_COLOR {74, 95, 115, 255}
 
-#include "clay.h"
+#include "displayUi.hpp"
 #include <cstdint>
 
 class ClayUi {
 public:
-	static void init();
-	static void show();
+	ClayUi();
+	void show();
 
-	static void setDisplayChar(int8_t row, int8_t col, char c);
-	static void appendDebuggerText(const char* string);
-	static void activateEtv(int8_t n);
-	static void deactivateEtv(int8_t n);
+	void setDisplayChar(int8_t row, int8_t col, char c);
+	void appendDebuggerText(const char* string);
+	void activateEtv(int8_t n);
+	void deactivateEtv(int8_t n);
 
 private:
-	static void createControlUnit();
-	static void HandleClayErrors(Clay_ErrorData errorData);
+	DisplayUi display;
+	void createControlUnit();
 };
 
 #endif//CLAYUI_H
