@@ -6,18 +6,16 @@
 #include <cstdint>
 #include <string>
 
-constexpr uint8_t ETV_NUM = 9;
+constexpr Clay_Color VALVE_ON_COLOR = {149, 182, 120, 255};
+constexpr Clay_Color VALVE_OFF_COLOR = {101, 157, 213, 255};
 
-constexpr Clay_Color ETVS_ON_COLOR = {149, 182, 120, 255};
-constexpr Clay_Color ETVS_OFF_COLOR = {101, 157, 213, 255};
-
-constexpr Clay_Color ETVS_BG_COLOR = {100, 120, 150, 255};
-constexpr Clay_Color ETVS_TEXT_COLOR = {50, 50, 50, 255};
-constexpr uint8_t ETVS_TEXT_SIZE = 30;
+constexpr Clay_Color VALVE_BG_COLOR = {100, 120, 150, 255};
+constexpr Clay_Color VALVE_TEXT_COLOR = {50, 50, 50, 255};
+constexpr uint8_t VALVE_TEXT_SIZE = 30;
 
 class ClayValveGroupUi {
 private:
-	const std::array<std::string, ETV_NUM> etvsNames = {
+	const std::array<std::string, VALVE_NUM> etvsNames = {
 			"Etv1",
 			"Etv2",
 			"Etv3",
@@ -28,13 +26,13 @@ private:
 			"Etv8",
 			"Etv9",
 	};
-	std::array<bool, ETV_NUM> etvStates;
+	std::array<bool, VALVE_NUM> etvStates;
 	uint16_t textId;
 
 public:
 	explicit ClayValveGroupUi(uint16_t id);
 	void createEtvGroup();
-	uint16_t getEtvsTextId() const;
+	[[nodiscard]] uint16_t getEtvsTextId() const;
 	void setEtvState(int8_t n, bool state);
 	void createEtv(int8_t i);
 	void createEtvRow(int8_t from, int8_t to);

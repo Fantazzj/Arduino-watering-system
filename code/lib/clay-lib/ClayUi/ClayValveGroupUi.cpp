@@ -19,18 +19,15 @@ uint16_t ClayValveGroupUi::getEtvsTextId() const {
 	return textId;
 }
 
-static const Clay_Color etvsOnColor = ETVS_ON_COLOR;
-static const Clay_Color etvsOffColor = ETVS_OFF_COLOR;
-
 void ClayValveGroupUi::createEtv(int8_t i) {
 	Clay_TextElementConfig etvsText = {
-			.textColor = ETVS_TEXT_COLOR,
+			.textColor = VALVE_TEXT_COLOR,
 			.fontId = textId,
-			.fontSize = ETVS_TEXT_SIZE,
+			.fontSize = VALVE_TEXT_SIZE,
 	};
 
 	CLAY(CLAY_RECTANGLE({
-				 .color = etvStates[i] ? etvsOnColor : etvsOffColor,
+				 .color = etvStates[i] ? VALVE_ON_COLOR : VALVE_OFF_COLOR,
 				 .cornerRadius = {10, 10, 10, 10},
 		 }),
 		 CLAY_LAYOUT({
@@ -67,7 +64,7 @@ void ClayValveGroupUi::createEtvRow(int8_t from, int8_t to) {
 void ClayValveGroupUi::createEtvGroup() {
 	CLAY(CLAY_ID("Etvs"),
 		 CLAY_RECTANGLE({
-				 .color = ETVS_BG_COLOR,
+				 .color = VALVE_BG_COLOR,
 				 .cornerRadius = {5, 5, 5, 5},
 		 }),
 		 CLAY_LAYOUT({
@@ -80,7 +77,7 @@ void ClayValveGroupUi::createEtvGroup() {
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
-		for(int8_t i = 0; i < ETV_NUM / 3; i++)
+		for(int8_t i = 0; i < VALVE_NUM / 3; i++)
 			createEtvRow(i * 3, i * 3 + 2);
 	}
 }

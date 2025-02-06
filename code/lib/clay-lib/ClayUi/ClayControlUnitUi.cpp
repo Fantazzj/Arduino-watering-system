@@ -48,7 +48,7 @@ ClayControlUnitUi::ClayControlUnitUi() :
 
 	Raylib_fonts[4] = (Raylib_Font){
 			.fontId = etvs.getEtvsTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ETVS_TEXT_SIZE, nullptr, 250),
+			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", VALVE_TEXT_SIZE, nullptr, 250),
 	};
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
