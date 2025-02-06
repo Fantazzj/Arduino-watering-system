@@ -1,19 +1,19 @@
 #include "ClayControlUnit.hpp"
 
 extern "C" {
-#include "UI/clayUi.h"
+#include "UI/clayUi.hpp"
 }
 
 ClayControlUnit::ClayControlUnit() {
 	this->keypad = nullptr;
 
-	::init();
+	ClayUi::init();
 
 	//TODO: add definition
 }
 
 void ClayControlUnit::show() {
-	::show();
+	ClayUi::show();
 }
 
 void ClayControlUnit::setKeypad(ClayKeypad* keypad) {

@@ -1,5 +1,7 @@
 find_package(raylib CONFIG REQUIRED)
 
+set(CMAKE_CXX_STANDARD 23)
+
 add_library(clay-lib SHARED
         ClayControlUnit.cpp
         ClayClock.cpp
@@ -14,11 +16,11 @@ add_library(clay-lib SHARED
 )
 
 add_library(clayUi-lib
-        UI/clayUi.c
-        UI/displayUi.c
-        UI/buttonsUi.c
-        UI/debuggerUi.c
-        UI/etvsUi.c
+        UI/clayUi.cpp
+        UI/displayUi.cpp
+        UI/buttonsUi.cpp
+        UI/debuggerUi.cpp
+        UI/etvsUi.cpp
 )
 
 target_link_directories(clayUi-lib PRIVATE ${RAYLIB_DIR})

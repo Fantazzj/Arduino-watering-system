@@ -5,6 +5,11 @@
 
 class ClayKeypad : public Keypad {
 private:
+	bool cancelState = false;
+	bool downState = false;
+	bool upState = false;
+	bool confirmState = false;
+
 public:
 	explicit ClayKeypad();
 	bool cancel() override;
@@ -12,6 +17,7 @@ public:
 	bool up() override;
 	bool confirm() override;
 	bool generalPressed() override;
+	friend class ClayControlUnit;
 
 protected:
 };

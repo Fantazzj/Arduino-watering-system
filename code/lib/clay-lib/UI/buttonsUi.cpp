@@ -1,8 +1,7 @@
-#include "buttonsUi.h"
+#include "buttonsUi.hpp"
 
-#include "clay.h"
-#include <stdint.h>
-#include <stdio.h>
+#include <cstdint>
+#include <cstdio>
 
 #define BUTTONS_NUM 4
 
@@ -15,26 +14,26 @@ static const Clay_String buttonNames[BUTTONS_NUM] = {
 
 static uint16_t textId;
 
-void setButtonsTextId(uint16_t id) {
+void ButtonsUi::setButtonsTextId(uint16_t id) {
 	textId = id;
 }
 
-uint16_t getButtonsTextId() {
+uint16_t ButtonsUi::getButtonsTextId() {
 	return textId;
 }
 
-static void pressHandler(Clay_ElementId elementId, Clay_PointerData pointerData, intptr_t i) {
+void ButtonsUi::pressHandler(Clay_ElementId elementId, Clay_PointerData pointerData, intptr_t i) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
 
 	printf("Pressed button n°%lld\n", i);
 }
 
-static void createButton(int8_t i) {
+void ButtonsUi::createButton(int8_t i) {
 	Clay_TextElementConfig buttonText = {
+			.textColor = BUTTONS_TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = BUTTONS_TEXT_SIZE,
-			.textColor = BUTTONS_TEXT_COLOR,
 	};
 
 	CLAY(CLAY_RECTANGLE({
@@ -53,21 +52,21 @@ static void createButton(int8_t i) {
 	}
 }
 
-void createButtonGroup() {
+void ButtonsUi::createButtonGroup() {
 	CLAY(CLAY_ID("Buttons"),
 		 CLAY_RECTANGLE({
 				 .color = BUTTONS_BG_COLOR,
 				 .cornerRadius = {5, 5, 5, 5},
 		 }),
 		 CLAY_LAYOUT({
-				 .layoutDirection = CLAY_LEFT_TO_RIGHT,
-				 .padding = {10, 10, 10, 10},
-				 .childGap = 10,
-				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				 .sizing = {
 						 .width = CLAY_SIZING_GROW(),
 						 .height = CLAY_SIZING_FIXED(150),
 				 },
+				 .padding = {10, 10, 10, 10},
+				 .childGap = 10,
+				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
+				 .layoutDirection = CLAY_LEFT_TO_RIGHT,
 		 })) {
 		for(int8_t i = 0; i < BUTTONS_NUM; i++)
 			createButton(i);

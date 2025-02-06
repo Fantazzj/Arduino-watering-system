@@ -1,4 +1,4 @@
-#include "etvsUi.h"
+#include "etvsUi.hpp"
 
 #define ETV_NUM 9
 
@@ -31,19 +31,19 @@ static bool etvStates[ETV_NUM] = {
 
 static uint16_t textId;
 
-void setEtvsTextId(uint16_t id) {
+void EtvsUi::setEtvsTextId(uint16_t id) {
 	textId = id;
 }
 
-uint16_t getEtvsTextId() {
+uint16_t EtvsUi::getEtvsTextId() {
 	return textId;
 }
 
-static void createEtv(int8_t i) {
+void EtvsUi::createEtv(int8_t i) {
 	Clay_TextElementConfig etvsText = {
+			.textColor = ETVS_TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = ETVS_TEXT_SIZE,
-			.textColor = ETVS_TEXT_COLOR,
 	};
 
 	CLAY(CLAY_RECTANGLE({
@@ -51,61 +51,61 @@ static void createEtv(int8_t i) {
 				 .cornerRadius = {10, 10, 10, 10},
 		 }),
 		 CLAY_LAYOUT({
-				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 				 .sizing = {
 						 .width = CLAY_SIZING_GROW(),
 						 .height = CLAY_SIZING_GROW(),
 				 },
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
+				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
 		CLAY_TEXT(etvsNames[i], CLAY_TEXT_CONFIG(etvsText));
 	}
 }
 
-static void createEtvRow(int8_t from, int8_t to) {
+void EtvsUi::createEtvRow(int8_t from, int8_t to) {
 	CLAY(CLAY_LAYOUT({
-			.layoutDirection = CLAY_LEFT_TO_RIGHT,
-			.childGap = 10,
-			.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 			.sizing = {
 					.width = CLAY_SIZING_GROW(),
 					.height = CLAY_SIZING_GROW(),
 			},
+			.childGap = 10,
+			.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
+			.layoutDirection = CLAY_LEFT_TO_RIGHT,
 	})) {
 		for(int8_t i = from; i <= to; i++)
 			createEtv(i);
 	}
 }
 
-void createEtvGroup() {
+void EtvsUi::createEtvGroup() {
 	CLAY(CLAY_ID("Etvs"),
 		 CLAY_RECTANGLE({
 				 .color = ETVS_BG_COLOR,
 				 .cornerRadius = {5, 5, 5, 5},
 		 }),
 		 CLAY_LAYOUT({
-				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
-				 .padding = {10, 10, 10, 10},
-				 .childGap = 10,
-				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				 .sizing = {
 						 .width = CLAY_SIZING_GROW(),
 						 .height = CLAY_SIZING_GROW(),
 				 },
+				 .padding = {10, 10, 10, 10},
+				 .childGap = 10,
+				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
+				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
 		for(int8_t i = 0; i < ETV_NUM / 3; i++)
 			createEtvRow(i * 3, i * 3 + 2);
 	}
 }
 
-void setEtvState(int8_t n, bool state) {
+void EtvsUi::setEtvState(int8_t n, bool state) {
 	etvStates[n] = state;
 }
 
-void activateEtv(int8_t n) {
+void EtvsUi::activateEtv(int8_t n) {
 	setEtvState(n, true);
 }
 
-void deactivateEtv(int8_t n) {
+void EtvsUi::deactivateEtv(int8_t n) {
 	setEtvState(n, false);
 }

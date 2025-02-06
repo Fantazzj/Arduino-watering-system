@@ -1,30 +1,40 @@
 #include "ClayKeypad.hpp"
 
-ClayKeypad::ClayKeypad() {
-	//TODO: add definition
-}
+ClayKeypad::ClayKeypad() = default;
+
+#include <iostream>
+
+using namespace std;
 
 bool ClayKeypad::cancel() {
-	//TODO: add definition
-	return false;
+	bool state;
+	state = cancelState;
+	cancelState = false;
+	cout << "AAAAA" << endl;
+	return state;
 }
 
 bool ClayKeypad::down() {
-	//TODO: add definition
-	return false;
+	bool state;
+	state = downState;
+	downState = false;
+	return state;
 }
 
 bool ClayKeypad::up() {
-	//TODO: add definition
-	return false;
+	bool state;
+	state = upState;
+	upState = false;
+	return state;
 }
 
 bool ClayKeypad::confirm() {
-	//TODO: add definition
-	return false;
+	bool state;
+	state = confirmState;
+	confirmState = false;
+	return state;
 }
 
 bool ClayKeypad::generalPressed() {
-	//TODO: add definition
-	return false;
+	return cancelState || upState || downState || confirmState;
 }

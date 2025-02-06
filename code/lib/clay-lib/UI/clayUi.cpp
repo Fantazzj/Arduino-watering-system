@@ -1,20 +1,20 @@
-#include "clayUi.h"
-
 #define CLAY_IMPLEMENTATION
-#include "buttonsUi.h"
-#include "clay.h"
-#include "clay_renderer_raylib.c"
-#include "debuggerUi.h"
-#include "displayUi.h"
-#include "etvsUi.h"
-#include <stdlib.h>
+#include "clayUi.hpp"
 
-static void HandleClayErrors(Clay_ErrorData errorData) {
+#include "buttonsUi.hpp"
+#include "etvsUi.hpp"
+#include "debuggerUi.hpp"
+#include "displayUi.hpp"
+#include "clay_renderer_raylib.c"
+
+#include <cstdlib>
+
+void ClayUi::HandleClayErrors(Clay_ErrorData errorData) {
 	printf("%s", errorData.errorText.chars);
 	exit(errorData.errorType);
 }
 
-void init() {
+void ClayUi::init() {
 	Clay_Raylib_Initialize(1500, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	uint64_t clayRequiredMemory = Clay_MinMemorySize();
@@ -31,28 +31,28 @@ void init() {
 			},
 			(Clay_ErrorHandler){HandleClayErrors});
 
-	setDisplayTextId(0);
+	DisplayUi::setDisplayTextId(0);
 	Raylib_fonts[0] = (Raylib_Font){
+			.fontId = DisplayUi::getDisplayTextId(),
 			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DISPLAY_TEXT_SIZE, 0, 250),
-			.fontId = getDisplayTextId(),
 	};
 
-	setDebuggerTextId(1);
+	DebuggerUi::setDebuggerTextId(1);
 	Raylib_fonts[1] = (Raylib_Font){
+			.fontId = DebuggerUi::getDebuggerTextId(),
 			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DEBUGGER_TEXT_SIZE, 0, 250),
-			.fontId = getDebuggerTextId(),
 	};
 
-	setButtonsTextId(2);
+	ButtonsUi::setButtonsTextId(2);
 	Raylib_fonts[2] = (Raylib_Font){
+			.fontId = ButtonsUi::getButtonsTextId(),
 			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", BUTTONS_TEXT_SIZE, 0, 250),
-			.fontId = getButtonsTextId(),
 	};
 
-	setEtvsTextId(3);
+	EtvsUi::setEtvsTextId(3);
 	Raylib_fonts[3] = (Raylib_Font){
+			.fontId = EtvsUi::getEtvsTextId(),
 			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", ETVS_TEXT_SIZE, 0, 250),
-			.fontId = getEtvsTextId(),
 	};
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
@@ -60,21 +60,23 @@ void init() {
 	//Clay_SetDebugModeEnabled(true);
 }
 
-static void createControlUnit() {
+void ClayUi::createControlUnit() {
 	CLAY(CLAY_ID("ControlUnit"),
-		 CLAY_LAYOUT({.layoutDirection = CLAY_TOP_TO_BOTTOM,
-					  .childGap = 25,
-					  .sizing = {
-							  .height = CLAY_SIZING_GROW(),
-							  .width = CLAY_SIZING_FIT(),
-					  }})) {
-		createDisplay();
-		createButtonGroup();
-		createEtvGroup();
+		 CLAY_LAYOUT({
+				 .sizing = {
+						 .width = CLAY_SIZING_FIT(),
+						 .height = CLAY_SIZING_GROW(),
+				 },
+				 .childGap = 25,
+				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
+		 })) {
+		DisplayUi::createDisplay();
+		ButtonsUi::createButtonGroup();
+		EtvsUi::createEtvGroup();
 	}
 }
 
-void show() {
+void ClayUi::show() {
 	//appendDebuggerLog("A really long string to prove that the debugger can automatically go to new line if space ends");
 	//appendDebuggerLog("A string to prove that the function appendDebuggerText() correctly appends text");
 	//appendDebuggerLog("A string to prove that the function appendDebuggerLog() correctly converts the string");
@@ -108,16 +110,16 @@ void show() {
 					 .color = BG_COLOR,
 			 }),
 			 CLAY_LAYOUT({
-					 .layoutDirection = CLAY_LEFT_TO_RIGHT,
 					 .sizing = {
-							 .height = CLAY_SIZING_GROW(),
 							 .width = CLAY_SIZING_GROW(),
+							 .height = CLAY_SIZING_GROW(),
 					 },
 					 .padding = {25, 25, 25, 25},
 					 .childGap = 25,
+					 .layoutDirection = CLAY_LEFT_TO_RIGHT,
 			 })) {
 			createControlUnit();
-			createDebugger();
+			DebuggerUi::createDebugger();
 		}
 
 		Clay_RenderCommandArray renderCommands = Clay_EndLayout();
@@ -129,9 +131,20 @@ void show() {
 	}// !WindowShouldClose()
 }
 
-void appendDebuggerLog(const char* string) {
-	appendDebuggerText((Clay_String){
+void ClayUi::appendDebuggerText(const char* string) {
+	DebuggerUi::appendDebuggerText((Clay_String){
+			.length = static_cast<int32_t>(strlen(string)),
 			.chars = string,
-			.length = strlen(string),
 	});
+}
+
+void ClayUi::setDisplayChar(int8_t row, int8_t col, char c) {
+	DisplayUi::setDisplayChar(row, col, c);
+}
+
+void ClayUi::activateEtv(int8_t n) {
+	EtvsUi::setEtvState(n, true);
+}
+void ClayUi::deactivateEtv(int8_t n) {
+	EtvsUi::setEtvState(n, false);
 }

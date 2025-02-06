@@ -1,29 +1,29 @@
-#include "debuggerUi.h"
+#include "debuggerUi.hpp"
 
 #include "clay.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 
 static uint16_t textId;
 
 static Clay_String text = {
-		.chars = NULL,
 		.length = 0,
+		.chars = nullptr,
 };
 
-void setDebuggerTextId(uint16_t id) {
+void DebuggerUi::setDebuggerTextId(uint16_t id) {
 	textId = id;
 }
 
-uint16_t getDebuggerTextId(void) {
+uint16_t DebuggerUi::getDebuggerTextId() {
 	return textId;
 }
 
-void createDebugger() {
+void DebuggerUi::createDebugger() {
 	Clay_TextElementConfig debugText = {
+			.textColor = DEBUGGER_TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = DEBUGGER_TEXT_SIZE,
-			.textColor = DEBUGGER_TEXT_COLOR,
 	};
 
 	CLAY(CLAY_ID("Debugger"),
@@ -35,19 +35,19 @@ void createDebugger() {
 				 .vertical = true,
 		 }),
 		 CLAY_LAYOUT({
-				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 				 .sizing = {
-						 .height = CLAY_SIZING_GROW(),
 						 .width = CLAY_SIZING_GROW(),
+						 .height = CLAY_SIZING_GROW(),
 				 },
-				 .childGap = 0,
 				 .padding = {10, 10, 10, 10},
+				 .childGap = 0,
+				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
 		CLAY_TEXT(text, CLAY_TEXT_CONFIG(debugText));
 	}
 }
 
-void appendDebuggerText(Clay_String s) {
+void DebuggerUi::appendDebuggerText(Clay_String s) {
 	bool newLine = text.length > 0;
 
 	int32_t newLength = text.length + s.length + newLine;
