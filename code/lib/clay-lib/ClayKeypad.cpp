@@ -10,7 +10,6 @@ bool ClayKeypad::cancel() {
 	bool state;
 	state = cancelState;
 	cancelState = false;
-	cout << "AAAAA" << endl;
 	return state;
 }
 
