@@ -10,6 +10,8 @@ void ClayValveGroup::begin(ClayControlUnit* w) {
 }
 
 void ClayValveGroup::turnOn(uint8_t num) {
+	this->tOn[num] = this->clock.getDateTime().time;
+	this->elapsedDays[num] = 1;
 	w->activateEtv(num);
 }
 
