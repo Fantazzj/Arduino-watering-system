@@ -28,7 +28,7 @@ void ClayControlUnit::debuggerLog(std::string string) {
 }
 
 void ClayControlUnit::printOnDisplay(std::string text) {
-	for(int i = x, j = 0; j < text.size() && i < D_LENGTH; i++, j++) {
+	for(int8_t i = x, j = 0; j < text.size() && i < D_LENGTH; i++, j++) {
 		ui.setDisplayChar(y, i, text[j]);
 	}
 }
