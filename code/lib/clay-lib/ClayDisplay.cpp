@@ -155,19 +155,19 @@ std::string ClayDisplay::arrangeDow(MyDate time) {
 	std::string arrangedDow;
 	switch(time.dow) {
 		case Monday:
-			arrangedDow = "Lunedì";
+			arrangedDow = "Lunedi";
 			break;
 		case Tuesday:
-			arrangedDow = "Martedì";
+			arrangedDow = "Martedi";
 			break;
 		case Wednesday:
-			arrangedDow = "Mercoledì";
+			arrangedDow = "Mercoledi";
 			break;
 		case Thursday:
-			arrangedDow = "Giovedì";
+			arrangedDow = "Giovedi";
 			break;
 		case Friday:
-			arrangedDow = "Venerdì";
+			arrangedDow = "Venerdi";
 			break;
 		case Saturday:
 			arrangedDow = "Sabato";
