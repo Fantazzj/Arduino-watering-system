@@ -1,6 +1,7 @@
-find_package(raylib CONFIG REQUIRED)
-
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(raylib CONFIG REQUIRED)
 
 add_library(clay-lib SHARED
         ClayControlUnit.cpp
@@ -21,7 +22,7 @@ add_library(clayUi-lib
         ClayUi/ClayKeypadUi.cpp
         ClayUi/ClayDebuggerUi.cpp
         ClayUi/ClayValveGroupUi.cpp
-        ClayUi/clay.c
+        ClayUi/clay.cpp
 )
 
 target_link_directories(clayUi-lib PRIVATE ${RAYLIB_DIR})
