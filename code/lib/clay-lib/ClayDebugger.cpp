@@ -9,13 +9,13 @@ void ClayDebugger::begin(ClayControlUnit* w) {
 }
 
 void ClayDebugger::print(const char* text) {
-	//TODO: add definition
+	w->debuggerLog(text);
 }
 
 void ClayDebugger::print(char c) {
-	//TODO: add definition
+	w->debuggerLog(std::string(1, c));
 }
 
 void ClayDebugger::print(int n) {
-	//TODO: add definition
+	w->debuggerLog(std::to_string(n));
 }

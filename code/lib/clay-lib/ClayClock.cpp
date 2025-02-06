@@ -14,5 +14,7 @@ MyDateTime ClayClock::getDateTime() {
 }
 
 void ClayClock::setDateTime(MyDateTime time) {
-	//TODO: add definition
+	w->debuggerLog("Set time to:\n");
+	w->debuggerLog(std::to_string(time.time.hour) + ":" + std::to_string(time.time.min) + ":" + std::to_string(time.time.sec));
+	w->debuggerLog(std::to_string(time.date.day) + "/" + std::to_string(time.date.mon) + "/" + std::to_string(time.date.year));
 }

@@ -10,9 +10,9 @@ void ClayValveGroup::begin(ClayControlUnit* w) {
 }
 
 void ClayValveGroup::turnOn(uint8_t num) {
-	//TODO: add definition
+	w->activateEtv(num);
 }
 
 void ClayValveGroup::turnOff(uint8_t num) {
-	//TODO: add definition
+	w->deactivateEtv(num);
 }
