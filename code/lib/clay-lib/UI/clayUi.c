@@ -56,6 +56,8 @@ void init() {
 	};
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
+
+	Clay_SetDebugModeEnabled(true);
 }
 
 static void createControlUnit() {
@@ -76,23 +78,33 @@ void show() {
 	appendDebuggerText(CLAY_STRING("A really long string to prove that the debugger can automatically go to new line if space ends"));
 	appendDebuggerText(CLAY_STRING("A string to prove that the function appendDebuggerText() correctly appends text"));
 
-	setDisplayChar(0,0,'E');
-	setDisplayChar(0,1,'D');
-	setDisplayChar(0,2,'I');
-	setDisplayChar(0,3,'T');
-	setDisplayChar(0,4,'E');
-	setDisplayChar(0,5,'D');
+	setDisplayChar(0, 0, 'E');
+	setDisplayChar(0, 1, 'D');
+	setDisplayChar(0, 2, 'I');
+	setDisplayChar(0, 3, 'T');
+	setDisplayChar(0, 4, 'E');
+	setDisplayChar(0, 5, 'D');
 
 	setEtvState(3, true);
 	setEtvState(8, true);
 
 	while(!WindowShouldClose()) {
-		Clay_BeginLayout();
-
 		Clay_SetLayoutDimensions((Clay_Dimensions){
 				.width = (float) GetScreenWidth(),
 				.height = (float) GetScreenHeight(),
 		});
+
+		Vector2 mousePosition = GetMousePosition();
+		Vector2 scrollDelta = GetMouseWheelMoveV();
+		Clay_SetPointerState(
+				(Clay_Vector2){mousePosition.x, mousePosition.y},
+				IsMouseButtonDown(0));
+		Clay_UpdateScrollContainers(
+				true,
+				(Clay_Vector2){scrollDelta.x, scrollDelta.y},
+				GetFrameTime());
+		
+		Clay_BeginLayout();
 
 		CLAY(CLAY_ID("Container"),
 			 CLAY_RECTANGLE({

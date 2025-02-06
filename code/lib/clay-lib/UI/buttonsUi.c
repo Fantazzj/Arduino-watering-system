@@ -2,6 +2,7 @@
 
 #include "clay.h"
 #include <stdint.h>
+#include <stdio.h>
 
 #define BUTTONS_NUM 4
 
@@ -22,6 +23,13 @@ uint16_t getButtonsTextId() {
 	return textId;
 }
 
+static void pressHandler(Clay_ElementId elementId, Clay_PointerData pointerData, intptr_t i) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+
+	printf("Pressed button n°%lld\n", i);
+}
+
 static void createButton(int8_t i) {
 	Clay_TextElementConfig buttonText = {
 			.fontId = textId,
@@ -36,10 +44,11 @@ static void createButton(int8_t i) {
 		 CLAY_LAYOUT({
 				 .sizing = {
 						 .width = CLAY_SIZING_GROW(),
-						 .height = CLAY_SIZING_FIT(BUTTONS_TEXT_SIZE + 5, BUTTONS_TEXT_SIZE + 25),
+						 .height = CLAY_SIZING_GROW(),
 				 },
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
-		 })) {
+		 }),
+		 Clay_OnHover(pressHandler, i)) {
 		CLAY_TEXT(buttonNames[i], CLAY_TEXT_CONFIG(buttonText));
 	}
 }
@@ -57,7 +66,7 @@ void createButtonGroup() {
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				 .sizing = {
 						 .width = CLAY_SIZING_GROW(),
-						 .height = CLAY_SIZING_FIT(0, 0),
+						 .height = CLAY_SIZING_FIXED(150),
 				 },
 		 })) {
 		for(int8_t i = 0; i < BUTTONS_NUM; i++)
