@@ -3,6 +3,7 @@
 
 #define BG_COLOR {74, 95, 115, 255}
 
+#include "buttonsUi.hpp"
 #include "displayUi.hpp"
 #include "etvsUi.hpp"
 #include <cstdint>
@@ -20,6 +21,7 @@ public:
 private:
 	DisplayUi display;
 	EtvsUi etvs;
+	ButtonsUi buttons;
 	void createControlUnit();
 };
 

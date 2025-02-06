@@ -1,32 +1,21 @@
 #include "buttonsUi.hpp"
 
-#include <cstdint>
-#include <cstdio>
+#include "clay.h"
+#include <iostream>
 
-#define BUTTONS_NUM 4
-
-static const Clay_String buttonNames[BUTTONS_NUM] = {
-		CLAY_STRING("Cancel"),
-		CLAY_STRING("Down"),
-		CLAY_STRING("Up"),
-		CLAY_STRING("Confirm"),
-};
-
-static uint16_t textId;
-
-void ButtonsUi::setButtonsTextId(uint16_t id) {
+ButtonsUi::ButtonsUi(uint16_t id) {
 	textId = id;
 }
 
-uint16_t ButtonsUi::getButtonsTextId() {
+uint16_t ButtonsUi::getButtonsTextId() const {
 	return textId;
 }
 
-void ButtonsUi::pressHandler(Clay_ElementId elementId, Clay_PointerData pointerData, intptr_t i) {
+static void pressHandler(Clay_ElementId elementId, Clay_PointerData pointerData, intptr_t i) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
 
-	printf("Pressed button n°%lld\n", i);
+	std::cout << "Pressed button n°" << (int) i << std::endl;
 }
 
 void ButtonsUi::createButton(int8_t i) {
@@ -48,7 +37,11 @@ void ButtonsUi::createButton(int8_t i) {
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 		 }),
 		 Clay_OnHover(pressHandler, i)) {
-		CLAY_TEXT(buttonNames[i], CLAY_TEXT_CONFIG(buttonText));
+		Clay_String buttonName = {
+				.length = static_cast<int32_t>(buttonNames[i].length()),
+				.chars = buttonNames[i].c_str(),
+		};
+		CLAY_TEXT(buttonName, CLAY_TEXT_CONFIG(buttonText));
 	}
 }
 
