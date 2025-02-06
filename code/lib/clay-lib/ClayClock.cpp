@@ -1,7 +1,10 @@
 #include "ClayClock.hpp"
+#include <chrono>
+
+using std::chrono::system_clock;
 
 ClayClock::ClayClock() {
-	//TODO: add definition
+	w = nullptr;
 }
 
 void ClayClock::begin(ClayControlUnit* w) {
@@ -9,8 +12,13 @@ void ClayClock::begin(ClayControlUnit* w) {
 }
 
 MyDateTime ClayClock::getDateTime() {
-	//TODO: add definition
-	return MyDateTime();
+	const auto now = system_clock::now();
+	const auto now_time = system_clock::to_time_t(now);
+	const auto time = localtime(&now_time);
+
+	return MyDateTime(
+			MyTime(time->tm_hour, time->tm_min, time->tm_sec),
+			MyDate(time->tm_yday, time->tm_mon, time->tm_year));
 }
 
 void ClayClock::setDateTime(MyDateTime time) {
