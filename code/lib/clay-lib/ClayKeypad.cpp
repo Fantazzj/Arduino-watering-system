@@ -2,10 +2,6 @@
 
 ClayKeypad::ClayKeypad() = default;
 
-#include <iostream>
-
-using namespace std;
-
 bool ClayKeypad::cancel() {
 	bool state;
 	state = cancelState;
