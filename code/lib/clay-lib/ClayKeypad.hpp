@@ -5,13 +5,12 @@
 
 class ClayKeypad : public Keypad {
 private:
+public:
+	explicit ClayKeypad();
 	bool cancelState = false;
 	bool downState = false;
 	bool upState = false;
 	bool confirmState = false;
-
-public:
-	explicit ClayKeypad();
 	bool cancel() override;
 	bool down() override;
 	bool up() override;

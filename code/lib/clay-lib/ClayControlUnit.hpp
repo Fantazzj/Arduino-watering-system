@@ -6,7 +6,6 @@
 
 class ClayControlUnit {
 private:
-	ClayKeypad* keypad;
 	ClayUi ui;
 	int8_t x = 0;
 	int8_t y = 0;

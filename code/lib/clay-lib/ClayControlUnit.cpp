@@ -2,8 +2,6 @@
 
 ClayControlUnit::ClayControlUnit() :
 	ui() {
-	this->keypad = nullptr;
-
 	//TODO: add definition
 }
 
@@ -12,7 +10,7 @@ void ClayControlUnit::show() {
 }
 
 void ClayControlUnit::setKeypad(ClayKeypad* keypad) {
-	this->keypad = keypad;
+	ui.setKeypad(keypad);
 }
 
 void ClayControlUnit::activateEtv(int8_t n) {
@@ -41,5 +39,5 @@ void ClayControlUnit::setCursorDisplay(int8_t x, int8_t y) {
 void ClayControlUnit::clearDisplay() {
 	for(int8_t i = 0; i < D_HEIGHT; i++)
 		for(int8_t j = 0; j < D_LENGTH; j++)
-			ui.setDisplayChar(i,j,' ');
+			ui.setDisplayChar(i, j, ' ');
 }

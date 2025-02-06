@@ -1,6 +1,7 @@
 #ifndef BUTTONSUI_H
 #define BUTTONSUI_H
 
+#include "../ClayKeypad.hpp"
 #include <array>
 #include <cstdint>
 #include <string>
@@ -27,6 +28,7 @@ public:
 	void createButtonGroup();
 	[[nodiscard]] uint16_t getButtonsTextId() const;
 	void createButton(int8_t i);
+	void setKeypad(ClayKeypad* keypad);
 };
 
 #endif//BUTTONSUI_H

@@ -11,11 +11,30 @@ uint16_t ButtonsUi::getButtonsTextId() const {
 	return textId;
 }
 
+ClayKeypad* keypad = nullptr;
+
 static void pressHandler(Clay_ElementId elementId, Clay_PointerData pointerData, intptr_t i) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
 
 	std::cout << "Pressed button n°" << (int) i << std::endl;
+
+	switch(i) {
+		case 0:
+			keypad->cancelState = true;
+			break;
+		case 1:
+			keypad->downState = true;
+			break;
+		case 2:
+			keypad->upState = true;
+			break;
+		case 3:
+			keypad->confirmState = true;
+			break;
+		default:
+			break;
+	}
 }
 
 void ButtonsUi::createButton(int8_t i) {
@@ -64,4 +83,8 @@ void ButtonsUi::createButtonGroup() {
 		for(int8_t i = 0; i < BUTTONS_NUM; i++)
 			createButton(i);
 	}
+}
+
+void ButtonsUi::setKeypad(ClayKeypad* keypad) {
+	::keypad = keypad;
 }

@@ -143,3 +143,7 @@ void ClayUi::activateEtv(int8_t n) {
 void ClayUi::deactivateEtv(int8_t n) {
 	etvs.setEtvState(n, false);
 }
+
+void ClayUi::setKeypad(ClayKeypad* keypad) {
+	buttons.setKeypad(keypad);
+}
