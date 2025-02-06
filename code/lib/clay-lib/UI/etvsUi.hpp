@@ -1,7 +1,8 @@
 #ifndef ETVUI_H
 #define ETVUI_H
 
-#include "clay.h"
+#include <array>
+#include <string>
 #include <cstdint>
 
 #define ETVS_ON_COLOR {149, 182, 120, 255}
@@ -11,16 +12,33 @@
 #define ETVS_TEXT_COLOR {50, 50, 50, 255}
 #define ETVS_TEXT_SIZE 30
 
+#define ETV_NUM 9
+
 class EtvsUi {
+private:
+	const std::array<std::string, ETV_NUM> etvsNames = {
+			"Etv1",
+			"Etv2",
+			"Etv3",
+			"Etv4",
+			"Etv5",
+			"Etv6",
+			"Etv7",
+			"Etv8",
+			"Etv9",
+	};
+	std::array<bool, ETV_NUM> etvStates;
+	uint16_t textId;
+
 public:
-	static void createEtvGroup();
-	static void setEtvsTextId(uint16_t id);
-	static uint16_t getEtvsTextId();
-	static void setEtvState(int8_t n, bool state);
-	static void createEtv(int8_t i);
-	static void createEtvRow(int8_t from, int8_t to);
-	static void activateEtv(int8_t n);
-	static void deactivateEtv(int8_t n);
+	explicit EtvsUi(uint16_t id);
+	void createEtvGroup();
+	uint16_t getEtvsTextId() const;
+	void setEtvState(int8_t n, bool state);
+	void createEtv(int8_t i);
+	void createEtvRow(int8_t from, int8_t to);
+	void activateEtv(int8_t n);
+	void deactivateEtv(int8_t n);
 };
 
 #endif//ETVUI_H
