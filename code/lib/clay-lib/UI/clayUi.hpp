@@ -4,6 +4,7 @@
 #define BG_COLOR {74, 95, 115, 255}
 
 #include "buttonsUi.hpp"
+#include "debuggerUi.hpp"
 #include "displayUi.hpp"
 #include "etvsUi.hpp"
 #include <cstdint>
@@ -14,7 +15,7 @@ public:
 	void show();
 
 	void setDisplayChar(int8_t row, int8_t col, char c);
-	void appendDebuggerText(const char* string);
+	void appendDebuggerText(std::string string);
 	void activateEtv(int8_t n);
 	void deactivateEtv(int8_t n);
 
@@ -22,6 +23,7 @@ private:
 	DisplayUi display;
 	EtvsUi etvs;
 	ButtonsUi buttons;
+	DebuggerUi debugger;
 	void createControlUnit();
 };
 

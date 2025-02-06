@@ -3,8 +3,6 @@
 #define CLAY_IMPLEMENTATION
 #include "clay.h"
 #include "clay_renderer_raylib.c"
-#include "debuggerUi.hpp"
-
 #include <cstdlib>
 
 void HandleClayErrors(Clay_ErrorData errorData) {
@@ -13,7 +11,7 @@ void HandleClayErrors(Clay_ErrorData errorData) {
 }
 
 ClayUi::ClayUi() :
-	display(0), buttons(2), etvs(3) {
+	display(0), debugger(1), buttons(2), etvs(3) {
 	Clay_Raylib_Initialize(1500, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	uint64_t clayRequiredMemory = Clay_MinMemorySize();
@@ -35,9 +33,8 @@ ClayUi::ClayUi() :
 			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DISPLAY_TEXT_SIZE, 0, 250),
 	};
 
-	DebuggerUi::setDebuggerTextId(1);
 	Raylib_fonts[1] = (Raylib_Font){
-			.fontId = DebuggerUi::getDebuggerTextId(),
+			.fontId = debugger.getDebuggerTextId(),
 			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", DEBUGGER_TEXT_SIZE, 0, 250),
 	};
 
@@ -73,9 +70,9 @@ void ClayUi::createControlUnit() {
 }
 
 void ClayUi::show() {
-	//appendDebuggerLog("A really long string to prove that the debugger can automatically go to new line if space ends");
-	//appendDebuggerLog("A string to prove that the function appendDebuggerText() correctly appends text");
-	//appendDebuggerLog("A string to prove that the function appendDebuggerLog() correctly converts the string");
+	//appendDebuggerText("A really long string to prove that the debugger can automatically go to new line if space ends");
+	//appendDebuggerText("A string to prove that the function appendDebuggerText() correctly appends text");
+	//appendDebuggerText("A string to prove that the function appendDebuggerLog() correctly converts the string");
 
 	//setDisplayChar(0, 0, 'E');
 	//setDisplayChar(0, 1, 'D');
@@ -84,8 +81,8 @@ void ClayUi::show() {
 	//setDisplayChar(0, 4, 'E');
 	//setDisplayChar(0, 5, 'D');
 
-	//setEtvState(3, true);
-	//setEtvState(8, true);
+	//activateEtv(3);
+	//activateEtv(8);
 
 	while(!WindowShouldClose()) {
 		Clay_SetLayoutDimensions((Clay_Dimensions){
@@ -115,7 +112,7 @@ void ClayUi::show() {
 					 .layoutDirection = CLAY_LEFT_TO_RIGHT,
 			 })) {
 			createControlUnit();
-			DebuggerUi::createDebugger();
+			debugger.createDebugger();
 		}
 
 		Clay_RenderCommandArray renderCommands = Clay_EndLayout();
@@ -127,11 +124,8 @@ void ClayUi::show() {
 	}// !WindowShouldClose()
 }
 
-void ClayUi::appendDebuggerText(const char* string) {
-	DebuggerUi::appendDebuggerText((Clay_String){
-			.length = static_cast<int32_t>(strlen(string)),
-			.chars = string,
-	});
+void ClayUi::appendDebuggerText(std::string string) {
+	debugger.appendDebuggerText(string);
 }
 
 void ClayUi::setDisplayChar(int8_t row, int8_t col, char c) {

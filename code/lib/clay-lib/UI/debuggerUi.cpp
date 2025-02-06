@@ -2,20 +2,11 @@
 
 #include "clay.h"
 
-#include <cstdlib>
-
-static uint16_t textId;
-
-static Clay_String text = {
-		.length = 0,
-		.chars = nullptr,
-};
-
-void DebuggerUi::setDebuggerTextId(uint16_t id) {
+DebuggerUi::DebuggerUi(uint16_t id) {
 	textId = id;
 }
 
-uint16_t DebuggerUi::getDebuggerTextId() {
+uint16_t DebuggerUi::getDebuggerTextId() const {
 	return textId;
 }
 
@@ -43,33 +34,16 @@ void DebuggerUi::createDebugger() {
 				 .childGap = 0,
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
-		CLAY_TEXT(text, CLAY_TEXT_CONFIG(debugText));
+		Clay_String clayText = {
+				.length = static_cast<int32_t>(text.length()),
+				.chars = text.c_str(),
+		};
+		CLAY_TEXT(clayText, CLAY_TEXT_CONFIG(debugText));
 	}
 }
 
-void DebuggerUi::appendDebuggerText(Clay_String s) {
-	bool newLine = text.length > 0;
-
-	int32_t newLength = text.length + s.length + newLine;
-	char* newChars = (char*) malloc(newLength);
-
-	int32_t i = 0;
-	for(int32_t j = 0; j < text.length; j++) {
-		newChars[i] = text.chars[j];
-		i++;
-	}
-
-	if(newLine) {
-		newChars[i] = '\n';
-		i++;
-	}
-
-	for(int32_t j = 0; j < s.length; j++) {
-		newChars[i] = s.chars[j];
-		i++;
-	}
-
-	text.length = newLength;
-	free((char*) text.chars);
-	text.chars = newChars;
+void DebuggerUi::appendDebuggerText(std::string string) {
+	if(!text.empty())
+		text.append("\n");
+	text.append(string);
 }
