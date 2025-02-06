@@ -10,7 +10,7 @@ ClayTimer::ClayTimer() {
 };
 
 void ClayTimer::wait(unsigned long t) {
-	std::this_thread::sleep_for(milliseconds(10));
+	std::this_thread::sleep_for(milliseconds(t));
 }
 
 unsigned long ClayTimer::millis() {
