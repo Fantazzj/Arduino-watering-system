@@ -1,5 +1,5 @@
-#ifndef ETVUI_H
-#define ETVUI_H
+#ifndef CLAY_VALVE_GROUP_UI_HPP
+#define CLAY_VALVE_GROUP_UI_HPP
 
 #include <array>
 #include <cstdint>
@@ -14,7 +14,7 @@
 
 #define ETV_NUM 9
 
-class EtvsUi {
+class ClayValveGroupUi {
 private:
 	const std::array<std::string, ETV_NUM> etvsNames = {
 			"Etv1",
@@ -31,7 +31,7 @@ private:
 	uint16_t textId;
 
 public:
-	explicit EtvsUi(uint16_t id);
+	explicit ClayValveGroupUi(uint16_t id);
 	void createEtvGroup();
 	uint16_t getEtvsTextId() const;
 	void setEtvState(int8_t n, bool state);
@@ -39,4 +39,4 @@ public:
 	void createEtvRow(int8_t from, int8_t to);
 };
 
-#endif//ETVUI_H
+#endif//CLAY_VALVE_GROUP_UI_HPP

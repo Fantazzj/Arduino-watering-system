@@ -1,18 +1,18 @@
-#include "debuggerUi.hpp"
+#include "ClayDebuggerUi.hpp"
 
 extern "C" {
 #include "clay.h"
 }
 
-DebuggerUi::DebuggerUi(uint16_t id) {
+ClayDebuggerUi::ClayDebuggerUi(uint16_t id) {
 	textId = id;
 }
 
-uint16_t DebuggerUi::getDebuggerTextId() const {
+uint16_t ClayDebuggerUi::getDebuggerTextId() const {
 	return textId;
 }
 
-void DebuggerUi::createDebugger() {
+void ClayDebuggerUi::createDebugger() {
 	Clay_TextElementConfig debugText = {
 			.textColor = DEBUGGER_TEXT_COLOR,
 			.fontId = textId,
@@ -44,7 +44,7 @@ void DebuggerUi::createDebugger() {
 	}
 }
 
-void DebuggerUi::appendDebuggerText(std::string string) {
+void ClayDebuggerUi::appendDebuggerText(std::string string) {
 	if(!text.empty())
 		text.append("\n");
 	text.append(string);

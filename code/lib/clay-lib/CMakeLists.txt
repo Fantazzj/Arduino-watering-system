@@ -16,12 +16,12 @@ add_library(clay-lib SHARED
 )
 
 add_library(clayUi-lib
-        UI/clayUi.cpp
-        UI/displayUi.cpp
-        UI/buttonsUi.cpp
-        UI/debuggerUi.cpp
-        UI/etvsUi.cpp
-        UI/clay.c
+        ClayUi/ClayControlUnitUi.cpp
+        ClayUi/ClayDisplayUi.cpp
+        ClayUi/ClayKeypadUi.cpp
+        ClayUi/ClayDebuggerUi.cpp
+        ClayUi/ClayValveGroupUi.cpp
+        ClayUi/clay.c
 )
 
 target_link_directories(clayUi-lib PRIVATE ${RAYLIB_DIR})

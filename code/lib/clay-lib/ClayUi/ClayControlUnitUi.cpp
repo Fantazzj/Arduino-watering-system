@@ -1,4 +1,4 @@
-#include "clayUi.hpp"
+#include "ClayControlUnitUi.hpp"
 
 extern "C" {
 #include "clay.h"
@@ -11,7 +11,7 @@ void HandleClayErrors(Clay_ErrorData errorData) {
 	exit(errorData.errorType);
 }
 
-ClayUi::ClayUi() :
+ClayControlUnitUi::ClayControlUnitUi() :
 	display(1), debugger(2), buttons(3), etvs(4) {
 	Clay_Raylib_Initialize(1500, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
@@ -59,7 +59,7 @@ ClayUi::ClayUi() :
 	//Clay_SetDebugModeEnabled(true);
 }
 
-void ClayUi::createControlUnit() {
+void ClayControlUnitUi::createControlUnit() {
 	CLAY(CLAY_ID("ControlUnit"),
 		 CLAY_LAYOUT({
 				 .sizing = {
@@ -75,7 +75,7 @@ void ClayUi::createControlUnit() {
 	}
 }
 
-void ClayUi::show() {
+void ClayControlUnitUi::show() {
 	while(!WindowShouldClose()) {
 		Clay_SetLayoutDimensions((Clay_Dimensions){
 				.width = (float) GetScreenWidth(),
@@ -116,22 +116,22 @@ void ClayUi::show() {
 	}// !WindowShouldClose()
 }
 
-void ClayUi::appendDebuggerText(std::string string) {
+void ClayControlUnitUi::appendDebuggerText(std::string string) {
 	debugger.appendDebuggerText(string);
 }
 
-void ClayUi::setDisplayChar(int8_t row, int8_t col, char c) {
+void ClayControlUnitUi::setDisplayChar(int8_t row, int8_t col, char c) {
 	display.setDisplayChar(row, col, c);
 }
 
-void ClayUi::activateEtv(int8_t n) {
+void ClayControlUnitUi::activateEtv(int8_t n) {
 	etvs.setEtvState(n, true);
 }
 
-void ClayUi::deactivateEtv(int8_t n) {
+void ClayControlUnitUi::deactivateEtv(int8_t n) {
 	etvs.setEtvState(n, false);
 }
 
-void ClayUi::setKeypad(ClayKeypad* keypad) {
+void ClayControlUnitUi::setKeypad(ClayKeypad* keypad) {
 	buttons.setKeypad(keypad);
 }

@@ -1,10 +1,10 @@
-#include "etvsUi.hpp"
+#include "ClayValveGroupUi.hpp"
 
 extern "C" {
 #include "clay.h"
 }
 
-EtvsUi::EtvsUi(uint16_t id) {
+ClayValveGroupUi::ClayValveGroupUi(uint16_t id) {
 	textId = id;
 	etvStates = {
 			false,
@@ -19,14 +19,14 @@ EtvsUi::EtvsUi(uint16_t id) {
 	};
 }
 
-uint16_t EtvsUi::getEtvsTextId() const {
+uint16_t ClayValveGroupUi::getEtvsTextId() const {
 	return textId;
 }
 
 static const Clay_Color etvsOnColor = ETVS_ON_COLOR;
 static const Clay_Color etvsOffColor = ETVS_OFF_COLOR;
 
-void EtvsUi::createEtv(int8_t i) {
+void ClayValveGroupUi::createEtv(int8_t i) {
 	Clay_TextElementConfig etvsText = {
 			.textColor = ETVS_TEXT_COLOR,
 			.fontId = textId,
@@ -53,7 +53,7 @@ void EtvsUi::createEtv(int8_t i) {
 	}
 }
 
-void EtvsUi::createEtvRow(int8_t from, int8_t to) {
+void ClayValveGroupUi::createEtvRow(int8_t from, int8_t to) {
 	CLAY(CLAY_LAYOUT({
 			.sizing = {
 					.width = CLAY_SIZING_GROW(),
@@ -68,7 +68,7 @@ void EtvsUi::createEtvRow(int8_t from, int8_t to) {
 	}
 }
 
-void EtvsUi::createEtvGroup() {
+void ClayValveGroupUi::createEtvGroup() {
 	CLAY(CLAY_ID("Etvs"),
 		 CLAY_RECTANGLE({
 				 .color = ETVS_BG_COLOR,
@@ -89,6 +89,6 @@ void EtvsUi::createEtvGroup() {
 	}
 }
 
-void EtvsUi::setEtvState(int8_t n, bool state) {
+void ClayValveGroupUi::setEtvState(int8_t n, bool state) {
 	etvStates[n] = state;
 }

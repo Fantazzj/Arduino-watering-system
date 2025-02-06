@@ -1,14 +1,14 @@
-#include "buttonsUi.hpp"
+#include "ClayKeypadUi.hpp"
 
 extern "C" {
 #include "clay.h"
 }
 
-ButtonsUi::ButtonsUi(uint16_t id) {
+ClayKeypadUi::ClayKeypadUi(uint16_t id) {
 	textId = id;
 }
 
-uint16_t ButtonsUi::getButtonsTextId() const {
+uint16_t ClayKeypadUi::getButtonsTextId() const {
 	return textId;
 }
 
@@ -36,7 +36,7 @@ static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t 
 	}
 }
 
-void ButtonsUi::createButton(int8_t i) {
+void ClayKeypadUi::createButton(int8_t i) {
 	Clay_TextElementConfig buttonText = {
 			.textColor = BUTTONS_TEXT_COLOR,
 			.fontId = textId,
@@ -63,7 +63,7 @@ void ButtonsUi::createButton(int8_t i) {
 	}
 }
 
-void ButtonsUi::createButtonGroup() {
+void ClayKeypadUi::createButtonGroup() {
 	CLAY(CLAY_ID("Buttons"),
 		 CLAY_RECTANGLE({
 				 .color = BUTTONS_BG_COLOR,
@@ -84,6 +84,6 @@ void ButtonsUi::createButtonGroup() {
 	}
 }
 
-void ButtonsUi::setKeypad(ClayKeypad* keypad) {
+void ClayKeypadUi::setKeypad(ClayKeypad* keypad) {
 	::keypad = keypad;
 }

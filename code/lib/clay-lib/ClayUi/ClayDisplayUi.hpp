@@ -1,5 +1,5 @@
-#ifndef DISPLAYUI_H
-#define DISPLAYUI_H
+#ifndef CLAY_DISPLAY_UI_HPP
+#define CLAY_DISPLAY_UI_HPP
 
 #include <array>
 #include <cstdint>
@@ -13,13 +13,13 @@
 #define DISPLAY_TEXT_COLOR {50, 50, 50, 255}
 #define DISPLAY_TEXT_SIZE 48
 
-class DisplayUi {
+class ClayDisplayUi {
 private:
 	uint16_t textId;
 	std::array<std::string, 2> text;
 
 public:
-	explicit DisplayUi(uint16_t id);
+	explicit ClayDisplayUi(uint16_t id);
 	[[nodiscard]] uint16_t getDisplayTextId() const;
 	void createDisplay();
 	void setDisplayChar(int8_t row, int8_t col, char c);
@@ -27,4 +27,4 @@ public:
 	void createDisplayRows();
 };
 
-#endif//DISPLAYUI_H
+#endif//CLAY_DISPLAY_UI_HPP

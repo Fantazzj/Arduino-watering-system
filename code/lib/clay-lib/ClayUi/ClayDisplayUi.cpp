@@ -1,10 +1,10 @@
-#include "displayUi.hpp"
+#include "ClayDisplayUi.hpp"
 
 extern "C" {
 #include "clay.h"
 }
 
-DisplayUi::DisplayUi(uint16_t id) {
+ClayDisplayUi::ClayDisplayUi(uint16_t id) {
 	textId = id;
 	text = {
 			"Sample text row1",
@@ -12,11 +12,11 @@ DisplayUi::DisplayUi(uint16_t id) {
 	};
 }
 
-uint16_t DisplayUi::getDisplayTextId() const {
+uint16_t ClayDisplayUi::getDisplayTextId() const {
 	return textId;
 }
 
-void DisplayUi::createDisplayChars(int8_t row) {
+void ClayDisplayUi::createDisplayChars(int8_t row) {
 	Clay_TextElementConfig charText = {
 			.textColor = DISPLAY_TEXT_COLOR,
 			.fontId = textId,
@@ -45,7 +45,7 @@ void DisplayUi::createDisplayChars(int8_t row) {
 	}
 }
 
-void DisplayUi::createDisplayRows() {
+void ClayDisplayUi::createDisplayRows() {
 	for(int8_t r = 0; r < D_HEIGHT; r++) {
 		CLAY(CLAY_LAYOUT({
 				.sizing = {
@@ -60,7 +60,7 @@ void DisplayUi::createDisplayRows() {
 	}
 }
 
-void DisplayUi::createDisplay() {
+void ClayDisplayUi::createDisplay() {
 	CLAY(CLAY_ID("Display"),
 		 CLAY_RECTANGLE({
 				 .color = DISPLAY_BG_COLOR,
@@ -79,6 +79,6 @@ void DisplayUi::createDisplay() {
 	}
 }
 
-void DisplayUi::setDisplayChar(int8_t row, int8_t col, char c) {
+void ClayDisplayUi::setDisplayChar(int8_t row, int8_t col, char c) {
 	text[row][col] = c;
 }

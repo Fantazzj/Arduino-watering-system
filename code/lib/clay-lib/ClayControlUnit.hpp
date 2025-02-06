@@ -2,11 +2,11 @@
 #define CLAYCONTROLUNIT_HPP
 
 #include "ClayKeypad.hpp"
-#include "UI/clayUi.hpp"
+#include "ClayUi/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
 private:
-	ClayUi ui;
+	ClayControlUnitUi ui;
 	int8_t x = 0;
 	int8_t y = 0;
 

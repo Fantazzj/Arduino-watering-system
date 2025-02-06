@@ -1,5 +1,5 @@
-#ifndef BUTTONSUI_H
-#define BUTTONSUI_H
+#ifndef CLAY_KEYPAD_UI_HPP
+#define CLAY_KEYPAD_UI_HPP
 
 #include "../ClayKeypad.hpp"
 #include <array>
@@ -13,7 +13,7 @@
 
 #define BUTTONS_NUM 4
 
-class ButtonsUi {
+class ClayKeypadUi {
 private:
 	uint16_t textId;
 	const std::array<std::string, BUTTONS_NUM> buttonNames = {
@@ -24,11 +24,11 @@ private:
 	};
 
 public:
-	explicit ButtonsUi(uint16_t id);
+	explicit ClayKeypadUi(uint16_t id);
 	void createButtonGroup();
 	[[nodiscard]] uint16_t getButtonsTextId() const;
 	void createButton(int8_t i);
 	void setKeypad(ClayKeypad* keypad);
 };
 
-#endif//BUTTONSUI_H
+#endif//CLAY_KEYPAD_UI_HPP
