@@ -1,8 +1,8 @@
 #include "ClayDebugger.hpp"
 
 ClayDebugger::ClayDebugger() {
-	//TODO: add definition
-}
+	w = nullptr;
+};
 
 void ClayDebugger::begin(ClayControlUnit* w) {
 	this->w = w;
