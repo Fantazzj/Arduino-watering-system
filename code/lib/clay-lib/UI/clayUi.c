@@ -57,7 +57,7 @@ void init() {
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 
-	Clay_SetDebugModeEnabled(true);
+	//Clay_SetDebugModeEnabled(true);
 }
 
 static void createControlUnit() {
@@ -75,18 +75,19 @@ static void createControlUnit() {
 }
 
 void show() {
-	appendDebuggerText(CLAY_STRING("A really long string to prove that the debugger can automatically go to new line if space ends"));
-	appendDebuggerText(CLAY_STRING("A string to prove that the function appendDebuggerText() correctly appends text"));
+	//appendDebuggerLog("A really long string to prove that the debugger can automatically go to new line if space ends");
+	//appendDebuggerLog("A string to prove that the function appendDebuggerText() correctly appends text");
+	//appendDebuggerLog("A string to prove that the function appendDebuggerLog() correctly converts the string");
 
-	setDisplayChar(0, 0, 'E');
-	setDisplayChar(0, 1, 'D');
-	setDisplayChar(0, 2, 'I');
-	setDisplayChar(0, 3, 'T');
-	setDisplayChar(0, 4, 'E');
-	setDisplayChar(0, 5, 'D');
+	//setDisplayChar(0, 0, 'E');
+	//setDisplayChar(0, 1, 'D');
+	//setDisplayChar(0, 2, 'I');
+	//setDisplayChar(0, 3, 'T');
+	//setDisplayChar(0, 4, 'E');
+	//setDisplayChar(0, 5, 'D');
 
-	setEtvState(3, true);
-	setEtvState(8, true);
+	//setEtvState(3, true);
+	//setEtvState(8, true);
 
 	while(!WindowShouldClose()) {
 		Clay_SetLayoutDimensions((Clay_Dimensions){
@@ -126,4 +127,11 @@ void show() {
 		Clay_Raylib_Render(renderCommands);
 		EndDrawing();
 	}// !WindowShouldClose()
+}
+
+void appendDebuggerLog(const char* string) {
+	appendDebuggerText((Clay_String){
+			.chars = string,
+			.length = strlen(string),
+	});
 }

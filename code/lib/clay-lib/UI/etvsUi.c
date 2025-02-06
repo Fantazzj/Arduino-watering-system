@@ -101,3 +101,11 @@ void createEtvGroup() {
 void setEtvState(int8_t n, bool state) {
 	etvStates[n] = state;
 }
+
+void activateEtv(int8_t n) {
+	setEtvState(n, true);
+}
+
+void deactivateEtv(int8_t n) {
+	setEtvState(n, false);
+}
