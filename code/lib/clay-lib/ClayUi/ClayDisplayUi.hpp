@@ -6,16 +6,16 @@
 #include <cstdint>
 #include <string>
 
-constexpr uint8_t DISPLAY_HEIGHT = 2;
-constexpr uint8_t DISPLAY_LENGTH = 16;
-
-constexpr Clay_Color DISPLAY_BG_COLOR = {100, 120, 150, 255};
-constexpr Clay_Color DISPLAY_BASIC_CHAR_COLOR = {101, 157, 213, 255};
-constexpr Clay_Color DISPLAY_SELECTED_CHAR_COLOR = {200, 157, 213, 255};
-constexpr Clay_Color DISPLAY_TEXT_COLOR = {50, 50, 50, 255};
-constexpr uint16_t DISPLAY_TEXT_SIZE = 48;
-
 class ClayDisplayUi {
+public:
+	static constexpr uint8_t ROWS = 2;
+	static constexpr uint8_t COLUMNS = 16;
+	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
+	static constexpr Clay_Color BASIC_CHAR_COLOR = {101, 157, 213, 255};
+	static constexpr Clay_Color SELECTED_CHAR_COLOR = {200, 157, 213, 255};
+	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
+	static constexpr uint16_t TEXT_SIZE = 48;
+
 private:
 	uint16_t textId;
 	std::array<std::string, 2> text;

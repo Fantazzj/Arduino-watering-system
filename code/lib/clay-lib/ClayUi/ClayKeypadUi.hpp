@@ -7,17 +7,17 @@
 #include <cstdint>
 #include <string>
 
-constexpr uint8_t BUTTONS_NUM = 4;
-
-constexpr Clay_Color BUTTONS_COLOR = {101, 157, 213, 255};
-constexpr Clay_Color BUTTONS_BG_COLOR = {100, 120, 150, 255};
-constexpr Clay_Color BUTTONS_TEXT_COLOR = {50, 50, 50, 255};
-constexpr uint16_t BUTTONS_TEXT_SIZE = 30;
-
 class ClayKeypadUi {
+public:
+	static constexpr uint8_t NUM = 4;
+	static constexpr Clay_Color BUTTONS_COLOR = {101, 157, 213, 255};
+	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
+	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
+	static constexpr uint16_t TEXT_SIZE = 30;
+
 private:
 	uint16_t textId;
-	const std::array<std::string, BUTTONS_NUM> buttonNames = {
+	const std::array<std::string, NUM> buttonNames = {
 			"Cancel",
 			"Down",
 			"Up",

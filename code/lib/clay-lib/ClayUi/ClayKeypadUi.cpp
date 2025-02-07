@@ -34,9 +34,9 @@ static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t 
 
 void ClayKeypadUi::createButton(int8_t i) {
 	Clay_TextElementConfig buttonText = {
-			.textColor = BUTTONS_TEXT_COLOR,
+			.textColor = TEXT_COLOR,
 			.fontId = textId,
-			.fontSize = BUTTONS_TEXT_SIZE,
+			.fontSize = TEXT_SIZE,
 	};
 
 	CLAY(CLAY_RECTANGLE({
@@ -62,7 +62,7 @@ void ClayKeypadUi::createButton(int8_t i) {
 void ClayKeypadUi::createButtonGroup() {
 	CLAY(CLAY_ID("Buttons"),
 		 CLAY_RECTANGLE({
-				 .color = BUTTONS_BG_COLOR,
+				 .color = BG_COLOR,
 				 .cornerRadius = {5, 5, 5, 5},
 		 }),
 		 CLAY_LAYOUT({
@@ -75,7 +75,7 @@ void ClayKeypadUi::createButtonGroup() {
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				 .layoutDirection = CLAY_LEFT_TO_RIGHT,
 		 })) {
-		for(int8_t i = 0; i < BUTTONS_NUM; i++)
+		for(int8_t i = 0; i < NUM; i++)
 			createButton(i);
 	}
 }

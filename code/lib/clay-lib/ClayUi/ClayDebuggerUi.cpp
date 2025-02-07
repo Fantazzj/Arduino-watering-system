@@ -10,14 +10,14 @@ uint16_t ClayDebuggerUi::getDebuggerTextId() const {
 
 void ClayDebuggerUi::createDebugger() {
 	Clay_TextElementConfig debugText = {
-			.textColor = DEBUGGER_TEXT_COLOR,
+			.textColor = TEXT_COLOR,
 			.fontId = textId,
-			.fontSize = DEBUGGER_TEXT_SIZE,
+			.fontSize = TEXT_SIZE,
 	};
 
 	CLAY(CLAY_ID("Debugger"),
 		 CLAY_RECTANGLE({
-				 .color = DEBUGGER_BG_COLOR,
+				 .color = BG_COLOR,
 				 .cornerRadius = {5, 5, 5, 5},
 		 }),
 		 CLAY_SCROLL({

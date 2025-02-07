@@ -5,13 +5,15 @@
 #include "ClayDebuggerUi.hpp"
 #include "ClayDisplayUi.hpp"
 #include "ClayKeypadUi.hpp"
+#include "ClayMoistureUi.hpp"
 #include "ClayValveGroupUi.hpp"
 #include "clay.h"
 #include <cstdint>
 
-constexpr Clay_Color BG_COLOR = {74, 95, 115, 255};
-
 class ClayControlUnitUi {
+public:
+	static constexpr Clay_Color BG_COLOR = {74, 95, 115, 255};
+
 public:
 	ClayControlUnitUi();
 	void show();
@@ -29,6 +31,7 @@ private:
 	ClayValveGroupUi etvs;
 	ClayKeypadUi buttons;
 	ClayDebuggerUi debugger;
+	ClayMoistureUi moisture;
 	void createControlUnit();
 };
 

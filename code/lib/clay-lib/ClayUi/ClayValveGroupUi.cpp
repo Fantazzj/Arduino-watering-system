@@ -22,13 +22,13 @@ uint16_t ClayValveGroupUi::getEtvsTextId() const {
 
 void ClayValveGroupUi::createEtv(int8_t i) {
 	Clay_TextElementConfig etvsText = {
-			.textColor = VALVE_TEXT_COLOR,
+			.textColor = TEXT_COLOR,
 			.fontId = textId,
-			.fontSize = VALVE_TEXT_SIZE,
+			.fontSize = TEXT_SIZE,
 	};
 
 	CLAY(CLAY_RECTANGLE({
-				 .color = etvStates[i] ? VALVE_ON_COLOR : VALVE_OFF_COLOR,
+				 .color = etvStates[i] ? ON_COLOR : OFF_COLOR,
 				 .cornerRadius = {10, 10, 10, 10},
 		 }),
 		 CLAY_LAYOUT({
@@ -65,7 +65,7 @@ void ClayValveGroupUi::createEtvRow(int8_t from, int8_t to) {
 void ClayValveGroupUi::createEtvGroup() {
 	CLAY(CLAY_ID("Etvs"),
 		 CLAY_RECTANGLE({
-				 .color = mainSwitchState ? VALVE_MAINSWITCH_ON_COLOR : VALVE_MAINSWITCH_OFF_COLOR,
+				 .color = mainSwitchState ? SWITCH_ON_COLOR : SWITCH_OFF_COLOR,
 				 .cornerRadius = {5, 5, 5, 5},
 		 }),
 		 CLAY_LAYOUT({

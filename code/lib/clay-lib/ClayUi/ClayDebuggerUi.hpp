@@ -5,11 +5,12 @@
 #include <cstdint>
 #include <string>
 
-constexpr Clay_Color DEBUGGER_BG_COLOR = {100, 120, 150, 255};
-constexpr Clay_Color DEBUGGER_TEXT_COLOR = {50, 50, 50, 255};
-constexpr uint16_t DEBUGGER_TEXT_SIZE = 30;
-
 class ClayDebuggerUi {
+public:
+	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
+	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
+	static constexpr uint16_t TEXT_SIZE = 30;
+
 private:
 	uint16_t textId;
 	std::string text;

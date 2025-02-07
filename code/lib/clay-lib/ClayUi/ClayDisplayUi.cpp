@@ -16,19 +16,19 @@ uint16_t ClayDisplayUi::getDisplayTextId() const {
 
 void ClayDisplayUi::createDisplayChars(int8_t row) {
 	Clay_TextElementConfig charText = {
-			.textColor = DISPLAY_TEXT_COLOR,
+			.textColor = TEXT_COLOR,
 			.fontId = textId,
-			.fontSize = DISPLAY_TEXT_SIZE,
+			.fontSize = TEXT_SIZE,
 	};
 
-	for(int8_t c = 0; c < DISPLAY_LENGTH; c++) {
+	for(int8_t c = 0; c < COLUMNS; c++) {
 		Clay_String displayText = {
 				.length = 1,
 				.chars = &text[row][c],
 		};
 
 		CLAY(CLAY_RECTANGLE({
-					 .color = blinkChar[0] == row && blinkChar[1] == c ? DISPLAY_SELECTED_CHAR_COLOR : DISPLAY_BASIC_CHAR_COLOR,
+					 .color = blinkChar[0] == row && blinkChar[1] == c ? SELECTED_CHAR_COLOR : BASIC_CHAR_COLOR,
 					 .cornerRadius = {10, 10, 10, 10},
 			 }),
 			 CLAY_LAYOUT({
@@ -44,7 +44,7 @@ void ClayDisplayUi::createDisplayChars(int8_t row) {
 }
 
 void ClayDisplayUi::createDisplayRows() {
-	for(int8_t r = 0; r < DISPLAY_HEIGHT; r++) {
+	for(int8_t r = 0; r < ROWS; r++) {
 		CLAY(CLAY_LAYOUT({
 				.sizing = {
 						.width = CLAY_SIZING_FIT(),
@@ -61,7 +61,7 @@ void ClayDisplayUi::createDisplayRows() {
 void ClayDisplayUi::createDisplay() {
 	CLAY(CLAY_ID("Display"),
 		 CLAY_RECTANGLE({
-				 .color = DISPLAY_BG_COLOR,
+				 .color = BG_COLOR,
 				 .cornerRadius = {5, 5, 5, 5},
 		 }),
 		 CLAY_LAYOUT({

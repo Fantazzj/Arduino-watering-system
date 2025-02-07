@@ -24,7 +24,7 @@ void ClayControlUnit::debuggerLog(std::string string) {
 }
 
 void ClayControlUnit::printOnDisplay(std::string text) {
-	for(int8_t i = x, j = 0; j < text.size() && i < DISPLAY_LENGTH; i++, j++) {
+	for(int8_t i = x, j = 0; j < text.size() && i < ClayDisplayUi::COLUMNS; i++, j++) {
 		ui.setDisplayChar(y, i, text[j]);
 	}
 }
@@ -35,8 +35,8 @@ void ClayControlUnit::setCursorDisplay(int8_t x, int8_t y) {
 }
 
 void ClayControlUnit::clearDisplay() {
-	for(int8_t i = 0; i < DISPLAY_HEIGHT; i++)
-		for(int8_t j = 0; j < DISPLAY_LENGTH; j++)
+	for(int8_t i = 0; i < ClayDisplayUi::ROWS; i++)
+		for(int8_t j = 0; j < ClayDisplayUi::COLUMNS; j++)
 			ui.setDisplayChar(i, j, ' ');
 }
 

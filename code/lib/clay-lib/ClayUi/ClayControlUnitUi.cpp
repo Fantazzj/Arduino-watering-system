@@ -33,22 +33,22 @@ ClayControlUnitUi::ClayControlUnitUi() :
 
 	Raylib_fonts[1] = (Raylib_Font){
 			.fontId = display.getDisplayTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", DISPLAY_TEXT_SIZE, nullptr, 250),
+			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ClayDisplayUi::TEXT_SIZE, nullptr, 250),
 	};
 
 	Raylib_fonts[2] = (Raylib_Font){
 			.fontId = debugger.getDebuggerTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", DEBUGGER_TEXT_SIZE, nullptr, 250),
+			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ClayDebuggerUi::TEXT_SIZE, nullptr, 250),
 	};
 
 	Raylib_fonts[3] = (Raylib_Font){
 			.fontId = buttons.getButtonsTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", BUTTONS_TEXT_SIZE, nullptr, 250),
+			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ClayKeypadUi::TEXT_SIZE, nullptr, 250),
 	};
 
 	Raylib_fonts[4] = (Raylib_Font){
 			.fontId = etvs.getEtvsTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", VALVE_TEXT_SIZE, nullptr, 250),
+			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ClayValveGroupUi::TEXT_SIZE, nullptr, 250),
 	};
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
@@ -67,6 +67,7 @@ void ClayControlUnitUi::createControlUnit() {
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
 		display.createDisplay();
+		moisture.createMoistureGroup();
 		buttons.createButtonGroup();
 		etvs.createEtvGroup();
 	}
