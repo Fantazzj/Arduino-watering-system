@@ -3,9 +3,15 @@
 
 #include "../core-lib/Memory.hpp"
 #include "ClayControlUnit.hpp"
+#include <fstream>
 
 class ClayMemory : public Memory {
 private:
+	const std::string fileName = "./memory.bin";
+	const std::ios::openmode inFlags = std::ios::in | std::ios::binary;
+	const std::ios::openmode outFlags = std::ios::out | std::ios::binary | std::ios::trunc;
+	int8_t maxFileSize;
+
 public:
 	explicit ClayMemory(uint8_t etvNum);
 	void begin();
