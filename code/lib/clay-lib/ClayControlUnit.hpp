@@ -22,6 +22,8 @@ public:
 	void printOnDisplay(std::string text);
 	void setCursorDisplay(int8_t x, int8_t y);
 	void clearDisplay();
+	void hideCursorDisplay();
+	void showCursorDisplay();
 
 protected:
 };

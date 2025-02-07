@@ -6,6 +6,8 @@ ClayDisplayUi::ClayDisplayUi(uint16_t id) {
 			"Sample text row1",
 			"Sample text row2",
 	};
+	blinkChar[0] = -1;
+	blinkChar[1] = -1;
 }
 
 uint16_t ClayDisplayUi::getDisplayTextId() const {
@@ -26,7 +28,7 @@ void ClayDisplayUi::createDisplayChars(int8_t row) {
 		};
 
 		CLAY(CLAY_RECTANGLE({
-					 .color = DISPLAY_CHAR_COLOR,
+					 .color = blinkChar[0] == row && blinkChar[1] == c ? DISPLAY_SELECTED_CHAR_COLOR : DISPLAY_BASIC_CHAR_COLOR,
 					 .cornerRadius = {10, 10, 10, 10},
 			 }),
 			 CLAY_LAYOUT({
@@ -77,4 +79,9 @@ void ClayDisplayUi::createDisplay() {
 
 void ClayDisplayUi::setDisplayChar(int8_t row, int8_t col, char c) {
 	text[row][col] = c;
+}
+
+void ClayDisplayUi::setBlinkOn(int8_t row, int8_t col) {
+	blinkChar[0] = row;
+	blinkChar[1] = col;
 }

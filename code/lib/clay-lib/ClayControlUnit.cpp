@@ -47,3 +47,11 @@ void ClayControlUnit::activateMainSwitch() {
 void ClayControlUnit::deactivateMainSwitch() {
 	ui.deactivateMainSwitch();
 }
+
+void ClayControlUnit::hideCursorDisplay() {
+	ui.setBlinkOn(-1, -1);
+}
+
+void ClayControlUnit::showCursorDisplay() {
+	ui.setBlinkOn(y, x);
+}

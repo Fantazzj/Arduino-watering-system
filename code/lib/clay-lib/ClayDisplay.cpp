@@ -90,11 +90,13 @@ void ClayDisplay::showClock(MyDateTime timeIn) {
 }
 
 void ClayDisplay::blinkAt(int8_t x, int8_t y) {
-	//TODO: add definition
+	w->hideCursorDisplay();
+	w->setCursorDisplay(x, y);
+	w->showCursorDisplay();
 }
 
 void ClayDisplay::noBlink() {
-	//TODO: add definition
+	w->hideCursorDisplay();
 }
 
 void ClayDisplay::clockSym(bool state) {

@@ -136,6 +136,11 @@ void ClayControlUnitUi::setKeypad(ClayKeypad* keypad) {
 void ClayControlUnitUi::activateMainSwitch() {
 	etvs.setMainSwitchState(true);
 }
+
 void ClayControlUnitUi::deactivateMainSwitch() {
 	etvs.setMainSwitchState(false);
+}
+
+void ClayControlUnitUi::setBlinkOn(int8_t row, int8_t col) {
+	display.setBlinkOn(row, col);
 }

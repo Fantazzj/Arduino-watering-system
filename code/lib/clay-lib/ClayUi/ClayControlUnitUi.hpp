@@ -22,6 +22,7 @@ public:
 	void activateMainSwitch();
 	void deactivateMainSwitch();
 	void setKeypad(ClayKeypad* keypad);
+	void setBlinkOn(int8_t row, int8_t col);
 
 private:
 	ClayDisplayUi display;
