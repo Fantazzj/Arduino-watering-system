@@ -67,8 +67,8 @@ void ClayControlUnitUi::createControlUnit() {
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
 		display.createDisplay();
-		moisture.createMoistureGroup();
 		buttons.createButtonGroup();
+		moisture.createMoistureGroup();
 		etvs.createEtvGroup();
 	}
 }

@@ -12,7 +12,7 @@ public:
 	static constexpr uint8_t COLUMNS = 16;
 	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
 	static constexpr Clay_Color BASIC_CHAR_COLOR = {101, 157, 213, 255};
-	static constexpr Clay_Color SELECTED_CHAR_COLOR = {200, 157, 213, 255};
+	static constexpr Clay_Color SELECTED_CHAR_COLOR = {149, 182, 120, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
 	static constexpr uint16_t TEXT_SIZE = 48;
 

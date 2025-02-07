@@ -22,6 +22,7 @@ add_library(clayUi-lib
         ClayUi/ClayKeypadUi.cpp
         ClayUi/ClayDebuggerUi.cpp
         ClayUi/ClayValveGroupUi.cpp
+        ClayUi/ClayMoistureUi.cpp
         ClayUi/clay.cpp
 )
 
