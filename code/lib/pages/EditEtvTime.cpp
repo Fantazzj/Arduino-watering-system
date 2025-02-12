@@ -57,7 +57,8 @@ PageNum EditEtvTime::exec() {
 void EditEtvTime::show() {
 	if(_redraw) {
 		_controller.display.printData("Etv", _etvEdit + 1, "per", _timeEdit, "minuti");
-		_controller.display.blinkAt(10, 0);
+		int8_t numDigits = 1 + (_timeEdit >= 10) + (_timeEdit >= 100);
+		_controller.display.blinkAt(9 + numDigits, 0);
 		_redraw = false;
 	}
 }
