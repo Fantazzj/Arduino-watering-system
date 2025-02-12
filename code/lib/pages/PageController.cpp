@@ -28,7 +28,7 @@ void PageController::displayClock(bool state) { _myDisplay->clockSym(state); }
 void PageController::displayCheck(bool state) { _myDisplay->checkSym(state); }
 void PageController::displayShowCursor(int8_t x, int8_t y) { _myDisplay->blinkAt(x, y); }
 void PageController::displayHideCursor() { _myDisplay->noBlink(); }
-void PageController::displaySetBacklight(bool state) { _myDisplay->backlight(state); }
+void PageController::displaySetBacklight(bool state) { _myDisplay->setBacklight(state); }
 bool PageController::displayGetBacklight() { return _myDisplay->getBacklight(); }
 int8_t PageController::getEtvOn() { return _autoCycle->etvOn; }
 void PageController::setEtvOn(int8_t num) { _autoCycle->etvOn = num; }

@@ -10,6 +10,8 @@ private:
 	uint8_t height = 0;
 	uint8_t lenght = 0;
 	uint8_t lcdLenght = 0;
+	bool backlight;
+
 	void displayError1();
 	void arrangeWords(String text, String row[]);
 	void printRows(String row[]);
@@ -33,7 +35,8 @@ public:
 	void clockSym(bool state) override;
 	void dropSym(bool state) override;
 	void checkSym(bool state) override;
-	void backlight(bool state) override;
+	void setBacklight(bool state) override;
+	bool getBacklight() const override;
 
 protected:
 };

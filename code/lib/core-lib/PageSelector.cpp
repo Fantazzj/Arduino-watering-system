@@ -73,10 +73,10 @@ void PageSelector::exec() {
 
 void PageSelector::show() {
 	if(controller.keypad.generalPressed()) {
-		controller.display.backlight(true);
+		controller.display.setBacklight(true);
 		lightTime = controller.clock.getDateTime().time;
 	} else if(secToMin(controller.clock.getDateTime().time - lightTime) >= 2) {
-		controller.display.backlight(false);
+		controller.display.setBacklight(false);
 	}
 
 	if(controller.display.getBacklight())

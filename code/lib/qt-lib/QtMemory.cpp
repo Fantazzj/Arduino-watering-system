@@ -1,7 +1,8 @@
 #include "QtMemory.hpp"
 
 QtMemory::QtMemory(uint8_t etvNum) :
-	Memory(etvNum), saveFile("memory.bin") {
+	saveFile("memory.bin") {
+	_etvNum = etvNum;
 	maxFileSize = 2 * _etvNum * sizeof(uint8_t) + 3 * sizeof(uint8_t);
 }
 

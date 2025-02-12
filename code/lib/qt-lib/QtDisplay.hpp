@@ -10,6 +10,7 @@ private:
 	int8_t _length;
 	int8_t _height;
 	int8_t _displayChars;
+	bool _backlight;
 
 	void _displayError1();
 	void _arrangeWords(QString text, QString rows[]) const;
@@ -33,7 +34,8 @@ public:
 	void clockSym(bool state) override;
 	void dropSym(bool state) override;
 	void checkSym(bool state) override;
-	void backlight(bool state) override;
+	void setBacklight(bool state) override;
+	[[nodiscard]] bool getBacklight() const override;
 };
 
 #endif

@@ -5,6 +5,8 @@
 
 class HwMemory : public Memory {
 private:
+	uint8_t _etvNum;
+
 public:
 	explicit HwMemory(uint8_t etvNum);
 	void begin();

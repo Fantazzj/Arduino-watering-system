@@ -1,5 +1,21 @@
 #include "QtDisplay.hpp"
 
+QtDisplay::QtDisplay() {
+	_w = nullptr;
+	_length = 0;
+	_height = 0;
+	_displayChars = 0;
+	_backlight = true;
+}
+
+void QtDisplay::begin(ControlUnit* w) {
+	this->_w = w;
+	this->_length = w->getLength();
+	this->_height = w->getHeight();
+	_displayChars = _length * _height;
+	w->backlight();
+}
+
 void QtDisplay::_displayError1() {
 	_w->printOnDisplay("Err. string");
 	_w->setCursorDisplay(0, 1);
@@ -79,21 +95,6 @@ QString QtDisplay::_arrangeTime(MyTime time) {
 	if(time.min < 10) arrangedTime += "0";
 	arrangedTime += QString::number(time.min);
 	return arrangedTime;
-}
-
-QtDisplay::QtDisplay() {
-	_w = nullptr;
-	_length = 0;
-	_height = 0;
-	_displayChars = 0;
-}
-
-void QtDisplay::begin(ControlUnit* w) {
-	this->_w = w;
-	this->_length = w->getLength();
-	this->_height = w->getHeight();
-	_displayChars = _length * _height;
-	w->backlight();
 }
 
 void QtDisplay::printSimpleText(const char text[]) {
@@ -203,8 +204,12 @@ void QtDisplay::checkSym(bool state) {
 	else _w->printOnDisplay(" ");
 }
 
-void QtDisplay::backlight(bool state) {
-	UnitDisplay::backlight(state);
+void QtDisplay::setBacklight(bool state) {
+	_backlight = state;
 	if(state) _w->backlight();
 	else _w->noBacklight();
+}
+
+bool QtDisplay::getBacklight() const {
+	return _backlight;
 }

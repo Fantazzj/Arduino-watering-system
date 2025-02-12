@@ -1,8 +1,6 @@
 add_library(core-lib
         AutoCycle.cpp
         PageSelector.cpp
-        UnitDisplay.cpp
-        Memory.cpp
         Debugger.cpp
         ../pages/EditClock.cpp
         ../pages/EditEtvDays.cpp

@@ -1,8 +1,9 @@
 #include "HwMemory.hpp"
 #include <EEPROM.h>
 
-HwMemory::HwMemory(uint8_t etvNum) :
-	Memory(etvNum) {}
+HwMemory::HwMemory(uint8_t etvNum) {
+	_etvNum = etvNum;
+}
 
 void HwMemory::begin() {
 	if(EEPROM[0x00] != 0) {

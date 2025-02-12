@@ -234,8 +234,12 @@ void HwDisplay::checkSym(bool state) {
 	else lcd.print(' ');
 }
 
-void HwDisplay::backlight(bool state) {
-	UnitDisplay::backlight(state);
+void HwDisplay::setBacklight(bool state) {
+	backlight = state;
 	if(state) lcd.backlight();
 	else lcd.noBacklight();
+}
+
+bool HwDisplay::getBacklight() const {
+	return backlight;
 }
