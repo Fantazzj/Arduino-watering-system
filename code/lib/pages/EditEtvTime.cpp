@@ -23,12 +23,19 @@ PageNum EditEtvTime::exec() {
 			}
 
 		case Down:
+			if(_timeEdit <= 0) {
+				_timeEdit = 0;
+				return Stay;
+			}
 			if(_timeEdit <= 10) _timeEdit--;
 			else _timeEdit -= 5;
-			if(_timeEdit <= 0) _timeEdit = 0;
 			return Stay;
 
 		case Up:
+			if(_timeEdit >= 120) {
+				_timeEdit = 120;
+				return Stay;
+			}
 			if(_timeEdit < 10) _timeEdit++;
 			else _timeEdit += 5;
 			return Stay;
