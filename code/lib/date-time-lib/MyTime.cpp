@@ -6,11 +6,11 @@ MyTime::MyTime(uint8_t hour, uint8_t min, uint8_t sec) {
 	this->sec = sec;
 }
 
-uint64_t MyTime::operator+(MyTime a) {
+uintmax_t MyTime::operator+(MyTime a) {
 	return this->_toSec() + a._toSec();
 }
 
-uint64_t MyTime::operator-(MyTime a) {
+uintmax_t MyTime::operator-(MyTime a) {
 	return this->_toSec() - a._toSec();
 }
 
@@ -38,6 +38,6 @@ bool MyTime::operator<=(MyTime a) {
 	return this->_toSec() <= a._toSec();
 }
 
-uint64_t MyTime::_toSec() const {
+uintmax_t MyTime::_toSec() const {
 	return hourToSec(this->hour) + minToSec(this->min) + this->sec;
 }
