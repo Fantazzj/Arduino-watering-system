@@ -23,12 +23,19 @@ PageNum EditEtvDays::exec() {
 			}
 
 		case Down:
+			if(_daysEdit <= 0) {
+				_daysEdit = 0;
+				return Stay;
+			}
 			if(_daysEdit <= 10) _daysEdit--;
 			else _daysEdit -= 5;
-			if(_daysEdit <= 0) _daysEdit = 0;
 			return Stay;
 
 		case Up:
+			if(_daysEdit >= 30) {
+				_daysEdit = 30;
+				return Stay;
+			}
 			if(_daysEdit < 10) _daysEdit++;
 			else _daysEdit += 5;
 			return Stay;
