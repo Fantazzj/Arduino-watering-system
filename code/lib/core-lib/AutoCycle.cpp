@@ -24,12 +24,14 @@ int8_t AutoCycle::_nextEtv() {
 MyTime AutoCycle::_checkTReset() {
 	MyTime out(0, 0, 0);
 
-	uint16_t minToStart = tStart.hour * 60 + tStart.min;
-	uint16_t minToReset = out.hour * 60 + out.min;
+	uint16_t minToStart = hourToMin(tStart.hour) + tStart.min;
+	uint16_t minToReset = hourToMin(out.hour) + out.min;
 
 	uint16_t minToWater = 0;
-	for(uint8_t i = 0; i < etvNum; i++) minToWater += _myEtv.getMinOn(i);
-	//minToWater += msSnub/3600 * etvNum;
+	for(uint8_t i = 0; i < etvNum; i++) {
+		minToWater += _myEtv.getMinOn(i);
+		minToWater += secToMin(msSnub / 1000);
+	}
 
 	if(minToStart + minToWater > 1440 + minToReset) {
 		//TODO verify
@@ -48,46 +50,56 @@ MyTime AutoCycle::_checkTReset() {
 void AutoCycle::exec() {
 	newTime = _myClock.getDateTime();
 
-	if(tReset.hour == newTime.time.hour && tReset.min == newTime.time.min && !started) {
+	// Check if is moist
+	if(!watered && tReset.hour == newTime.time.hour && tReset.min == newTime.time.min) {
 		uint8_t moisture = _myMoisture.getMoisture();
-		if(moisture <= 90) {
-			watered = false;
-		} else {
-			watered = true;
-		}
+		watered = moisture > 90;
+		return;
 	}
 
-	if(newTime.time >= tStart && !watered && !started) {
-		etvOn = _nextEtv();
-		if(etvOn == -1) {
-			started = false;
-			watered = true;
-		} else {
-			started = true;
-			_myMainSwitch.turnOn();
-			_myTimer.wait(msSnub);
-			_myEtv.turnOn(etvOn);
-		}
-	} else if(started) {
-		if(_myEtv.wateringDone(etvOn, newTime.time)) {
-			_myEtv.turnOff(etvOn);
-			_myTimer.wait(msSnub);
-			etvOn = _nextEtv();
-			if(etvOn == -1) {
-				_myMainSwitch.turnOff();
-				watered = true;
-				started = false;
-			} else {
-				_myEtv.turnOn(etvOn);
-			}
-		}
-	}
-
+	// Automatic turn off after manual watering
 	if(!started && etvOn != -1 && _myEtv.wateringDone(etvOn, newTime.time)) {
 		_myEtv.turnOff(etvOn);
 		_myTimer.wait(msSnub);
 		_myMainSwitch.turnOff();
 		etvOn = -1;
+		return;
+	}
+
+	// Start the watering
+	if(newTime.time >= tStart && !watered && !started) {
+		etvOn = _nextEtv();
+
+		if(etvOn == -1) {
+			started = false;
+			watered = true;
+			return;
+		}
+
+		started = true;
+		_myMainSwitch.turnOn();
+		_myTimer.wait(msSnub);
+		_myEtv.turnOn(etvOn);
+		return;
+	}
+
+	// Continue the watering
+	if(started) {
+		if(!_myEtv.wateringDone(etvOn, newTime.time))
+			return;
+
+		_myEtv.turnOff(etvOn);
+		_myTimer.wait(msSnub);
+
+		etvOn = _nextEtv();
+		if(etvOn == -1) {
+			_myMainSwitch.turnOff();
+			watered = true;
+			started = false;
+			return;
+		}
+
+		_myEtv.turnOn(etvOn);
 	}
 }
 
