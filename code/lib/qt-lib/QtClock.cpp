@@ -1,7 +1,7 @@
 #include "QtClock.hpp"
 
 QtClock::QtClock() {
-	this->_w = nullptr;
+	_w = nullptr;
 };
 
 void QtClock::begin(ControlUnit* w) {

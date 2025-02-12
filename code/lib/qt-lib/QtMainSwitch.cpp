@@ -1,6 +1,8 @@
 #include "QtMainSwitch.hpp"
 
-QtMainSwitch::QtMainSwitch() = default;
+QtMainSwitch::QtMainSwitch() {
+	w = nullptr;
+}
 
 void QtMainSwitch::begin(ControlUnit* w) {
 	this->w = w;

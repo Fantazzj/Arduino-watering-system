@@ -81,7 +81,12 @@ QString QtDisplay::_arrangeTime(MyTime time) {
 	return arrangedTime;
 }
 
-QtDisplay::QtDisplay() = default;
+QtDisplay::QtDisplay() {
+	_w = nullptr;
+	_length = 0;
+	_height = 0;
+	_displayChars = 0;
+}
 
 void QtDisplay::begin(ControlUnit* w) {
 	this->_w = w;

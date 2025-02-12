@@ -1,6 +1,8 @@
 #include "QtDebugger.hpp"
 
-QtDebugger::QtDebugger() = default;
+QtDebugger::QtDebugger() {
+	w = nullptr;
+}
 
 void QtDebugger::begin(ControlUnit* w) {
 	this->w = w;
