@@ -24,6 +24,7 @@ public:
 	void clearDisplay();
 	void hideCursorDisplay();
 	void showCursorDisplay();
+	uint8_t getMoisture();
 
 protected:
 };

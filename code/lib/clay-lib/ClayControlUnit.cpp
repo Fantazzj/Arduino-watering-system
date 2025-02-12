@@ -55,3 +55,7 @@ void ClayControlUnit::hideCursorDisplay() {
 void ClayControlUnit::showCursorDisplay() {
 	ui.setBlinkOn(y, x);
 }
+
+uint8_t ClayControlUnit::getMoisture() {
+	return ui.getMoisture();
+}

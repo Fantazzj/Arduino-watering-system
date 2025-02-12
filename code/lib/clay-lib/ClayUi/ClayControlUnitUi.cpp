@@ -145,3 +145,7 @@ void ClayControlUnitUi::deactivateMainSwitch() {
 void ClayControlUnitUi::setBlinkOn(int8_t row, int8_t col) {
 	display.setBlinkOn(row, col);
 }
+
+uint8_t ClayControlUnitUi::getMoisture() {
+	return moisture.getMoisture();
+}

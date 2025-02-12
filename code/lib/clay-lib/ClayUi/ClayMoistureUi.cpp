@@ -55,3 +55,7 @@ void ClayMoistureUi::pressHandler(Clay_ElementId, Clay_PointerData pointerData, 
 
 	args->self->moistureLevel = args->num * 10;
 }
+
+uint8_t ClayMoistureUi::getMoisture() const {
+	return moistureLevel;
+}

@@ -1,7 +1,7 @@
 #include "ClayMoisture.hpp"
 
 ClayMoisture::ClayMoisture() {
-	//TODO: add definition
+	w = nullptr;
 }
 
 void ClayMoisture::begin(ClayControlUnit* w) {
@@ -9,6 +9,5 @@ void ClayMoisture::begin(ClayControlUnit* w) {
 }
 
 uint8_t ClayMoisture::getMoisture() {
-	//TODO: add definition
-	return 10;
+	return w->getMoisture();
 }
