@@ -171,6 +171,7 @@ void setup(ClayControlUnit* w) {
 	myMemory.begin();
 	myMoisture.begin(w);
 	myValveGroup.begin(w);
+	myDebugger.begin(w);
 
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
 		myValveGroup.setDays(i, myMemory.readEtvDays(i));
