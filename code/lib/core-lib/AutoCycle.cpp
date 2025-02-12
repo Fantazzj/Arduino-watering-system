@@ -22,29 +22,14 @@ int8_t AutoCycle::_nextEtv() {
 }
 
 MyTime AutoCycle::_checkTReset() {
-	MyTime out(0, 0, 0);
-
-	uint16_t minToStart = hourToMin(tStart.hour) + tStart.min;
-	uint16_t minToReset = hourToMin(out.hour) + out.min;
+	uintmax_t startMin = hourToSec(tStart.hour) + minToSec(tStart.min) + tStart.sec;
 
 	uint16_t minToWater = 0;
-	for(uint8_t i = 0; i < etvNum; i++) {
-		minToWater += _myEtv.getMinOn(i);
-		minToWater += secToMin(msSnub / 1000);
-	}
+	for(int8_t e = 0; e < etvNum; e++)
+		minToWater += _myEtv.getMinOn(e);
+	minToWater += secToMin(msSnub * etvNum / 1000);
 
-	if(minToStart + minToWater > 1440 + minToReset) {
-		//TODO verify
-		uint16_t minToWater1 = (minToStart + minToWater) - 1440;
-		//uint16_t minToWater2 = minToWater - minToWater1;
-		uint16_t freeTime = 1440 - minToWater;
-
-		minToReset = minToWater1 + freeTime / 2;
-		out.hour = minToReset / 60;
-		out.min = minToReset % 60;
-	}
-
-	return out;
+	return startMin + minToWater < 1440 ? MyTime(0, 0, 0) : MyTime(12, 0, 0);
 }
 
 void AutoCycle::exec() {
