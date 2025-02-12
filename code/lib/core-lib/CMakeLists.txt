@@ -2,7 +2,6 @@ add_library(core-lib
         AutoCycle.cpp
         PageSelector.cpp
         UnitDisplay.cpp
-        Valve.cpp
         Memory.cpp
         Debugger.cpp
         ../pages/EditClock.cpp

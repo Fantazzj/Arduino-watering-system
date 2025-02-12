@@ -13,7 +13,6 @@ qt_add_library(qt-lib
         QtKeypad.cpp
         QtMainSwitch.cpp
         QtMoisture.cpp
-        QtValve.cpp
         QtMemory.cpp
         QtValveGroup.cpp
         QtDebugger.cpp
