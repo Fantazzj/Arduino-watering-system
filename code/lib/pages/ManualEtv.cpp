@@ -10,34 +10,34 @@ PageNum ManualEtv::exec() {
 	if(key != NoBtn) _redraw = true;
 
 	if(_controller.autoCycle.etvOn == -1) {
-		if(key == Up) {//TODO convert in switch
-			_num++;
-			if(_num >= _controller.etvNum) _num = 0;
+		switch(key) {
+			case Cancel:
+				_num = 0;
+				return SettingsPage1;
+			case Up:
+				_num++;
+				if(_num >= _controller.etvNum) _num = 0;
+				return Stay;
+			case Down:
+				_num--;
+				if(_num < 0) _num = _controller.etvNum - 1;
+				return Stay;
+			case Confirm:
+				_controller.mainSwitch.turnOn();
+				_controller.timer.wait(1000);
+				_controller.etv.turnOn(_num);
+				_controller.autoCycle.etvOn = _num;
+				return HomePage;
+			default:
+				return Stay;
 		}
+	}
 
-		if(key == Down) {
-			_num--;
-			if(_num < 0) _num = _controller.etvNum - 1;
-		}
-
-		if(key == Cancel) {
-			_num = 0;
+	switch(key) {
+		case Cancel:
 			return SettingsPage1;
-		}
 
-		if(key == Confirm) {
-			_controller.mainSwitch.turnOn();
-			_controller.timer.wait(1000);
-			_controller.etv.turnOn(_num);
-			_controller.autoCycle.etvOn = _num;
-			return HomePage;
-		}
-	} else {
-		if(key == Cancel) {
-			return SettingsPage1;
-		}
-
-		if(key == Confirm) {
+		case Confirm:
 			_controller.etv.turnOff(_controller.autoCycle.etvOn);
 			_controller.timer.wait(1000);
 			_controller.mainSwitch.turnOff();
@@ -45,10 +45,10 @@ PageNum ManualEtv::exec() {
 			_controller.autoCycle.watered = true;
 			_controller.autoCycle.started = false;
 			return HomePage;
-		}
-	}
 
-	return Stay;
+		default:
+			return Stay;
+	}
 }
 
 void ManualEtv::show() {
