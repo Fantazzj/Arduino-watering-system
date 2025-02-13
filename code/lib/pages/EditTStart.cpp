@@ -54,8 +54,16 @@ PageNum EditTStart::exec() {
 
 void EditTStart::show() {
 	if(_redraw) {
-		_controller.display.printData("Orario di avvio", _newTime.hour, ":", _newTime.min, "");
-		if(_editPhase == 2) _controller.display.blinkAt(6, 1);
+		char text[22] = "Orario di avvio";
+		text[15] = ' ';
+		text[16] = _newTime.hour/10 + '0';
+		text[17] = _newTime.hour%10 + '0';
+		text[18] = ':';
+		text[19] = _newTime.min/10 + '0';
+		text[20] = _newTime.min%10 + '0';
+		text[21] = '\0';
+		_controller.display.printSimpleText(text);
+		if(_editPhase == 2) _controller.display.blinkAt(4, 1);
 		else _controller.display.blinkAt(1, 1);
 		_redraw = false;
 	}
