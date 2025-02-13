@@ -7,7 +7,7 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6Widgets REQUIRED)
 
 qt_add_library(qt-lib
-        ControlUnit.ui ControlUnit.cpp
+        QtControlUnit.ui QtControlUnit.cpp
         QtClock.cpp
         QtDisplay.cpp
         QtKeypad.cpp

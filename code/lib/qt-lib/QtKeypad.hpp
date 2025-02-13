@@ -17,7 +17,7 @@ public:
 	bool up() override;
 	bool confirm() override;
 	bool generalPressed() override;
-	friend class ControlUnit;
+	friend class QtControlUnit;
 
 protected:
 };

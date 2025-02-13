@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ControlUnit</class>
- <widget class="QMainWindow" name="ControlUnit">
+ <class>QtControlUnit</class>
+ <widget class="QMainWindow" name="QtControlUnit">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ControlUnit</string>
+   <string>QtControlUnit</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">

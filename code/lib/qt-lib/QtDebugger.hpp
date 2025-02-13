@@ -2,15 +2,15 @@
 #define QTDEBUGGER_HPP
 
 #include "../core-lib/Debugger.hpp"
-#include "ControlUnit.h"
+#include "QtControlUnit.hpp"
 
 class QtDebugger : public Debugger {
 private:
-	ControlUnit* w;
+	QtControlUnit* w;
 
 public:
 	explicit QtDebugger();
-	void begin(ControlUnit* w);
+	void begin(QtControlUnit* w);
 	void print(const char* text) override;
 	void print(char c) override;
 	void print(int n) override;

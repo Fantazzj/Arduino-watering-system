@@ -4,7 +4,7 @@ QtDebugger::QtDebugger() {
 	w = nullptr;
 }
 
-void QtDebugger::begin(ControlUnit* w) {
+void QtDebugger::begin(QtControlUnit* w) {
 	this->w = w;
 }
 

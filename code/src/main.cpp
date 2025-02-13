@@ -3,7 +3,7 @@
 
 #if defined(QTDESKTOP)
 
-#	include "../lib/qt-lib/ControlUnit.h"
+#	include "../lib/qt-lib/QtControlUnit.hpp"
 #	include "../lib/qt-lib/QtClock.hpp"
 #	include "../lib/qt-lib/QtDisplay.hpp"
 #	include "../lib/qt-lib/QtKeypad.hpp"
@@ -30,7 +30,7 @@ QtTimer myTimer;
 AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, autoCycle);
 
-void setup(ControlUnit* w) {
+void setup(QtControlUnit* w) {
 	myDisplay.begin(w);
 	myClock.begin(w);
 	myMainSwitch.begin(w);
@@ -53,7 +53,7 @@ void loop();
 
 int main(int argc, char* argv[]) {
 	QApplication a(argc, argv);
-	ControlUnit w;
+	QtControlUnit w;
 
 	w.setKeypad(&myKeypad);
 	setup(&w);

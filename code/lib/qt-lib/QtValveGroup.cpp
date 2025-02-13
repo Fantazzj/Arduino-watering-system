@@ -6,7 +6,7 @@ QtValveGroup::QtValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn) :
 QtValveGroup::QtValveGroup(Clock& clock) :
 	ValveGroup(clock) {}
 
-void QtValveGroup::begin(ControlUnit* w) {
+void QtValveGroup::begin(QtControlUnit* w) {
 	this->w = w;
 }
 

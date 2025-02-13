@@ -8,7 +8,7 @@ QtDisplay::QtDisplay() {
 	_backlight = true;
 }
 
-void QtDisplay::begin(ControlUnit* w) {
+void QtDisplay::begin(QtControlUnit* w) {
 	this->_w = w;
 	this->_length = w->getLength();
 	this->_height = w->getHeight();

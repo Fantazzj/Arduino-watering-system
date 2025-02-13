@@ -1,9 +1,8 @@
-#include "ControlUnit.h"
-#include "./ui_ControlUnit.h"
-#include "ui_ControlUnit.h"
+#include "QtControlUnit.hpp"
+#include "ui_QtControlUnit.h"
 
-ControlUnit::ControlUnit(QWidget* parent) :
-	QMainWindow(parent), ui(new Ui::ControlUnit) {
+QtControlUnit::QtControlUnit(QWidget* parent) :
+	QMainWindow(parent), ui(new Ui::QtControlUnit) {
 	ui->setupUi(this);
 
 	keypad = nullptr;
@@ -54,54 +53,54 @@ ControlUnit::ControlUnit(QWidget* parent) :
 	etv[8] = ui->etv9;
 }
 
-ControlUnit::~ControlUnit() {
+QtControlUnit::~QtControlUnit() {
 	delete ui;
 }
 
-void ControlUnit::setKeypad(QtKeypad* keypad) {
+void QtControlUnit::setKeypad(QtKeypad* keypad) {
 	this->keypad = keypad;
 }
 
-void ControlUnit::printOnConsole(const QString& text) {
+void QtControlUnit::printOnConsole(const QString& text) {
 	ui->textConsole->append(text);
 }
 
-void ControlUnit::printOnConsole(const char* text) {
+void QtControlUnit::printOnConsole(const char* text) {
 	ui->textConsole->append(text);
 }
 
-void ControlUnit::printOnConsole(char c) {
+void QtControlUnit::printOnConsole(char c) {
 	ui->textConsole->append(QChar(c));
 }
 
-void ControlUnit::printOnConsole(int n) {
+void QtControlUnit::printOnConsole(int n) {
 	ui->textConsole->append(QString::number(n));
 }
 
-void ControlUnit::printOnDisplay(QString text) {
+void QtControlUnit::printOnDisplay(QString text) {
 	for(int i = x, j = 0; j < text.size() && i < length; i++, j++) {
 		matrix[i][y]->setText(text.data()[j]);
 	}
 }
 
-int8_t ControlUnit::getLength() {
+int8_t QtControlUnit::getLength() {
 	return length;
 }
 
-int8_t ControlUnit::getHeight() {
+int8_t QtControlUnit::getHeight() {
 	return height;
 }
 
-void ControlUnit::setCursorDisplay(int x, int y) {
+void QtControlUnit::setCursorDisplay(int x, int y) {
 	this->x = x;
 	this->y = y;
 }
 
-void ControlUnit::homeDisplay() {
+void QtControlUnit::homeDisplay() {
 	setCursorDisplay(0, 0);
 }
 
-void ControlUnit::clearDisplay() {
+void QtControlUnit::clearDisplay() {
 	for(auto& labels: matrix) {
 		for(auto& l: labels) {
 			l->clear();
@@ -110,57 +109,57 @@ void ControlUnit::clearDisplay() {
 	homeDisplay();
 }
 
-void ControlUnit::showCursorDisplay() {
+void QtControlUnit::showCursorDisplay() {
 	matrix[x][y]->setStyleSheet("QLabel { color : red; }");
 	highlighted = matrix[x][y];
 }
 
-void ControlUnit::hideCursorDisplay() {
+void QtControlUnit::hideCursorDisplay() {
 	highlighted->setStyleSheet("QLabel { color : black; }");
 }
 
-void ControlUnit::activateValve(int num) {
+void QtControlUnit::activateValve(int num) {
 	etv[num]->setChecked(true);
 }
 
-void ControlUnit::deactivateValve(int num) {
+void QtControlUnit::deactivateValve(int num) {
 	etv[num]->setChecked(false);
 }
 
-void ControlUnit::backlight() {
+void QtControlUnit::backlight() {
 	ui->backlight->setValue(100);
 }
 
-void ControlUnit::noBacklight() {
+void QtControlUnit::noBacklight() {
 	ui->backlight->setValue(0);
 }
 
-int ControlUnit::getMoisture() {
+int QtControlUnit::getMoisture() {
 	return ui->moisture->value();
 }
 
-void ControlUnit::on_confirmButton_clicked() {
+void QtControlUnit::on_confirmButton_clicked() {
 	keypad->confirmState = true;
 }
 
-void ControlUnit::on_upButton_clicked() {
+void QtControlUnit::on_upButton_clicked() {
 	keypad->upState = true;
 }
 
-void ControlUnit::on_downButton_clicked() {
+void QtControlUnit::on_downButton_clicked() {
 	keypad->downState = true;
 }
 
-void ControlUnit::on_cancelButton_clicked() {
+void QtControlUnit::on_cancelButton_clicked() {
 	keypad->cancelState = true;
 }
 
-void ControlUnit::enableValves() {
+void QtControlUnit::enableValves() {
 	for(auto& e: etv)
 		e->setEnabled(true);
 }
 
-void ControlUnit::disableValves() {
+void QtControlUnit::disableValves() {
 	for(auto& e: etv)
 		e->setEnabled(false);
 }

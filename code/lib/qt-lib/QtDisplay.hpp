@@ -2,11 +2,11 @@
 #define QT_DISPLAY_CPP
 
 #include "../core-lib/UnitDisplay.hpp"
-#include "ControlUnit.h"
+#include "QtControlUnit.hpp"
 
 class QtDisplay : public UnitDisplay {
 private:
-	ControlUnit* _w;
+	QtControlUnit* _w;
 	int8_t _length;
 	int8_t _height;
 	int8_t _displayChars;
@@ -21,7 +21,7 @@ private:
 
 public:
 	explicit QtDisplay();
-	void begin(ControlUnit* w);
+	void begin(QtControlUnit* w);
 	void printSimpleText(const char text[]) override;
 	void printData(const char text1[], int8_t data, const char text2[]) override;
 	void printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) override;

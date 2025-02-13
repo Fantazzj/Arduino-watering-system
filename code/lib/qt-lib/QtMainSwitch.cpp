@@ -4,7 +4,7 @@ QtMainSwitch::QtMainSwitch() {
 	w = nullptr;
 }
 
-void QtMainSwitch::begin(ControlUnit* w) {
+void QtMainSwitch::begin(QtControlUnit* w) {
 	this->w = w;
 	w->disableValves();
 }

@@ -9,15 +9,15 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-	class ControlUnit;
+	class QtControlUnit;
 }
 QT_END_NAMESPACE
 
-class ControlUnit : public QMainWindow {
+class QtControlUnit : public QMainWindow {
 	Q_OBJECT
 
 public:
-	explicit ControlUnit(QWidget* parent = nullptr);
+	explicit QtControlUnit(QWidget* parent = nullptr);
 	void setKeypad(QtKeypad* keypad);
 	void printOnConsole(const QString& text);
 	void printOnConsole(const char* text);
@@ -38,7 +38,7 @@ public:
 	void backlight();
 	void noBacklight();
 	int getMoisture();
-	~ControlUnit() override;
+	~QtControlUnit() override;
 
 private slots:
 	void on_confirmButton_clicked();
@@ -47,7 +47,7 @@ private slots:
 	void on_cancelButton_clicked();
 
 private:
-	Ui::ControlUnit* ui;
+	Ui::QtControlUnit* ui;
 	QtKeypad* keypad;
 	static const int8_t length = 16;
 	static const int8_t height = 2;

@@ -2,16 +2,16 @@
 #define QTGENERALSWITCH_HPP
 
 #include "../core-lib/MainSwitch.hpp"
-#include "ControlUnit.h"
+#include "QtControlUnit.hpp"
 #include <cstdint>
 
 class QtMainSwitch : public MainSwitch {
 private:
-	ControlUnit* w;
+	QtControlUnit* w;
 
 public:
 	explicit QtMainSwitch();
-	void begin(ControlUnit* w);
+	void begin(QtControlUnit* w);
 	void turnOn() override;
 	void turnOff() override;
 };

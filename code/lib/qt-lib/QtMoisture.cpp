@@ -4,7 +4,7 @@ QtMoisture::QtMoisture() {
 	_w = nullptr;
 }
 
-void QtMoisture::begin(ControlUnit* w) {
+void QtMoisture::begin(QtControlUnit* w) {
 	_w = w;
 }
 

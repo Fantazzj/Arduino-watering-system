@@ -2,16 +2,16 @@
 #define QT_CLOCK_CPP
 
 #include "../core-lib/Clock.hpp"
-#include "ControlUnit.h"
+#include "QtControlUnit.hpp"
 #include <QString>
 
 class QtClock : public Clock {
 private:
-	ControlUnit* _w;
+	QtControlUnit* _w;
 
 public:
 	explicit QtClock();
-	void begin(ControlUnit* w);
+	void begin(QtControlUnit* w);
 	MyDateTime getDateTime() override;
 	void setDateTime(MyDateTime time) override;
 

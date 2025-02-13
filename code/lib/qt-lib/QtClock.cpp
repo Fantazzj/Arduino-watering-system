@@ -4,7 +4,7 @@ QtClock::QtClock() {
 	_w = nullptr;
 };
 
-void QtClock::begin(ControlUnit* w) {
+void QtClock::begin(QtControlUnit* w) {
 	this->_w = w;
 }
 

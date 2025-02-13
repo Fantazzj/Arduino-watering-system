@@ -2,15 +2,15 @@
 #define QT_MOISTURE_CPP
 
 #include "../core-lib/Moisture.hpp"
-#include "ControlUnit.h"
+#include "QtControlUnit.hpp"
 
 class QtMoisture : public Moisture {
 private:
-	ControlUnit* _w;
+	QtControlUnit* _w;
 
 public:
 	explicit QtMoisture();
-	void begin(ControlUnit* w);
+	void begin(QtControlUnit* w);
 	uint8_t getMoisture() override;
 
 protected:
