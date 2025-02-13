@@ -15,7 +15,8 @@
 #define hourToSec(a) ((uint64_t(a)) * 3600)
 
 struct MyTime {
-	explicit MyTime(uint8_t hour = 0, uint8_t min = 0, uint8_t sec = 0);
+	explicit MyTime(uint8_t hour, uint8_t min, uint8_t sec);
+	MyTime();
 
 	uint8_t hour;
 	uint8_t min;

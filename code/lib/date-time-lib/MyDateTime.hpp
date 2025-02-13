@@ -11,7 +11,8 @@
 
 class MyDateTime {
 public:
-	explicit MyDateTime(MyTime time = MyTime(), MyDate date = MyDate());
+	explicit MyDateTime(MyTime time, MyDate date);
+	MyDateTime();
 	MyDate date;
 	MyTime time;
 

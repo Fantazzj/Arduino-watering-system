@@ -7,6 +7,13 @@ MyDate::MyDate(uint8_t dow, uint8_t day, uint8_t mon, uint16_t year) {
 	this->year = year;
 }
 
+MyDate::MyDate() {
+	this->dow = Monday;
+	this->day = 1;
+	this->mon = January;
+	this->year = 2025;
+}
+
 bool MyDate::operator>(MyDate a) {
 	return this->_toDays() > a._toDays();
 }

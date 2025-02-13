@@ -6,6 +6,12 @@ MyTime::MyTime(uint8_t hour, uint8_t min, uint8_t sec) {
 	this->sec = sec;
 }
 
+MyTime::MyTime() {
+	this->hour = 0;
+	this->min = 0;
+	this->sec = 0;
+}
+
 uintmax_t MyTime::operator+(MyTime a) {
 	return this->_toSec() + a._toSec();
 }

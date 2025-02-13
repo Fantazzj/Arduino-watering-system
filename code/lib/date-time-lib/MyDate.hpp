@@ -40,7 +40,8 @@ enum Month : uint8_t {
 };
 
 struct MyDate {
-	explicit MyDate(uint8_t dow = Monday, uint8_t day = 1, uint8_t mon = January, uint16_t year = 2023);
+	explicit MyDate(uint8_t dow, uint8_t, uint8_t mon, uint16_t year);
+	MyDate();
 
 	uint8_t dow;
 	uint8_t day;
