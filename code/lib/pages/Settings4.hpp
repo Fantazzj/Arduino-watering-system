@@ -5,6 +5,8 @@
 
 class Settings4 : public Page {
 private:
+	static constexpr const char* displayText = "Impostazione manuale";
+
 public:
 	explicit Settings4(PageController& controller);
 	PageNum exec() override;

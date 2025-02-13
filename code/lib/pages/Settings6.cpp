@@ -24,7 +24,7 @@ PageNum Settings6::exec() {
 
 void Settings6::show() {
 	if(_redraw) {
-		_controller.display.printSimpleText("Imposta giorni");
+		_controller.display.printSimpleText(displayText);
 		_redraw = false;
 	}
 }

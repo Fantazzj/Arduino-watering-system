@@ -24,7 +24,7 @@ PageNum Settings3::exec() {
 
 void Settings3::show() {
 	if(_redraw) {
-		_controller.display.printSimpleText("Cambia orario di avvio");
+		_controller.display.printSimpleText(displayText);
 		_redraw = false;
 	}
 }

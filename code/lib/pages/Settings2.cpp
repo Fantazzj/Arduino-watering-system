@@ -24,7 +24,7 @@ PageNum Settings2::exec() {
 
 void Settings2::show() {
 	if(_redraw) {
-		_controller.display.printSimpleText("Cambia tempo elettrovalvole");
+		_controller.display.printSimpleText(displayText);
 		_redraw = false;
 	}
 }

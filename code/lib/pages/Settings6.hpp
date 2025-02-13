@@ -5,6 +5,8 @@
 
 class Settings6 : public Page {
 private:
+	static constexpr const char* displayText = "Cambia giorni elettrovalvole";
+
 public:
 	explicit Settings6(PageController& controller);
 	PageNum exec() override;

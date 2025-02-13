@@ -5,6 +5,8 @@
 
 class Settings5 : public Page {
 private:
+	static constexpr const char* displayText = "Imposta memoria innaffiamento";
+
 public:
 	explicit Settings5(PageController& controller);
 	PageNum exec() override;

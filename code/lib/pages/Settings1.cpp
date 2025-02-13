@@ -24,7 +24,7 @@ PageNum Settings1::exec() {
 
 void Settings1::show() {
 	if(_redraw) {
-		_controller.display.printSimpleText("Cambia data e ora");
+		_controller.display.printSimpleText(displayText);
 		_redraw = false;
 	}
 }

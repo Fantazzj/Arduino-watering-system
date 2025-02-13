@@ -5,6 +5,8 @@
 
 class Settings3 : public Page {
 private:
+	static constexpr const char* displayText = "Cambia orario di avvio";
+
 public:
 	explicit Settings3(PageController& controller);
 	PageNum exec() override;
