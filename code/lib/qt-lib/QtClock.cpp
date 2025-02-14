@@ -26,7 +26,7 @@ MyDateTime QtClock::getDateTime() {
 }
 
 void QtClock::setDateTime(MyDateTime time) {
-	_w->printOnConsole(QString::number(time.time.hour) + ":" + QString::number((time.time.min)));
-	_w->printOnConsole(QString::number(time.date.dow));
-	_w->printOnConsole(QString::number(time.date.day) + "/" + QString::number(time.date.mon) + "/" + QString::number(time.date.year));
+	//_w->printOnConsole(QString::number(time.time.hour) + ":" + QString::number((time.time.min)));
+	//_w->printOnConsole(QString::number(time.date.dow));
+	//_w->printOnConsole(QString::number(time.date.day) + "/" + QString::number(time.date.mon) + "/" + QString::number(time.date.year));
 }
