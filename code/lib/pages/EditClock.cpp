@@ -67,7 +67,7 @@ PageNum EditClock::exec() {
 			_editPhase++;
 			if(_editPhase > 6) {
 				_controller.clock.setDateTime(_newTime);
-				_controller.debugger.println("Time updated: ");
+				_controller.debugger.print("Date and Time updated: ");
 				_controller.debugger.println(_newTime);
 				_controller.timeToEdit = false;
 				return HomePage;

@@ -48,12 +48,12 @@ PageNum EditEtvTime::exec() {
 			if(_etvEdit >= _controller.etvNum) {
 				_controller.autoCycle.updateTReset();
 
-				_controller.debugger.println("New etv minOn:");
+				_controller.debugger.print("New etv minOn: [ ");
 				for(uint8_t e = 0; e < _controller.etvNum; e++) {
 					_controller.debugger.print(_controller.etv.getMinOn(e));
 					_controller.debugger.print(' ');
 				}
-				_controller.debugger.println();
+				_controller.debugger.println(']');
 
 				return HomePage;
 			}

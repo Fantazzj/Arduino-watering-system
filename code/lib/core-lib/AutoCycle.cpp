@@ -105,6 +105,6 @@ void AutoCycle::exec() {
 
 void AutoCycle::updateTReset() {
 	tReset = _checkTReset();
-	_myDebugger.print("Watering state will reset at ");
+	_myDebugger.print("Watering state will reset at: ");
 	_myDebugger.println(tReset);
 }
