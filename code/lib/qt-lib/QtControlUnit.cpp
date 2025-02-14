@@ -1,6 +1,8 @@
 #include "QtControlUnit.hpp"
 #include "ui_QtControlUnit.h"
 
+#include <QThread>
+
 QtControlUnit::QtControlUnit(QWidget* parent) :
 	QMainWindow(parent), ui(new Ui::QtControlUnit) {
 	ui->setupUi(this);
@@ -61,26 +63,22 @@ void QtControlUnit::setKeypad(QtKeypad* keypad) {
 	this->keypad = keypad;
 }
 
-void QtControlUnit::printOnConsole(const QString& text) {
-	ui->textConsole->append(text);
-}
-
 void QtControlUnit::printOnConsole(const char* text) {
 	ui->textConsole->moveCursor(QTextCursor::End);
 	ui->textConsole->insertPlainText(text);
-	ui->textConsole->moveCursor(QTextCursor::End);
+	QThread::msleep(1);
 }
 
 void QtControlUnit::printOnConsole(char c) {
 	ui->textConsole->moveCursor(QTextCursor::End);
 	ui->textConsole->insertPlainText(QChar(c));
-	ui->textConsole->moveCursor(QTextCursor::End);
+	QThread::msleep(1);
 }
 
 void QtControlUnit::printOnConsole(int n) {
 	ui->textConsole->moveCursor(QTextCursor::End);
 	ui->textConsole->insertPlainText(QString::number(n));
-	ui->textConsole->moveCursor(QTextCursor::End);
+	QThread::msleep(1);
 }
 
 void QtControlUnit::printOnDisplay(QString text) {

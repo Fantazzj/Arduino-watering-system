@@ -5,7 +5,6 @@
 #include <QCheckBox>
 #include <QLabel>
 #include <QMainWindow>
-#include <QSlider>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,7 +18,6 @@ class QtControlUnit : public QMainWindow {
 public:
 	explicit QtControlUnit(QWidget* parent = nullptr);
 	void setKeypad(QtKeypad* keypad);
-	void printOnConsole(const QString& text);
 	void printOnConsole(const char* text);
 	void printOnConsole(char c);
 	void printOnConsole(int n);
