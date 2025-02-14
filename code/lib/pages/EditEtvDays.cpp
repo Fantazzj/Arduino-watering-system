@@ -45,8 +45,15 @@ PageNum EditEtvDays::exec() {
 			_controller.memory.saveEtvDays(_etvEdit, _daysEdit);
 			_etvEdit++;
 			_daysEdit = _controller.etv.getDays(_etvEdit);
-			if(_etvEdit >= _controller.etvNum)
+			if(_etvEdit >= _controller.etvNum) {
+				_controller.debugger.print("New etv days: [ ");
+				for(uint8_t e = 0; e < _controller.etvNum; e++) {
+					_controller.debugger.print(_controller.etv.getDays(e));
+					_controller.debugger.print(' ');
+				}
+				_controller.debugger.println(']');
 				return HomePage;
+			}
 			else return Stay;
 
 		default:
