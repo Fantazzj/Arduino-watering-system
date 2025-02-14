@@ -27,7 +27,7 @@ QtMoisture myMoisture;
 QtDebugger myDebugger;
 QtTimer myTimer;
 
-AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
+AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer, myDebugger);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, autoCycle);
 
 void setup(QtControlUnit* w) {
@@ -37,6 +37,7 @@ void setup(QtControlUnit* w) {
 	myMemory.begin();
 	myMoisture.begin(w);
 	myValveGroup.begin(w);
+	myDebugger.begin(w);
 
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
 		myValveGroup.setDays(i, myMemory.readEtvDays(i));
