@@ -12,7 +12,6 @@
 class Moisture {
 private:
 public:
-	explicit Moisture() = default;
 	virtual uint8_t getMoisture() = 0;
 
 protected:
