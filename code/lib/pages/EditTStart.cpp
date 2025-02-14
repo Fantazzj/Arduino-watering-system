@@ -42,6 +42,9 @@ PageNum EditTStart::exec() {
 			if(_editPhase == 3) {
 				_editPhase = 1;
 				_controller.autoCycle.tStart = _newTime;
+				_controller.debugger.print("Watering start time set to: ");
+				_controller.debugger.println(_newTime);
+
 				_controller.autoCycle.updateTReset();
 				_controller.memory.saveStartTime(_newTime);
 				return HomePage;
