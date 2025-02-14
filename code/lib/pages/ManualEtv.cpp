@@ -25,8 +25,12 @@ PageNum ManualEtv::exec() {
 			case Confirm:
 				_controller.mainSwitch.turnOn();
 				_controller.timer.wait(1000);
+
 				_controller.etv.turnOn(_num);
+				_controller.debugger.print("Manually turn on Etv");
+				_controller.debugger.println(_num + 1);
 				_controller.autoCycle.etvOn = _num;
+
 				return HomePage;
 			default:
 				return Stay;
@@ -40,8 +44,12 @@ PageNum ManualEtv::exec() {
 		case Confirm:
 			_controller.etv.turnOff(_controller.autoCycle.etvOn);
 			_controller.timer.wait(1000);
+
 			_controller.mainSwitch.turnOff();
+			_controller.debugger.print("Manually turn off Etv");
+			_controller.debugger.println(_controller.autoCycle.etvOn + 1);
 			_controller.autoCycle.etvOn = -1;
+
 			_controller.autoCycle.watered = true;
 			_controller.autoCycle.started = false;
 			return HomePage;
