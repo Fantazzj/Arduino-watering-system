@@ -18,6 +18,7 @@ int8_t AutoCycle::_nextEtv() {
 			_myEtv.increaseElapsedDays(etv);
 		}
 	}
+	_myDebugger.println("Watering finished");
 	return -1;
 }
 
@@ -53,6 +54,8 @@ void AutoCycle::exec() {
 
 	// Start the watering
 	if(newTime.time >= tStart && !watered && !started) {
+		_myDebugger.println("Watering starts");
+
 		etvOn = _nextEtv();
 
 		if(etvOn == -1) {
