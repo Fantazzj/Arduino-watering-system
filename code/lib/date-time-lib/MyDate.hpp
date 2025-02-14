@@ -50,17 +50,17 @@ struct MyDate {
 
 	friend class MyDateTime;
 
-	bool operator>(MyDate a);
+	bool operator>(const MyDate& a) const;
 
-	bool operator<(MyDate a);
+	bool operator<(const MyDate& a) const;
 
-	bool operator==(MyDate a);
+	bool operator==(const MyDate& a) const;
 
-	bool operator!=(MyDate a);
+	bool operator!=(const MyDate& a) const;
 
-	bool operator>=(MyDate a);
+	bool operator>=(const MyDate& a) const;
 
-	bool operator<=(MyDate a);
+	bool operator<=(const MyDate& a) const;
 
 private:
 	uintmax_t _toDays() const;

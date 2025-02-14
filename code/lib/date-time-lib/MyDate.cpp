@@ -14,27 +14,27 @@ MyDate::MyDate() {
 	this->year = 2025;
 }
 
-bool MyDate::operator>(MyDate a) {
+bool MyDate::operator>(const MyDate& a) const {
 	return this->_toDays() > a._toDays();
 }
 
-bool MyDate::operator<(MyDate a) {
+bool MyDate::operator<(const MyDate& a) const {
 	return this->_toDays() < a._toDays();
 }
 
-bool MyDate::operator==(MyDate a) {
+bool MyDate::operator==(const MyDate& a) const {
 	return this->_toDays() == a._toDays();
 }
 
-bool MyDate::operator!=(MyDate a) {
+bool MyDate::operator!=(const MyDate& a) const {
 	return this->_toDays() != a._toDays();
 }
 
-bool MyDate::operator>=(MyDate a) {
+bool MyDate::operator>=(const MyDate& a) const {
 	return this->_toDays() >= a._toDays();
 }
 
-bool MyDate::operator<=(MyDate a) {
+bool MyDate::operator<=(const MyDate& a) const {
 	return this->_toDays() <= a._toDays();
 }
 

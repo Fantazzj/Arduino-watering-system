@@ -24,24 +24,24 @@ struct MyTime {
 
 	friend class MyDateTime;
 
-	uintmax_t operator+(MyTime a);
+	uintmax_t operator+(const MyTime& a) const;
 
-	uintmax_t operator-(MyTime a);
+	uintmax_t operator-(const MyTime& a) const;
 
-	bool operator>(MyTime a);
+	bool operator>(const MyTime& a) const;
 
-	bool operator<(MyTime a);
+	bool operator<(const MyTime& a) const;
 
-	bool operator==(MyTime a);
+	bool operator==(const MyTime& a) const;
 
-	bool operator!=(MyTime a);
+	bool operator!=(const MyTime& a) const;
 
-	bool operator>=(MyTime a);
+	bool operator>=(const MyTime& a) const;
 
-	bool operator<=(MyTime a);
+	bool operator<=(const MyTime& a) const;
 
 private:
-	uintmax_t _toSec() const;
+	[[nodiscard]] uintmax_t _toSec() const;
 };
 
 #endif//MYTIME_LIBRARY_H

@@ -10,42 +10,42 @@ MyDateTime::MyDateTime() {
 	this->date = MyDate();
 }
 
-uint64_t MyDateTime::operator+(MyDateTime a) {
+uint64_t MyDateTime::operator+(const MyDateTime& a) const {
 	return (this->time._toSec() + dayToSec(this->date._toDays())) +
 		   (a.time._toSec() + dayToSec(a.date._toDays()));
 }
 
-uint64_t MyDateTime::operator-(MyDateTime a) {
+uint64_t MyDateTime::operator-(const MyDateTime& a) const {
 	return (this->time._toSec() + dayToSec(this->date._toDays())) -
 		   (a.time._toSec() + dayToSec(a.date._toDays()));
 }
 
-bool MyDateTime::operator>(MyDateTime a) {
+bool MyDateTime::operator>(const MyDateTime& a) const {
 	return (this->time._toSec() + dayToSec(this->date._toDays())) >
 		   (a.time._toSec() + dayToSec(a.date._toDays()));
 }
 
-bool MyDateTime::operator<(MyDateTime a) {
+bool MyDateTime::operator<(const MyDateTime& a) const {
 	return (this->time._toSec() + dayToSec(this->date._toDays())) <
 		   (a.time._toSec() + dayToSec(a.date._toDays()));
 }
 
-bool MyDateTime::operator==(MyDateTime a) {
+bool MyDateTime::operator==(const MyDateTime& a) const {
 	return (this->time._toSec() + dayToSec(this->date._toDays())) ==
 		   (a.time._toSec() + dayToSec(a.date._toDays()));
 }
 
-bool MyDateTime::operator!=(MyDateTime a) {
+bool MyDateTime::operator!=(const MyDateTime& a) const {
 	return (this->time._toSec() + dayToSec(this->date._toDays())) !=
 		   (a.time._toSec() + dayToSec(a.date._toDays()));
 }
 
-bool MyDateTime::operator>=(MyDateTime a) {
+bool MyDateTime::operator>=(const MyDateTime& a) const {
 	return (this->time._toSec() + dayToSec(this->date._toDays())) >=
 		   (a.time._toSec() + dayToSec(a.date._toDays()));
 }
 
-bool MyDateTime::operator<=(MyDateTime a) {
+bool MyDateTime::operator<=(const MyDateTime& a) const {
 	return (this->time._toSec() + dayToSec(this->date._toDays())) <=
 		   (a.time._toSec() + dayToSec(a.date._toDays()));
 }

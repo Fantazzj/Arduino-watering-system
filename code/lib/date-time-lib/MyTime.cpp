@@ -12,35 +12,35 @@ MyTime::MyTime() {
 	this->sec = 0;
 }
 
-uintmax_t MyTime::operator+(MyTime a) {
+uintmax_t MyTime::operator+(const MyTime& a) const {
 	return this->_toSec() + a._toSec();
 }
 
-uintmax_t MyTime::operator-(MyTime a) {
+uintmax_t MyTime::operator-(const MyTime& a) const {
 	return this->_toSec() - a._toSec();
 }
 
-bool MyTime::operator>(MyTime a) {
+bool MyTime::operator>(const MyTime& a) const {
 	return this->_toSec() > a._toSec();
 }
 
-bool MyTime::operator<(MyTime a) {
+bool MyTime::operator<(const MyTime& a) const {
 	return this->_toSec() < a._toSec();
 }
 
-bool MyTime::operator==(MyTime a) {
+bool MyTime::operator==(const MyTime& a) const {
 	return this->_toSec() == a._toSec();
 }
 
-bool MyTime::operator!=(MyTime a) {
+bool MyTime::operator!=(const MyTime& a) const {
 	return this->_toSec() != a._toSec();
 }
 
-bool MyTime::operator>=(MyTime a) {
+bool MyTime::operator>=(const MyTime& a) const {
 	return this->_toSec() >= a._toSec();
 }
 
-bool MyTime::operator<=(MyTime a) {
+bool MyTime::operator<=(const MyTime& a) const {
 	return this->_toSec() <= a._toSec();
 }
 

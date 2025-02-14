@@ -16,21 +16,21 @@ public:
 	MyDate date;
 	MyTime time;
 
-	uint64_t operator+(MyDateTime a);
+	uint64_t operator+(const MyDateTime& a) const;
 
-	uint64_t operator-(MyDateTime a);
+	uint64_t operator-(const MyDateTime& a) const;
 
-	bool operator>(MyDateTime a);
+	bool operator>(const MyDateTime& a) const;
 
-	bool operator<(MyDateTime a);
+	bool operator<(const MyDateTime& a) const;
 
-	bool operator==(MyDateTime a);
+	bool operator==(const MyDateTime& a) const;
 
-	bool operator!=(MyDateTime a);
+	bool operator!=(const MyDateTime& a) const;
 
-	bool operator>=(MyDateTime a);
+	bool operator>=(const MyDateTime& a) const;
 
-	bool operator<=(MyDateTime a);
+	bool operator<=(const MyDateTime& a) const;
 };
 
 
