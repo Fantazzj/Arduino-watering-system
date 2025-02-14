@@ -47,6 +47,14 @@ PageNum EditEtvTime::exec() {
 			_timeEdit = _controller.etv.getMinOn(_etvEdit);
 			if(_etvEdit >= _controller.etvNum) {
 				_controller.autoCycle.updateTReset();
+
+				_controller.debugger.println("New etv minOn:");
+				for(uint8_t e = 0; e < _controller.etvNum; e++) {
+					_controller.debugger.print(_controller.etv.getMinOn(e));
+					_controller.debugger.print(' ');
+				}
+				_controller.debugger.println();
+
 				return HomePage;
 			}
 			return Stay;
