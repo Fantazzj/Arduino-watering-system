@@ -45,7 +45,8 @@ PageNum EditTStart::exec() {
 				_controller.autoCycle.updateTReset();
 				_controller.memory.saveStartTime(_newTime);
 				return HomePage;
-			} else return Stay;
+			}
+			return Stay;
 
 		default:
 			return Stay;

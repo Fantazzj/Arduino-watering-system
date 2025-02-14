@@ -45,9 +45,11 @@ PageNum EditEtvTime::exec() {
 			_controller.memory.saveEtvMinOn(_etvEdit, _timeEdit);
 			_etvEdit++;
 			_timeEdit = _controller.etv.getMinOn(_etvEdit);
-			if(_etvEdit >= _controller.etvNum)
+			if(_etvEdit >= _controller.etvNum) {
+				_controller.autoCycle.updateTReset();
 				return HomePage;
-			else return Stay;
+			}
+			return Stay;
 
 		default:
 			return Stay;
