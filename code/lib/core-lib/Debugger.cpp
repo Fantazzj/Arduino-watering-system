@@ -10,9 +10,9 @@ void Debugger::print(MyTime time) {
 
 void Debugger::print(MyDate date) {
 	print((int) date.day);
-	print(':');
+	print('/');
 	print((int) date.mon);
-	print(':');
+	print('/');
 	print((int) date.year);
 }
 
