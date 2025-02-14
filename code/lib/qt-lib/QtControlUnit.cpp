@@ -66,15 +66,21 @@ void QtControlUnit::printOnConsole(const QString& text) {
 }
 
 void QtControlUnit::printOnConsole(const char* text) {
-	ui->textConsole->append(text);
+	ui->textConsole->moveCursor(QTextCursor::End);
+	ui->textConsole->insertPlainText(text);
+	ui->textConsole->moveCursor(QTextCursor::End);
 }
 
 void QtControlUnit::printOnConsole(char c) {
-	ui->textConsole->append(QChar(c));
+	ui->textConsole->moveCursor(QTextCursor::End);
+	ui->textConsole->insertPlainText(QChar(c));
+	ui->textConsole->moveCursor(QTextCursor::End);
 }
 
 void QtControlUnit::printOnConsole(int n) {
-	ui->textConsole->append(QString::number(n));
+	ui->textConsole->moveCursor(QTextCursor::End);
+	ui->textConsole->insertPlainText(QString::number(n));
+	ui->textConsole->moveCursor(QTextCursor::End);
 }
 
 void QtControlUnit::printOnDisplay(QString text) {
