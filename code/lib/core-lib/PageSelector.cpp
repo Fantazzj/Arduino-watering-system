@@ -1,7 +1,7 @@
 #include "PageSelector.hpp"
 
-PageSelector::PageSelector(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, ValveGroupN& myEtv, MainSwitch& _myMainSwitch, Memory& myMemory, Timer& myTimer, AutoCycle& autoCycle) :
-	controller(myKeypad, myDisplay, myClock, myEtv, _myMainSwitch, myMemory, myTimer, autoCycle) {
+PageSelector::PageSelector(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, ValveGroupN& myEtv, MainSwitch& _myMainSwitch, Memory& myMemory, Timer& myTimer, Debugger& myDebugger, AutoCycle& autoCycle) :
+	controller(myKeypad, myDisplay, myClock, myEtv, _myMainSwitch, myMemory, myTimer, myDebugger, autoCycle) {
 	activePage = nullptr;
 }
 

@@ -28,7 +28,7 @@ QtDebugger myDebugger;
 QtTimer myTimer;
 
 AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer, myDebugger);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, autoCycle);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
 
 void setup(QtControlUnit* w) {
 	myDisplay.begin(w);
