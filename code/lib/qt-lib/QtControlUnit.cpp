@@ -65,20 +65,20 @@ void QtControlUnit::setKeypad(QtKeypad* keypad) {
 
 void QtControlUnit::printOnConsole(const char* text) {
 	ui->textConsole->moveCursor(QTextCursor::End);
-	ui->textConsole->insertPlainText(text);
 	QThread::msleep(1);
+	ui->textConsole->insertPlainText(text);
 }
 
 void QtControlUnit::printOnConsole(char c) {
 	ui->textConsole->moveCursor(QTextCursor::End);
-	ui->textConsole->insertPlainText(QChar(c));
 	QThread::msleep(1);
+	ui->textConsole->insertPlainText(QChar(c));
 }
 
 void QtControlUnit::printOnConsole(int n) {
 	ui->textConsole->moveCursor(QTextCursor::End);
-	ui->textConsole->insertPlainText(QString::number(n));
 	QThread::msleep(1);
+	ui->textConsole->insertPlainText(QString::number(n));
 }
 
 void QtControlUnit::printOnDisplay(QString text) {
