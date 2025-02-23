@@ -18,7 +18,7 @@ MyDateTime ClayClock::getDateTime() {
 
 	return MyDateTime(
 			MyTime(time->tm_hour, time->tm_min, time->tm_sec),
-			MyDate(time->tm_wday, time->tm_mday, time->tm_mon, time->tm_year + 1900));
+			MyDate(time->tm_wday + 1, time->tm_mday, time->tm_mon, time->tm_year + 1900));
 }
 
 void ClayClock::setDateTime(MyDateTime time) {
