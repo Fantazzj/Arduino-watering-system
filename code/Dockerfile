@@ -6,6 +6,6 @@ COPY CMakeLists.txt .
 COPY lib ./lib
 COPY src ./src
 ENV TYPE=CLAYDESKTOP
-RUN cmake -S . -B build
-RUN make -C build
+RUN cmake -S . -B build -G Ninja
+RUN ninja -C build
 CMD ["./build/bin/Arduino-watering-system"]
