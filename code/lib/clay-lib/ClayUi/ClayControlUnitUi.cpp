@@ -28,32 +28,32 @@ ClayControlUnitUi::ClayControlUnitUi() :
 
 	Raylib_fonts[0] = (Raylib_Font){
 			.fontId = 0,
-			.font = LoadFontEx("C:/Windows/Fonts/arial.ttf", 28, nullptr, 250),
+			.font = LoadFontEx("/usr/share/fonts/truetype/msttcorefonts/arial.ttf", 28, nullptr, 250),
 	};
 
 	Raylib_fonts[1] = (Raylib_Font){
 			.fontId = display.getDisplayTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ClayDisplayUi::TEXT_SIZE, nullptr, 250),
+			.font = LoadFontEx("/usr/share/fonts/truetype/msttcorefonts/cour.ttf", ClayDisplayUi::TEXT_SIZE, nullptr, 250),
 	};
 
 	Raylib_fonts[2] = (Raylib_Font){
 			.fontId = debugger.getDebuggerTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ClayDebuggerUi::TEXT_SIZE, nullptr, 250),
+			.font = LoadFontEx("/usr/share/fonts/truetype/msttcorefonts/cour.ttf", ClayDebuggerUi::TEXT_SIZE, nullptr, 250),
 	};
 
 	Raylib_fonts[3] = (Raylib_Font){
 			.fontId = buttons.getButtonsTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ClayKeypadUi::TEXT_SIZE, nullptr, 250),
+			.font = LoadFontEx("/usr/share/fonts/truetype/msttcorefonts/cour.ttf", ClayKeypadUi::TEXT_SIZE, nullptr, 250),
 	};
 
 	Raylib_fonts[4] = (Raylib_Font){
 			.fontId = etvs.getEtvsTextId(),
-			.font = LoadFontEx("C:/Windows/Fonts/cour.ttf", ClayValveGroupUi::TEXT_SIZE, nullptr, 250),
+			.font = LoadFontEx("/usr/share/fonts/truetype/msttcorefonts/cour.ttf", ClayValveGroupUi::TEXT_SIZE, nullptr, 250),
 	};
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
 
-	//Clay_SetDebugModeEnabled(true);
+	Clay_SetDebugModeEnabled(true);
 }
 
 void ClayControlUnitUi::createControlUnit() {
