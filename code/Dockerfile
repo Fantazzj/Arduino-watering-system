@@ -1,5 +1,5 @@
 FROM alpine:latest
-LABEL authors="Fantazz"
+LABEL authors="Fantazzj"
 RUN apk update && apk add --no-interactive gcc g++ clang ninja cmake gdb raylib-dev
 WORKDIR /tmp/code
 COPY CMakeLists.txt .
