@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.20)
 
 project(Arduino-watering-system VERSION 0.1 LANGUAGES CXX)
 
@@ -16,6 +16,8 @@ if ($ENV{TYPE} STREQUAL "QTDESKTOP")
     add_subdirectory(lib/qt-lib)
 
 elseif ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
     add_subdirectory(lib/clay-lib)
     message("CLAY support in development")
 
