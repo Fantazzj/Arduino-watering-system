@@ -1,6 +1,6 @@
 FROM alpine:latest
 LABEL authors="Fantazz"
-RUN apk update && apk add --no-interactive gcc g++ clang make cmake gdb raylib-dev
+RUN apk update && apk add --no-interactive gcc g++ clang ninja cmake gdb raylib-dev
 WORKDIR /tmp/code
 COPY CMakeLists.txt .
 COPY lib ./lib
