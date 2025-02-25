@@ -1,8 +1,7 @@
-FROM alpine:latest
+FROM fedora:latest
 LABEL authors="Fantazzj"
-RUN apk update && apk add --no-interactive gcc g++ clang ninja cmake gdb raylib-dev
-RUN apk update && apk add --no-interactive msttcorefonts-installer
-RUN update-ms-fonts
+RUN dnf update -y && dnf install -y gcc g++ clang ninja cmake gdb raylib-devel
+RUN dnf update -y && dnf install -y jetbrains-mono-fonts
 WORKDIR /tmp/code
 COPY CMakeLists.txt .
 COPY lib ./lib
