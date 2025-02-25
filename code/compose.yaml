@@ -1,6 +1,11 @@
+name: Arduino-watering-system
+
 services:
   app:
-    image: arduino-watering-system
+    build:
+      dockerfile: Dockerfile
+      pull: true
+    command: ./build/bin/Arduino-watering-system
     environment:
       - DISPLAY=$DISPLAY
     volumes:
