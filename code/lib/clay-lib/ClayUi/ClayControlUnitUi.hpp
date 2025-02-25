@@ -33,6 +33,7 @@ private:
 	ClayKeypadUi buttons;
 	ClayDebuggerUi debugger;
 	ClayMoistureUi moisture;
+	static constexpr char FONT[] = "/usr/share/fonts/truetype/msttcorefonts/arial.ttf";
 	void createControlUnit();
 };
 
