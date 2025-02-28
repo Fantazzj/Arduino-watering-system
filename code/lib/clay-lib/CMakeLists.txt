@@ -23,7 +23,7 @@ add_library(clayUi-lib
         ClayUi/ClayDebuggerUi.cpp
         ClayUi/ClayValveGroupUi.cpp
         ClayUi/ClayMoistureUi.cpp
-        ClayUi/clay.cpp
+        ClayUi/clay.c
 )
 
 target_link_directories(clayUi-lib PRIVATE ${RAYLIB_DIR})

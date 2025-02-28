@@ -7,8 +7,10 @@
 #include "ClayKeypadUi.hpp"
 #include "ClayMoistureUi.hpp"
 #include "ClayValveGroupUi.hpp"
-#include "clay.h"
 #include <cstdint>
+extern "C" {
+#include "clay.h"
+}
 
 class ClayControlUnitUi {
 public:
