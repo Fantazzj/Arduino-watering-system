@@ -12,12 +12,13 @@ endif ()
 
 add_compile_definitions(VALVE_NUM=9)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+
 if ($ENV{TYPE} STREQUAL "QTDESKTOP")
     add_subdirectory(lib/qt-lib)
 
 elseif ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
     add_subdirectory(lib/clay-lib)
     message("CLAY support in development")
 
