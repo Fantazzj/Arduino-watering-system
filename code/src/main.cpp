@@ -116,8 +116,8 @@ HwMoisture myMoisture(humidityPin);
 HwDebugger myDebugger;
 HwTimer myTimer;
 
-AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, myTimer, autoCycle);
+AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture, myTimer, myDebugger);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
 
 void setup() {
 	myDisplay.begin();
