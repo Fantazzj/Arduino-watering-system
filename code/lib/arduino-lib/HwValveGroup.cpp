@@ -13,16 +13,19 @@ HwValveGroup::HwValveGroup(Clock& clock, const int8_t* etvsPin) :
 }
 
 void HwValveGroup::begin() {
-	for(int8_t i = 0; i < VALVE_NUM; i++)
+	for(int8_t i = 0; i < VALVE_NUM; i++) {
 		pinMode(etvsPin[i], OUTPUT);
+		digitalWrite(etvsPin[i], HIGH);
+	}
+
 }
 
 void HwValveGroup::turnOn(uint8_t i) {
 	this->tOn[i] = this->clock.getDateTime().time;
 	this->elapsedDays[i] = 1;
-	digitalWrite(etvsPin[i], HIGH);
+	digitalWrite(etvsPin[i], LOW);
 }
 
 void HwValveGroup::turnOff(uint8_t i) {
-	digitalWrite(etvsPin[i], LOW);
+	digitalWrite(etvsPin[i], HIGH);
 }
