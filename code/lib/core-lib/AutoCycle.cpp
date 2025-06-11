@@ -1,7 +1,7 @@
 #include "AutoCycle.hpp"
 
-AutoCycle::AutoCycle(Clock& myClock, ValveGroupN& myEtv, int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& myTimer/*, Debugger& myDebugger*/) :
-	_myClock(myClock), _myEtv(myEtv), _myMainSwitch(myMainSwitch), _myMoisture(myMoisture), _myTimer(myTimer)/*, _myDebugger(myDebugger)*/ {
+AutoCycle::AutoCycle(Clock& myClock, ValveGroupN& myEtv, int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& myTimer, Debugger& myDebugger) :
+	_myClock(myClock), _myEtv(myEtv), _myMainSwitch(myMainSwitch), _myMoisture(myMoisture), _myTimer(myTimer), _myDebugger(myDebugger) {
 	this->etvNum = etvNum;
 }
 
