@@ -123,6 +123,7 @@ void setup() {
 	myDisplay.begin();
 	myClock.begin();
 	myMainSwitch.begin();
+	myKeypad.begin(INPUT_PULLUP);
 	myMemory.begin();
 	myEtv.begin();
 	myDebugger.begin(115200);
