@@ -6,7 +6,7 @@ void HwClock::begin() {
 	char z = '0';
 
 	uint8_t day = __DATE__[5] - z + (((__DATE__[4] - z) * 10) >= 0 ? (__DATE__[4] - z) * 10 : 0);
-	uint8_t mon = 9;
+	uint8_t mon = 6;
 	uint8_t year = __DATE__[10] - z + (__DATE__[9] - z) * 10 + (__DATE__[8] - z) * 100 + (__DATE__[7] - z) * 1000;
 
 	uint8_t hour = __TIME__[1] - z + (__TIME__[0] - z) * 10;

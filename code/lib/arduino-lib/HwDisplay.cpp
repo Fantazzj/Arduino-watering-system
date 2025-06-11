@@ -154,7 +154,7 @@ void HwDisplay::printSimpleText(const char text[]) {
 void HwDisplay::printData(const char text1[], int8_t data, const char text2[]) {
 	String row[height];
 
-	String conv = text1 + ' ' + String(data) + ' ' + text2;
+	String conv = String(text1) + ' ' + String(data) + ' ' + String(text2);
 
 	lcd.clear();
 	if(conv.length() <= lcdLenght) {
@@ -166,7 +166,7 @@ void HwDisplay::printData(const char text1[], int8_t data, const char text2[]) {
 void HwDisplay::printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) {
 	String row[height];
 
-	String conv = text1 + ' ' + String(data1) + ' ' + text2 + ' ' + String(data2) + ' ' + text3;
+	String conv = String(text1) + ' ' + String(data1) + ' ' + String(text2) + ' ' + String(data2) + ' ' + String(text3);
 
 	lcd.clear();
 	if(conv.length() <= lcdLenght) {
