@@ -82,7 +82,7 @@ int main(int argc, char* argv[]) {
 #	include "../lib/arduino-lib/HwMemory.hpp"
 #	include "../lib/arduino-lib/HwMoisture.hpp"
 #	include "../lib/arduino-lib/HwValveGroup.hpp"
-#	include "../lib/arduino-lib/HwDebugger.hpp"
+//#	include "../lib/arduino-lib/HwDebugger.hpp"
 #	include "../lib/arduino-lib/HwTimer.hpp"
 
 //UnitDisplay
@@ -113,11 +113,11 @@ HwValveGroup myEtv(myClock, etvsPin);
 HwMainSwitch myMainSwitch(mainSwitchPin);
 HwMemory myMemory(VALVE_NUM);
 HwMoisture myMoisture(humidityPin);
-HwDebugger myDebugger;
+//HwDebugger myDebugger;
 HwTimer myTimer;
 
-AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture, myTimer, myDebugger);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
+AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture, myTimer/*, myDebugger*/);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, myTimer/*, myDebugger*/, autoCycle);
 
 void setup() {
 	myDisplay.begin();
@@ -126,7 +126,7 @@ void setup() {
 	myKeypad.begin(INPUT_PULLUP);
 	myMemory.begin();
 	myEtv.begin();
-	myDebugger.begin(115200);
+	//myDebugger.begin(115200);
 
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
 		myEtv.setMinOn(i, myMemory.readEtvMinOn(i));
