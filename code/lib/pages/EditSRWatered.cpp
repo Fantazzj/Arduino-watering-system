@@ -16,10 +16,10 @@ PageNum EditSRWatered::exec() {
 
 		case Confirm:
 			_controller.autoCycle.watered = !_watered;
-			if(_watered)
-				_controller.debugger.println("Reset watered state");
-			else
-				_controller.debugger.println("Set watered state");
+			//if(_watered)
+			//	_controller.debugger.println("Reset watered state");
+			//else
+			//	_controller.debugger.println("Set watered state");
 			return HomePage;
 
 		default:

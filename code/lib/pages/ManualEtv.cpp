@@ -27,8 +27,8 @@ PageNum ManualEtv::exec() {
 				_controller.timer.wait(1000);
 
 				_controller.etv.turnOn(_num);
-				_controller.debugger.print("Manually turn on Etv");
-				_controller.debugger.println(_num + 1);
+				//_controller.debugger.print("Manually turn on Etv");
+				//_controller.debugger.println(_num + 1);
 				_controller.autoCycle.etvOn = _num;
 
 				return HomePage;
@@ -46,8 +46,8 @@ PageNum ManualEtv::exec() {
 			_controller.timer.wait(1000);
 
 			_controller.mainSwitch.turnOff();
-			_controller.debugger.print("Manually turn off Etv");
-			_controller.debugger.println(_controller.autoCycle.etvOn + 1);
+			//_controller.debugger.print("Manually turn off Etv");
+			//_controller.debugger.println(_controller.autoCycle.etvOn + 1);
 			_controller.autoCycle.etvOn = -1;
 
 			_controller.autoCycle.watered = true;
