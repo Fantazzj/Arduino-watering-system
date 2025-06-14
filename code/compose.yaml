@@ -1,0 +1,23 @@
+name: Arduino-watering-system
+
+services:
+  clay-app:
+    build:
+      target: clay-run
+      dockerfile: Dockerfile
+      pull: true
+    command: ./build/bin/Arduino-watering-system
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+  qt-app:
+    build:
+      target: qt-run
+      dockerfile: Dockerfile
+      pull: true
+    command: ./build/bin/Arduino-watering-system
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix

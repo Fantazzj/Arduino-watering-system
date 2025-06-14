@@ -1,12 +1,12 @@
 #ifndef MOISTURE_HPP
 #define MOISTURE_HPP
 
-#ifdef QTDESKTOP
-#	include <cstdint>
-#endif
-
-#ifdef HWARDUINO
-#	include <Arduino.h>
+#if defined __has_include
+#	if __has_include(<cstdlib>)
+#		include <cstdint>
+#	else
+#		include <stdint.h>
+#	endif
 #endif
 
 class Moisture {

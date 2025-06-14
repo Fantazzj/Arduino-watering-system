@@ -1,10 +1,12 @@
 #ifndef MYDATE_HPP
 #define MYDATE_HPP
 
-#if defined(QTDESKTOP)
-#	include <cstdint>
-#elif defined(HWARDUINO)
-#	include <Arduino.h>
+#if defined __has_include
+#	if __has_include(<cstdlib>)
+#		include <cstdint>
+#	else
+#		include <stdint.h>
+#	endif
 #endif
 
 #define dayToMon(a) ((uint64_t(a)) / 30)

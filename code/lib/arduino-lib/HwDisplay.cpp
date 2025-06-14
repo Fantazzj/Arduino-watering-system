@@ -1,4 +1,5 @@
 #include "HwDisplay.hpp"
+#include <Arduino.h>
 
 HwDisplay::HwDisplay(int8_t address, int8_t lenght, int8_t height) :
 	lcd(address, lenght, height) {

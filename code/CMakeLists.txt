@@ -1,9 +1,6 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.20)
 
-project(Arduino-watering-system VERSION 0.1 LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(Arduino-watering-system VERSION 0.1 LANGUAGES C CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -15,10 +12,16 @@ endif ()
 
 add_compile_definitions(VALVE_NUM=9)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+
 if ($ENV{TYPE} STREQUAL "QTDESKTOP")
     add_subdirectory(lib/qt-lib)
+
 elseif ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
-    message(FATAL_ERROR "CLAY not yet supported")
+    add_subdirectory(lib/clay-lib)
+    message("CLAY support in development")
+
 endif ()
 
 add_subdirectory(src)

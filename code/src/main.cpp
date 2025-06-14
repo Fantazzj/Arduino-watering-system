@@ -27,17 +27,16 @@ QtMoisture myMoisture;
 QtDebugger myDebugger;
 QtTimer myTimer;
 
-AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer, myDebugger);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
+AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, autoCycle);
 
-void setup(QtControlUnit* w) {
+void setup(ControlUnit* w) {
 	myDisplay.begin(w);
 	myClock.begin(w);
 	myMainSwitch.begin(w);
 	myMemory.begin();
 	myMoisture.begin(w);
 	myValveGroup.begin(w);
-	myDebugger.begin(w);
 
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
 		myValveGroup.setDays(i, myMemory.readEtvDays(i));
@@ -54,7 +53,7 @@ void loop();
 
 int main(int argc, char* argv[]) {
 	QApplication a(argc, argv);
-	QtControlUnit w;
+	ControlUnit w;
 
 	w.setKeypad(&myKeypad);
 	setup(&w);
@@ -74,7 +73,6 @@ int main(int argc, char* argv[]) {
 }
 
 #elif defined(HWARDUINO)
-
 #	include "../lib/arduino-lib/HwClock.hpp"
 #	include "../lib/arduino-lib/HwDisplay.hpp"
 #	include "../lib/arduino-lib/HwKeypad.hpp"
@@ -109,28 +107,103 @@ const int8_t etvsPin[] = {6, 7, 2, 3, 4, 5, 8, 9, 10};
 HwKeypad myKeypad(cancelPin, downPin, upPin, confirmPin);
 HwDisplay myDisplay(lcdAddress, lcdLength, lcdHeight);
 HwClock myClock;
-HwValveGroup myEtv(myClock, etvsPin);
+HwValveGroup myValveGroup(myClock, etvsPin);
 HwMainSwitch myMainSwitch(mainSwitchPin);
 HwMemory myMemory(VALVE_NUM);
 HwMoisture myMoisture(humidityPin);
 HwDebugger myDebugger;
 HwTimer myTimer;
+#elif defined(CLAYDESKTOP)
+#	include "../lib/clay-lib/ClayControlUnit.hpp"
+#	include "../lib/clay-lib/ClayClock.hpp"
+#	include "../lib/clay-lib/ClayDisplay.hpp"
+#	include "../lib/clay-lib/ClayKeypad.hpp"
+#	include "../lib/clay-lib/ClayMainSwitch.hpp"
+#	include "../lib/clay-lib/ClayMemory.hpp"
+#	include "../lib/clay-lib/ClayMoisture.hpp"
+#	include "../lib/clay-lib/ClayValveGroup.hpp"
+#	include "../lib/clay-lib/ClayDebugger.hpp"
+#	include "../lib/clay-lib/ClayTimer.hpp"
 
-AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture, myTimer, myDebugger);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
+#	include <chrono>
+#	include <thread>
+#	include <iostream>
 
+using std::thread;
+using std::chrono::microseconds;
+using std::this_thread::sleep_for;
+
+ClayKeypad myKeypad;
+ClayDisplay myDisplay;
+ClayClock myClock;
+ClayValveGroup myValveGroup(myClock);
+ClayMainSwitch myMainSwitch;
+ClayMemory myMemory(VALVE_NUM);
+ClayMoisture myMoisture;
+ClayDebugger myDebugger;
+ClayTimer myTimer;
+#else
+#	error "No variable definition"
+#endif
+
+AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, autoCycle);
+
+#if defined(QTDESKTOP)
+void setup(ControlUnit* w) {
+	myDisplay.begin(w);
+	myClock.begin(w);
+	myMainSwitch.begin(w);
+	myMemory.begin();
+	myMoisture.begin(w);
+	myValveGroup.begin(w);
+
+	for(int8_t i = 0; i < VALVE_NUM; i++) {
+		myValveGroup.setDays(i, myMemory.readEtvDays(i));
+		myValveGroup.setMinOn(i, myMemory.readEtvMinOn(i));
+	}
+
+	MyTime tStart = myMemory.readStartTime();
+	autoCycle.begin(tStart);
+
+	pageSelector.begin();
+}
+
+void loop();
+
+int main(int argc, char* argv[]) {
+	QApplication a(argc, argv);
+	ControlUnit w;
+
+AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
+PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, myTimer, autoCycle);
+
+	QThread* thread = QThread::create([] {
+		Q_FOREVER {
+			loop();
+			QThread::usleep(10);
+		}
+	});
+	thread->start();
+
+	w.show();
+	int exit = a.exec();
+
+	return exit;
+}
+#elif defined(HWARDUINO)
 void setup() {
 	myDisplay.begin();
 	myClock.begin();
 	myMainSwitch.begin();
 	myKeypad.begin(INPUT_PULLUP);
 	myMemory.begin();
-	myEtv.begin();
+	myValveGroup.begin();
 	myDebugger.begin(115200);
 
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
-		myEtv.setMinOn(i, myMemory.readEtvMinOn(i));
-		myEtv.setDays(i, myMemory.readEtvDays(i));
+		myValveGroup.setMinOn(i, myMemory.readEtvMinOn(i));
+		myValveGroup.setDays(i, myMemory.readEtvDays(i));
 	}
 
 	MyTime tStart = myMemory.readStartTime();
@@ -138,10 +211,52 @@ void setup() {
 	autoCycle.begin(tStart);
 	pageSelector.begin();
 }
+#elif defined(CLAYDESKTOP)
+void setup(ClayControlUnit* w) {
+	myDisplay.begin(w);
+	myClock.begin(w);
+	myMainSwitch.begin(w);
+	myMemory.begin();
+	myMoisture.begin(w);
+	myValveGroup.begin(w);
+	myDebugger.begin(w);
 
+	for(int8_t i = 0; i < VALVE_NUM; i++) {
+		myValveGroup.setDays(i, myMemory.readEtvDays(i));
+		myValveGroup.setMinOn(i, myMemory.readEtvMinOn(i));
+	}
+
+	MyTime tStart = myMemory.readStartTime();
+	autoCycle.begin(tStart);
+
+	pageSelector.begin();
+}
+
+void loop();
+
+int main(int argc, char* argv[]) {
+	ClayControlUnit w;
+	bool finished = false;
+
+	w.setKeypad(&myKeypad);
+	setup(&w);
+
+	bool* pfinished = &finished;
+	thread thread([pfinished] {
+		while(!*pfinished) {
+			loop();
+			sleep_for(microseconds(10));
+		}
+	});
+
+	w.show();
+	finished = true;
+	thread.join();
+
+	return 0;
+}
 #else
-#	error Missing setup() definition
-
+#	error "No setup() definition"
 #endif
 
 void loop() {

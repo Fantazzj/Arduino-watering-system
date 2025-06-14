@@ -1,10 +1,6 @@
 #ifndef AUTO_CYCLE_HPP
 #define AUTO_CYCLE_HPP
 
-#ifdef HWARDUINO
-#	include <Arduino.h>
-#endif
-
 #include "Debugger.hpp"
 #include "MainSwitch.hpp"
 #include "Moisture.hpp"

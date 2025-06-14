@@ -1,4 +1,5 @@
 #include "HwValveGroup.hpp"
+#include <Arduino.h>
 
 HwValveGroup::HwValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn, const int8_t* etvsPin) :
 	ValveGroup(clock, days, minOn) {
