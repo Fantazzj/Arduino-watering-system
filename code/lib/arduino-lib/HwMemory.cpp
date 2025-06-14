@@ -6,6 +6,7 @@ HwMemory::HwMemory(uint8_t etvNum) {
 }
 
 void HwMemory::begin() {
+	/*
 	if(EEPROM[0x00] != 0) {
 		uint8_t i;
 		for(i = 0; i < 2 * (_etvNum + 1); i++)
@@ -15,6 +16,7 @@ void HwMemory::begin() {
 		EEPROM.update(i++, 30);
 		EEPROM.update(i++, 0);
 	}
+	*/
 }
 
 void HwMemory::saveEtvMinOn(uint8_t num, uint8_t minOn) {
