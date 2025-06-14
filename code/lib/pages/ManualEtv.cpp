@@ -23,10 +23,10 @@ PageNum ManualEtv::exec() {
 				if(_num < 0) _num = _controller.etvNum - 1;
 				return Stay;
 			case Confirm:
-				_controller.mainSwitch.turnOn();
+				_controller.etv.turnOn(_num);
 				_controller.timer.wait(1000);
 
-				_controller.etv.turnOn(_num);
+				_controller.mainSwitch.turnOn();
 #ifdef DEBUG
 				_controller.debugger.print("Manually turn on Etv");
 				_controller.debugger.println(_num + 1);
@@ -44,10 +44,10 @@ PageNum ManualEtv::exec() {
 			return SettingsPage1;
 
 		case Confirm:
-			_controller.etv.turnOff(_controller.autoCycle.etvOn);
+			_controller.mainSwitch.turnOff();
 			_controller.timer.wait(1000);
 
-			_controller.mainSwitch.turnOff();
+			_controller.etv.turnOff(_controller.autoCycle.etvOn);
 #ifdef DEBUG
 			_controller.debugger.print("Manually turn off Etv");
 			_controller.debugger.println(_controller.autoCycle.etvOn + 1);

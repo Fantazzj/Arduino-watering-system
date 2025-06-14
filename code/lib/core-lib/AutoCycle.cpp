@@ -44,9 +44,13 @@ void AutoCycle::exec() {
 
 	// Automatic turn off after manual watering
 	if(!started && etvOn != -1 && _myEtv.wateringDone(etvOn, newTime.time)) {
-		_myEtv.turnOff(etvOn);
-		_myTimer.wait(msSnub);
+#ifdef DEBUG
+		_myDebugger.print("Automatic turning off Etv ");
+		_myDebugger.println(etvOn + 1);
+#endif
 		_myMainSwitch.turnOff();
+		_myTimer.wait(msSnub);
+		_myEtv.turnOff(etvOn);
 		etvOn = -1;
 		return;
 	}
@@ -67,19 +71,13 @@ void AutoCycle::exec() {
 		_myDebugger.println("Watering starts");
 #endif
 		started = true;
-
-#ifdef DEBUG
-		_myDebugger.println("Turning on Main Switch");
-#endif
-		_myMainSwitch.turnOn();
-
-		_myTimer.wait(msSnub);
-
 #ifdef DEBUG
 		_myDebugger.print("Turning on Etv ");
 		_myDebugger.println(etvOn + 1);
 #endif
 		_myEtv.turnOn(etvOn);
+		_myTimer.wait(msSnub);
+		_myMainSwitch.turnOn();
 
 		return;
 	}
@@ -88,19 +86,17 @@ void AutoCycle::exec() {
 	if(started) {
 		if(!_myEtv.wateringDone(etvOn, newTime.time))
 			return;
+
 #ifdef DEBUG
 		_myDebugger.print("Turning off Etv ");
 		_myDebugger.println(etvOn + 1);
 #endif
-		_myEtv.turnOff(etvOn);
+		_myMainSwitch.turnOff();
 		_myTimer.wait(msSnub);
+		_myEtv.turnOff(etvOn);
 
 		etvOn = _nextEtv();
 		if(etvOn == -1) {
-#ifdef DEBUG
-			_myDebugger.println("Turning off Main Switch");
-#endif
-			_myMainSwitch.turnOff();
 			watered = true;
 			started = false;
 #ifdef DEBUG
@@ -113,6 +109,8 @@ void AutoCycle::exec() {
 		_myDebugger.println(etvOn + 1);
 #endif
 		_myEtv.turnOn(etvOn);
+		_myTimer.wait(msSnub);
+		_myMainSwitch.turnOn();
 	}
 }
 
