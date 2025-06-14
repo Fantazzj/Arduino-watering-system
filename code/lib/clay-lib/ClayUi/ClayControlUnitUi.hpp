@@ -8,6 +8,7 @@
 #include "ClayMoistureUi.hpp"
 #include "ClayValveGroupUi.hpp"
 #include <cstdint>
+
 extern "C" {
 #include "clay.h"
 }
@@ -35,7 +36,12 @@ private:
 	ClayKeypadUi buttons;
 	ClayDebuggerUi debugger;
 	ClayMoistureUi moisture;
+#ifdef WIN64
+	static constexpr char FONT[] = "C:/Users/Fantazz/AppData/Local/Microsoft/Windows/Fonts/JetBrainsMono-Regular.ttf";
+#else
 	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
+#endif
+
 	void createControlUnit();
 };
 

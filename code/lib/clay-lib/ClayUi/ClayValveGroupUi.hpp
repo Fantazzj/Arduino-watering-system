@@ -15,7 +15,11 @@ public:
 	static constexpr Clay_Color SWITCH_ON_COLOR = {149, 182, 120, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
 	static constexpr uint8_t TEXT_SIZE = 30;
+#ifdef WIN64
+	static constexpr char FONT[] = "C:/Users/Fantazz/AppData/Local/Microsoft/Windows/Fonts/JetBrainsMono-Regular.ttf";
+#else
 	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
+#endif
 
 private:
 	const std::array<std::string, VALVE_NUM> etvsNames = {

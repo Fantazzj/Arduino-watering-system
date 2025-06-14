@@ -15,7 +15,11 @@ public:
 	static constexpr Clay_Color SELECTED_CHAR_COLOR = {149, 182, 120, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
 	static constexpr uint16_t TEXT_SIZE = 48;
+#ifdef WIN64
+	static constexpr char FONT[] = "C:/Users/Fantazz/AppData/Local/Microsoft/Windows/Fonts/JetBrainsMono-Regular.ttf";
+#else
 	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
+#endif
 
 private:
 	uint16_t textId;
