@@ -1,78 +1,7 @@
 #include "../lib/core-lib/AutoCycle.hpp"
 #include "../lib/core-lib/PageSelector.hpp"
 
-#if defined(QTDESKTOP)
-
-#	include "../lib/qt-lib/QtControlUnit.hpp"
-#	include "../lib/qt-lib/QtClock.hpp"
-#	include "../lib/qt-lib/QtDisplay.hpp"
-#	include "../lib/qt-lib/QtKeypad.hpp"
-#	include "../lib/qt-lib/QtMainSwitch.hpp"
-#	include "../lib/qt-lib/QtMemory.hpp"
-#	include "../lib/qt-lib/QtMoisture.hpp"
-#	include "../lib/qt-lib/QtValveGroup.hpp"
-#	include "../lib/qt-lib/QtDebugger.hpp"
-#	include "../lib/qt-lib/QtTimer.hpp"
-
-#	include <QApplication>
-#	include <QThread>
-
-QtKeypad myKeypad;
-QtDisplay myDisplay;
-QtClock myClock;
-QtValveGroup myValveGroup(myClock);
-QtMainSwitch myMainSwitch;
-QtMemory myMemory(VALVE_NUM);
-QtMoisture myMoisture;
-QtDebugger myDebugger;
-QtTimer myTimer;
-
-AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, autoCycle);
-
-void setup(ControlUnit* w) {
-	myDisplay.begin(w);
-	myClock.begin(w);
-	myMainSwitch.begin(w);
-	myMemory.begin();
-	myMoisture.begin(w);
-	myValveGroup.begin(w);
-
-	for(int8_t i = 0; i < VALVE_NUM; i++) {
-		myValveGroup.setDays(i, myMemory.readEtvDays(i));
-		myValveGroup.setMinOn(i, myMemory.readEtvMinOn(i));
-	}
-
-	MyTime tStart = myMemory.readStartTime();
-	autoCycle.begin(tStart);
-
-	pageSelector.begin();
-}
-
-void loop();
-
-int main(int argc, char* argv[]) {
-	QApplication a(argc, argv);
-	ControlUnit w;
-
-	w.setKeypad(&myKeypad);
-	setup(&w);
-
-	QThread* thread = QThread::create([] {
-		Q_FOREVER {
-			loop();
-			QThread::usleep(10);
-		}
-	});
-	thread->start();
-
-	w.show();
-	int exit = a.exec();
-
-	return exit;
-}
-
-#elif defined(HWARDUINO)
+#if defined(HWARDUINO)
 #	include "../lib/arduino-lib/HwClock.hpp"
 #	include "../lib/arduino-lib/HwDisplay.hpp"
 #	include "../lib/arduino-lib/HwKeypad.hpp"
@@ -149,49 +78,7 @@ ClayTimer myTimer;
 AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer, myDebugger);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
 
-#if defined(QTDESKTOP)
-void setup(ControlUnit* w) {
-	myDisplay.begin(w);
-	myClock.begin(w);
-	myMainSwitch.begin(w);
-	myMemory.begin();
-	myMoisture.begin(w);
-	myValveGroup.begin(w);
-
-	for(int8_t i = 0; i < VALVE_NUM; i++) {
-		myValveGroup.setDays(i, myMemory.readEtvDays(i));
-		myValveGroup.setMinOn(i, myMemory.readEtvMinOn(i));
-	}
-
-	MyTime tStart = myMemory.readStartTime();
-	autoCycle.begin(tStart);
-
-	pageSelector.begin();
-}
-
-void loop();
-
-int main(int argc, char* argv[]) {
-	QApplication a(argc, argv);
-	ControlUnit w;
-
-AutoCycle autoCycle(myClock, myEtv, VALVE_NUM, myMainSwitch, myMoisture, myTimer);
-PageSelector pageSelector(myKeypad, myDisplay, myClock, myEtv, myMainSwitch, myMemory, myTimer, autoCycle);
-
-	QThread* thread = QThread::create([] {
-		Q_FOREVER {
-			loop();
-			QThread::usleep(10);
-		}
-	});
-	thread->start();
-
-	w.show();
-	int exit = a.exec();
-
-	return exit;
-}
-#elif defined(HWARDUINO)
+#if defined(HWARDUINO)
 void setup() {
 	myDisplay.begin();
 	myClock.begin();
