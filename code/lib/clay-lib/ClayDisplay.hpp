@@ -13,9 +13,10 @@ private:
 	static std::string arrangeDate(MyDate time);
 	void printRows(std::string rows[]);
 	void displayError1();
-	int8_t _height;
-	int8_t _length;
-	int8_t _displayChars;
+	int8_t height;
+	int8_t length;
+	int8_t displayChars;
+	bool backlight;
 
 public:
 	explicit ClayDisplay();
@@ -32,6 +33,8 @@ public:
 	void clockSym(bool state) override;
 	void dropSym(bool state) override;
 	void checkSym(bool state) override;
+	void setBacklight(bool state) override;
+	[[nodiscard]] bool getBacklight() const override;
 
 protected:
 };

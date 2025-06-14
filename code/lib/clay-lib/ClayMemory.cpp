@@ -9,9 +9,9 @@ using std::streamsize;
 using std::filesystem::file_size;
 using std::filesystem::exists;
 
-ClayMemory::ClayMemory(uint8_t etvNum) :
-	Memory(etvNum) {
+ClayMemory::ClayMemory(uint8_t etvNum) {
 	maxFileSize = 2 * etvNum * sizeof(uint8_t) + 3 * sizeof(uint8_t);
+	this->etvNum = etvNum;
 }
 
 void ClayMemory::begin() {
@@ -73,7 +73,7 @@ void ClayMemory::saveEtvDays(uint8_t num, uint8_t days) {
 	in.read(memory, length);
 	in.close();
 
-	memory[num + _etvNum] = days;
+	memory[num + etvNum] = days;
 
 	ofstream out(fileName, outFlags);
 	out.write(memory, length);
@@ -92,7 +92,7 @@ uint8_t ClayMemory::readEtvDays(uint8_t num) {
 	in.read(memory, length);
 	in.close();
 
-	return memory[num + _etvNum];
+	return memory[num + etvNum];
 }
 
 void ClayMemory::saveStartTime(MyTime startTime) {
@@ -107,9 +107,9 @@ void ClayMemory::saveStartTime(MyTime startTime) {
 	in.read(memory, length);
 	in.close();
 
-	memory[2 * _etvNum + 0] = startTime.hour;
-	memory[2 * _etvNum + 1] = startTime.min;
-	memory[2 * _etvNum + 2] = startTime.sec;
+	memory[2 * etvNum + 0] = startTime.hour;
+	memory[2 * etvNum + 1] = startTime.min;
+	memory[2 * etvNum + 2] = startTime.sec;
 
 	ofstream out(fileName, outFlags);
 	out.write(memory, length);
@@ -129,8 +129,8 @@ MyTime ClayMemory::readStartTime() {
 	in.close();
 
 	MyTime out;
-	out.hour = memory[2 * _etvNum + 0];
-	out.min = memory[2 * _etvNum + 1];
-	out.sec = memory[2 * _etvNum + 2];
+	out.hour = memory[2 * etvNum + 0];
+	out.min = memory[2 * etvNum + 1];
+	out.sec = memory[2 * etvNum + 2];
 	return out;
 }

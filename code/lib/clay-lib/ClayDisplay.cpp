@@ -2,9 +2,9 @@
 
 ClayDisplay::ClayDisplay() {
 	w = nullptr;
-	_height = 2;
-	_length = 16;
-	_displayChars = _height * _length;
+	height = 2;
+	length = 16;
+	displayChars = height * length;
 }
 
 void ClayDisplay::begin(ClayControlUnit* w) {
@@ -12,19 +12,19 @@ void ClayDisplay::begin(ClayControlUnit* w) {
 }
 
 void ClayDisplay::printSimpleText(const char text[]) {
-	std::string rows[_height];
+	std::string rows[height];
 	std::string conv(text);
 
 	w->clearDisplay();
 
-	if(conv.length() <= _displayChars) {
+	if(conv.length() <= displayChars) {
 		arrangeWords(conv, rows);
 		printRows(rows);
 	} else displayError1();
 }
 
 void ClayDisplay::printData(const char text1[], int8_t data, const char text2[]) {
-	std::string rows[_height];
+	std::string rows[height];
 
 	std::string conv1(text1);
 	std::string conv2(text2);
@@ -33,14 +33,14 @@ void ClayDisplay::printData(const char text1[], int8_t data, const char text2[])
 
 	w->clearDisplay();
 
-	if(conv.length() <= _displayChars) {
+	if(conv.length() <= displayChars) {
 		arrangeWords(conv, rows);
 		printRows(rows);
 	} else displayError1();
 }
 
 void ClayDisplay::printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) {
-	std::string rows[_height];
+	std::string rows[height];
 
 	std::string conv1(text1);
 	std::string conv2(text2);
@@ -50,7 +50,7 @@ void ClayDisplay::printData(const char text1[], int8_t data1, const char text2[]
 
 	w->clearDisplay();
 
-	if(conv.length() <= _displayChars) {
+	if(conv.length() <= displayChars) {
 		arrangeWords(conv, rows);
 		printRows(rows);
 	} else displayError1();
@@ -126,15 +126,15 @@ void ClayDisplay::arrangeWords(std::string text, std::string rows[]) const {
 	for(int64_t i = 0; i < text.length(); i++) {
 		if(text[i] != ' ') buffer += text[i];
 		else {
-			if(rows[row].length() + buffer.length() <= _length) rows[row] += (buffer + " ");
-			else if(row + 1 <= _height) rows[++row] += (buffer + " ");
+			if(rows[row].length() + buffer.length() <= length) rows[row] += (buffer + " ");
+			else if(row + 1 <= height) rows[++row] += (buffer + " ");
 			buffer.clear();
 		}
 	}
 }
 
 void ClayDisplay::printRows(std::string rows[]) {
-	for(int8_t row = 0; row < _height; row++) {
+	for(int8_t row = 0; row < height; row++) {
 		w->setCursorDisplay(0, row);
 		w->printOnDisplay(rows[row]);
 	}
@@ -197,3 +197,12 @@ void ClayDisplay::displayError1() {
 	w->setCursorDisplay(0, 1);
 	w->printOnDisplay("too big");
 }
+
+void ClayDisplay::setBacklight(bool state) {
+	backlight = state;
+}
+
+bool ClayDisplay::getBacklight() const {
+	return backlight;
+}
+
