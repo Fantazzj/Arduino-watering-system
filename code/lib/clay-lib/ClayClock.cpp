@@ -22,7 +22,7 @@ MyDateTime ClayClock::getDateTime() {
 }
 
 void ClayClock::setDateTime(MyDateTime time) {
-	w->debuggerLog("Set time to:");
-	w->debuggerLog(std::to_string(time.time.hour) + ":" + std::to_string(time.time.min));
-	w->debuggerLog(std::to_string(time.date.day) + "/" + std::to_string(time.date.mon) + "/" + std::to_string(time.date.year));
+	w->debuggerLog("Set time to:\n");
+	w->debuggerLog(std::to_string(time.time.hour) + ":" + std::to_string(time.time.min) + "\n");
+	w->debuggerLog(std::to_string(time.date.day) + "/" + std::to_string(time.date.mon) + "/" + std::to_string(time.date.year) + "\n");
 }
