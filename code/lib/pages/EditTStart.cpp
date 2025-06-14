@@ -42,9 +42,10 @@ PageNum EditTStart::exec() {
 			if(_editPhase == 3) {
 				_editPhase = 1;
 				_controller.autoCycle.tStart = _newTime;
-				//_controller.debugger.print("Watering start time set to: ");
-				//_controller.debugger.println(_newTime);
-
+#ifdef DEBUG
+				_controller.debugger.print("Watering start time set to: ");
+				_controller.debugger.println(_newTime);
+#endif
 				_controller.autoCycle.updateTReset();
 				_controller.memory.saveStartTime(_newTime);
 				return HomePage;
@@ -60,11 +61,11 @@ void EditTStart::show() {
 	if(_redraw) {
 		char text[22] = "Orario di avvio";
 		text[15] = ' ';
-		text[16] = _newTime.hour/10 + '0';
-		text[17] = _newTime.hour%10 + '0';
+		text[16] = _newTime.hour / 10 + '0';
+		text[17] = _newTime.hour % 10 + '0';
 		text[18] = ':';
-		text[19] = _newTime.min/10 + '0';
-		text[20] = _newTime.min%10 + '0';
+		text[19] = _newTime.min / 10 + '0';
+		text[20] = _newTime.min % 10 + '0';
 		text[21] = '\0';
 		_controller.display.printSimpleText(text);
 		if(_editPhase == 2) _controller.display.blinkAt(4, 1);

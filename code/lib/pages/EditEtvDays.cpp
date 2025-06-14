@@ -46,12 +46,14 @@ PageNum EditEtvDays::exec() {
 			_etvEdit++;
 			_daysEdit = _controller.etv.getDays(_etvEdit);
 			if(_etvEdit >= _controller.etvNum) {
-				//_controller.debugger.print("New etv days: [ ");
+#ifdef DEBUG
+				_controller.debugger.print("New etv days: [ ");
 				for(uint8_t e = 0; e < _controller.etvNum; e++) {
-					//_controller.debugger.print(_controller.etv.getDays(e));
-					//_controller.debugger.print(' ');
+					_controller.debugger.print(_controller.etv.getDays(e));
+					_controller.debugger.print(' ');
 				}
-				//_controller.debugger.println(']');
+				_controller.debugger.println(']');
+#endif
 				return HomePage;
 			}
 			else return Stay;
