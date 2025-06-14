@@ -16,6 +16,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
 
 if ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
+    add_compile_definitions(DEBUG=1)
     add_subdirectory(lib/clay-lib)
 endif ()
 

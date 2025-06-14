@@ -58,20 +58,27 @@ void AutoCycle::exec() {
 		if(etvOn == -1) {
 			started = false;
 			watered = true;
-			//_myDebugger.println("Watering not needed");
+#ifdef DEBUG
+			_myDebugger.println("Watering not needed");
+#endif
 			return;
 		}
-
-		//_myDebugger.println("Watering starts");
+#ifdef DEBUG
+		_myDebugger.println("Watering starts");
+#endif
 		started = true;
 
-		//_myDebugger.println("Turning on Main Switch");
+#ifdef DEBUG
+		_myDebugger.println("Turning on Main Switch");
+#endif
 		_myMainSwitch.turnOn();
 
 		_myTimer.wait(msSnub);
 
-		//_myDebugger.print("Turning on Etv ");
-		//_myDebugger.println(etvOn + 1);
+#ifdef DEBUG
+		_myDebugger.print("Turning on Etv ");
+		_myDebugger.println(etvOn + 1);
+#endif
 		_myEtv.turnOn(etvOn);
 
 		return;
@@ -81,30 +88,38 @@ void AutoCycle::exec() {
 	if(started) {
 		if(!_myEtv.wateringDone(etvOn, newTime.time))
 			return;
-
-		//_myDebugger.print("Turning off Etv ");
-		//_myDebugger.println(etvOn + 1);
+#ifdef DEBUG
+		_myDebugger.print("Turning off Etv ");
+		_myDebugger.println(etvOn + 1);
+#endif
 		_myEtv.turnOff(etvOn);
 		_myTimer.wait(msSnub);
 
 		etvOn = _nextEtv();
 		if(etvOn == -1) {
-			//_myDebugger.println("Turning off Main Switch");
+#ifdef DEBUG
+			_myDebugger.println("Turning off Main Switch");
+#endif
 			_myMainSwitch.turnOff();
 			watered = true;
 			started = false;
-			//_myDebugger.println("Watering finished");
+#ifdef DEBUG
+			_myDebugger.println("Watering finished");
+#endif
 			return;
 		}
-
-		//_myDebugger.print("Turning on Etv ");
-		//_myDebugger.println(etvOn + 1);
+#ifdef DEBUG
+		_myDebugger.print("Turning on Etv ");
+		_myDebugger.println(etvOn + 1);
+#endif
 		_myEtv.turnOn(etvOn);
 	}
 }
 
 void AutoCycle::updateTReset() {
 	tReset = _checkTReset();
-	//_myDebugger.print("Watering state will reset at: ");
-	//_myDebugger.println(tReset);
+#ifdef DEBUG
+	_myDebugger.print("Watering state will reset at: ");
+	_myDebugger.println(tReset);
+#endif
 }
