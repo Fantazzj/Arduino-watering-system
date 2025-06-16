@@ -5,7 +5,7 @@
 #include "ClayControlUnit.hpp"
 #include <fstream>
 
-class ClayMemory : public Memory {
+class ClayMemory final : public Memory {
 private:
 	const std::string fileName = "./memory.bin";
 	const std::ios::openmode inFlags = std::ios::in | std::ios::binary;

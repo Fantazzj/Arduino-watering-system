@@ -4,7 +4,7 @@
 #include "../core-lib/Debugger.hpp"
 #include "ClayControlUnit.hpp"
 
-class ClayDebugger : public Debugger {
+class ClayDebugger final : public Debugger {
 private:
 	ClayControlUnit* w;
 

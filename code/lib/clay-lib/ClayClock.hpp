@@ -4,7 +4,7 @@
 #include "../core-lib/Clock.hpp"
 #include "ClayControlUnit.hpp"
 
-class ClayClock : public Clock {
+class ClayClock final : public Clock {
 private:
 	ClayControlUnit* w;
 

@@ -8,6 +8,7 @@ template<uint8_t n>
 class ValveGroup {
 private:
 public:
+	virtual ~ValveGroup() = default;
 	explicit ValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn);
 	explicit ValveGroup(Clock& clock);
 	virtual void turnOn(uint8_t num) = 0;

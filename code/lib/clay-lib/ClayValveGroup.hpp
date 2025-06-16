@@ -4,7 +4,7 @@
 #include "../core-lib/ValveGroup.hpp"
 #include "ClayControlUnit.hpp"
 
-class ClayValveGroup : public ValveGroupN {
+class ClayValveGroup final : public ValveGroupN {
 private:
 	ClayControlUnit* w;
 

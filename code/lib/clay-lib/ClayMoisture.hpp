@@ -4,7 +4,7 @@
 #include "../core-lib/Moisture.hpp"
 #include "ClayControlUnit.hpp"
 
-class ClayMoisture : public Moisture {
+class ClayMoisture final : public Moisture {
 private:
 	ClayControlUnit* w;
 

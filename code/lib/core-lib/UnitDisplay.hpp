@@ -6,6 +6,7 @@
 class UnitDisplay {
 private:
 public:
+	virtual ~UnitDisplay() = default;
 	virtual void printSimpleText(const char text[]) = 0;
 	virtual void printData(const char text1[], int8_t data, const char text2[]) = 0;
 	virtual void printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) = 0;

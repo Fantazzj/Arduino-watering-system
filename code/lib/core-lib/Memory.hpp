@@ -14,6 +14,7 @@
 class Memory {
 private:
 public:
+	virtual ~Memory() = default;
 	virtual void saveEtvMinOn(uint8_t num, uint8_t minOn) = 0;
 	virtual uint8_t readEtvMinOn(uint8_t num) = 0;
 	virtual void saveEtvDays(uint8_t num, uint8_t days) = 0;

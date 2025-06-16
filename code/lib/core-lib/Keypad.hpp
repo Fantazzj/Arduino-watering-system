@@ -4,6 +4,7 @@
 class Keypad {
 private:
 public:
+	virtual ~Keypad() = default;
 	virtual bool cancel() = 0;
 	virtual bool down() = 0;
 	virtual bool up() = 0;

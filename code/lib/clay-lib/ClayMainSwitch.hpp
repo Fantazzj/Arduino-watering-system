@@ -4,7 +4,7 @@
 #include "../core-lib/MainSwitch.hpp"
 #include "ClayControlUnit.hpp"
 
-class ClayMainSwitch : public MainSwitch {
+class ClayMainSwitch final : public MainSwitch {
 private:
 	ClayControlUnit* w;
 

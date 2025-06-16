@@ -6,7 +6,7 @@
 #include <chrono>
 #include <thread>
 
-class ClayTimer : public Timer {
+class ClayTimer final : public Timer {
 private:
 	std::chrono::time_point<std::chrono::system_clock> startTime;
 

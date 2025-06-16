@@ -6,6 +6,7 @@
 class Clock {
 private:
 public:
+	virtual ~Clock() = default;
 	virtual MyDateTime getDateTime() = 0;
 	virtual void setDateTime(MyDateTime time) = 0;
 

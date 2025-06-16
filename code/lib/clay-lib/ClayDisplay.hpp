@@ -4,7 +4,7 @@
 #include "../core-lib/UnitDisplay.hpp"
 #include "ClayControlUnit.hpp"
 
-class ClayDisplay : public UnitDisplay {
+class ClayDisplay final : public UnitDisplay {
 private:
 	ClayControlUnit* w;
 	void arrangeWords(std::string text, std::string rows[]) const;

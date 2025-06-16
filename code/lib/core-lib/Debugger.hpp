@@ -6,6 +6,7 @@
 class Debugger {
 private:
 public:
+	virtual ~Debugger() = default;
 	virtual void print(const char* text) = 0;
 	virtual void print(char c) = 0;
 	virtual void print(int n) = 0;

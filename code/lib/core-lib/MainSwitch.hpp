@@ -4,6 +4,7 @@
 class MainSwitch {
 private:
 public:
+	virtual ~MainSwitch() = default;
 	virtual void turnOn() = 0;
 	virtual void turnOff() = 0;
 };
