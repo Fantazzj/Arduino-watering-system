@@ -1,5 +1,7 @@
 #include "ClayValveGroupUi.hpp"
 
+#include <cmath>
+
 ClayValveGroupUi::ClayValveGroupUi(const uint16_t id) {
 	textId = id;
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
