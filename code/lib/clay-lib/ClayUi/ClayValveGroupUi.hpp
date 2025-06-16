@@ -26,10 +26,8 @@ private:
 	std::array<bool, VALVE_NUM> etvStates;
 	bool mainSwitchState;
 	uint16_t textId;
-	const int8_t rows = sqrt(VALVE_NUM);
-	const int8_t cols = VALVE_NUM / rows;
-	void createEtv(int8_t i);
-	void createEtvRow(int8_t from, int8_t to);
+	int8_t rows;
+	int8_t cols;
 
 public:
 	explicit ClayValveGroupUi(uint16_t id);
@@ -37,6 +35,10 @@ public:
 	[[nodiscard]] uint16_t getEtvsTextId() const;
 	void setEtvState(int8_t n, bool state);
 	void setMainSwitchState(bool state);
+
+private:
+	void createEtv(int8_t i);
+	void createEtvRow(int8_t from, int8_t to);
 };
 
 #endif//CLAY_VALVE_GROUP_UI_HPP

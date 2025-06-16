@@ -7,6 +7,8 @@ ClayValveGroupUi::ClayValveGroupUi(const uint16_t id) {
 		etvStates[i] = false;
 	}
 	mainSwitchState = false;
+	rows = sqrt(VALVE_NUM);
+	cols = VALVE_NUM / rows + (VALVE_NUM % rows > 0);
 }
 
 uint16_t ClayValveGroupUi::getEtvsTextId() const {
@@ -29,8 +31,11 @@ void ClayValveGroupUi::createEtvGroup() {
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
-		for(int8_t i = 0; i < rows; i++)
-			createEtvRow(i * cols, i * cols + (cols - 1));
+		for(int8_t i = 0; i < rows; i++) {
+			const int8_t from = i * cols;
+			const int8_t to = i * cols + (cols - 1) >= VALVE_NUM ? VALVE_NUM-1 : i * cols + (cols - 1);
+			createEtvRow(from, to);
+		}
 	}
 }
 
@@ -50,7 +55,7 @@ void ClayValveGroupUi::createEtvRow(const int8_t from, const int8_t to) {
 }
 
 void ClayValveGroupUi::createEtv(const int8_t i) {
-	Clay_TextElementConfig etvsText = {
+	const Clay_TextElementConfig etvsText = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = TEXT_SIZE,
@@ -68,7 +73,7 @@ void ClayValveGroupUi::createEtv(const int8_t i) {
 				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
-		Clay_String etvName = {
+		const Clay_String etvName = {
 				.length = static_cast<int32_t>(etvsNames[i].length()),
 				.chars = etvsNames[i].c_str(),
 		};
