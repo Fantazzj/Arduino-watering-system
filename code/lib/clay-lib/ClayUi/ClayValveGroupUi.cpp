@@ -33,7 +33,7 @@ void ClayValveGroupUi::createEtvGroup() {
 		 })) {
 		for(int8_t i = 0; i < rows; i++) {
 			const int8_t from = i * cols;
-			const int8_t to = i * cols + (cols - 1) >= VALVE_NUM ? VALVE_NUM-1 : i * cols + (cols - 1);
+			const int8_t to = from + (cols - 1) >= VALVE_NUM ? VALVE_NUM-1 : i * cols + (cols - 1);
 			createEtvRow(from, to);
 		}
 	}
