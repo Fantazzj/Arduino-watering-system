@@ -4,7 +4,7 @@
 class Timer {
 private:
 public:
-	virtual ~Timer();
+	virtual ~Timer() = default;
 	virtual void wait(unsigned long t) = 0;
 	virtual unsigned long millis() = 0;
 
