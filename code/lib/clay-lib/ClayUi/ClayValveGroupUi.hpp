@@ -3,7 +3,6 @@
 
 #include "clay.h"
 #include <array>
-#include <cmath>
 #include <cstdint>
 #include <string>
 

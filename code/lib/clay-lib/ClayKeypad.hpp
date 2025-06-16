@@ -3,7 +3,7 @@
 
 #include "../core-lib/Keypad.hpp"
 
-class ClayKeypad : public Keypad {
+class ClayKeypad final : public Keypad {
 private:
 public:
 	explicit ClayKeypad();
