@@ -1,6 +1,6 @@
 #include "ClayDebuggerUi.hpp"
 
-ClayDebuggerUi::ClayDebuggerUi(uint16_t id) {
+ClayDebuggerUi::ClayDebuggerUi(const uint16_t id) {
 	textId = id;
 }
 
@@ -9,7 +9,7 @@ uint16_t ClayDebuggerUi::getDebuggerTextId() const {
 }
 
 void ClayDebuggerUi::createDebugger() {
-	Clay_TextElementConfig debugText = {
+	const Clay_TextElementConfig debugText = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = TEXT_SIZE,
@@ -32,7 +32,7 @@ void ClayDebuggerUi::createDebugger() {
 				 .childGap = 0,
 				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
 		 })) {
-		Clay_String clayText = {
+		const Clay_String clayText = {
 				.length = static_cast<int32_t>(text.length()),
 				.chars = text.c_str(),
 		};
@@ -40,7 +40,7 @@ void ClayDebuggerUi::createDebugger() {
 	}
 }
 
-void ClayDebuggerUi::appendDebuggerText(std::string string) {
+void ClayDebuggerUi::appendDebuggerText(const std::string& string) {
 	//if(!text.empty())
 	//	text.append("\n");
 	text.append(string);

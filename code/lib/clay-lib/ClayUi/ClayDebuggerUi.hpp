@@ -24,7 +24,7 @@ public:
 	explicit ClayDebuggerUi(uint16_t id);
 	void createDebugger();
 	[[nodiscard]] uint16_t getDebuggerTextId() const;
-	void appendDebuggerText(std::string string);
+	void appendDebuggerText(const std::string& string);
 };
 
 #endif//CLAY_DEBUGGER_UI_HPP

@@ -18,8 +18,8 @@ public:
 	void deactivateEtv(int8_t n);
 	void activateMainSwitch();
 	void deactivateMainSwitch();
-	void debuggerLog(std::string string);
-	void printOnDisplay(std::string text);
+	void debuggerLog(const std::string& string);
+	void printOnDisplay(const std::string& text);
 	void setCursorDisplay(int8_t x, int8_t y);
 	void clearDisplay();
 	void hideCursorDisplay();

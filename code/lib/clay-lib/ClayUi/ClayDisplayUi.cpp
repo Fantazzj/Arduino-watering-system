@@ -1,6 +1,6 @@
 #include "ClayDisplayUi.hpp"
 
-ClayDisplayUi::ClayDisplayUi(uint16_t id) {
+ClayDisplayUi::ClayDisplayUi(const uint16_t id) {
 	textId = id;
 	text = {
 			"Sample text row1",
@@ -14,15 +14,15 @@ uint16_t ClayDisplayUi::getDisplayTextId() const {
 	return textId;
 }
 
-void ClayDisplayUi::createDisplayChars(int8_t row) {
-	Clay_TextElementConfig charText = {
+void ClayDisplayUi::createDisplayChars(const int8_t row) {
+	const Clay_TextElementConfig charText = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = TEXT_SIZE,
 	};
 
 	for(int8_t c = 0; c < COLUMNS; c++) {
-		Clay_String displayText = {
+		const Clay_String displayText = {
 				.length = 1,
 				.chars = &text[row][c],
 		};
@@ -77,11 +77,11 @@ void ClayDisplayUi::createDisplay() {
 	}
 }
 
-void ClayDisplayUi::setDisplayChar(int8_t row, int8_t col, char c) {
+void ClayDisplayUi::setDisplayChar(const int8_t row, const int8_t col, const char c) {
 	text[row][col] = c;
 }
 
-void ClayDisplayUi::setBlinkOn(int8_t row, int8_t col) {
+void ClayDisplayUi::setBlinkOn(const int8_t row, const int8_t col) {
 	blinkChar[0] = row;
 	blinkChar[1] = col;
 }

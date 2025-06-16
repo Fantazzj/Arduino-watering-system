@@ -9,7 +9,7 @@ using std::streamsize;
 using std::filesystem::file_size;
 using std::filesystem::exists;
 
-ClayMemory::ClayMemory(uint8_t etvNum) {
+ClayMemory::ClayMemory(const uint8_t etvNum) {
 	maxFileSize = 2 * etvNum * sizeof(uint8_t) + 3 * sizeof(uint8_t);
 	this->etvNum = etvNum;
 }
@@ -46,11 +46,11 @@ void ClayMemory::saveEtvMinOn(uint8_t num, uint8_t minOn) {
 	out.close();
 }
 
-uint8_t ClayMemory::readEtvMinOn(uint8_t num) {
+uint8_t ClayMemory::readEtvMinOn(const uint8_t num) {
 	ifstream in(fileName, inFlags);
 
 	in.seekg(0, ios::end);
-	streamsize length = in.tellg();
+	const streamsize length = in.tellg();
 	in.seekg(0, ios::beg);
 
 	char memory[length];
@@ -80,11 +80,11 @@ void ClayMemory::saveEtvDays(uint8_t num, uint8_t days) {
 	out.close();
 }
 
-uint8_t ClayMemory::readEtvDays(uint8_t num) {
+uint8_t ClayMemory::readEtvDays(const uint8_t num) {
 	ifstream in(fileName, inFlags);
 
 	in.seekg(0, ios::end);
-	streamsize length = in.tellg();
+	const streamsize length = in.tellg();
 	in.seekg(0, ios::beg);
 
 	char memory[length];
@@ -120,7 +120,7 @@ MyTime ClayMemory::readStartTime() {
 	ifstream in(fileName, inFlags);
 
 	in.seekg(0, ios::end);
-	streamsize length = in.tellg();
+	const streamsize length = in.tellg();
 	in.seekg(0, ios::beg);
 
 	char memory[length];

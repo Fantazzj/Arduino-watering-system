@@ -17,7 +17,7 @@ private:
 	};
 	uint8_t moistureLevel;
 	PressHandlerArgs myArgs[LEVEL_NUM];
-	static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t i);
+	static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t myArgs);
 
 public:
 	ClayMoistureUi();

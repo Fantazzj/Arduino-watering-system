@@ -11,25 +11,25 @@ void ClayControlUnit::setKeypad(ClayKeypad* keypad) {
 	ui.setKeypad(keypad);
 }
 
-void ClayControlUnit::activateEtv(int8_t n) {
+void ClayControlUnit::activateEtv(const int8_t n) {
 	ui.activateEtv(n);
 }
 
-void ClayControlUnit::deactivateEtv(int8_t n) {
+void ClayControlUnit::deactivateEtv(const int8_t n) {
 	ui.deactivateEtv(n);
 }
 
-void ClayControlUnit::debuggerLog(std::string string) {
+void ClayControlUnit::debuggerLog(const std::string& string) {
 	ui.appendDebuggerText(string);
 }
 
-void ClayControlUnit::printOnDisplay(std::string text) {
+void ClayControlUnit::printOnDisplay(const std::string& text) {
 	for(int8_t i = x, j = 0; j < text.size() && i < ClayDisplayUi::COLUMNS; i++, j++) {
 		ui.setDisplayChar(y, i, text[j]);
 	}
 }
 
-void ClayControlUnit::setCursorDisplay(int8_t x, int8_t y) {
+void ClayControlUnit::setCursorDisplay(const int8_t x, const int8_t y) {
 	this->x = x;
 	this->y = y;
 }

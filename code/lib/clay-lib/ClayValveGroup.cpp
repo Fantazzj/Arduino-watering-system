@@ -9,12 +9,12 @@ void ClayValveGroup::begin(ClayControlUnit* w) {
 	this->w = w;
 }
 
-void ClayValveGroup::turnOn(uint8_t num) {
+void ClayValveGroup::turnOn(const uint8_t num) {
 	this->tOn[num] = this->clock.getDateTime().time;
 	this->elapsedDays[num] = 1;
 	w->activateEtv(num);
 }
 
-void ClayValveGroup::turnOff(uint8_t num) {
+void ClayValveGroup::turnOff(const uint8_t num) {
 	w->deactivateEtv(num);
 }

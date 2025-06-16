@@ -13,7 +13,7 @@ void ClayDisplay::begin(ClayControlUnit* w) {
 
 void ClayDisplay::printSimpleText(const char text[]) {
 	std::string rows[height];
-	std::string conv(text);
+	const std::string conv(text);
 
 	w->clearDisplay();
 
@@ -23,13 +23,13 @@ void ClayDisplay::printSimpleText(const char text[]) {
 	} else displayError1();
 }
 
-void ClayDisplay::printData(const char text1[], int8_t data, const char text2[]) {
+void ClayDisplay::printData(const char text1[], const int8_t data, const char text2[]) {
 	std::string rows[height];
 
-	std::string conv1(text1);
-	std::string conv2(text2);
+	const std::string conv1(text1);
+	const std::string conv2(text2);
 
-	std::string conv = conv1 + " " + std::to_string(data) + " " + conv2;
+	const std::string conv = conv1 + " " + std::to_string(data) + " " + conv2;
 
 	w->clearDisplay();
 
