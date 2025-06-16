@@ -16,7 +16,6 @@ public:
 	bool up() override;
 	bool confirm() override;
 	bool generalPressed() override;
-	friend class ClayControlUnit;
 
 protected:
 };

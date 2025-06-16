@@ -3,29 +3,25 @@
 ClayKeypad::ClayKeypad() = default;
 
 bool ClayKeypad::cancel() {
-	bool state;
-	state = cancelState;
+	const bool state = cancelState;
 	cancelState = false;
 	return state;
 }
 
 bool ClayKeypad::down() {
-	bool state;
-	state = downState;
+	const bool state = downState;
 	downState = false;
 	return state;
 }
 
 bool ClayKeypad::up() {
-	bool state;
-	state = upState;
+	const bool state = upState;
 	upState = false;
 	return state;
 }
 
 bool ClayKeypad::confirm() {
-	bool state;
-	state = confirmState;
+	const bool state = confirmState;
 	confirmState = false;
 	return state;
 }
