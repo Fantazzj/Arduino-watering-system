@@ -21,6 +21,11 @@ public:
 #endif
 
 private:
+	struct HandlerData {
+		ClayKeypad* keypad;
+		int8_t num;
+	};
+	HandlerData handlers[NUM];
 	uint16_t textId;
 	const std::array<std::string, NUM> buttonNames = {
 			"Cancel",
@@ -33,8 +38,11 @@ public:
 	explicit ClayKeypadUi(uint16_t id);
 	void createButtonGroup();
 	[[nodiscard]] uint16_t getButtonsTextId() const;
-	void createButton(int8_t i);
 	void setKeypad(ClayKeypad* keypad);
+
+private:
+	void createButton(int8_t i);
+	static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
 };
 
 #endif//CLAY_KEYPAD_UI_HPP

@@ -1,61 +1,34 @@
 #include "ClayKeypadUi.hpp"
 
-ClayKeypadUi::ClayKeypadUi(uint16_t id) {
+ClayKeypadUi::ClayKeypadUi(const uint16_t id) {
 	textId = id;
+	for(int8_t i = 0; i < NUM; i++)
+		handlers[i].num = i;
 }
 
 uint16_t ClayKeypadUi::getButtonsTextId() const {
 	return textId;
 }
 
-ClayKeypad* keypad = nullptr;
-
-static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t i) {
+void ClayKeypadUi::pressHandler(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
 
-	switch(i) {
+	switch(const auto* data = reinterpret_cast<HandlerData*>(args); data->num) {
 		case 0:
-			keypad->cancelState = true;
+			data->keypad->cancelState = true;
 			break;
 		case 1:
-			keypad->downState = true;
+			data->keypad->downState = true;
 			break;
 		case 2:
-			keypad->upState = true;
+			data->keypad->upState = true;
 			break;
 		case 3:
-			keypad->confirmState = true;
+			data->keypad->confirmState = true;
 			break;
 		default:
 			break;
-	}
-}
-
-void ClayKeypadUi::createButton(int8_t i) {
-	Clay_TextElementConfig buttonText = {
-			.textColor = TEXT_COLOR,
-			.fontId = textId,
-			.fontSize = TEXT_SIZE,
-	};
-
-	CLAY(CLAY_RECTANGLE({
-				 .color = BUTTONS_COLOR,
-				 .cornerRadius = {10, 10, 10, 10},
-		 }),
-		 CLAY_LAYOUT({
-				 .sizing = {
-						 .width = CLAY_SIZING_GROW(),
-						 .height = CLAY_SIZING_GROW(),
-				 },
-				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
-		 }),
-		 Clay_OnHover(pressHandler, i)) {
-		Clay_String buttonName = {
-				.length = static_cast<int32_t>(buttonNames[i].length()),
-				.chars = buttonNames[i].c_str(),
-		};
-		CLAY_TEXT(buttonName, CLAY_TEXT_CONFIG(buttonText));
 	}
 }
 
@@ -80,6 +53,34 @@ void ClayKeypadUi::createButtonGroup() {
 	}
 }
 
+void ClayKeypadUi::createButton(const int8_t i) {
+	const Clay_TextElementConfig buttonText = {
+			.textColor = TEXT_COLOR,
+			.fontId = textId,
+			.fontSize = TEXT_SIZE,
+	};
+
+	CLAY(CLAY_RECTANGLE({
+				 .color = BUTTONS_COLOR,
+				 .cornerRadius = {10, 10, 10, 10},
+		 }),
+		 CLAY_LAYOUT({
+				 .sizing = {
+						 .width = CLAY_SIZING_GROW(),
+						 .height = CLAY_SIZING_GROW(),
+				 },
+				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
+		 }),
+		 Clay_OnHover(pressHandler, reinterpret_cast<intptr_t>(&handlers[i]))) {
+		const Clay_String buttonName = {
+				.length = static_cast<int32_t>(buttonNames[i].length()),
+				.chars = buttonNames[i].c_str(),
+		};
+		CLAY_TEXT(buttonName, CLAY_TEXT_CONFIG(buttonText));
+	}
+}
+
 void ClayKeypadUi::setKeypad(ClayKeypad* keypad) {
-	::keypad = keypad;
+	for(auto & handler : handlers)
+		handler.keypad = keypad;
 }
