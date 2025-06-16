@@ -8,7 +8,7 @@
 
 class ClayTimer : public Timer {
 private:
-	std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds> startTime;
+	std::chrono::time_point<std::chrono::system_clock> startTime;
 
 public:
 	explicit ClayTimer();

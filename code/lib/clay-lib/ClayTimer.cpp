@@ -9,8 +9,8 @@ ClayTimer::ClayTimer() {
 	startTime = high_resolution_clock::now();
 };
 
-void ClayTimer::wait(unsigned long t) {
-	std::this_thread::sleep_for(milliseconds(t));
+void ClayTimer::wait(const unsigned long t) {
+	sleep_for(milliseconds(t));
 }
 
 unsigned long ClayTimer::millis() {
