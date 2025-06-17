@@ -12,41 +12,41 @@ ClayControlUnitUi::ClayControlUnitUi() :
 	display(1), debugger(2), buttons(3), etvs(4) {
 	Clay_Raylib_Initialize(1500, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
-	uint64_t clayRequiredMemory = Clay_MinMemorySize();
-	Clay_Arena clayMemory = (Clay_Arena){
+	const uint64_t clayRequiredMemory = Clay_MinMemorySize();
+	const Clay_Arena clayMemory = {
 			.capacity = clayRequiredMemory,
-			.memory = (char*) malloc(clayRequiredMemory),
+			.memory = static_cast<char*>(malloc(clayRequiredMemory)),
 	};
 
 	Clay_Initialize(
 			clayMemory,
-			(Clay_Dimensions){
-					.width = (float) GetScreenWidth(),
-					.height = (float) GetScreenHeight(),
+			(Clay_Dimensions) {
+					.width = static_cast<float>(GetScreenWidth()),
+					.height = static_cast<float>(GetScreenHeight()),
 			},
-			(Clay_ErrorHandler){HandleClayErrors});
+			(Clay_ErrorHandler) {HandleClayErrors});
 
-	Raylib_fonts[0] = (Raylib_Font){
+	Raylib_fonts[0] = (Raylib_Font) {
 			.fontId = 0,
 			.font = LoadFontEx(ClayControlUnitUi::FONT, 28, nullptr, 250),
 	};
 
-	Raylib_fonts[1] = (Raylib_Font){
+	Raylib_fonts[1] = (Raylib_Font) {
 			.fontId = display.getDisplayTextId(),
 			.font = LoadFontEx(ClayDisplayUi::FONT, ClayDisplayUi::TEXT_SIZE, nullptr, 250),
 	};
 
-	Raylib_fonts[2] = (Raylib_Font){
+	Raylib_fonts[2] = (Raylib_Font) {
 			.fontId = debugger.getDebuggerTextId(),
 			.font = LoadFontEx(ClayDebuggerUi::FONT, ClayDebuggerUi::TEXT_SIZE, nullptr, 250),
 	};
 
-	Raylib_fonts[3] = (Raylib_Font){
+	Raylib_fonts[3] = (Raylib_Font) {
 			.fontId = buttons.getButtonsTextId(),
 			.font = LoadFontEx(ClayKeypadUi::FONT, ClayKeypadUi::TEXT_SIZE, nullptr, 250),
 	};
 
-	Raylib_fonts[4] = (Raylib_Font){
+	Raylib_fonts[4] = (Raylib_Font) {
 			.fontId = etvs.getEtvsTextId(),
 			.font = LoadFontEx(ClayValveGroupUi::FONT, ClayValveGroupUi::TEXT_SIZE, nullptr, 250),
 	};
@@ -75,16 +75,16 @@ void ClayControlUnitUi::createControlUnit() {
 
 void ClayControlUnitUi::show() {
 	while(!WindowShouldClose()) {
-		Clay_SetLayoutDimensions((Clay_Dimensions){
-				.width = (float) GetScreenWidth(),
-				.height = (float) GetScreenHeight(),
+		Clay_SetLayoutDimensions((Clay_Dimensions) {
+				.width = static_cast<float>(GetScreenWidth()),
+				.height = static_cast<float>(GetScreenHeight()),
 		});
 
-		Vector2 mousePosition = GetMousePosition();
-		Clay_SetPointerState((Clay_Vector2){mousePosition.x, mousePosition.y}, IsMouseButtonDown(0));
+		const Vector2 mousePosition = GetMousePosition();
+		Clay_SetPointerState((Clay_Vector2) {mousePosition.x, mousePosition.y}, IsMouseButtonDown(0));
 
-		Vector2 scrollDelta = GetMouseWheelMoveV();
-		Clay_UpdateScrollContainers(true, (Clay_Vector2){scrollDelta.x, scrollDelta.y}, GetFrameTime());
+		const Vector2 scrollDelta = GetMouseWheelMoveV();
+		Clay_UpdateScrollContainers(true, (Clay_Vector2) {scrollDelta.x, scrollDelta.y}, GetFrameTime());
 
 		Clay_BeginLayout();
 
@@ -105,7 +105,7 @@ void ClayControlUnitUi::show() {
 			debugger.createDebugger();
 		}
 
-		Clay_RenderCommandArray renderCommands = Clay_EndLayout();
+		const Clay_RenderCommandArray renderCommands = Clay_EndLayout();
 
 		BeginDrawing();
 		ClearBackground(BLACK);
@@ -114,19 +114,19 @@ void ClayControlUnitUi::show() {
 	}// !WindowShouldClose()
 }
 
-void ClayControlUnitUi::appendDebuggerText(std::string string) {
+void ClayControlUnitUi::appendDebuggerText(const std::string& string) {
 	debugger.appendDebuggerText(string);
 }
 
-void ClayControlUnitUi::setDisplayChar(int8_t row, int8_t col, char c) {
+void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const char c) {
 	display.setDisplayChar(row, col, c);
 }
 
-void ClayControlUnitUi::activateEtv(int8_t n) {
+void ClayControlUnitUi::activateEtv(const int8_t n) {
 	etvs.setEtvState(n, true);
 }
 
-void ClayControlUnitUi::deactivateEtv(int8_t n) {
+void ClayControlUnitUi::deactivateEtv(const int8_t n) {
 	etvs.setEtvState(n, false);
 }
 
@@ -142,10 +142,10 @@ void ClayControlUnitUi::deactivateMainSwitch() {
 	etvs.setMainSwitchState(false);
 }
 
-void ClayControlUnitUi::setBlinkOn(int8_t row, int8_t col) {
+void ClayControlUnitUi::setBlinkOn(const int8_t row, const int8_t col) {
 	display.setBlinkOn(row, col);
 }
 
-uint8_t ClayControlUnitUi::getMoisture() {
+uint8_t ClayControlUnitUi::getMoisture() const {
 	return moisture.getMoisture();
 }

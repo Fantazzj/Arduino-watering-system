@@ -21,14 +21,14 @@ public:
 	ClayControlUnitUi();
 	void show();
 	void setDisplayChar(int8_t row, int8_t col, char c);
-	void appendDebuggerText(std::string string);
+	void appendDebuggerText(const std::string& string);
 	void activateEtv(int8_t n);
 	void deactivateEtv(int8_t n);
 	void activateMainSwitch();
 	void deactivateMainSwitch();
 	void setKeypad(ClayKeypad* keypad);
 	void setBlinkOn(int8_t row, int8_t col);
-	uint8_t getMoisture();
+	[[nodiscard]] uint8_t getMoisture() const;
 
 private:
 	ClayDisplayUi display;
