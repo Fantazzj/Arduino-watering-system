@@ -2,6 +2,8 @@
 #define CLAYCLOCKUI_HPP
 
 #include "clay.h"
+#include <chrono>
+
 #include <cstdint>
 
 class ClayClockUi {
@@ -17,11 +19,24 @@ public:
 #endif
 private:
 	uint16_t textId;
+	std::time_t dateTime;
+	std::tm* localDateTime;
+	char stringDateDay[3] = "01";
+	char stringDateMonth[3] = "01";
+	char stringDateYear[5] = "1197";
+	char stringTimeHours[3] = "12";
+	char stringTimeMinutes[3] = "00";
 
 public:
 	explicit ClayClockUi(uint16_t id);
 	[[nodiscard]] uint16_t getTextId() const;
 	void createClock();
+
+private:
+	void createDateEditor();
+	void createTimeEditor();
+	void createSpacer();
+	void createEditor(const char* text, int8_t len);
 };
 
 

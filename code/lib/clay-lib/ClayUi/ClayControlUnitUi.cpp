@@ -11,8 +11,8 @@ void ClayControlUnitUi::HandleClayErrors(Clay_ErrorData errorData) {
 }
 
 ClayControlUnitUi::ClayControlUnitUi() :
-	display(1), etvs(2), buttons(3), debugger(4) {
-	Clay_Raylib_Initialize(1500, 800, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
+	display(1), etvs(2), buttons(3), debugger(4), clock(5) {
+	Clay_Raylib_Initialize(1500, 760, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	const uint64_t clayRequiredMemory = Clay_MinMemorySize();
 	const Clay_Arena clayMemory = {
@@ -28,15 +28,16 @@ ClayControlUnitUi::ClayControlUnitUi() :
 			},
 			{HandleClayErrors});
 
-	fonts[0] = LoadFontEx(ClayControlUnitUi::FONT, 28, nullptr, 250);
+	fonts[0] = LoadFontEx(ClayControlUnitUi::FONT, 15, nullptr, 250);
 	fonts[1] = LoadFontEx(ClayDisplayUi::FONT, ClayDisplayUi::TEXT_SIZE, nullptr, 250);
 	fonts[2] = LoadFontEx(ClayDebuggerUi::FONT, ClayDebuggerUi::TEXT_SIZE, nullptr, 250);
 	fonts[3] = LoadFontEx(ClayKeypadUi::FONT, ClayKeypadUi::TEXT_SIZE, nullptr, 250);
 	fonts[4] = LoadFontEx(ClayValveGroupUi::FONT, ClayValveGroupUi::TEXT_SIZE, nullptr, 250);
+	fonts[5] = LoadFontEx(ClayClockUi::FONT, ClayClockUi::TEXT_SIZE, nullptr, 250);
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, fonts);
 
-	//Clay_SetDebugModeEnabled(true);
+	Clay_SetDebugModeEnabled(true);
 }
 
 void ClayControlUnitUi::createControlUnit() {
@@ -57,6 +58,24 @@ void ClayControlUnitUi::createControlUnit() {
 		etvs.createEtvGroup();
 	}
 }
+
+void ClayControlUnitUi::createAdminSection() {
+	CLAY({
+			.id = CLAY_ID("Admin"),
+			.layout = {
+					.sizing = {
+							.width = CLAY_SIZING_GROW(),
+							.height = CLAY_SIZING_GROW(),
+					},
+					.childGap = 25,
+					.layoutDirection = CLAY_TOP_TO_BOTTOM,
+			},
+	}) {
+		clock.createClock();
+		debugger.createDebugger();
+	}
+}
+
 
 void ClayControlUnitUi::show() {
 	while(!WindowShouldClose()) {
@@ -87,7 +106,7 @@ void ClayControlUnitUi::show() {
 				.backgroundColor = BG_COLOR,
 		}) {
 			createControlUnit();
-			debugger.createDebugger();
+			createAdminSection();
 		}
 
 		const Clay_RenderCommandArray renderCommands = Clay_EndLayout();

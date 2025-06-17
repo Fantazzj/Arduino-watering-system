@@ -21,6 +21,7 @@ add_library(clayUi-lib SHARED
         ClayUi/ClayDisplayUi.cpp
         ClayUi/ClayKeypadUi.cpp
         ClayUi/ClayDebuggerUi.cpp
+        ClayUi/ClayClockUi.cpp
         ClayUi/ClayValveGroupUi.cpp
         ClayUi/ClayMoistureUi.cpp
         ClayUi/clay.c

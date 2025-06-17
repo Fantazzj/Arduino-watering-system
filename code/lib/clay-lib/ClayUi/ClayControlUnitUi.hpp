@@ -2,6 +2,7 @@
 #define CLAY_CONTROL_UNIT_UI_HPP
 
 #include "../ClayKeypad.hpp"
+#include "ClayClockUi.hpp"
 #include "ClayDebuggerUi.hpp"
 #include "ClayDisplayUi.hpp"
 #include "ClayKeypadUi.hpp"
@@ -36,7 +37,8 @@ private:
 	ClayKeypadUi buttons;
 	ClayDebuggerUi debugger;
 	ClayMoistureUi moisture;
-	Font fonts[5];
+	ClayClockUi clock;
+	Font fonts[6];
 #if defined(MINGW) || defined(MSVC)
 	static constexpr char FONT[] = "C:/Windows/Fonts/cour.ttf";
 #else
@@ -44,6 +46,7 @@ private:
 #endif
 
 	void createControlUnit();
+	void createAdminSection();
 	static void HandleClayErrors(Clay_ErrorData errorData);
 };
 
