@@ -4,7 +4,6 @@
 #include "../core-lib/Timer.hpp"
 #include "ClayControlUnit.hpp"
 #include <chrono>
-#include <thread>
 
 class ClayTimer final : public Timer {
 private:
