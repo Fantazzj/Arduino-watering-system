@@ -1,15 +1,35 @@
 #include "ClayClockUi.hpp"
 
 using std::chrono::system_clock;
+#include <iostream>
 
 ClayClockUi::ClayClockUi(const uint16_t id) {
 	textId = id;
-	dateTime = std::time(nullptr);
+	const auto dateTime = std::time(nullptr);
 	localDateTime = std::localtime(&dateTime);
+	stringDateDay = std::to_string(localDateTime->tm_mday);
+	stringDateMonth = std::to_string(localDateTime->tm_mon + 1);
+	stringDateYear = std::to_string(localDateTime->tm_year + 1900);
+	stringTimeHours = std::to_string(localDateTime->tm_hour);
+	stringTimeMinutes = std::to_string(localDateTime->tm_min);
 }
 
 uint16_t ClayClockUi::getTextId() const {
 	return textId;
+}
+
+std::tm* ClayClockUi::getDateTime() const {
+	return localDateTime;
+}
+
+void ClayClockUi::setDateTime(std::tm* localDateTime) {
+	delete this->localDateTime;
+	this->localDateTime = localDateTime;
+	stringDateDay = std::to_string(localDateTime->tm_mday);
+	stringDateMonth = std::to_string(localDateTime->tm_mon + 1);
+	stringDateYear = std::to_string(localDateTime->tm_year + 1900);
+	stringTimeHours = std::to_string(localDateTime->tm_hour);
+	stringTimeMinutes = std::to_string(localDateTime->tm_min);
 }
 
 
@@ -46,12 +66,6 @@ void ClayClockUi::createClock() {
 }
 
 void ClayClockUi::createDateEditor() {
-	const Clay_TextElementConfig charText = {
-			.textColor = TEXT_COLOR,
-			.fontId = textId,
-			.fontSize = TEXT_SIZE,
-	};
-
 	CLAY({
 			.layout = {
 					.sizing = {
@@ -68,9 +82,9 @@ void ClayClockUi::createDateEditor() {
 			.backgroundColor = BG_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		createEditor(stringDateDay, 2);
-		createEditor(stringDateMonth, 2);
-		createEditor(stringDateYear, 4);
+		createEditor(stringDateDay);
+		createEditor(stringDateMonth);
+		createEditor(stringDateYear);
 	}
 }
 
@@ -91,19 +105,36 @@ void ClayClockUi::createTimeEditor() {
 			.backgroundColor = BG_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		createEditor(stringTimeHours, 2);
-		createEditor(stringTimeMinutes, 2);
+		createEditor(stringTimeHours);
+		createEditor(stringTimeMinutes);
 	}
 }
 
-void ClayClockUi::createEditor(const char* text, const int8_t len) {
+void ClayClockUi::pressHandler(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+
+	std::cout << "AAA" << std::endl;
+}
+
+void apressHandler(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+
+	std::cout << "bbbb" << std::endl;
+}
+
+void ClayClockUi::createEditor(const std::string& num) {
 	const Clay_TextElementConfig charText = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = TEXT_SIZE,
 	};
 
-	const Clay_String string = {.length = len, .chars = text};
+	const Clay_String string = {
+			.length = static_cast<int32_t>(num.length()),
+			.chars = num.c_str(),
+	};
 
 	CLAY({
 			.layout = {
@@ -125,9 +156,15 @@ void ClayClockUi::createEditor(const char* text, const int8_t len) {
 			.backgroundColor = CHAR_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		CLAY_TEXT(CLAY_STRING("+"), CLAY_TEXT_CONFIG(charText));
+		CLAY() {
+			//Clay_OnHover(pressHandler, NULL);
+			CLAY_TEXT(CLAY_STRING("+"), CLAY_TEXT_CONFIG(charText));
+		}
 		CLAY_TEXT(string, CLAY_TEXT_CONFIG(charText));
-		CLAY_TEXT(CLAY_STRING("-"), CLAY_TEXT_CONFIG(charText));
+		CLAY() {
+			//Clay_OnHover(pressHandler, NULL);
+			CLAY_TEXT(CLAY_STRING("-"), CLAY_TEXT_CONFIG(charText));
+		}
 	}
 }
 

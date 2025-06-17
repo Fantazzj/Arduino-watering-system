@@ -56,6 +56,14 @@ void ClayControlUnit::showCursorDisplay() {
 	ui.setBlinkOn(y, x);
 }
 
-uint8_t ClayControlUnit::getMoisture() {
+uint8_t ClayControlUnit::getMoisture() const {
 	return ui.getMoisture();
+}
+
+void ClayControlUnit::setDateTime(std::tm* dateTime) {
+	ui.setDateTime(dateTime);
+}
+
+std::tm* ClayControlUnit::getDateTime() const {
+	return ui.getDateTime();
 }

@@ -19,25 +19,26 @@ public:
 #endif
 private:
 	uint16_t textId;
-	std::time_t dateTime;
 	std::tm* localDateTime;
-	char stringDateDay[3] = "01";
-	char stringDateMonth[3] = "01";
-	char stringDateYear[5] = "1197";
-	char stringTimeHours[3] = "12";
-	char stringTimeMinutes[3] = "00";
+	std::string stringDateDay;
+	std::string stringDateMonth;
+	std::string stringDateYear;
+	std::string stringTimeHours;
+	std::string stringTimeMinutes;
 
 public:
 	explicit ClayClockUi(uint16_t id);
 	[[nodiscard]] uint16_t getTextId() const;
 	void createClock();
+	[[nodiscard]] std::tm* getDateTime() const;
+	void setDateTime(std::tm* localDateTime);
 
 private:
 	void createDateEditor();
 	void createTimeEditor();
 	void createSpacer();
-	void createEditor(const char* text, int8_t len);
+	void createEditor(const std::string& num);
+	static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
 };
-
 
 #endif//CLAYCLOCKUI_HPP

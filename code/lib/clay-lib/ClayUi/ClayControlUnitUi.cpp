@@ -153,3 +153,11 @@ void ClayControlUnitUi::setBlinkOn(const int8_t row, const int8_t col) {
 uint8_t ClayControlUnitUi::getMoisture() const {
 	return moisture.getMoisture();
 }
+
+void ClayControlUnitUi::setDateTime(std::tm* dateTime) {
+	clock.setDateTime(dateTime);
+}
+
+std::tm* ClayControlUnitUi::getDateTime() const {
+	return clock.getDateTime();
+}

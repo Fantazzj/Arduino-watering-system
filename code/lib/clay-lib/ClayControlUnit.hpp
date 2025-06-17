@@ -24,7 +24,9 @@ public:
 	void clearDisplay();
 	void hideCursorDisplay();
 	void showCursorDisplay();
-	uint8_t getMoisture();
+	[[nodiscard]] uint8_t getMoisture() const;
+	void setDateTime(std::tm* dateTime);
+	[[nodiscard]] std::tm* getDateTime() const;
 
 protected:
 };

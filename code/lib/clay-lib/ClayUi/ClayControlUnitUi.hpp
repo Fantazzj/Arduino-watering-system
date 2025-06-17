@@ -30,6 +30,8 @@ public:
 	void setKeypad(ClayKeypad* keypad);
 	void setBlinkOn(int8_t row, int8_t col);
 	[[nodiscard]] uint8_t getMoisture() const;
+	void setDateTime(std::tm* dateTime);
+	[[nodiscard]] std::tm* getDateTime() const;
 
 private:
 	ClayDisplayUi display;
