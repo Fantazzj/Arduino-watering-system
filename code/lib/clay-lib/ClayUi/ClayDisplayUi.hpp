@@ -13,7 +13,7 @@ public:
 	static constexpr Clay_Color SELECTED_CHAR_COLOR = {149, 182, 120, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
 	static constexpr uint16_t TEXT_SIZE = 48;
-#ifdef WIN64
+#if defined(MINGW) || defined(MSVC)
 	static constexpr char FONT[] = "C:/Windows/Fonts/cour.ttf";
 #else
 	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";

@@ -1,6 +1,8 @@
 #include "ClayControlUnitUi.hpp"
 
-#include "clay_renderer_raylib.c"
+extern "C" {
+#include "clay_renderer_raylib.h"
+}
 #include <iostream>
 
 void ClayControlUnitUi::HandleClayErrors(Clay_ErrorData errorData) {
@@ -10,27 +12,27 @@ void ClayControlUnitUi::HandleClayErrors(Clay_ErrorData errorData) {
 
 ClayControlUnitUi::ClayControlUnitUi() :
 	display(1), etvs(2), buttons(3), debugger(4) {
-	Clay_Raylib_Initialize(1500, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
+	Clay_Raylib_Initialize(1500, 800, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	const uint64_t clayRequiredMemory = Clay_MinMemorySize();
 	const Clay_Arena clayMemory = {
 			.capacity = clayRequiredMemory,
-			.memory = static_cast<char*>(malloc(clayRequiredMemory)),
+			.memory = new char[clayRequiredMemory],
 	};
 
 	Clay_Initialize(
 			clayMemory,
-			(Clay_Dimensions) {
+			{
 					.width = static_cast<float>(GetScreenWidth()),
 					.height = static_cast<float>(GetScreenHeight()),
 			},
-			(Clay_ErrorHandler) {HandleClayErrors});
+			{HandleClayErrors});
 
-	fonts[0] = LoadFontEx(ClayControlUnitUi::FONT, 28, nullptr, 250),
-	fonts[1] = LoadFontEx(ClayDisplayUi::FONT, ClayDisplayUi::TEXT_SIZE, nullptr, 250),
-	fonts[2] = LoadFontEx(ClayDebuggerUi::FONT, ClayDebuggerUi::TEXT_SIZE, nullptr, 250),
-	fonts[3] = LoadFontEx(ClayKeypadUi::FONT, ClayKeypadUi::TEXT_SIZE, nullptr, 250),
-	fonts[4] = LoadFontEx(ClayValveGroupUi::FONT, ClayValveGroupUi::TEXT_SIZE, nullptr, 250),
+	fonts[0] = LoadFontEx(ClayControlUnitUi::FONT, 28, nullptr, 250);
+	fonts[1] = LoadFontEx(ClayDisplayUi::FONT, ClayDisplayUi::TEXT_SIZE, nullptr, 250);
+	fonts[2] = LoadFontEx(ClayDebuggerUi::FONT, ClayDebuggerUi::TEXT_SIZE, nullptr, 250);
+	fonts[3] = LoadFontEx(ClayKeypadUi::FONT, ClayKeypadUi::TEXT_SIZE, nullptr, 250);
+	fonts[4] = LoadFontEx(ClayValveGroupUi::FONT, ClayValveGroupUi::TEXT_SIZE, nullptr, 250);
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, fonts);
 

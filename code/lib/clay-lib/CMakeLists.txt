@@ -16,7 +16,7 @@ add_library(clay-lib SHARED
         ClayTimer.cpp
 )
 
-add_library(clayUi-lib
+add_library(clayUi-lib SHARED
         ClayUi/ClayControlUnitUi.cpp
         ClayUi/ClayDisplayUi.cpp
         ClayUi/ClayKeypadUi.cpp
@@ -24,6 +24,7 @@ add_library(clayUi-lib
         ClayUi/ClayValveGroupUi.cpp
         ClayUi/ClayMoistureUi.cpp
         ClayUi/clay.c
+        ClayUi/clay_renderer_raylib.c
 )
 
 target_link_directories(clayUi-lib PRIVATE ${RAYLIB_DIR})

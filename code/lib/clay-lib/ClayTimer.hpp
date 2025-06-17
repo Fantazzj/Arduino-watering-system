@@ -7,7 +7,11 @@
 
 class ClayTimer final : public Timer {
 private:
+#ifdef MSVC
+	std::chrono::time_point<std::chrono::steady_clock> startTime;
+#else
 	std::chrono::time_point<std::chrono::system_clock> startTime;
+#endif
 
 public:
 	explicit ClayTimer();

@@ -37,7 +37,7 @@ private:
 	ClayDebuggerUi debugger;
 	ClayMoistureUi moisture;
 	Font fonts[5];
-#ifdef WIN64
+#if defined(MINGW) || defined(MSVC)
 	static constexpr char FONT[] = "C:/Windows/Fonts/cour.ttf";
 #else
 	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
