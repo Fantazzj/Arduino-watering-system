@@ -83,7 +83,7 @@ void ClayValveGroupUi::createEtv(const int8_t i) {
 	}
 }
 
-void ClayValveGroupUi::setEtvState(const int8_t n, const bool state) {
+void ClayValveGroupUi::setEtvState(const uint8_t n, const bool state) {
 	etvStates[n] = state;
 }
 

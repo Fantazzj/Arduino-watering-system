@@ -11,11 +11,11 @@ void ClayControlUnit::setKeypad(ClayKeypad* keypad) {
 	ui.setKeypad(keypad);
 }
 
-void ClayControlUnit::activateEtv(const int8_t n) {
+void ClayControlUnit::activateEtv(const uint8_t n) {
 	ui.activateEtv(n);
 }
 
-void ClayControlUnit::deactivateEtv(const int8_t n) {
+void ClayControlUnit::deactivateEtv(const uint8_t n) {
 	ui.deactivateEtv(n);
 }
 

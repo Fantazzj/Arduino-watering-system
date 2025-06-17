@@ -14,8 +14,8 @@ public:
 	explicit ClayControlUnit();
 	void show();
 	void setKeypad(ClayKeypad* keypad);
-	void activateEtv(int8_t n);
-	void deactivateEtv(int8_t n);
+	void activateEtv(uint8_t n);
+	void deactivateEtv(uint8_t n);
 	void activateMainSwitch();
 	void deactivateMainSwitch();
 	void debuggerLog(const std::string& string);

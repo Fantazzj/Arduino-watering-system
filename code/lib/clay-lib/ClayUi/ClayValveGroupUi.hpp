@@ -32,7 +32,7 @@ public:
 	explicit ClayValveGroupUi(uint16_t id);
 	void createEtvGroup();
 	[[nodiscard]] uint16_t getEtvsTextId() const;
-	void setEtvState(int8_t n, bool state);
+	void setEtvState(uint8_t n, bool state);
 	void setMainSwitchState(bool state);
 
 private:

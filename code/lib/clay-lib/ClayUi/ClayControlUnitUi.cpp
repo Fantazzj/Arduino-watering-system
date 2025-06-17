@@ -122,11 +122,11 @@ void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const
 	display.setDisplayChar(row, col, c);
 }
 
-void ClayControlUnitUi::activateEtv(const int8_t n) {
+void ClayControlUnitUi::activateEtv(const uint8_t n) {
 	etvs.setEtvState(n, true);
 }
 
-void ClayControlUnitUi::deactivateEtv(const int8_t n) {
+void ClayControlUnitUi::deactivateEtv(const uint8_t n) {
 	etvs.setEtvState(n, false);
 }
 
