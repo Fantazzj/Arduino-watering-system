@@ -9,7 +9,7 @@ void HandleClayErrors(Clay_ErrorData errorData) {
 }
 
 ClayControlUnitUi::ClayControlUnitUi() :
-	display(1), debugger(2), buttons(3), etvs(4) {
+	display(1), etvs(2), buttons(3), debugger(4) {
 	Clay_Raylib_Initialize(1500, 768, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	const uint64_t clayRequiredMemory = Clay_MinMemorySize();
@@ -26,27 +26,27 @@ ClayControlUnitUi::ClayControlUnitUi() :
 			},
 			(Clay_ErrorHandler) {HandleClayErrors});
 
-	Raylib_fonts[0] = (Raylib_Font) {
+	Raylib_fonts[0] = {
 			.fontId = 0,
 			.font = LoadFontEx(ClayControlUnitUi::FONT, 28, nullptr, 250),
 	};
 
-	Raylib_fonts[1] = (Raylib_Font) {
+	Raylib_fonts[1] = {
 			.fontId = display.getDisplayTextId(),
 			.font = LoadFontEx(ClayDisplayUi::FONT, ClayDisplayUi::TEXT_SIZE, nullptr, 250),
 	};
 
-	Raylib_fonts[2] = (Raylib_Font) {
+	Raylib_fonts[2] = {
 			.fontId = debugger.getDebuggerTextId(),
 			.font = LoadFontEx(ClayDebuggerUi::FONT, ClayDebuggerUi::TEXT_SIZE, nullptr, 250),
 	};
 
-	Raylib_fonts[3] = (Raylib_Font) {
+	Raylib_fonts[3] = {
 			.fontId = buttons.getButtonsTextId(),
 			.font = LoadFontEx(ClayKeypadUi::FONT, ClayKeypadUi::TEXT_SIZE, nullptr, 250),
 	};
 
-	Raylib_fonts[4] = (Raylib_Font) {
+	Raylib_fonts[4] = {
 			.fontId = etvs.getEtvsTextId(),
 			.font = LoadFontEx(ClayValveGroupUi::FONT, ClayValveGroupUi::TEXT_SIZE, nullptr, 250),
 	};
@@ -75,16 +75,16 @@ void ClayControlUnitUi::createControlUnit() {
 
 void ClayControlUnitUi::show() {
 	while(!WindowShouldClose()) {
-		Clay_SetLayoutDimensions((Clay_Dimensions) {
+		Clay_SetLayoutDimensions({
 				.width = static_cast<float>(GetScreenWidth()),
 				.height = static_cast<float>(GetScreenHeight()),
 		});
 
 		const Vector2 mousePosition = GetMousePosition();
-		Clay_SetPointerState((Clay_Vector2) {mousePosition.x, mousePosition.y}, IsMouseButtonDown(0));
+		Clay_SetPointerState({mousePosition.x, mousePosition.y}, IsMouseButtonDown(0));
 
 		const Vector2 scrollDelta = GetMouseWheelMoveV();
-		Clay_UpdateScrollContainers(true, (Clay_Vector2) {scrollDelta.x, scrollDelta.y}, GetFrameTime());
+		Clay_UpdateScrollContainers(true, {scrollDelta.x, scrollDelta.y}, GetFrameTime());
 
 		Clay_BeginLayout();
 

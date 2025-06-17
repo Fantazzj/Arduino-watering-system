@@ -16,6 +16,6 @@ void ClayTimer::wait(const unsigned long t) {
 }
 
 unsigned long ClayTimer::millis() {
-	auto currentTime = high_resolution_clock::now();
+	const auto currentTime = high_resolution_clock::now();
 	return duration_cast<milliseconds>(currentTime - startTime).count();
 }
