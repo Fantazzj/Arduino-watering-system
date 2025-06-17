@@ -7,14 +7,13 @@
 
 class ClayMemory final : public Memory {
 private:
-	const std::string fileName = "./memory.bin";
-	const std::ios::openmode inFlags = std::ios::in | std::ios::binary;
-	const std::ios::openmode outFlags = std::ios::out | std::ios::binary | std::ios::trunc;
-	int8_t maxFileSize;
-	int8_t etvNum;
+	std::string fileName;
+	const std::ios::openmode IN_FLAGS = std::ios::in | std::ios::binary;
+	const std::ios::openmode OUT_FLAGS = std::ios::out | std::ios::binary | std::ios::trunc;
+	static constexpr int8_t MEMORY_SIZE = 2 * VALVE_NUM * sizeof(uint8_t) + 3 * sizeof(uint8_t);
 
 public:
-	explicit ClayMemory(uint8_t etvNum);
+	explicit ClayMemory(const std::string& fileName);
 	void begin();
 	void saveEtvMinOn(uint8_t num, uint8_t minOn) override;
 	uint8_t readEtvMinOn(uint8_t num) override;

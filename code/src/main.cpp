@@ -67,7 +67,7 @@ ClayDisplay myDisplay;
 ClayClock myClock;
 ClayValveGroup myValveGroup(myClock);
 ClayMainSwitch myMainSwitch;
-ClayMemory myMemory(VALVE_NUM);
+ClayMemory myMemory("./memory.bin");
 ClayMoisture myMoisture;
 ClayDebugger myDebugger;
 ClayTimer myTimer;

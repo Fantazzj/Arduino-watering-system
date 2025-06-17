@@ -3,134 +3,109 @@
 #include <filesystem>
 
 using std::ifstream;
-using std::ios;
 using std::ofstream;
-using std::streamsize;
-using std::filesystem::file_size;
+using std::string;
 using std::filesystem::exists;
+using std::filesystem::file_size;
+using std::filesystem::remove;
 
-ClayMemory::ClayMemory(const uint8_t etvNum) {
-	maxFileSize = 2 * etvNum * sizeof(uint8_t) + 3 * sizeof(uint8_t);
-	this->etvNum = etvNum;
+ClayMemory::ClayMemory(const string& fileName) {
+	this->fileName = fileName;
 }
 
 void ClayMemory::begin() {
-	if(exists(fileName) && file_size(fileName) >= maxFileSize)
+	if(exists(fileName) && file_size(fileName) == MEMORY_SIZE)
 		return;
 
-	char memory[maxFileSize];
-	for(int8_t i = 0; i < maxFileSize; i++)
-		memory[i] = 0;
+	char memoryBuffer[MEMORY_SIZE];
+	for(auto& m: memoryBuffer)
+		m = 0;
 
-	ofstream out(fileName, outFlags);
-	out.write(memory, maxFileSize);
+	ofstream out(fileName, OUT_FLAGS);
+	out.write(memoryBuffer, MEMORY_SIZE);
 	out.close();
 }
 
 void ClayMemory::saveEtvMinOn(uint8_t num, uint8_t minOn) {
-	ifstream in(fileName, inFlags);
+	ifstream in(fileName, IN_FLAGS);
 
-	in.seekg(0, ios::end);
-	streamsize length = in.tellg();
-	in.seekg(0, ios::beg);
+	char memoryBuffer[MEMORY_SIZE];
 
-	char memory[length];
-
-	in.read(memory, length);
+	in.read(memoryBuffer, MEMORY_SIZE);
 	in.close();
 
-	memory[num] = minOn;
+	memoryBuffer[num] = minOn;
 
-	ofstream out(fileName, outFlags);
-	out.write(memory, length);
+	ofstream out(fileName, OUT_FLAGS);
+	out.write(memoryBuffer, MEMORY_SIZE);
 	out.close();
 }
 
 uint8_t ClayMemory::readEtvMinOn(const uint8_t num) {
-	ifstream in(fileName, inFlags);
+	ifstream in(fileName, IN_FLAGS);
 
-	in.seekg(0, ios::end);
-	const streamsize length = in.tellg();
-	in.seekg(0, ios::beg);
+	char memoryBuffer[MEMORY_SIZE];
 
-	char memory[length];
-
-	in.read(memory, length);
+	in.read(memoryBuffer, MEMORY_SIZE);
 	in.close();
 
-	return memory[num];
+	return memoryBuffer[num];
 }
 
 void ClayMemory::saveEtvDays(uint8_t num, uint8_t days) {
-	ifstream in(fileName, inFlags);
+	ifstream in(fileName, IN_FLAGS);
 
-	in.seekg(0, ios::end);
-	streamsize length = in.tellg();
-	in.seekg(0, ios::beg);
+	char memoryBuffer[MEMORY_SIZE];
 
-	char memory[length];
-
-	in.read(memory, length);
+	in.read(memoryBuffer, MEMORY_SIZE);
 	in.close();
 
-	memory[num + etvNum] = days;
+	memoryBuffer[num + VALVE_NUM] = days;
 
-	ofstream out(fileName, outFlags);
-	out.write(memory, length);
+	ofstream out(fileName, OUT_FLAGS);
+	out.write(memoryBuffer, MEMORY_SIZE);
 	out.close();
 }
 
 uint8_t ClayMemory::readEtvDays(const uint8_t num) {
-	ifstream in(fileName, inFlags);
+	ifstream in(fileName, IN_FLAGS);
 
-	in.seekg(0, ios::end);
-	const streamsize length = in.tellg();
-	in.seekg(0, ios::beg);
+	char memoryBuffer[MEMORY_SIZE];
 
-	char memory[length];
-
-	in.read(memory, length);
+	in.read(memoryBuffer, MEMORY_SIZE);
 	in.close();
 
-	return memory[num + etvNum];
+	return memoryBuffer[num + VALVE_NUM];
 }
 
 void ClayMemory::saveStartTime(MyTime startTime) {
-	ifstream in(fileName, inFlags);
+	ifstream in(fileName, IN_FLAGS);
 
-	in.seekg(0, ios::end);
-	streamsize length = in.tellg();
-	in.seekg(0, ios::beg);
+	char memoryBuffer[MEMORY_SIZE];
 
-	char memory[length];
-
-	in.read(memory, length);
+	in.read(memoryBuffer, MEMORY_SIZE);
 	in.close();
 
-	memory[2 * etvNum + 0] = startTime.hour;
-	memory[2 * etvNum + 1] = startTime.min;
-	memory[2 * etvNum + 2] = startTime.sec;
+	memoryBuffer[2 * VALVE_NUM + 0] = startTime.hour;
+	memoryBuffer[2 * VALVE_NUM + 1] = startTime.min;
+	memoryBuffer[2 * VALVE_NUM + 2] = startTime.sec;
 
-	ofstream out(fileName, outFlags);
-	out.write(memory, length);
+	ofstream out(fileName, OUT_FLAGS);
+	out.write(memoryBuffer, MEMORY_SIZE);
 	out.close();
 }
 
 MyTime ClayMemory::readStartTime() {
-	ifstream in(fileName, inFlags);
+	ifstream in(fileName, IN_FLAGS);
 
-	in.seekg(0, ios::end);
-	const streamsize length = in.tellg();
-	in.seekg(0, ios::beg);
+	char memoryBuffer[MEMORY_SIZE];
 
-	char memory[length];
-
-	in.read(memory, length);
+	in.read(memoryBuffer, MEMORY_SIZE);
 	in.close();
 
 	MyTime out;
-	out.hour = memory[2 * etvNum + 0];
-	out.min = memory[2 * etvNum + 1];
-	out.sec = memory[2 * etvNum + 2];
+	out.hour = memoryBuffer[2 * VALVE_NUM + 0];
+	out.min = memoryBuffer[2 * VALVE_NUM + 1];
+	out.sec = memoryBuffer[2 * VALVE_NUM + 2];
 	return out;
 }
