@@ -33,6 +33,6 @@ target_link_libraries(clayUi-lib
 )
 
 target_link_libraries(clay-lib
-        PRIVATE clayUi-lib
+        PUBLIC clayUi-lib
         PUBLIC core-lib
 )

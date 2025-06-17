@@ -27,17 +27,17 @@ void ClayDisplayUi::createDisplayChars(const int8_t row) {
 				.chars = &text[row][c],
 		};
 
-		CLAY(CLAY_RECTANGLE({
-					 .color = blinkChar[0] == row && blinkChar[1] == c ? SELECTED_CHAR_COLOR : BASIC_CHAR_COLOR,
-					 .cornerRadius = {10, 10, 10, 10},
-			 }),
-			 CLAY_LAYOUT({
-					 .sizing = {
-							 .width = CLAY_SIZING_FIT(40),
-							 .height = CLAY_SIZING_FIT(70),
-					 },
-					 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
-			 })) {
+		CLAY({
+				.layout{
+						.sizing = {
+								.width = CLAY_SIZING_FIT(40),
+								.height = CLAY_SIZING_FIT(70),
+						},
+						.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
+				},
+				.backgroundColor = blinkChar[0] == row && blinkChar[1] == c ? SELECTED_CHAR_COLOR : BASIC_CHAR_COLOR,
+				.cornerRadius = {10, 10, 10, 10},
+		}) {
 			CLAY_TEXT(displayText, CLAY_TEXT_CONFIG(charText));
 		}
 	}
@@ -45,34 +45,36 @@ void ClayDisplayUi::createDisplayChars(const int8_t row) {
 
 void ClayDisplayUi::createDisplayRows() {
 	for(int8_t r = 0; r < DISPLAY_HEIGHT; r++) {
-		CLAY(CLAY_LAYOUT({
-				.sizing = {
-						.width = CLAY_SIZING_FIT(),
-						.height = CLAY_SIZING_FIT(),
+		CLAY({
+				.layout = {
+						.sizing = {
+								.width = CLAY_SIZING_FIT(),
+								.height = CLAY_SIZING_FIT(),
+						},
+						.childGap = 5,
+						.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				},
-				.childGap = 5,
-				.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
-		})) {
+		}) {
 			createDisplayChars(r);
 		}
 	}
 }
 
 void ClayDisplayUi::createDisplay() {
-	CLAY(CLAY_ID("Display"),
-		 CLAY_RECTANGLE({
-				 .color = BG_COLOR,
-				 .cornerRadius = {5, 5, 5, 5},
-		 }),
-		 CLAY_LAYOUT({
-				 .sizing = {
-						 .width = CLAY_SIZING_FIT(),
-						 .height = CLAY_SIZING_FIT(),
-				 },
-				 .padding = {5, 5, 5, 5},
-				 .childGap = 5,
-				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
-		 })) {
+	CLAY({
+			.id = CLAY_ID("Display"),
+			.layout = {
+					.sizing = {
+							.width = CLAY_SIZING_FIT(),
+							.height = CLAY_SIZING_FIT(),
+					},
+					.padding = {5, 5, 5, 5},
+					.childGap = 5,
+					.layoutDirection = CLAY_TOP_TO_BOTTOM,
+			},
+			.backgroundColor = BG_COLOR,
+			.cornerRadius = {5, 5, 5, 5},
+	}) {
 		createDisplayRows();
 	}
 }

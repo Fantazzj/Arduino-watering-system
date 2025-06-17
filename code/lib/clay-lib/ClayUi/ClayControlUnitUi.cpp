@@ -3,7 +3,7 @@
 #include "clay_renderer_raylib.c"
 #include <iostream>
 
-void HandleClayErrors(Clay_ErrorData errorData) {
+void ClayControlUnitUi::HandleClayErrors(Clay_ErrorData errorData) {
 	std::cout << errorData.errorText.chars << std::endl;
 	exit(errorData.errorType);
 }
@@ -26,46 +26,29 @@ ClayControlUnitUi::ClayControlUnitUi() :
 			},
 			(Clay_ErrorHandler) {HandleClayErrors});
 
-	Raylib_fonts[0] = {
-			.fontId = 0,
-			.font = LoadFontEx(ClayControlUnitUi::FONT, 28, nullptr, 250),
-	};
+	fonts[0] = LoadFontEx(ClayControlUnitUi::FONT, 28, nullptr, 250),
+	fonts[1] = LoadFontEx(ClayDisplayUi::FONT, ClayDisplayUi::TEXT_SIZE, nullptr, 250),
+	fonts[2] = LoadFontEx(ClayDebuggerUi::FONT, ClayDebuggerUi::TEXT_SIZE, nullptr, 250),
+	fonts[3] = LoadFontEx(ClayKeypadUi::FONT, ClayKeypadUi::TEXT_SIZE, nullptr, 250),
+	fonts[4] = LoadFontEx(ClayValveGroupUi::FONT, ClayValveGroupUi::TEXT_SIZE, nullptr, 250),
 
-	Raylib_fonts[1] = {
-			.fontId = display.getDisplayTextId(),
-			.font = LoadFontEx(ClayDisplayUi::FONT, ClayDisplayUi::TEXT_SIZE, nullptr, 250),
-	};
-
-	Raylib_fonts[2] = {
-			.fontId = debugger.getDebuggerTextId(),
-			.font = LoadFontEx(ClayDebuggerUi::FONT, ClayDebuggerUi::TEXT_SIZE, nullptr, 250),
-	};
-
-	Raylib_fonts[3] = {
-			.fontId = buttons.getButtonsTextId(),
-			.font = LoadFontEx(ClayKeypadUi::FONT, ClayKeypadUi::TEXT_SIZE, nullptr, 250),
-	};
-
-	Raylib_fonts[4] = {
-			.fontId = etvs.getEtvsTextId(),
-			.font = LoadFontEx(ClayValveGroupUi::FONT, ClayValveGroupUi::TEXT_SIZE, nullptr, 250),
-	};
-
-	Clay_SetMeasureTextFunction(Raylib_MeasureText, 0);
+	Clay_SetMeasureTextFunction(Raylib_MeasureText, fonts);
 
 	//Clay_SetDebugModeEnabled(true);
 }
 
 void ClayControlUnitUi::createControlUnit() {
-	CLAY(CLAY_ID("ControlUnit"),
-		 CLAY_LAYOUT({
-				 .sizing = {
-						 .width = CLAY_SIZING_FIT(),
-						 .height = CLAY_SIZING_GROW(),
-				 },
-				 .childGap = 25,
-				 .layoutDirection = CLAY_TOP_TO_BOTTOM,
-		 })) {
+	CLAY({
+			.id = CLAY_ID("ControlUnit"),
+			.layout = {
+					.sizing = {
+							.width = CLAY_SIZING_FIT(),
+							.height = CLAY_SIZING_GROW(),
+					},
+					.childGap = 25,
+					.layoutDirection = CLAY_TOP_TO_BOTTOM,
+			},
+	}) {
 		display.createDisplay();
 		buttons.createButtonGroup();
 		moisture.createMoistureGroup();
@@ -88,19 +71,19 @@ void ClayControlUnitUi::show() {
 
 		Clay_BeginLayout();
 
-		CLAY(CLAY_ID("Container"),
-			 CLAY_RECTANGLE({
-					 .color = BG_COLOR,
-			 }),
-			 CLAY_LAYOUT({
-					 .sizing = {
-							 .width = CLAY_SIZING_GROW(),
-							 .height = CLAY_SIZING_GROW(),
-					 },
-					 .padding = {25, 25, 25, 25},
-					 .childGap = 25,
-					 .layoutDirection = CLAY_LEFT_TO_RIGHT,
-			 })) {
+		CLAY({
+				.id = CLAY_ID("Container"),
+				.layout = {
+						.sizing = {
+								.width = CLAY_SIZING_GROW(),
+								.height = CLAY_SIZING_GROW(),
+						},
+						.padding = {25, 25, 25, 25},
+						.childGap = 25,
+						.layoutDirection = CLAY_LEFT_TO_RIGHT,
+				},
+				.backgroundColor = BG_COLOR,
+		}) {
 			createControlUnit();
 			debugger.createDebugger();
 		}
@@ -109,7 +92,7 @@ void ClayControlUnitUi::show() {
 
 		BeginDrawing();
 		ClearBackground(BLACK);
-		Clay_Raylib_Render(renderCommands);
+		Clay_Raylib_Render(renderCommands, fonts);
 		EndDrawing();
 	}// !WindowShouldClose()
 }

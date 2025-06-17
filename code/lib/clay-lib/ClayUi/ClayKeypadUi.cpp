@@ -33,21 +33,21 @@ void ClayKeypadUi::pressHandler(Clay_ElementId, const Clay_PointerData pointerDa
 }
 
 void ClayKeypadUi::createButtonGroup() {
-	CLAY(CLAY_ID("Buttons"),
-		 CLAY_RECTANGLE({
-				 .color = BG_COLOR,
-				 .cornerRadius = {5, 5, 5, 5},
-		 }),
-		 CLAY_LAYOUT({
-				 .sizing = {
-						 .width = CLAY_SIZING_GROW(),
-						 .height = CLAY_SIZING_FIXED(150),
-				 },
-				 .padding = {10, 10, 10, 10},
-				 .childGap = 10,
-				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
-				 .layoutDirection = CLAY_LEFT_TO_RIGHT,
-		 })) {
+	CLAY({
+			.id = CLAY_ID("Buttons"),
+			.layout = {
+					.sizing = {
+							.width = CLAY_SIZING_GROW(),
+							.height = CLAY_SIZING_FIXED(150),
+					},
+					.padding = {10, 10, 10, 10},
+					.childGap = 10,
+					.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
+					.layoutDirection = CLAY_LEFT_TO_RIGHT,
+			},
+			.backgroundColor = BG_COLOR,
+			.cornerRadius = {5, 5, 5, 5},
+	}) {
 		for(int8_t i = 0; i < NUM; i++)
 			createButton(i);
 	}
@@ -60,18 +60,18 @@ void ClayKeypadUi::createButton(const int8_t i) {
 			.fontSize = TEXT_SIZE,
 	};
 
-	CLAY(CLAY_RECTANGLE({
-				 .color = BUTTONS_COLOR,
-				 .cornerRadius = {10, 10, 10, 10},
-		 }),
-		 CLAY_LAYOUT({
-				 .sizing = {
-						 .width = CLAY_SIZING_GROW(),
-						 .height = CLAY_SIZING_GROW(),
-				 },
-				 .childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
-		 }),
-		 Clay_OnHover(pressHandler, reinterpret_cast<intptr_t>(&handlers[i]))) {
+	CLAY({
+			.layout = {
+					.sizing = {
+							.width = CLAY_SIZING_GROW(),
+							.height = CLAY_SIZING_GROW(),
+					},
+					.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
+			},
+			.backgroundColor = BUTTONS_COLOR,
+			.cornerRadius = {10, 10, 10, 10},
+	}) {
+		Clay_OnHover(pressHandler, reinterpret_cast<intptr_t>(&handlers[i]));
 		const Clay_String buttonName = {
 				.length = static_cast<int32_t>(buttonNames[i].length()),
 				.chars = buttonNames[i].c_str(),
@@ -81,6 +81,6 @@ void ClayKeypadUi::createButton(const int8_t i) {
 }
 
 void ClayKeypadUi::setKeypad(ClayKeypad* keypad) {
-	for(auto & handler : handlers)
+	for(auto& handler: handlers)
 		handler.keypad = keypad;
 }

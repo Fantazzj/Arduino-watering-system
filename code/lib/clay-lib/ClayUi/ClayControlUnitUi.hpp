@@ -7,7 +7,7 @@
 #include "ClayKeypadUi.hpp"
 #include "ClayMoistureUi.hpp"
 #include "ClayValveGroupUi.hpp"
-#include <cstdint>
+#include "raylib.h"
 
 extern "C" {
 #include "clay.h"
@@ -36,6 +36,7 @@ private:
 	ClayKeypadUi buttons;
 	ClayDebuggerUi debugger;
 	ClayMoistureUi moisture;
+	Font fonts[5];
 #ifdef WIN64
 	static constexpr char FONT[] = "C:/Windows/Fonts/cour.ttf";
 #else
@@ -43,6 +44,7 @@ private:
 #endif
 
 	void createControlUnit();
+	static void HandleClayErrors(Clay_ErrorData errorData);
 };
 
 #endif//CLAY_CONTROL_UNIT_UI_HPP
