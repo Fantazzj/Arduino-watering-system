@@ -21,7 +21,7 @@ void ClayDisplayUi::createDisplayChars(const int8_t row) {
 			.fontSize = TEXT_SIZE,
 	};
 
-	for(int8_t c = 0; c < COLUMNS; c++) {
+	for(int8_t c = 0; c < DISPLAY_LENGTH; c++) {
 		const Clay_String displayText = {
 				.length = 1,
 				.chars = &text[row][c],
@@ -44,7 +44,7 @@ void ClayDisplayUi::createDisplayChars(const int8_t row) {
 }
 
 void ClayDisplayUi::createDisplayRows() {
-	for(int8_t r = 0; r < ROWS; r++) {
+	for(int8_t r = 0; r < DISPLAY_HEIGHT; r++) {
 		CLAY(CLAY_LAYOUT({
 				.sizing = {
 						.width = CLAY_SIZING_FIT(),

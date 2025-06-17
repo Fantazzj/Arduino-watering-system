@@ -8,8 +8,6 @@
 
 class ClayDisplayUi {
 public:
-	static constexpr uint8_t ROWS = 2;
-	static constexpr uint8_t COLUMNS = 16;
 	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
 	static constexpr Clay_Color BASIC_CHAR_COLOR = {101, 157, 213, 255};
 	static constexpr Clay_Color SELECTED_CHAR_COLOR = {149, 182, 120, 255};
@@ -23,7 +21,7 @@ public:
 
 private:
 	uint16_t textId;
-	std::array<std::string, ROWS> text;
+	std::array<std::string, DISPLAY_HEIGHT> text;
 	int16_t blinkChar[2];
 
 public:

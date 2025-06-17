@@ -7,15 +7,13 @@
 class ClayDisplay final : public UnitDisplay {
 private:
 	ClayControlUnit* w;
-	void arrangeWords(std::string text, std::string rows[]) const;
+	static void arrangeWords(std::string text, std::string rows[]) ;
 	static std::string arrangeTime(MyTime time);
 	static std::string arrangeDow(MyDate time);
 	static std::string arrangeDate(MyDate time);
 	void printRows(std::string rows[]);
 	void displayError1();
-	int8_t height;
-	int8_t length;
-	int8_t displayChars;
+	static constexpr int8_t displayChars = DISPLAY_HEIGHT * DISPLAY_LENGTH;
 	bool backlight;
 
 public:
@@ -26,7 +24,7 @@ public:
 	void printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) override;
 	void printIn(const char text[], int8_t x, int8_t y) override;
 	void printIn(int8_t data, int8_t x, int8_t y) override;
-	void printIn(std::string data, int8_t x, int8_t y);
+	void printIn(const std::string& data, int8_t x, int8_t y);
 	void showClock(MyDateTime timeIn) override;
 	void blinkAt(int8_t x, int8_t y) override;
 	void noBlink() override;

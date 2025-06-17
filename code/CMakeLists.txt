@@ -11,6 +11,8 @@ else ()
 endif ()
 
 add_compile_definitions(VALVE_NUM=9)
+add_compile_definitions(DISPLAY_LENGTH=16)
+add_compile_definitions(DISPLAY_HEIGHT=2)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
