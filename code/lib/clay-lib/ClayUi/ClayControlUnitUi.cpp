@@ -154,10 +154,10 @@ uint8_t ClayControlUnitUi::getMoisture() const {
 	return moisture.getMoisture();
 }
 
-void ClayControlUnitUi::setDateTime(std::tm* dateTime) {
+void ClayControlUnitUi::setDateTime(const std::chrono::time_point<std::chrono::system_clock> dateTime) {
 	clock.setDateTime(dateTime);
 }
 
-std::tm* ClayControlUnitUi::getDateTime() const {
+std::chrono::time_point<std::chrono::system_clock> ClayControlUnitUi::getDateTime() const {
 	return clock.getDateTime();
 }

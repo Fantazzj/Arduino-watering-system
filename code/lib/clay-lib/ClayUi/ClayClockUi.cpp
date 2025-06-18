@@ -1,37 +1,25 @@
 #include "ClayClockUi.hpp"
 
-using std::chrono::system_clock;
-#include <iostream>
+using namespace std::chrono;
 
 ClayClockUi::ClayClockUi(const uint16_t id) {
 	textId = id;
-	const auto dateTime = std::time(nullptr);
-	localDateTime = std::localtime(&dateTime);
-	stringDateDay = std::to_string(localDateTime->tm_mday);
-	stringDateMonth = std::to_string(localDateTime->tm_mon + 1);
-	stringDateYear = std::to_string(localDateTime->tm_year + 1900);
-	stringTimeHours = std::to_string(localDateTime->tm_hour);
-	stringTimeMinutes = std::to_string(localDateTime->tm_min);
+	dateTime = system_clock::now();
+	updateStrings();
 }
 
 uint16_t ClayClockUi::getTextId() const {
 	return textId;
 }
 
-std::tm* ClayClockUi::getDateTime() const {
-	return localDateTime;
+time_point<system_clock> ClayClockUi::getDateTime() const {
+	return dateTime;
 }
 
-void ClayClockUi::setDateTime(std::tm* localDateTime) {
-	delete this->localDateTime;
-	this->localDateTime = localDateTime;
-	stringDateDay = std::to_string(localDateTime->tm_mday);
-	stringDateMonth = std::to_string(localDateTime->tm_mon + 1);
-	stringDateYear = std::to_string(localDateTime->tm_year + 1900);
-	stringTimeHours = std::to_string(localDateTime->tm_hour);
-	stringTimeMinutes = std::to_string(localDateTime->tm_min);
+void ClayClockUi::setDateTime(const time_point<system_clock> dateTime) {
+	this->dateTime = dateTime;
+	updateStrings();
 }
-
 
 void ClayClockUi::createClock() {
 	CLAY({
@@ -114,14 +102,7 @@ void ClayClockUi::pressHandler(Clay_ElementId, const Clay_PointerData pointerDat
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
 
-	std::cout << "AAA" << std::endl;
-}
-
-void apressHandler(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-
-	std::cout << "bbbb" << std::endl;
+	//std::cout << "AAA" << std::endl;
 }
 
 void ClayClockUi::createEditor(const std::string& num) {
@@ -166,6 +147,17 @@ void ClayClockUi::createEditor(const std::string& num) {
 			CLAY_TEXT(CLAY_STRING("-"), CLAY_TEXT_CONFIG(charText));
 		}
 	}
+}
+
+void ClayClockUi::updateStrings() {
+	const auto dateTimeDays = floor<days>(dateTime);
+	const year_month_day date{dateTimeDays};
+	const hh_mm_ss time{floor<milliseconds>(dateTime - dateTimeDays)};
+	stringDateDay = std::to_string(static_cast<unsigned>(date.day()));
+	stringDateMonth = std::to_string(static_cast<unsigned>(date.month()));
+	stringDateYear = std::to_string(static_cast<int>(date.year()));
+	stringTimeHours = std::to_string(time.hours().count());
+	stringTimeMinutes = std::to_string(time.minutes().count());
 }
 
 void ClayClockUi::createSpacer() {

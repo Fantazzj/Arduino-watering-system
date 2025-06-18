@@ -4,8 +4,6 @@
 #include "clay.h"
 #include <chrono>
 
-#include <cstdint>
-
 class ClayClockUi {
 public:
 	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
@@ -19,7 +17,7 @@ public:
 #endif
 private:
 	uint16_t textId;
-	std::tm* localDateTime;
+	std::chrono::time_point<std::chrono::system_clock> dateTime;
 	std::string stringDateDay;
 	std::string stringDateMonth;
 	std::string stringDateYear;
@@ -30,8 +28,8 @@ public:
 	explicit ClayClockUi(uint16_t id);
 	[[nodiscard]] uint16_t getTextId() const;
 	void createClock();
-	[[nodiscard]] std::tm* getDateTime() const;
-	void setDateTime(std::tm* localDateTime);
+	[[nodiscard]] std::chrono::time_point<std::chrono::system_clock> getDateTime() const;
+	void setDateTime(std::chrono::time_point<std::chrono::system_clock> dateTime);
 
 private:
 	void createDateEditor();
@@ -39,6 +37,7 @@ private:
 	void createSpacer();
 	void createEditor(const std::string& num);
 	static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
+	void updateStrings();
 };
 
 #endif//CLAYCLOCKUI_HPP
