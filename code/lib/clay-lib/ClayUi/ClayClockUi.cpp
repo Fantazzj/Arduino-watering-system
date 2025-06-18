@@ -4,7 +4,8 @@ using namespace std::chrono;
 
 ClayClockUi::ClayClockUi(const uint16_t id) {
 	textId = id;
-	dateTime = system_clock::now();
+	const auto zonedTime = current_zone()->to_local(system_clock::now());
+	dateTime = floor<seconds>(zonedTime);
 	updateStrings();
 }
 
@@ -12,11 +13,11 @@ uint16_t ClayClockUi::getTextId() const {
 	return textId;
 }
 
-time_point<system_clock> ClayClockUi::getDateTime() const {
+local_time<seconds> ClayClockUi::getDateTime() const {
 	return dateTime;
 }
 
-void ClayClockUi::setDateTime(const time_point<system_clock> dateTime) {
+void ClayClockUi::setDateTime(const local_time<seconds> dateTime) {
 	this->dateTime = dateTime;
 	updateStrings();
 }

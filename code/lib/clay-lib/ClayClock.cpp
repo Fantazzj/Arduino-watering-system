@@ -38,7 +38,7 @@ void ClayClock::setDateTime(const MyDateTime time) {
 			minutes{time.time.min} +
 			seconds{time.time.sec}};
 
-	const time_point<system_clock> dateTime = sys_days{date_spec} + time_spec.to_duration();
+	local_time<seconds> dateTime = local_days{date_spec} + time_spec.to_duration();
 
 	w->setDateTime(dateTime);
 }

@@ -17,7 +17,7 @@ public:
 #endif
 private:
 	uint16_t textId;
-	std::chrono::time_point<std::chrono::system_clock> dateTime;
+	std::chrono::local_time<std::chrono::seconds> dateTime;
 	std::string stringDateDay;
 	std::string stringDateMonth;
 	std::string stringDateYear;
@@ -28,8 +28,8 @@ public:
 	explicit ClayClockUi(uint16_t id);
 	[[nodiscard]] uint16_t getTextId() const;
 	void createClock();
-	[[nodiscard]] std::chrono::time_point<std::chrono::system_clock> getDateTime() const;
-	void setDateTime(std::chrono::time_point<std::chrono::system_clock> dateTime);
+	[[nodiscard]] std::chrono::local_time<std::chrono::seconds> getDateTime() const;
+	void setDateTime(std::chrono::local_time<std::chrono::seconds> dateTime);
 
 private:
 	void createDateEditor();
