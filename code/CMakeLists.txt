@@ -16,6 +16,7 @@ add_compile_definitions(DISPLAY_HEIGHT=2)
 
 if (MSVC)
     add_compile_definitions(MSVC=0)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS 1)
 elseif (MINGW)
     add_compile_definitions(MINGW=0)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
