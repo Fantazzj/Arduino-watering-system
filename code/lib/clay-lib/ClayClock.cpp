@@ -22,7 +22,7 @@ MyDateTime ClayClock::getDateTime() {
 
 	const auto dateTime = MyDateTime(
 			MyTime(time.hours().count(), time.minutes().count(), time.seconds().count()),
-			MyDate(weekday.weekday().c_encoding(), static_cast<unsigned>(date.day()), static_cast<unsigned>(date.month()), static_cast<int>(date.year())));
+			MyDate(weekday.weekday().c_encoding()+1, static_cast<unsigned>(date.day()), static_cast<unsigned>(date.month()), static_cast<int>(date.year())));
 
 	return dateTime;
 }

@@ -32,12 +32,23 @@ public:
 	void setDateTime(std::chrono::local_time<std::chrono::seconds> dateTime);
 
 private:
+	typedef void(*ClayHandler_t)(Clay_ElementId, Clay_PointerData, intptr_t args);
 	void createDateEditor();
 	void createTimeEditor();
 	void createSpacer();
-	void createEditor(const std::string& num);
-	static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
+	void createEditor(const std::string& num, ClayHandler_t pressHandlerAdd, ClayHandler_t pressHandlerSub);
 	void updateStrings();
+	static void genericHandler(std::chrono::local_time<std::chrono::seconds>* dateTime, std::chrono::duration<intmax_t> delta, bool increase);
+	static void increaseOneHour(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneHour(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void increaseOneMinute(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneMinute(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void increaseOneDay(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneDay(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void increaseOneMonth(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneMonth(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void increaseOneYear(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneYear(Clay_ElementId, Clay_PointerData, intptr_t args);
 };
 
 #endif//CLAYCLOCKUI_HPP
