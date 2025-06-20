@@ -55,46 +55,67 @@ void ClayClockUi::createClock() {
 }
 
 void ClayClockUi::createDateEditor() {
+	const Clay_TextElementConfig charText = {
+			.textColor = TEXT_COLOR,
+			.fontId = textId,
+			.fontSize = TEXT_SIZE,
+	};
+
 	CLAY({
 			.layout = {
 					.sizing = {
 							.width = CLAY_SIZING_FIT(),
 							.height = CLAY_SIZING_FIT(),
 					},
-					.childGap = 5,
+					.padding = {
+							.left = 10,
+							.right = 10,
+					},
 					.childAlignment = {
 							.x = CLAY_ALIGN_X_CENTER,
 							.y = CLAY_ALIGN_Y_CENTER,
 					},
 					.layoutDirection = CLAY_LEFT_TO_RIGHT,
 			},
-			.backgroundColor = BG_COLOR,
+			.backgroundColor = CHAR_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
 		createEditor(stringDateDay);
+		CLAY_TEXT(CLAY_STRING("/"), CLAY_TEXT_CONFIG(charText));
 		createEditor(stringDateMonth);
+		CLAY_TEXT(CLAY_STRING("/"), CLAY_TEXT_CONFIG(charText));
 		createEditor(stringDateYear);
 	}
 }
 
 void ClayClockUi::createTimeEditor() {
+	const Clay_TextElementConfig charText = {
+			.textColor = TEXT_COLOR,
+			.fontId = textId,
+			.fontSize = TEXT_SIZE,
+	};
+
 	CLAY({
 			.layout = {
 					.sizing = {
 							.width = CLAY_SIZING_FIT(),
 							.height = CLAY_SIZING_FIT(),
 					},
-					.childGap = 5,
+					.padding = {
+							.left = 10,
+							.right = 10,
+					},
 					.childAlignment = {
 							.x = CLAY_ALIGN_X_CENTER,
 							.y = CLAY_ALIGN_Y_CENTER,
 					},
 					.layoutDirection = CLAY_LEFT_TO_RIGHT,
 			},
-			.backgroundColor = BG_COLOR,
+			.backgroundColor = CHAR_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
 		createEditor(stringTimeHours);
+		CLAY_TEXT(CLAY_STRING(":"), CLAY_TEXT_CONFIG(charText));
 		createEditor(stringTimeMinutes);
 	}
 }
@@ -124,19 +145,12 @@ void ClayClockUi::createEditor(const std::string& num) {
 							.width = CLAY_SIZING_FIT(),
 							.height = CLAY_SIZING_FIT(),
 					},
-					.padding = {
-							.left = 10,
-							.right = 10,
-					},
-					.childGap = 5,
 					.childAlignment = {
 							.x = CLAY_ALIGN_X_CENTER,
 							.y = CLAY_ALIGN_Y_CENTER,
 					},
 					.layoutDirection = CLAY_TOP_TO_BOTTOM,
 			},
-			.backgroundColor = CHAR_COLOR,
-			.cornerRadius = {10, 10, 10, 10},
 	}) {
 		CLAY() {
 			//Clay_OnHover(pressHandler, NULL);
@@ -154,11 +168,24 @@ void ClayClockUi::updateStrings() {
 	const auto dateTimeDays = floor<days>(dateTime);
 	const year_month_day date{dateTimeDays};
 	const hh_mm_ss time{floor<milliseconds>(dateTime - dateTimeDays)};
-	stringDateDay = std::to_string(static_cast<unsigned>(date.day()));
-	stringDateMonth = std::to_string(static_cast<unsigned>(date.month()));
+
+	if(date.day() < 10d) stringDateDay = "0";
+	else stringDateDay = "";
+	stringDateDay += std::to_string(static_cast<unsigned>(date.day()));
+
+	if(date.month() < October) stringDateMonth = "0";
+	else stringDateMonth = "";
+	stringDateMonth += std::to_string(static_cast<unsigned>(date.month()));
+
 	stringDateYear = std::to_string(static_cast<int>(date.year()));
-	stringTimeHours = std::to_string(time.hours().count());
-	stringTimeMinutes = std::to_string(time.minutes().count());
+
+	if(time.hours() < 10h) stringTimeHours = "0";
+	else stringTimeHours = "";
+	stringTimeHours += std::to_string(time.hours().count());
+
+	if(time.minutes() < 10min) stringTimeMinutes = "0";
+	else stringTimeMinutes = "";
+	stringTimeMinutes += std::to_string(time.minutes().count());
 }
 
 void ClayClockUi::createSpacer() {
