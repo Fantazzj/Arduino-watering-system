@@ -55,7 +55,7 @@ void ClayControlUnitUi::createControlUnit() {
 		display.createUi();
 		buttons.createButtonGroup();
 		moisture.createMoistureGroup();
-		etvs.createEtvGroup();
+		etvs.createUi();
 	}
 }
 
@@ -127,11 +127,11 @@ void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const
 }
 
 void ClayControlUnitUi::activateEtv(const uint8_t n) {
-	etvs.setEtvState(n, true);
+	etvs.setValveState(n, true);
 }
 
 void ClayControlUnitUi::deactivateEtv(const uint8_t n) {
-	etvs.setEtvState(n, false);
+	etvs.setValveState(n, false);
 }
 
 void ClayControlUnitUi::setKeypad(ClayKeypad* keypad) {

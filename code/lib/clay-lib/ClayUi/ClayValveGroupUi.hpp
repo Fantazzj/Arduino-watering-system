@@ -21,7 +21,7 @@ public:
 #endif
 
 private:
-	std::array<std::string, VALVE_NUM> etvsNames;
+	std::array<std::string, VALVE_NUM> etvNames;
 	std::array<bool, VALVE_NUM> etvStates;
 	bool mainSwitchState;
 	uint16_t textId;
@@ -29,14 +29,14 @@ private:
 	int8_t cols;
 
 public:
-	explicit ClayValveGroupUi(uint16_t id);
-	void createEtvGroup();
-	[[nodiscard]] uint16_t getEtvsTextId() const;
-	void setEtvState(uint8_t n, bool state);
+	explicit ClayValveGroupUi(uint16_t textId);
+	void createUi();
+	[[nodiscard]] uint16_t getTextId() const;
+	void setValveState(uint8_t n, bool state);
 	void setMainSwitchState(bool state);
 
 private:
-	void createEtv(int8_t i);
+	void createEtv(int8_t n);
 	void createEtvRow(int8_t from, int8_t to);
 };
 

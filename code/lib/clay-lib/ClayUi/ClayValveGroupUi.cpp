@@ -2,10 +2,10 @@
 
 #include <cmath>
 
-ClayValveGroupUi::ClayValveGroupUi(const uint16_t id) {
-	textId = id;
+ClayValveGroupUi::ClayValveGroupUi(const uint16_t textId) {
+	this->textId = textId;
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
-		etvsNames[i] = std::string("Etv") + std::to_string(i + 1);
+		etvNames[i] = std::string("Etv") + std::to_string(i + 1);
 		etvStates[i] = false;
 	}
 	mainSwitchState = false;
@@ -13,13 +13,13 @@ ClayValveGroupUi::ClayValveGroupUi(const uint16_t id) {
 	cols = VALVE_NUM / rows + (VALVE_NUM % rows > 0);
 }
 
-uint16_t ClayValveGroupUi::getEtvsTextId() const {
+uint16_t ClayValveGroupUi::getTextId() const {
 	return textId;
 }
 
-void ClayValveGroupUi::createEtvGroup() {
+void ClayValveGroupUi::createUi() {
 	CLAY({
-			.id = CLAY_ID("Etvs"),
+			.id = CLAY_ID("ValveGroup"),
 			.layout = {
 					.sizing = {
 							.width = CLAY_SIZING_GROW(),
@@ -58,11 +58,16 @@ void ClayValveGroupUi::createEtvRow(const int8_t from, const int8_t to) {
 	}
 }
 
-void ClayValveGroupUi::createEtv(const int8_t i) {
-	const Clay_TextElementConfig etvsText = {
+void ClayValveGroupUi::createEtv(const int8_t n) {
+	const Clay_TextElementConfig textConfig = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = TEXT_SIZE,
+	};
+
+	const Clay_String etvName = {
+			.length = static_cast<int32_t>(etvNames[n].length()),
+			.chars = etvNames[n].c_str(),
 	};
 
 	CLAY({
@@ -74,18 +79,14 @@ void ClayValveGroupUi::createEtv(const int8_t i) {
 					.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 					.layoutDirection = CLAY_TOP_TO_BOTTOM,
 			},
-			.backgroundColor = etvStates[i] ? ON_COLOR : OFF_COLOR,
+			.backgroundColor = etvStates[n] ? ON_COLOR : OFF_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		const Clay_String etvName = {
-				.length = static_cast<int32_t>(etvsNames[i].length()),
-				.chars = etvsNames[i].c_str(),
-		};
-		CLAY_TEXT(etvName, CLAY_TEXT_CONFIG(etvsText));
+		CLAY_TEXT(etvName, CLAY_TEXT_CONFIG(textConfig));
 	}
 }
 
-void ClayValveGroupUi::setEtvState(const uint8_t n, const bool state) {
+void ClayValveGroupUi::setValveState(const uint8_t n, const bool state) {
 	etvStates[n] = state;
 }
 
