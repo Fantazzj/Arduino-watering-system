@@ -22,9 +22,9 @@ private:
 
 public:
 	explicit ClayDebuggerUi(uint16_t textId);
-	void createDebugger();
-	[[nodiscard]] uint16_t getDebuggerTextId() const;
-	void appendDebuggerText(const std::string& string);
+	void createUi();
+	[[nodiscard]] uint16_t getTextId() const;
+	void appendText(const std::string& text);
 };
 
 #endif//CLAY_DEBUGGER_UI_HPP

@@ -4,11 +4,11 @@ ClayDebuggerUi::ClayDebuggerUi(const uint16_t textId) {
 	this->textId = textId;
 }
 
-uint16_t ClayDebuggerUi::getDebuggerTextId() const {
+uint16_t ClayDebuggerUi::getTextId() const {
 	return textId;
 }
 
-void ClayDebuggerUi::createDebugger() {
+void ClayDebuggerUi::createUi() {
 	const Clay_TextElementConfig debugTextConfig = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
@@ -42,8 +42,8 @@ void ClayDebuggerUi::createDebugger() {
 	}
 }
 
-void ClayDebuggerUi::appendDebuggerText(const std::string& string) {
+void ClayDebuggerUi::appendText(const std::string& text) {
 	//if(!text.empty())
 	//	text.append("\n");
-	text.append(string);
+	this->text.append(text);
 }
