@@ -2,30 +2,26 @@
 
 ClayKeypad::ClayKeypad() = default;
 
+void ClayKeypad::begin(ClayControlUnit* w) {
+	this->w = w;
+}
+
 bool ClayKeypad::cancel() {
-	const bool state = cancelState;
-	cancelState = false;
-	return state;
+	return w->getCancelState();
 }
 
 bool ClayKeypad::down() {
-	const bool state = downState;
-	downState = false;
-	return state;
+	return w->getDownState();
 }
 
 bool ClayKeypad::up() {
-	const bool state = upState;
-	upState = false;
-	return state;
+	return w->getUpState();
 }
 
 bool ClayKeypad::confirm() {
-	const bool state = confirmState;
-	confirmState = false;
-	return state;
+	return w->getConfirmState();
 }
 
 bool ClayKeypad::generalPressed() {
-	return cancelState || upState || downState || confirmState;
+	return w->getGeneralState();
 }

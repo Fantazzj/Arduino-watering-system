@@ -134,9 +134,26 @@ void ClayControlUnitUi::deactivateEtv(const uint8_t n) {
 	etvs.setValveState(n, false);
 }
 
-void ClayControlUnitUi::setKeypad(ClayKeypad* keypad) {
-	buttons.setKeypad(keypad);
+bool ClayControlUnitUi::getCancelState() {
+	return buttons.getCancelState();
 }
+
+bool ClayControlUnitUi::getDownState() {
+	return buttons.getDownState();
+}
+
+bool ClayControlUnitUi::getUpState() {
+	return buttons.getUpState();
+}
+
+bool ClayControlUnitUi::getConfirmState() {
+	return buttons.getConfirmState();
+}
+
+bool ClayControlUnitUi::getGeneralState() const {
+	return buttons.getGeneralState();
+}
+
 
 void ClayControlUnitUi::activateMainSwitch() {
 	etvs.setMainSwitchState(true);

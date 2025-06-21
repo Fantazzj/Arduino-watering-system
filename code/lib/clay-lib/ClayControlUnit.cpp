@@ -7,8 +7,24 @@ void ClayControlUnit::show() {
 	ui.show();
 }
 
-void ClayControlUnit::setKeypad(ClayKeypad* keypad) {
-	ui.setKeypad(keypad);
+bool ClayControlUnit::getCancelState() {
+	return ui.getCancelState();
+}
+
+bool ClayControlUnit::getDownState() {
+	return ui.getDownState();
+}
+
+bool ClayControlUnit::getUpState() {
+	return ui.getUpState();
+}
+
+bool ClayControlUnit::getConfirmState() {
+	return ui.getConfirmState();
+}
+
+bool ClayControlUnit::getGeneralState() const {
+	return ui.getGeneralState();
 }
 
 void ClayControlUnit::activateEtv(const uint8_t n) {

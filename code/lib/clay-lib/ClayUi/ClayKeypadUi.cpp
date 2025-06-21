@@ -1,36 +1,55 @@
 #include "ClayKeypadUi.hpp"
 
-ClayKeypadUi::ClayKeypadUi(const uint16_t id) {
-	textId = id;
-	for(int8_t i = 0; i < NUM; i++)
-		handlers[i].num = i;
+using namespace std;
+
+ClayKeypadUi::ClayKeypadUi(const uint16_t textId) {
+	this->textId = textId;
+	cancelState = false;
+	downState = false;
+	upState = false;
+	confirmState = false;
 }
 
-uint16_t ClayKeypadUi::getButtonsTextId() const {
+uint16_t ClayKeypadUi::getTextId() const {
 	return textId;
 }
 
-void ClayKeypadUi::pressHandler(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
+void ClayKeypadUi::updateVariable(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
 
-	switch(const auto* data = reinterpret_cast<HandlerData*>(args); data->num) {
-		case 0:
-			data->keypad->cancelState = true;
-			break;
-		case 1:
-			data->keypad->downState = true;
-			break;
-		case 2:
-			data->keypad->upState = true;
-			break;
-		case 3:
-			data->keypad->confirmState = true;
-			break;
-		default:
-			break;
-	}
+	const auto clickVariable = reinterpret_cast<bool*>(args);
+	*clickVariable = true;
 }
+
+bool ClayKeypadUi::getCancelState() {
+	const bool state = cancelState;
+	cancelState = false;
+	return state;
+}
+
+bool ClayKeypadUi::getDownState() {
+	const bool state = downState;
+	downState = false;
+	return state;
+}
+
+bool ClayKeypadUi::getUpState() {
+	const bool state = upState;
+	upState = false;
+	return state;
+}
+
+bool ClayKeypadUi::getConfirmState() {
+	const bool state = confirmState;
+	confirmState = false;
+	return state;
+}
+
+bool ClayKeypadUi::getGeneralState() const {
+	return cancelState || downState || upState || confirmState;
+}
+
 
 void ClayKeypadUi::createButtonGroup() {
 	CLAY({
@@ -48,16 +67,23 @@ void ClayKeypadUi::createButtonGroup() {
 			.backgroundColor = BG_COLOR,
 			.cornerRadius = {5, 5, 5, 5},
 	}) {
-		for(int8_t i = 0; i < NUM; i++)
-			createButton(i);
+		createButton(CANCEL_STRING, &cancelState);
+		createButton(DOWN_STRING, &downState);
+		createButton(UP_STRING, &upState);
+		createButton(CONFIRM_STRING, &confirmState);
 	}
 }
 
-void ClayKeypadUi::createButton(const int8_t i) {
-	const Clay_TextElementConfig buttonText = {
+void ClayKeypadUi::createButton(const string& name, const bool* clickVariable) {
+	const Clay_TextElementConfig textConfig = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = TEXT_SIZE,
+	};
+
+	const Clay_String buttonName = {
+			.length = static_cast<int32_t>(name.length()),
+			.chars = name.c_str(),
 	};
 
 	CLAY({
@@ -71,16 +97,7 @@ void ClayKeypadUi::createButton(const int8_t i) {
 			.backgroundColor = BUTTONS_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		Clay_OnHover(pressHandler, reinterpret_cast<intptr_t>(&handlers[i]));
-		const Clay_String buttonName = {
-				.length = static_cast<int32_t>(buttonNames[i].length()),
-				.chars = buttonNames[i].c_str(),
-		};
-		CLAY_TEXT(buttonName, CLAY_TEXT_CONFIG(buttonText));
+		Clay_OnHover(updateVariable, reinterpret_cast<intptr_t>(clickVariable));
+		CLAY_TEXT(buttonName, CLAY_TEXT_CONFIG(textConfig));
 	}
-}
-
-void ClayKeypadUi::setKeypad(ClayKeypad* keypad) {
-	for(auto& handler: handlers)
-		handler.keypad = keypad;
 }

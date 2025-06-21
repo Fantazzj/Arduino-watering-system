@@ -102,6 +102,7 @@ void setup() {
 void setup(ClayControlUnit* w) {
 	myDisplay.begin(w);
 	myClock.begin(w);
+	myKeypad.begin(w);
 	myMainSwitch.begin(w);
 	myMemory.begin();
 	myMoisture.begin(w);
@@ -125,7 +126,6 @@ int main(int argc, char* argv[]) {
 	ClayControlUnit w;
 	bool finished = false;
 
-	w.setKeypad(&myKeypad);
 	setup(&w);
 
 	bool* pfinished = &finished;

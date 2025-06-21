@@ -1,7 +1,6 @@
 #ifndef CLAYCONTROLUNIT_HPP
 #define CLAYCONTROLUNIT_HPP
 
-#include "ClayKeypad.hpp"
 #include "ClayUi/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
@@ -13,7 +12,11 @@ private:
 public:
 	explicit ClayControlUnit();
 	void show();
-	void setKeypad(ClayKeypad* keypad);
+	bool getCancelState();
+	bool getDownState();
+	bool getUpState();
+	bool getConfirmState();
+	bool getGeneralState() const;
 	void activateEtv(uint8_t n);
 	void deactivateEtv(uint8_t n);
 	void activateMainSwitch();

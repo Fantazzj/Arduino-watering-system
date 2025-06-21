@@ -1,7 +1,6 @@
 #ifndef CLAY_CONTROL_UNIT_UI_HPP
 #define CLAY_CONTROL_UNIT_UI_HPP
 
-#include "../ClayKeypad.hpp"
 #include "ClayClockUi.hpp"
 #include "ClayDebuggerUi.hpp"
 #include "ClayDisplayUi.hpp"
@@ -27,7 +26,11 @@ public:
 	void deactivateEtv(uint8_t n);
 	void activateMainSwitch();
 	void deactivateMainSwitch();
-	void setKeypad(ClayKeypad* keypad);
+	bool getCancelState();
+	bool getDownState();
+	bool getUpState();
+	bool getConfirmState();
+	bool getGeneralState() const;
 	void setBlinkOn(int8_t row, int8_t col);
 	[[nodiscard]] uint8_t getMoisture() const;
 	void setDateTime(std::chrono::local_time<std::chrono::seconds> dateTime);

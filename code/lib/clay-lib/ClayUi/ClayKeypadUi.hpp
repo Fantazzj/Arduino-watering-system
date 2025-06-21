@@ -1,7 +1,6 @@
 #ifndef CLAY_KEYPAD_UI_HPP
 #define CLAY_KEYPAD_UI_HPP
 
-#include "../ClayKeypad.hpp"
 #include "clay.h"
 #include <array>
 #include <cstdint>
@@ -9,7 +8,6 @@
 
 class ClayKeypadUi {
 public:
-	static constexpr uint8_t NUM = 4;
 	static constexpr Clay_Color BUTTONS_COLOR = {101, 157, 213, 255};
 	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
@@ -19,30 +17,31 @@ public:
 #else
 	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
 #endif
+	static constexpr std::string CANCEL_STRING = "Cancel";
+	static constexpr std::string DOWN_STRING = "Down";
+	static constexpr std::string UP_STRING = "Up";
+	static constexpr std::string CONFIRM_STRING = "Confirm";
 
 private:
-	struct HandlerData {
-		ClayKeypad* keypad;
-		int8_t num;
-	};
-	HandlerData handlers[NUM];
 	uint16_t textId;
-	const std::array<std::string, NUM> buttonNames = {
-			"Cancel",
-			"Down",
-			"Up",
-			"Confirm",
-	};
+	bool cancelState;
+	bool downState;
+	bool upState;
+	bool confirmState;
 
 public:
-	explicit ClayKeypadUi(uint16_t id);
+	explicit ClayKeypadUi(uint16_t textId);
 	void createButtonGroup();
-	[[nodiscard]] uint16_t getButtonsTextId() const;
-	void setKeypad(ClayKeypad* keypad);
+	[[nodiscard]] uint16_t getTextId() const;
+	bool getCancelState();
+	bool getDownState();
+	bool getUpState();
+	bool getConfirmState();
+	bool getGeneralState() const;
 
 private:
-	void createButton(int8_t i);
-	static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
+	void createButton(const std::string& name, const bool* clickVariable);
+	static void updateVariable(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
 };
 
 #endif//CLAY_KEYPAD_UI_HPP
