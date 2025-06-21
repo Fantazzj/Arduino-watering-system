@@ -11,19 +11,19 @@ public:
 	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
 
 private:
-	struct PressHandlerArgs {
+	struct HandlerArgsType {
 		int8_t num;
-		ClayMoistureUi* self;
+		uint8_t* moistureLevel;
 	};
 	uint8_t moistureLevel;
-	PressHandlerArgs myArgs[LEVEL_NUM];
-	static void pressHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t myArgs);
+	HandlerArgsType myArgs[LEVEL_NUM];
+	static void updateMoistureHandler(Clay_ElementId, Clay_PointerData pointerData, intptr_t myArgs);
 
 public:
 	ClayMoistureUi();
-	void createMoistureGroup();
-	void createLevel(int8_t i);
-	[[nodiscard]] uint8_t getMoisture() const;
+	void createUi();
+	void createLevel(int8_t n);
+	[[nodiscard]] uint8_t getMoistureLevel() const;
 };
 
 #endif//CLAY_MOISTURE_UI_HPP

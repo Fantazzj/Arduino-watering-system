@@ -5,11 +5,11 @@ ClayMoistureUi::ClayMoistureUi() {
 
 	for(int8_t i = 0; i < LEVEL_NUM; i++) {
 		myArgs[i].num = i;
-		myArgs[i].self = this;
+		myArgs[i].moistureLevel = &moistureLevel;
 	}
 }
 
-void ClayMoistureUi::createMoistureGroup() {
+void ClayMoistureUi::createUi() {
 	CLAY({
 			.id = CLAY_ID("Moisture"),
 			.layout{
@@ -33,7 +33,7 @@ void ClayMoistureUi::createMoistureGroup() {
 	}
 }
 
-void ClayMoistureUi::createLevel(const int8_t i) {
+void ClayMoistureUi::createLevel(const int8_t n) {
 	CLAY({
 			.layout = {
 					.sizing = {
@@ -41,22 +41,22 @@ void ClayMoistureUi::createLevel(const int8_t i) {
 							.height = CLAY_SIZING_FIXED(40),
 					},
 			},
-			.backgroundColor = i * LEVEL_NUM <= moistureLevel ? SELECTED_LEVEL_COLOR : STILL_LEVEL_COLOR,
+			.backgroundColor = n * LEVEL_NUM <= moistureLevel ? SELECTED_LEVEL_COLOR : STILL_LEVEL_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		Clay_OnHover(ClayMoistureUi::pressHandler, reinterpret_cast<intptr_t>(&myArgs[i]));
+		Clay_OnHover(updateMoistureHandler, reinterpret_cast<intptr_t>(&myArgs[n]));
 	}
 }
 
-void ClayMoistureUi::pressHandler(Clay_ElementId, const Clay_PointerData pointerData, intptr_t myArgs) {
+void ClayMoistureUi::updateMoistureHandler(Clay_ElementId, const Clay_PointerData pointerData, intptr_t myArgs) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
 
-	const auto* args = reinterpret_cast<PressHandlerArgs*>(myArgs);
+	const auto* args = reinterpret_cast<HandlerArgsType*>(myArgs);
 
-	args->self->moistureLevel = args->num * 10;
+	*args->moistureLevel = args->num * 10;
 }
 
-uint8_t ClayMoistureUi::getMoisture() const {
+uint8_t ClayMoistureUi::getMoistureLevel() const {
 	return moistureLevel;
 }

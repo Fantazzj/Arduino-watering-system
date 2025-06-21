@@ -54,7 +54,7 @@ void ClayControlUnitUi::createControlUnit() {
 	}) {
 		display.createUi();
 		buttons.createButtonGroup();
-		moisture.createMoistureGroup();
+		moisture.createUi();
 		etvs.createUi();
 	}
 }
@@ -151,7 +151,7 @@ void ClayControlUnitUi::setBlinkOn(const int8_t row, const int8_t col) {
 }
 
 uint8_t ClayControlUnitUi::getMoisture() const {
-	return moisture.getMoisture();
+	return moisture.getMoistureLevel();
 }
 
 void ClayControlUnitUi::setDateTime(const std::chrono::local_time<std::chrono::seconds> dateTime) {
