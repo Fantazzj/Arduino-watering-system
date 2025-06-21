@@ -72,7 +72,7 @@ void ClayControlUnitUi::createAdminSection() {
 			},
 	}) {
 		clock.createClock();
-		debugger.createDebugger();
+		debugger.createUi();
 	}
 }
 
@@ -119,7 +119,7 @@ void ClayControlUnitUi::show() {
 }
 
 void ClayControlUnitUi::appendDebuggerText(const std::string& string) {
-	debugger.appendDebuggerText(string);
+	debugger.appendText(string);
 }
 
 void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const char c) {
