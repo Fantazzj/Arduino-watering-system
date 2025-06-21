@@ -1,7 +1,7 @@
 #include "ClayDebuggerUi.hpp"
 
-ClayDebuggerUi::ClayDebuggerUi(const uint16_t id) {
-	textId = id;
+ClayDebuggerUi::ClayDebuggerUi(const uint16_t textId) {
+	this->textId = textId;
 }
 
 uint16_t ClayDebuggerUi::getDebuggerTextId() const {
@@ -9,10 +9,15 @@ uint16_t ClayDebuggerUi::getDebuggerTextId() const {
 }
 
 void ClayDebuggerUi::createDebugger() {
-	const Clay_TextElementConfig debugText = {
+	const Clay_TextElementConfig debugTextConfig = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = TEXT_SIZE,
+	};
+
+	const Clay_String debugText = {
+			.length = static_cast<int32_t>(text.length()),
+			.chars = text.c_str(),
 	};
 
 	CLAY({
@@ -33,11 +38,7 @@ void ClayDebuggerUi::createDebugger() {
 					.childOffset = Clay_GetScrollOffset(),
 			},
 	}) {
-		const Clay_String clayText = {
-				.length = static_cast<int32_t>(text.length()),
-				.chars = text.c_str(),
-		};
-		CLAY_TEXT(clayText, CLAY_TEXT_CONFIG(debugText));
+		CLAY_TEXT(debugText, CLAY_TEXT_CONFIG(debugTextConfig));
 	}
 }
 

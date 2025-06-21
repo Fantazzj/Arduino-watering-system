@@ -120,7 +120,7 @@ void ClayClockUi::createTimeEditor() {
 	}
 }
 
-void ClayClockUi::createEditor(const std::string& num, ClayHandler_t pressHandlerAdd, ClayHandler_t pressHandlerSub) {
+void ClayClockUi::createEditor(const std::string& num, const ClayHandler_t pressHandlerAdd, const ClayHandler_t pressHandlerSub) {
 	const Clay_TextElementConfig charText = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
@@ -182,11 +182,14 @@ void ClayClockUi::updateStrings() {
 }
 
 void ClayClockUi::createSpacer() {
-	CLAY({.layout = {
-				  .sizing = {
-						  .width = CLAY_SIZING_GROW(),
-						  .height = CLAY_SIZING_FIT(),
-				  }}}) {}
+	CLAY({
+			.layout = {
+					.sizing = {
+							.width = CLAY_SIZING_GROW(),
+							.height = CLAY_SIZING_FIT(),
+					},
+			},
+	}) {}
 }
 
 void ClayClockUi::genericHandler(local_time<seconds>* dateTime, const duration<intmax_t> delta, const bool increase) {

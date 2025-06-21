@@ -2,10 +2,8 @@
 
 #include <thread>
 
-using std::chrono::duration_cast;
-using std::chrono::high_resolution_clock;
-using std::chrono::milliseconds;
-using std::this_thread::sleep_for;
+using namespace std::chrono;
+using namespace std::this_thread;
 
 ClayTimer::ClayTimer() {
 	startTime = high_resolution_clock::now();

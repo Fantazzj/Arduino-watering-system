@@ -1,7 +1,6 @@
 #include "ClayClock.hpp"
 #include <chrono>
 
-using std::chrono::system_clock;
 using namespace std::chrono;
 
 ClayClock::ClayClock() {
@@ -38,7 +37,7 @@ void ClayClock::setDateTime(const MyDateTime time) {
 			minutes{time.time.min} +
 			seconds{time.time.sec}};
 
-	local_time<seconds> dateTime = local_days{date_spec} + time_spec.to_duration();
+	const local_time<seconds> dateTime = local_days{date_spec} + time_spec.to_duration();
 
 	w->setDateTime(dateTime);
 }

@@ -2,12 +2,8 @@
 
 #include <filesystem>
 
-using std::ifstream;
-using std::ofstream;
-using std::string;
-using std::filesystem::exists;
-using std::filesystem::file_size;
-using std::filesystem::remove;
+using namespace std;
+using namespace std::filesystem;
 
 ClayMemory::ClayMemory(const string& fileName) {
 	this->fileName = fileName;

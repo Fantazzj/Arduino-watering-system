@@ -21,7 +21,7 @@ private:
 	std::string text;
 
 public:
-	explicit ClayDebuggerUi(uint16_t id);
+	explicit ClayDebuggerUi(uint16_t textId);
 	void createDebugger();
 	[[nodiscard]] uint16_t getDebuggerTextId() const;
 	void appendDebuggerText(const std::string& string);
