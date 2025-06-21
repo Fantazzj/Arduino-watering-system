@@ -52,7 +52,7 @@ void ClayControlUnitUi::createControlUnit() {
 					.layoutDirection = CLAY_TOP_TO_BOTTOM,
 			},
 	}) {
-		display.createDisplay();
+		display.createUi();
 		buttons.createButtonGroup();
 		moisture.createMoistureGroup();
 		etvs.createEtvGroup();
@@ -123,7 +123,7 @@ void ClayControlUnitUi::appendDebuggerText(const std::string& string) {
 }
 
 void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const char c) {
-	display.setDisplayChar(row, col, c);
+	display.setChar(row, col, c);
 }
 
 void ClayControlUnitUi::activateEtv(const uint8_t n) {

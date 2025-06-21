@@ -1,28 +1,28 @@
 #include "ClayDisplayUi.hpp"
 
-ClayDisplayUi::ClayDisplayUi(const uint16_t id) {
-	textId = id;
+ClayDisplayUi::ClayDisplayUi(const uint16_t textId) {
+	this->textId = textId;
 	text = {
-			"Sample text row1",
-			"Sample text row2",
+			"                ",
+			"                ",
 	};
 	blinkChar[0] = -1;
 	blinkChar[1] = -1;
 }
 
-uint16_t ClayDisplayUi::getDisplayTextId() const {
+uint16_t ClayDisplayUi::getTextId() const {
 	return textId;
 }
 
-void ClayDisplayUi::createDisplayChars(const int8_t row) {
-	const Clay_TextElementConfig charText = {
+void ClayDisplayUi::createChars(const int8_t row) {
+	const Clay_TextElementConfig charTextConfig = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
 			.fontSize = TEXT_SIZE,
 	};
 
 	for(int8_t c = 0; c < DISPLAY_LENGTH; c++) {
-		const Clay_String displayText = {
+		const Clay_String charText = {
 				.length = 1,
 				.chars = &text[row][c],
 		};
@@ -38,12 +38,12 @@ void ClayDisplayUi::createDisplayChars(const int8_t row) {
 				.backgroundColor = blinkChar[0] == row && blinkChar[1] == c ? SELECTED_CHAR_COLOR : BASIC_CHAR_COLOR,
 				.cornerRadius = {10, 10, 10, 10},
 		}) {
-			CLAY_TEXT(displayText, CLAY_TEXT_CONFIG(charText));
+			CLAY_TEXT(charText, CLAY_TEXT_CONFIG(charTextConfig));
 		}
 	}
 }
 
-void ClayDisplayUi::createDisplayRows() {
+void ClayDisplayUi::createRows() {
 	for(int8_t r = 0; r < DISPLAY_HEIGHT; r++) {
 		CLAY({
 				.layout = {
@@ -55,12 +55,12 @@ void ClayDisplayUi::createDisplayRows() {
 						.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				},
 		}) {
-			createDisplayChars(r);
+			createChars(r);
 		}
 	}
 }
 
-void ClayDisplayUi::createDisplay() {
+void ClayDisplayUi::createUi() {
 	CLAY({
 			.id = CLAY_ID("Display"),
 			.layout = {
@@ -75,11 +75,11 @@ void ClayDisplayUi::createDisplay() {
 			.backgroundColor = BG_COLOR,
 			.cornerRadius = {5, 5, 5, 5},
 	}) {
-		createDisplayRows();
+		createRows();
 	}
 }
 
-void ClayDisplayUi::setDisplayChar(const int8_t row, const int8_t col, const char c) {
+void ClayDisplayUi::setChar(const int8_t row, const int8_t col, const char c) {
 	text[row][col] = c;
 }
 

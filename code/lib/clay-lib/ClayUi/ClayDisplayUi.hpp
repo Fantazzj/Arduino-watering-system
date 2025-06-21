@@ -25,15 +25,15 @@ private:
 	int16_t blinkChar[2];
 
 public:
-	explicit ClayDisplayUi(uint16_t id);
-	[[nodiscard]] uint16_t getDisplayTextId() const;
-	void createDisplay();
-	void setDisplayChar(int8_t row, int8_t col, char c);
+	explicit ClayDisplayUi(uint16_t textId);
+	[[nodiscard]] uint16_t getTextId() const;
+	void createUi();
+	void setChar(int8_t row, int8_t col, char c);
 	void setBlinkOn(int8_t row, int8_t col);
 
 private:
-	void createDisplayChars(int8_t row);
-	void createDisplayRows();
+	void createChars(int8_t row);
+	void createRows();
 };
 
 #endif//CLAY_DISPLAY_UI_HPP
