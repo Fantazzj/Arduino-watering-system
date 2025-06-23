@@ -14,7 +14,6 @@ private:
 	void printRows(std::string rows[]);
 	void displayError1();
 	static constexpr int8_t displayChars = DISPLAY_HEIGHT * DISPLAY_LENGTH;
-	bool backlight;
 
 public:
 	explicit ClayDisplay();

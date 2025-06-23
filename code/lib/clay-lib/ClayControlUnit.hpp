@@ -27,6 +27,8 @@ public:
 	void clearDisplay();
 	void hideCursorDisplay();
 	void showCursorDisplay();
+	void setBacklight(bool state);
+	[[nodiscard]] bool getBacklight() const;
 	[[nodiscard]] uint8_t getMoisture() const;
 	void setDateTime(std::chrono::local_time<std::chrono::seconds> dateTime);
 	[[nodiscard]] std::chrono::local_time<std::chrono::seconds> getDateTime() const;

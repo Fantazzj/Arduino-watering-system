@@ -23,6 +23,7 @@ private:
 	uint16_t textId;
 	std::array<std::string, DISPLAY_HEIGHT> text;
 	int16_t blinkChar[2];
+	bool backlight;
 
 public:
 	explicit ClayDisplayUi(uint16_t textId);
@@ -30,6 +31,8 @@ public:
 	void createUi();
 	void setChar(int8_t row, int8_t col, char c);
 	void setBlinkOn(int8_t row, int8_t col);
+	void setBacklight(bool state);
+	[[nodiscard]] bool getBacklight() const;
 
 private:
 	void createChars(int8_t row);

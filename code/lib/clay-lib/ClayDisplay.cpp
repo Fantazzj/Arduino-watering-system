@@ -2,7 +2,6 @@
 
 ClayDisplay::ClayDisplay() {
 	w = nullptr;
-	backlight = false;
 }
 
 void ClayDisplay::begin(ClayControlUnit* w) {
@@ -198,10 +197,9 @@ void ClayDisplay::displayError1() {
 }
 
 void ClayDisplay::setBacklight(const bool state) {
-	backlight = state;
+	w->setBacklight(state);
 }
 
 bool ClayDisplay::getBacklight() const {
-	return backlight;
+	return w->getBacklight();
 }
-

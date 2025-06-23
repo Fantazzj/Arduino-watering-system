@@ -8,6 +8,7 @@ ClayDisplayUi::ClayDisplayUi(const uint16_t textId) {
 	};
 	blinkChar[0] = -1;
 	blinkChar[1] = -1;
+	backlight = false;
 }
 
 uint16_t ClayDisplayUi::getTextId() const {
@@ -38,7 +39,7 @@ void ClayDisplayUi::createChars(const int8_t row) {
 				.backgroundColor = blinkChar[0] == row && blinkChar[1] == c ? SELECTED_CHAR_COLOR : BASIC_CHAR_COLOR,
 				.cornerRadius = {10, 10, 10, 10},
 		}) {
-			CLAY_TEXT(charText, CLAY_TEXT_CONFIG(charTextConfig));
+			if(backlight) { CLAY_TEXT(charText, CLAY_TEXT_CONFIG(charTextConfig)); }
 		}
 	}
 }
@@ -86,4 +87,12 @@ void ClayDisplayUi::setChar(const int8_t row, const int8_t col, const char c) {
 void ClayDisplayUi::setBlinkOn(const int8_t row, const int8_t col) {
 	blinkChar[0] = row;
 	blinkChar[1] = col;
+}
+
+void ClayDisplayUi::setBacklight(const bool state) {
+	backlight = state;
+}
+
+bool ClayDisplayUi::getBacklight() const {
+	return backlight;
 }

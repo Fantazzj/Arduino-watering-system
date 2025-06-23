@@ -126,6 +126,14 @@ void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const
 	display.setChar(row, col, c);
 }
 
+void ClayControlUnitUi::setBacklight(bool state) {
+	display.setBacklight(state);
+}
+
+bool ClayControlUnitUi::getBacklight() const {
+	return display.getBacklight();
+}
+
 void ClayControlUnitUi::activateEtv(const uint8_t n) {
 	etvs.setValveState(n, true);
 }

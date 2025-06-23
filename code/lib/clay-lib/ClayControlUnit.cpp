@@ -72,6 +72,14 @@ void ClayControlUnit::showCursorDisplay() {
 	ui.setBlinkOn(y, x);
 }
 
+void ClayControlUnit::setBacklight(bool state) {
+	ui.setBacklight(state);
+}
+
+bool ClayControlUnit::getBacklight() const {
+	return ui.getBacklight();
+}
+
 uint8_t ClayControlUnit::getMoisture() const {
 	return ui.getMoisture();
 }

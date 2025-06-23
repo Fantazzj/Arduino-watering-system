@@ -21,6 +21,8 @@ public:
 	ClayControlUnitUi();
 	void show();
 	void setDisplayChar(int8_t row, int8_t col, char c);
+	void setBacklight(bool state);
+	[[nodiscard]] bool getBacklight() const;
 	void appendDebuggerText(const std::string& string);
 	void activateEtv(uint8_t n);
 	void deactivateEtv(uint8_t n);
@@ -30,7 +32,7 @@ public:
 	bool getDownState();
 	bool getUpState();
 	bool getConfirmState();
-	bool getGeneralState() const;
+	[[nodiscard]] bool getGeneralState() const;
 	void setBlinkOn(int8_t row, int8_t col);
 	[[nodiscard]] uint8_t getMoisture() const;
 	void setDateTime(std::chrono::local_time<std::chrono::seconds> dateTime);
