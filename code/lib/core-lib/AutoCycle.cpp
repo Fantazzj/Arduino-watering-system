@@ -25,7 +25,13 @@ void AutoCycle::exec() {
 	// Check if is moist
 	if(watered && tReset.hour == newTime.time.hour && tReset.min == newTime.time.min) {
 		const uint8_t moisture = _myMoisture.getMoisture();
-		watered = moisture > 90;
+		watered = moisture >= 50;
+#ifdef DEBUG
+		//FIXME: execution is "infinite" if is watered (moisture>90) and the debugger's buffer is continuously filled until it explodes, before enabling debugger's prints it needs to be solved
+		//_myDebugger.print("Moisture level ");
+		//_myDebugger.print(moisture);
+		//_myDebugger.println("%");
+#endif
 		return;
 	}
 

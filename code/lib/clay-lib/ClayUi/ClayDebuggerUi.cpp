@@ -43,7 +43,5 @@ void ClayDebuggerUi::createUi() {
 }
 
 void ClayDebuggerUi::appendText(const std::string& text) {
-	//if(!text.empty())
-	//	text.append("\n");
 	this->text.append(text);
 }

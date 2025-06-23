@@ -1,7 +1,7 @@
 #include "ClayMoistureUi.hpp"
 
 ClayMoistureUi::ClayMoistureUi() {
-	moistureLevel = 0;
+	moistureLevel = 50;
 
 	for(int8_t i = 0; i < LEVEL_NUM; i++) {
 		myArgs[i].num = i;
