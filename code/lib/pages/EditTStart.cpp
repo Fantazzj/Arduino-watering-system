@@ -6,7 +6,7 @@ EditTStart::EditTStart(PageController& controller) :
 }
 
 PageNum EditTStart::exec() {
-	KeypadButton key = _controller.keypadButton();
+	const KeypadButton key = _controller.keypadButton();
 
 	if(key != NoBtn) _redraw = true;
 
@@ -23,6 +23,7 @@ PageNum EditTStart::exec() {
 				case 2:
 					_newTime.min = (_newTime.min > 0) ? _newTime.min - 5 : 55;
 					break;
+				default:;
 			}
 			return Stay;
 
@@ -34,6 +35,7 @@ PageNum EditTStart::exec() {
 				case 2:
 					_newTime.min = (_newTime.min < 55) ? _newTime.min + 5 : 0;
 					break;
+				default:;
 			}
 			return Stay;
 

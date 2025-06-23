@@ -1,16 +1,16 @@
 #include "AutoCycle.hpp"
 
-AutoCycle::AutoCycle(Clock& myClock, ValveGroupN& myEtv, int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& myTimer, Debugger& myDebugger) :
+AutoCycle::AutoCycle(Clock& myClock, ValveGroupN& myEtv, const int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& myTimer, Debugger& myDebugger) :
 	_myClock(myClock), _myEtv(myEtv), _myMainSwitch(myMainSwitch), _myMoisture(myMoisture), _myTimer(myTimer), _myDebugger(myDebugger) {
 	this->etvNum = etvNum;
 }
 
-void AutoCycle::begin(MyTime tStart) {
+void AutoCycle::begin(const MyTime tStart) {
 	this->tStart = tStart;
 	tReset = _checkTReset();
 }
 
-int8_t AutoCycle::_nextEtv() {
+int8_t AutoCycle::_nextEtv() const {
 	for(int8_t etv = etvOn + 1; etv < etvNum; etv++) {
 		if(_myEtv.toWater(etv)) {
 			return etv;
@@ -21,8 +21,8 @@ int8_t AutoCycle::_nextEtv() {
 	return -1;
 }
 
-MyTime AutoCycle::_checkTReset() {
-	uintmax_t startMin = hourToSec(tStart.hour) + minToSec(tStart.min) + tStart.sec;
+MyTime AutoCycle::_checkTReset() const {
+	const uintmax_t startMin = hourToMin(tStart.hour) + tStart.min;
 
 	uint16_t minToWater = 0;
 	for(int8_t e = 0; e < etvNum; e++)
@@ -37,7 +37,7 @@ void AutoCycle::exec() {
 
 	// Check if is moist
 	if(!watered && tReset.hour == newTime.time.hour && tReset.min == newTime.time.min) {
-		uint8_t moisture = _myMoisture.getMoisture();
+		const uint8_t moisture = _myMoisture.getMoisture();
 		watered = moisture > 90;
 		return;
 	}

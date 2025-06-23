@@ -15,8 +15,8 @@ private:
 	Moisture& _myMoisture;
 	Timer& _myTimer;
 	Debugger& _myDebugger;
-	int8_t _nextEtv();
-	MyTime _checkTReset();
+	int8_t _nextEtv() const;
+	MyTime _checkTReset() const;
 	const uint16_t msSnub = 1500;
 
 public:
@@ -32,8 +32,6 @@ public:
 	explicit AutoCycle(Clock& myClock, ValveGroupN& myEtv, int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& timer, Debugger& debugger);
 	void begin(MyTime tStart);
 	void exec();
-
-protected:
 };
 
 #endif//AUTO_CYCLE_HPP
