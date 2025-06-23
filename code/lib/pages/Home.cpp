@@ -7,7 +7,7 @@ Home::Home(PageController& controller) :
 }
 
 PageNum Home::exec() {
-	KeypadButton key = _controller.keypadButton();
+	const KeypadButton key = _controller.keypadButton();
 
 	if(key != NoBtn) _redraw = true;
 
@@ -18,7 +18,8 @@ PageNum Home::exec() {
 	oldEtvOn = _controller.autoCycle.etvOn;
 
 	if(key == Confirm) return SettingsPage1;
-	else return Stay;
+
+	return Stay;
 }
 
 void Home::show() {
@@ -27,7 +28,7 @@ void Home::show() {
 		//_controller.displayPrint("HOMEPAGE");
 		if(_controller.autoCycle.etvOn != -1) {
 			_controller.display.printIn("Etv", 11, 1);
-			_controller.display.printIn(_controller.autoCycle.etvOn+1, 14, 1);
+			_controller.display.printIn(_controller.autoCycle.etvOn + 1, 14, 1);
 		} else {
 			if(_controller.autoCycle.watered) _controller.display.checkSym(true);
 			else _controller.display.checkSym(false);
