@@ -23,7 +23,7 @@ void AutoCycle::exec() {
 	newTime = _myClock.getDateTime();
 
 	// Check if is moist
-	if(!watered && tReset.hour == newTime.time.hour && tReset.min == newTime.time.min) {
+	if(watered && tReset.hour == newTime.time.hour && tReset.min == newTime.time.min) {
 		const uint8_t moisture = _myMoisture.getMoisture();
 		watered = moisture > 90;
 		return;
