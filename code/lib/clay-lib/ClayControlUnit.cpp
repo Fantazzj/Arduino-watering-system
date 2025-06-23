@@ -1,7 +1,6 @@
 #include "ClayControlUnit.hpp"
 
-ClayControlUnit::ClayControlUnit() :
-	ui() {}
+ClayControlUnit::ClayControlUnit() = default;
 
 void ClayControlUnit::show() {
 	ui.show();

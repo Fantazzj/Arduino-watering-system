@@ -16,7 +16,7 @@ public:
 	bool getDownState();
 	bool getUpState();
 	bool getConfirmState();
-	bool getGeneralState() const;
+	[[nodiscard]] bool getGeneralState() const;
 	void activateEtv(uint8_t n);
 	void deactivateEtv(uint8_t n);
 	void activateMainSwitch();

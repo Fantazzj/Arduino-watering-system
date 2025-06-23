@@ -95,20 +95,17 @@ void ClayDisplay::noBlink() {
 
 void ClayDisplay::clockSym(const bool state) {
 	w->setCursorDisplay(12, 1);
-	if(state) w->printOnDisplay("c");
-	else w->printOnDisplay(" ");
+	w->printOnDisplay(state ? "c" : " ");
 }
 
 void ClayDisplay::dropSym(const bool state) {
 	w->setCursorDisplay(13, 1);
-	if(state) w->printOnDisplay("d");
-	else w->printOnDisplay(" ");
+	w->printOnDisplay(state ? "d" : " ");
 }
 
 void ClayDisplay::checkSym(const bool state) {
 	w->setCursorDisplay(14, 1);
-	if(state) w->printOnDisplay("c");
-	else w->printOnDisplay(" ");
+	w->printOnDisplay(state ? "c" : " ");
 }
 
 void ClayDisplay::arrangeWords(std::string text, std::string rows[]) {
@@ -172,9 +169,8 @@ std::string ClayDisplay::arrangeDow(const MyDate time) {
 			arrangedDow = "Domenica";
 			break;
 		default:
-			arrangedDow = "DOW";
+			arrangedDow = "MissingDOW";
 			break;
-			;
 	}
 	return arrangedDow;
 }
