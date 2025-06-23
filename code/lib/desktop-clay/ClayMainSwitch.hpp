@@ -1,7 +1,7 @@
 #ifndef CLAYMAINSWITCH_HPP
 #define CLAYMAINSWITCH_HPP
 
-#include "../core-lib/MainSwitch.hpp"
+#include "../core/MainSwitch.hpp"
 #include "ClayControlUnit.hpp"
 
 class ClayMainSwitch final : public MainSwitch {

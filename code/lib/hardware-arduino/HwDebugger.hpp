@@ -1,7 +1,7 @@
 #ifndef HWDEBUGGER_HPP
 #define HWDEBUGGER_HPP
 
-#include "../core-lib/Debugger.hpp"
+#include "../core/Debugger.hpp"
 #include <Arduino.h>
 
 class HwDebugger : public Debugger {

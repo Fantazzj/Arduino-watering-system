@@ -1,7 +1,7 @@
 #ifndef CLAYMOISTURE_HPP
 #define CLAYMOISTURE_HPP
 
-#include "../core-lib/Moisture.hpp"
+#include "../core/Moisture.hpp"
 #include "ClayControlUnit.hpp"
 
 class ClayMoisture final : public Moisture {

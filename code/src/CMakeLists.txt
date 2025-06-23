@@ -6,7 +6,7 @@ add_executable(Arduino-watering-system
 )
 
 if ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
-    target_link_libraries(Arduino-watering-system PUBLIC clay-lib)
+    target_link_libraries(Arduino-watering-system PUBLIC desktop-clay)
 endif ()
 
 set_target_properties(Arduino-watering-system PROPERTIES

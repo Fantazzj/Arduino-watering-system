@@ -1,7 +1,7 @@
 #ifndef VALVEGROUP_HPP
 #define VALVEGROUP_HPP
 
-#include "../date-time-lib/MyTime.hpp"
+#include "../date-time/MyTime.hpp"
 #include "Clock.hpp"
 
 template<uint8_t n>

@@ -1,7 +1,7 @@
 #ifndef CLAYKEYPAD_HPP
 #define CLAYKEYPAD_HPP
 
-#include "../core-lib/Keypad.hpp"
+#include "../core/Keypad.hpp"
 #include "ClayControlUnit.hpp"
 
 class ClayKeypad final : public Keypad {

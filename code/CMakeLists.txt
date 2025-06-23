@@ -25,9 +25,9 @@ endif ()
 
 if ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
     add_compile_definitions(DEBUG=1)
-    add_subdirectory(lib/clay-lib)
+    add_subdirectory(lib/desktop-clay)
 endif ()
 
 add_subdirectory(src)
-add_subdirectory(lib/date-time-lib)
-add_subdirectory(lib/core-lib)
+add_subdirectory(lib/date-time)
+add_subdirectory(lib/core)

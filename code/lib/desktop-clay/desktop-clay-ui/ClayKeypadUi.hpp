@@ -2,7 +2,6 @@
 #define CLAY_KEYPAD_UI_HPP
 
 #include "clay.h"
-#include <array>
 #include <cstdint>
 #include <string>
 
@@ -37,7 +36,7 @@ public:
 	bool getDownState();
 	bool getUpState();
 	bool getConfirmState();
-	bool getGeneralState() const;
+	[[nodiscard]] bool getGeneralState() const;
 
 private:
 	void createButton(const std::string& name, const bool* clickVariable);

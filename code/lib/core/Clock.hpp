@@ -1,7 +1,7 @@
 #ifndef CLOCK_HPP
 #define CLOCK_HPP
 
-#include "../date-time-lib/MyDateTime.hpp"
+#include "../date-time/MyDateTime.hpp"
 
 class Clock {
 private:

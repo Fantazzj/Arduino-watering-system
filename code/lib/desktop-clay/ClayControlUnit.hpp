@@ -1,7 +1,7 @@
 #ifndef CLAYCONTROLUNIT_HPP
 #define CLAYCONTROLUNIT_HPP
 
-#include "ClayUi/ClayControlUnitUi.hpp"
+#include "desktop-clay-ui/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
 private:

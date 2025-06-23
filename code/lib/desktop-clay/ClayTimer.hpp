@@ -1,7 +1,7 @@
 #ifndef CLAYTIMER_HPP
 #define CLAYTIMER_HPP
 
-#include "../core-lib/Timer.hpp"
+#include "../core/Timer.hpp"
 #include "ClayControlUnit.hpp"
 #include <chrono>
 

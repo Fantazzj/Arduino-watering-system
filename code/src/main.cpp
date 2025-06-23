@@ -1,5 +1,5 @@
-#include "../lib/core-lib/AutoCycle.hpp"
-#include "../lib/core-lib/PageSelector.hpp"
+#include "../lib/core/AutoCycle.hpp"
+#include "../lib/core/PageSelector.hpp"
 
 #if defined(HWARDUINO)
 #	include "../lib/arduino-lib/HwClock.hpp"
@@ -43,16 +43,16 @@ HwMoisture myMoisture(humidityPin);
 HwDebugger myDebugger;
 HwTimer myTimer;
 #elif defined(CLAYDESKTOP)
-#	include "../lib/clay-lib/ClayControlUnit.hpp"
-#	include "../lib/clay-lib/ClayClock.hpp"
-#	include "../lib/clay-lib/ClayDisplay.hpp"
-#	include "../lib/clay-lib/ClayKeypad.hpp"
-#	include "../lib/clay-lib/ClayMainSwitch.hpp"
-#	include "../lib/clay-lib/ClayMemory.hpp"
-#	include "../lib/clay-lib/ClayMoisture.hpp"
-#	include "../lib/clay-lib/ClayValveGroup.hpp"
-#	include "../lib/clay-lib/ClayDebugger.hpp"
-#	include "../lib/clay-lib/ClayTimer.hpp"
+#	include "../lib/desktop-clay/ClayControlUnit.hpp"
+#	include "../lib/desktop-clay/ClayClock.hpp"
+#	include "../lib/desktop-clay/ClayDisplay.hpp"
+#	include "../lib/desktop-clay/ClayKeypad.hpp"
+#	include "../lib/desktop-clay/ClayMainSwitch.hpp"
+#	include "../lib/desktop-clay/ClayMemory.hpp"
+#	include "../lib/desktop-clay/ClayMoisture.hpp"
+#	include "../lib/desktop-clay/ClayValveGroup.hpp"
+#	include "../lib/desktop-clay/ClayDebugger.hpp"
+#	include "../lib/desktop-clay/ClayTimer.hpp"
 
 #	include <chrono>
 #	include <thread>

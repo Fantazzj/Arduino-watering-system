@@ -1,7 +1,7 @@
 #ifndef DISPLAY_HPP
 #define DISPLAY_HPP
 
-#include "../date-time-lib/MyDateTime.hpp"
+#include "../date-time/MyDateTime.hpp"
 
 class UnitDisplay {
 private:

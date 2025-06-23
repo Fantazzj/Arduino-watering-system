@@ -1,7 +1,7 @@
 #ifndef CLAYDEBUGGER_HPP
 #define CLAYDEBUGGER_HPP
 
-#include "../core-lib/Debugger.hpp"
+#include "../core/Debugger.hpp"
 #include "ClayControlUnit.hpp"
 
 class ClayDebugger final : public Debugger {

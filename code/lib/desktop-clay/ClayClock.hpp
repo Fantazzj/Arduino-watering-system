@@ -1,7 +1,7 @@
 #ifndef CLAYCLOCK_HPP
 #define CLAYCLOCK_HPP
 
-#include "../core-lib/Clock.hpp"
+#include "../core/Clock.hpp"
 #include "ClayControlUnit.hpp"
 
 class ClayClock final : public Clock {

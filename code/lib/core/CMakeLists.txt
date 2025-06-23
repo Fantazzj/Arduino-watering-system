@@ -1,7 +1,7 @@
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(core-lib SHARED
+add_library(core SHARED
         AutoCycle.cpp
         PageSelector.cpp
         Debugger.cpp
@@ -22,6 +22,6 @@ add_library(core-lib SHARED
         ../pages/Settings6.cpp
 )
 
-target_link_libraries(core-lib
-        PUBLIC date-time-lib
+target_link_libraries(core
+        PUBLIC date-time
 )

@@ -1,7 +1,7 @@
 #ifndef CLAYVALVEGROUP_HPP
 #define CLAYVALVEGROUP_HPP
 
-#include "../core-lib/ValveGroup.hpp"
+#include "../core/ValveGroup.hpp"
 #include "ClayControlUnit.hpp"
 
 class ClayValveGroup final : public ValveGroupN {

@@ -9,7 +9,7 @@
 #	endif
 #endif
 
-#include "../date-time-lib/MyTime.hpp"
+#include "../date-time/MyTime.hpp"
 
 class Memory {
 private:

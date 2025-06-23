@@ -1,7 +1,7 @@
 #ifndef CLAYDISPLAY_HPP
 #define CLAYDISPLAY_HPP
 
-#include "../core-lib/UnitDisplay.hpp"
+#include "../core/UnitDisplay.hpp"
 #include "ClayControlUnit.hpp"
 
 class ClayDisplay final : public UnitDisplay {

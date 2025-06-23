@@ -1,7 +1,7 @@
 #ifndef CLAYMEMORY_HPP
 #define CLAYMEMORY_HPP
 
-#include "../core-lib/Memory.hpp"
+#include "../core/Memory.hpp"
 #include "ClayControlUnit.hpp"
 #include <fstream>
 
