@@ -45,10 +45,10 @@ PageNum EditEtvDays::exec() {
 			_controller.memory.saveEtvDays(_etvEdit, _daysEdit);
 			_etvEdit++;
 			_daysEdit = _controller.etv.getDays(_etvEdit);
-			if(_etvEdit >= _controller.etvNum) {
+			if(_etvEdit >= VALVE_NUM) {
 #ifdef DEBUG
 				_controller.debugger.print("New etv days: [ ");
-				for(uint8_t e = 0; e < _controller.etvNum; e++) {
+				for(uint8_t e = 0; e < VALVE_NUM; e++) {
 					_controller.debugger.print(_controller.etv.getDays(e));
 					_controller.debugger.print(' ');
 				}

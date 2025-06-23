@@ -1,35 +1,22 @@
 #include "AutoCycle.hpp"
 
-AutoCycle::AutoCycle(Clock& myClock, ValveGroupN& myEtv, const int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& myTimer, Debugger& myDebugger) :
+AutoCycle::AutoCycle(Clock& myClock, ValveGroupN& myEtv, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& myTimer, Debugger& myDebugger) :
 	_myClock(myClock), _myEtv(myEtv), _myMainSwitch(myMainSwitch), _myMoisture(myMoisture), _myTimer(myTimer), _myDebugger(myDebugger) {
-	this->etvNum = etvNum;
 }
 
 void AutoCycle::begin(const MyTime tStart) {
 	this->tStart = tStart;
-	tReset = _checkTReset();
+	updateTReset();
 }
 
 int8_t AutoCycle::_nextEtv() const {
-	for(int8_t etv = etvOn + 1; etv < etvNum; etv++) {
+	for(int8_t etv = etvOn + 1; etv < VALVE_NUM; etv++) {
 		if(_myEtv.toWater(etv)) {
 			return etv;
-		} else {
-			_myEtv.increaseElapsedDays(etv);
 		}
+		_myEtv.increaseElapsedDays(etv);
 	}
 	return -1;
-}
-
-MyTime AutoCycle::_checkTReset() const {
-	const uintmax_t startMin = hourToMin(tStart.hour) + tStart.min;
-
-	uint16_t minToWater = 0;
-	for(int8_t e = 0; e < etvNum; e++)
-		minToWater += _myEtv.getMinOn(e);
-	minToWater += secToMin(msSnub * etvNum / 1000);
-
-	return startMin + minToWater < 1440 ? MyTime(0, 0, 0) : MyTime(12, 0, 0);
 }
 
 void AutoCycle::exec() {
@@ -49,7 +36,7 @@ void AutoCycle::exec() {
 		_myDebugger.println(etvOn + 1);
 #endif
 		_myMainSwitch.turnOff();
-		_myTimer.wait(msSnub);
+		_myTimer.wait(MS_SNUBBER);
 		_myEtv.turnOff(etvOn);
 		etvOn = -1;
 		return;
@@ -76,7 +63,7 @@ void AutoCycle::exec() {
 		_myDebugger.println(etvOn + 1);
 #endif
 		_myEtv.turnOn(etvOn);
-		_myTimer.wait(msSnub);
+		_myTimer.wait(MS_SNUBBER);
 		_myMainSwitch.turnOn();
 
 		return;
@@ -92,7 +79,7 @@ void AutoCycle::exec() {
 		_myDebugger.println(etvOn + 1);
 #endif
 		_myMainSwitch.turnOff();
-		_myTimer.wait(msSnub);
+		_myTimer.wait(MS_SNUBBER);
 		_myEtv.turnOff(etvOn);
 
 		etvOn = _nextEtv();
@@ -109,13 +96,21 @@ void AutoCycle::exec() {
 		_myDebugger.println(etvOn + 1);
 #endif
 		_myEtv.turnOn(etvOn);
-		_myTimer.wait(msSnub);
+		_myTimer.wait(MS_SNUBBER);
 		_myMainSwitch.turnOn();
 	}
 }
 
 void AutoCycle::updateTReset() {
-	tReset = _checkTReset();
+	const uintmax_t startMin = hourToMin(tStart.hour) + tStart.min;
+
+	uint16_t minToWater = 0;
+	for(int8_t e = 0; e < VALVE_NUM; e++)
+		minToWater += _myEtv.getMinOn(e);
+	minToWater += secToMin(MS_SNUBBER * VALVE_NUM / 1000);
+
+	tReset = startMin + minToWater < 1440 ? MyTime(0, 0, 0) : MyTime(12, 0, 0);
+
 #ifdef DEBUG
 	_myDebugger.print("Watering state will reset at: ");
 	_myDebugger.println(tReset);

@@ -1,6 +1,6 @@
 #include "Debugger.hpp"
 
-void Debugger::print(MyTime time) {
+void Debugger::print(const MyTime time) {
 	print((int) time.hour);
 	print(':');
 	print((int) time.min);
@@ -8,7 +8,7 @@ void Debugger::print(MyTime time) {
 	print((int) time.sec);
 }
 
-void Debugger::print(MyDate date) {
+void Debugger::print(const MyDate date) {
 	print((int) date.day);
 	print('/');
 	print((int) date.mon);
@@ -16,7 +16,7 @@ void Debugger::print(MyDate date) {
 	print((int) date.year);
 }
 
-void Debugger::print(MyDateTime dateTime) {
+void Debugger::print(const MyDateTime dateTime) {
 	print(dateTime.date);
 	print(' ');
 	print(dateTime.time);
@@ -27,27 +27,27 @@ void Debugger::println(const char* text) {
 	println();
 }
 
-void Debugger::println(char c) {
+void Debugger::println(const char c) {
 	print(c);
 	println();
 }
 
-void Debugger::println(int n) {
+void Debugger::println(const int n) {
 	print(n);
 	println();
 }
 
-void Debugger::println(MyTime time) {
+void Debugger::println(const MyTime time) {
 	print(time);
 	println();
 }
 
-void Debugger::println(MyDate date) {
+void Debugger::println(const MyDate date) {
 	print(date);
 	println();
 }
 
-void Debugger::println(MyDateTime dateTime) {
+void Debugger::println(const MyDateTime dateTime) {
 	print(dateTime);
 	println();
 }

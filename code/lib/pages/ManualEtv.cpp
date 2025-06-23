@@ -16,11 +16,11 @@ PageNum ManualEtv::exec() {
 				return SettingsPage1;
 			case Up:
 				_num++;
-				if(_num >= _controller.etvNum) _num = 0;
+				if(_num >= VALVE_NUM) _num = 0;
 				return Stay;
 			case Down:
 				_num--;
-				if(_num < 0) _num = _controller.etvNum - 1;
+				if(_num < 0) _num = VALVE_NUM - 1;
 				return Stay;
 			case Confirm:
 				_controller.etv.turnOn(_num);

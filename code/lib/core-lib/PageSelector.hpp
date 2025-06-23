@@ -27,10 +27,11 @@
 
 class PageSelector {
 private:
+	static constexpr int8_t DISPLAY_BACKLIGHT_MIN_ON = 2;
 	PageController controller;
 	Page* activePage;
 	PageNum newPage = Stay;
-	MyTime lightTime;
+	MyTime backlightTurnOnTime;
 
 public:
 	explicit PageSelector(Keypad& myKeypad, UnitDisplay& myDisplay, Clock& myClock, ValveGroupN& myEtv, MainSwitch& _myMainSwitch, Memory& myMemory, Timer& myTimer, Debugger& myDebugger, AutoCycle& autoCycle);

@@ -30,7 +30,6 @@ struct PageController {
 	Debugger& debugger;
 	AutoCycle& autoCycle;
 	bool timeToEdit;
-	uint8_t etvNum;
 	KeypadButton keypadButton() const;
 
 protected:

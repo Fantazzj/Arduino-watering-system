@@ -75,7 +75,7 @@ ClayTimer myTimer;
 #	error "No variable definition"
 #endif
 
-AutoCycle autoCycle(myClock, myValveGroup, VALVE_NUM, myMainSwitch, myMoisture, myTimer, myDebugger);
+AutoCycle autoCycle(myClock, myValveGroup, myMainSwitch, myMoisture, myTimer, myDebugger);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
 
 #if defined(HWARDUINO)

@@ -45,11 +45,11 @@ PageNum EditEtvTime::exec() {
 			_controller.memory.saveEtvMinOn(_etvEdit, _timeEdit);
 			_etvEdit++;
 			_timeEdit = _controller.etv.getMinOn(_etvEdit);
-			if(_etvEdit >= _controller.etvNum) {
+			if(_etvEdit >= VALVE_NUM) {
 				_controller.autoCycle.updateTReset();
 #ifdef DEBUG
 				_controller.debugger.print("New etv minOn: [ ");
-				for(uint8_t e = 0; e < _controller.etvNum; e++) {
+				for(uint8_t e = 0; e < VALVE_NUM; e++) {
 					_controller.debugger.print(_controller.etv.getMinOn(e));
 					_controller.debugger.print(' ');
 				}

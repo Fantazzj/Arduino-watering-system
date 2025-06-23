@@ -9,6 +9,7 @@
 
 class AutoCycle {
 private:
+	static constexpr uint16_t MS_SNUBBER = 500;
 	Clock& _myClock;
 	ValveGroupN& _myEtv;
 	MainSwitch& _myMainSwitch;
@@ -16,8 +17,6 @@ private:
 	Timer& _myTimer;
 	Debugger& _myDebugger;
 	int8_t _nextEtv() const;
-	MyTime _checkTReset() const;
-	const uint16_t msSnub = 1500;
 
 public:
 	MyTime tStart;
@@ -26,10 +25,9 @@ public:
 	bool watered = false;
 	bool started = false;
 	int8_t etvOn = -1;
-	int8_t etvNum;
 	void updateTReset();
 
-	explicit AutoCycle(Clock& myClock, ValveGroupN& myEtv, int8_t etvNum, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& timer, Debugger& debugger);
+	explicit AutoCycle(Clock& myClock, ValveGroupN& myEtv, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& timer, Debugger& debugger);
 	void begin(MyTime tStart);
 	void exec();
 };
