@@ -1,6 +1,8 @@
 #include "ClayKeypad.hpp"
 
-ClayKeypad::ClayKeypad() = default;
+ClayKeypad::ClayKeypad() {
+	w = nullptr;
+};
 
 void ClayKeypad::begin(ClayControlUnit* w) {
 	this->w = w;
