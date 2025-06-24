@@ -24,14 +24,7 @@ void AutoCycle::exec() {
 
 	// Check if is moist
 	if(watered && tReset.hour == newTime.time.hour && tReset.min == newTime.time.min) {
-		const uint8_t moisture = _myMoisture.getMoisture();
-		watered = moisture >= 50;
-#ifdef DEBUG
-		//FIXME: execution is "infinite" if is watered (moisture>90) and the debugger's buffer is continuously filled until it explodes, before enabling debugger's prints it needs to be solved
-		//_myDebugger.print("Moisture level ");
-		//_myDebugger.print(moisture);
-		//_myDebugger.println("%");
-#endif
+		watered = false;
 		return;
 	}
 
@@ -50,7 +43,17 @@ void AutoCycle::exec() {
 
 	// Start the watering
 	if(newTime.time >= tStart && !watered && !started) {
-		etvOn = _nextEtv();
+		if(moisture.getMoisture() >= 50) {
+			started = false;
+			watered = true;
+#ifdef DEBUG
+			debugger.println("Today is already moist");
+			debugger.print("Moisture level ");
+			debugger.print(moisture.getMoisture());
+			debugger.println("%");
+#endif
+			return;
+		}
 
 		etvOn = chooseNextEtv();
 		if(etvOn == -1) {
