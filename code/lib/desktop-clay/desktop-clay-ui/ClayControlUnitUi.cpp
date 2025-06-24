@@ -37,7 +37,7 @@ ClayControlUnitUi::ClayControlUnitUi() :
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, fonts);
 
-	Clay_SetDebugModeEnabled(true);
+	//Clay_SetDebugModeEnabled(true);
 }
 
 void ClayControlUnitUi::createControlUnit() {
