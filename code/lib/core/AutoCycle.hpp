@@ -10,13 +10,13 @@
 class AutoCycle {
 private:
 	static constexpr uint16_t MS_SNUBBER = 500;
-	Clock& _myClock;
-	ValveGroupN& _myEtv;
-	MainSwitch& _myMainSwitch;
-	Moisture& _myMoisture;
-	Timer& _myTimer;
-	Debugger& _myDebugger;
-	int8_t _nextEtv() const;
+	Clock& clock;
+	ValveGroupN& etv;
+	MainSwitch& mainSwitch;
+	Moisture& moisture;
+	Timer& timer;
+	Debugger& debugger;
+	int8_t chooseNextEtv() const;
 
 public:
 	MyTime tStart;
@@ -25,11 +25,11 @@ public:
 	bool watered = false;
 	bool started = false;
 	int8_t etvOn = -1;
-	void updateTReset();
-
-	explicit AutoCycle(Clock& myClock, ValveGroupN& myEtv, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& timer, Debugger& debugger);
+	explicit AutoCycle(Clock& clock, ValveGroupN& etv, MainSwitch& mainSwitch, Moisture& moisture, Timer& timer, Debugger& debugger);
 	void begin(MyTime tStart);
 	void exec();
+	void updateTReset();
+	uint8_t getMinToWater() const;
 };
 
 #endif//AUTO_CYCLE_HPP

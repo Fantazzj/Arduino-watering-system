@@ -1,7 +1,7 @@
 #include "AutoCycle.hpp"
 
-AutoCycle::AutoCycle(Clock& myClock, ValveGroupN& myEtv, MainSwitch& myMainSwitch, Moisture& myMoisture, Timer& myTimer, Debugger& myDebugger) :
-	_myClock(myClock), _myEtv(myEtv), _myMainSwitch(myMainSwitch), _myMoisture(myMoisture), _myTimer(myTimer), _myDebugger(myDebugger) {
+AutoCycle::AutoCycle(Clock& clock, ValveGroupN& etv, MainSwitch& mainSwitch, Moisture& moisture, Timer& timer, Debugger& debugger) :
+	clock(clock), etv(etv), mainSwitch(mainSwitch), moisture(moisture), timer(timer), debugger(debugger) {
 }
 
 void AutoCycle::begin(const MyTime tStart) {
@@ -9,18 +9,18 @@ void AutoCycle::begin(const MyTime tStart) {
 	updateTReset();
 }
 
-int8_t AutoCycle::_nextEtv() const {
-	for(int8_t etv = etvOn + 1; etv < VALVE_NUM; etv++) {
-		if(_myEtv.toWater(etv)) {
-			return etv;
+int8_t AutoCycle::chooseNextEtv() const {
+	for(int8_t e = etvOn + 1; e < VALVE_NUM; e++) {
+		if(etv.toWater(e)) {
+			return e;
 		}
-		_myEtv.increaseElapsedDays(etv);
+		etv.increaseElapsedDays(e);
 	}
 	return -1;
 }
 
 void AutoCycle::exec() {
-	newTime = _myClock.getDateTime();
+	newTime = clock.getDateTime();
 
 	// Check if is moist
 	if(watered && tReset.hour == newTime.time.hour && tReset.min == newTime.time.min) {
@@ -36,14 +36,14 @@ void AutoCycle::exec() {
 	}
 
 	// Automatic turn off after manual watering
-	if(!started && etvOn != -1 && _myEtv.wateringDone(etvOn, newTime.time)) {
+	if(!started && etvOn != -1 && etv.wateringDone(etvOn, newTime.time)) {
 #ifdef DEBUG
-		_myDebugger.print("Automatic turning off Etv ");
-		_myDebugger.println(etvOn + 1);
+		debugger.print("Automatic turning off Etv ");
+		debugger.println(etvOn + 1);
 #endif
-		_myMainSwitch.turnOff();
-		_myTimer.wait(MS_SNUBBER);
-		_myEtv.turnOff(etvOn);
+		mainSwitch.turnOff();
+		timer.wait(MS_SNUBBER);
+		etv.turnOff(etvOn);
 		etvOn = -1;
 		return;
 	}
@@ -52,73 +52,78 @@ void AutoCycle::exec() {
 	if(newTime.time >= tStart && !watered && !started) {
 		etvOn = _nextEtv();
 
+		etvOn = chooseNextEtv();
 		if(etvOn == -1) {
 			started = false;
 			watered = true;
 #ifdef DEBUG
-			_myDebugger.println("Watering not needed");
+			debugger.println("Today no etv needs watering");
 #endif
 			return;
 		}
 #ifdef DEBUG
-		_myDebugger.println("Watering starts");
+		debugger.println("Watering starts");
 #endif
 		started = true;
 #ifdef DEBUG
-		_myDebugger.print("Turning on Etv ");
-		_myDebugger.println(etvOn + 1);
+		debugger.print("Turning on Etv ");
+		debugger.println(etvOn + 1);
 #endif
-		_myEtv.turnOn(etvOn);
-		_myTimer.wait(MS_SNUBBER);
-		_myMainSwitch.turnOn();
+		etv.turnOn(etvOn);
+		timer.wait(MS_SNUBBER);
+		mainSwitch.turnOn();
 
 		return;
 	}
 
 	// Continue the watering
 	if(started) {
-		if(!_myEtv.wateringDone(etvOn, newTime.time))
+		if(!etv.wateringDone(etvOn, newTime.time))
 			return;
 
 #ifdef DEBUG
-		_myDebugger.print("Turning off Etv ");
-		_myDebugger.println(etvOn + 1);
+		debugger.print("Turning off Etv ");
+		debugger.println(etvOn + 1);
 #endif
-		_myMainSwitch.turnOff();
-		_myTimer.wait(MS_SNUBBER);
-		_myEtv.turnOff(etvOn);
+		mainSwitch.turnOff();
+		timer.wait(MS_SNUBBER);
+		etv.turnOff(etvOn);
 
-		etvOn = _nextEtv();
+		etvOn = chooseNextEtv();
 		if(etvOn == -1) {
 			watered = true;
 			started = false;
 #ifdef DEBUG
-			_myDebugger.println("Watering finished");
+			debugger.println("Watering finished");
 #endif
 			return;
 		}
 #ifdef DEBUG
-		_myDebugger.print("Turning on Etv ");
-		_myDebugger.println(etvOn + 1);
+		debugger.print("Turning on Etv ");
+		debugger.println(etvOn + 1);
 #endif
-		_myEtv.turnOn(etvOn);
-		_myTimer.wait(MS_SNUBBER);
-		_myMainSwitch.turnOn();
+		etv.turnOn(etvOn);
+		timer.wait(MS_SNUBBER);
+		mainSwitch.turnOn();
 	}
+}
+
+uint8_t AutoCycle::getMinToWater() const {
+	uint16_t minToWater = 0;
+	for(int8_t e = 0; e < VALVE_NUM; e++)
+		minToWater += etv.getMinOn(e);
+	minToWater += secToMin(MS_SNUBBER * VALVE_NUM / 1000);
+
+	return minToWater;
 }
 
 void AutoCycle::updateTReset() {
 	const uintmax_t startMin = hourToMin(tStart.hour) + tStart.min;
 
-	uint16_t minToWater = 0;
-	for(int8_t e = 0; e < VALVE_NUM; e++)
-		minToWater += _myEtv.getMinOn(e);
-	minToWater += secToMin(MS_SNUBBER * VALVE_NUM / 1000);
-
-	tReset = startMin + minToWater < 1440 ? MyTime(0, 0, 0) : MyTime(12, 0, 0);
+	tReset = startMin + getMinToWater() < 1440 ? MyTime(0, 0, 0) : MyTime(12, 0, 0);
 
 #ifdef DEBUG
-	_myDebugger.print("Watering state will reset at: ");
-	_myDebugger.println(tReset);
+	debugger.print("Watering state will reset at: ");
+	debugger.println(tReset);
 #endif
 }
