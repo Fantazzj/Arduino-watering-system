@@ -15,23 +15,14 @@ public:
 	MyDateTime();
 	MyDate date;
 	MyTime time;
-
 	uint64_t operator+(const MyDateTime& a) const;
-
 	uint64_t operator-(const MyDateTime& a) const;
-
 	bool operator>(const MyDateTime& a) const;
-
 	bool operator<(const MyDateTime& a) const;
-
 	bool operator==(const MyDateTime& a) const;
-
 	bool operator!=(const MyDateTime& a) const;
-
 	bool operator>=(const MyDateTime& a) const;
-
 	bool operator<=(const MyDateTime& a) const;
 };
-
 
 #endif//MYDATETIME_HPP

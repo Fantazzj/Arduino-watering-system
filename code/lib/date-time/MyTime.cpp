@@ -1,6 +1,6 @@
 #include "MyTime.hpp"
 
-MyTime::MyTime(uint8_t hour, uint8_t min, uint8_t sec) {
+MyTime::MyTime(const uint8_t hour, const uint8_t min, const uint8_t sec) {
 	this->hour = hour;
 	this->min = min;
 	this->sec = sec;
@@ -13,37 +13,37 @@ MyTime::MyTime() {
 }
 
 uintmax_t MyTime::operator+(const MyTime& a) const {
-	return this->_toSec() + a._toSec();
+	return this->toSecFromMidnight() + a.toSecFromMidnight();
 }
 
 uintmax_t MyTime::operator-(const MyTime& a) const {
-	return this->_toSec() - a._toSec();
+	return this->toSecFromMidnight() - a.toSecFromMidnight();
 }
 
 bool MyTime::operator>(const MyTime& a) const {
-	return this->_toSec() > a._toSec();
+	return this->toSecFromMidnight() > a.toSecFromMidnight();
 }
 
 bool MyTime::operator<(const MyTime& a) const {
-	return this->_toSec() < a._toSec();
+	return this->toSecFromMidnight() < a.toSecFromMidnight();
 }
 
 bool MyTime::operator==(const MyTime& a) const {
-	return this->_toSec() == a._toSec();
+	return this->toSecFromMidnight() == a.toSecFromMidnight();
 }
 
 bool MyTime::operator!=(const MyTime& a) const {
-	return this->_toSec() != a._toSec();
+	return this->toSecFromMidnight() != a.toSecFromMidnight();
 }
 
 bool MyTime::operator>=(const MyTime& a) const {
-	return this->_toSec() >= a._toSec();
+	return this->toSecFromMidnight() >= a.toSecFromMidnight();
 }
 
 bool MyTime::operator<=(const MyTime& a) const {
-	return this->_toSec() <= a._toSec();
+	return this->toSecFromMidnight() <= a.toSecFromMidnight();
 }
 
-uintmax_t MyTime::_toSec() const {
+uintmax_t MyTime::toSecFromMidnight() const {
 	return hourToSec(this->hour) + minToSec(this->min) + this->sec;
 }

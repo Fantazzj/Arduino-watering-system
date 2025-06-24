@@ -42,30 +42,19 @@ enum Month : uint8_t {
 };
 
 struct MyDate {
-	explicit MyDate(uint8_t dow, uint8_t, uint8_t mon, uint16_t year);
+	MyDate(uint8_t dow, uint8_t, uint8_t mon, uint16_t year);
 	MyDate();
-
 	uint8_t dow;
 	uint8_t day;
 	uint8_t mon;
 	uint16_t year;
-
-	friend class MyDateTime;
-
 	bool operator>(const MyDate& a) const;
-
 	bool operator<(const MyDate& a) const;
-
 	bool operator==(const MyDate& a) const;
-
 	bool operator!=(const MyDate& a) const;
-
 	bool operator>=(const MyDate& a) const;
-
 	bool operator<=(const MyDate& a) const;
-
-private:
-	uintmax_t _toDays() const;
+	uintmax_t toDaysFromYearZero() const;
 };
 
 #endif//MYDATE_HPP

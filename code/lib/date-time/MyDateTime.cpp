@@ -1,6 +1,6 @@
 #include "MyDateTime.hpp"
 
-MyDateTime::MyDateTime(MyTime time, MyDate date) {
+MyDateTime::MyDateTime(const MyTime time, const MyDate date) {
 	this->time = time;
 	this->date = date;
 }
@@ -11,41 +11,41 @@ MyDateTime::MyDateTime() {
 }
 
 uint64_t MyDateTime::operator+(const MyDateTime& a) const {
-	return (this->time._toSec() + dayToSec(this->date._toDays())) +
-		   (a.time._toSec() + dayToSec(a.date._toDays()));
+	return (this->time.toSecFromMidnight() + dayToSec(this->date.toDaysFromYearZero())) +
+		   (a.time.toSecFromMidnight() + dayToSec(a.date.toDaysFromYearZero()));
 }
 
 uint64_t MyDateTime::operator-(const MyDateTime& a) const {
-	return (this->time._toSec() + dayToSec(this->date._toDays())) -
-		   (a.time._toSec() + dayToSec(a.date._toDays()));
+	return (this->time.toSecFromMidnight() + dayToSec(this->date.toDaysFromYearZero())) -
+		   (a.time.toSecFromMidnight() + dayToSec(a.date.toDaysFromYearZero()));
 }
 
 bool MyDateTime::operator>(const MyDateTime& a) const {
-	return (this->time._toSec() + dayToSec(this->date._toDays())) >
-		   (a.time._toSec() + dayToSec(a.date._toDays()));
+	return (this->time.toSecFromMidnight() + dayToSec(this->date.toDaysFromYearZero())) >
+		   (a.time.toSecFromMidnight() + dayToSec(a.date.toDaysFromYearZero()));
 }
 
 bool MyDateTime::operator<(const MyDateTime& a) const {
-	return (this->time._toSec() + dayToSec(this->date._toDays())) <
-		   (a.time._toSec() + dayToSec(a.date._toDays()));
+	return (this->time.toSecFromMidnight() + dayToSec(this->date.toDaysFromYearZero())) <
+		   (a.time.toSecFromMidnight() + dayToSec(a.date.toDaysFromYearZero()));
 }
 
 bool MyDateTime::operator==(const MyDateTime& a) const {
-	return (this->time._toSec() + dayToSec(this->date._toDays())) ==
-		   (a.time._toSec() + dayToSec(a.date._toDays()));
+	return (this->time.toSecFromMidnight() + dayToSec(this->date.toDaysFromYearZero())) ==
+		   (a.time.toSecFromMidnight() + dayToSec(a.date.toDaysFromYearZero()));
 }
 
 bool MyDateTime::operator!=(const MyDateTime& a) const {
-	return (this->time._toSec() + dayToSec(this->date._toDays())) !=
-		   (a.time._toSec() + dayToSec(a.date._toDays()));
+	return (this->time.toSecFromMidnight() + dayToSec(this->date.toDaysFromYearZero())) !=
+		   (a.time.toSecFromMidnight() + dayToSec(a.date.toDaysFromYearZero()));
 }
 
 bool MyDateTime::operator>=(const MyDateTime& a) const {
-	return (this->time._toSec() + dayToSec(this->date._toDays())) >=
-		   (a.time._toSec() + dayToSec(a.date._toDays()));
+	return (this->time.toSecFromMidnight() + dayToSec(this->date.toDaysFromYearZero())) >=
+		   (a.time.toSecFromMidnight() + dayToSec(a.date.toDaysFromYearZero()));
 }
 
 bool MyDateTime::operator<=(const MyDateTime& a) const {
-	return (this->time._toSec() + dayToSec(this->date._toDays())) <=
-		   (a.time._toSec() + dayToSec(a.date._toDays()));
+	return (this->time.toSecFromMidnight() + dayToSec(this->date.toDaysFromYearZero())) <=
+		   (a.time.toSecFromMidnight() + dayToSec(a.date.toDaysFromYearZero()));
 }

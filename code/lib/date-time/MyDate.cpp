@@ -1,6 +1,6 @@
 #include "MyDate.hpp"
 
-MyDate::MyDate(uint8_t dow, uint8_t day, uint8_t mon, uint16_t year) {
+MyDate::MyDate(const uint8_t dow, const uint8_t day, const uint8_t mon, const uint16_t year) {
 	this->dow = dow;
 	this->day = day;
 	this->mon = mon;
@@ -15,29 +15,29 @@ MyDate::MyDate() {
 }
 
 bool MyDate::operator>(const MyDate& a) const {
-	return this->_toDays() > a._toDays();
+	return this->toDaysFromYearZero() > a.toDaysFromYearZero();
 }
 
 bool MyDate::operator<(const MyDate& a) const {
-	return this->_toDays() < a._toDays();
+	return this->toDaysFromYearZero() < a.toDaysFromYearZero();
 }
 
 bool MyDate::operator==(const MyDate& a) const {
-	return this->_toDays() == a._toDays();
+	return this->toDaysFromYearZero() == a.toDaysFromYearZero();
 }
 
 bool MyDate::operator!=(const MyDate& a) const {
-	return this->_toDays() != a._toDays();
+	return this->toDaysFromYearZero() != a.toDaysFromYearZero();
 }
 
 bool MyDate::operator>=(const MyDate& a) const {
-	return this->_toDays() >= a._toDays();
+	return this->toDaysFromYearZero() >= a.toDaysFromYearZero();
 }
 
 bool MyDate::operator<=(const MyDate& a) const {
-	return this->_toDays() <= a._toDays();
+	return this->toDaysFromYearZero() <= a.toDaysFromYearZero();
 }
 
-uint64_t MyDate::_toDays() const {
+uint64_t MyDate::toDaysFromYearZero() const {
 	return yearToDay(year) + monToDay(mon) + day;
 }
