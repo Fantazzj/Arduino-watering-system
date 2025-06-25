@@ -1,7 +1,7 @@
 #include "ValveGroup.hpp"
 
 template<uint8_t n>
-ValveGroup<n>::ValveGroup(Clock& clock, uint8_t* days, uint8_t* minOn) :
+ValveGroup<n>::ValveGroup(Clock& clock, const uint8_t* days, const uint8_t* minOn) :
 	clock(clock) {
 	for(uint8_t i = 0; i < n; i++) {
 		this->days[i] = days[i];
