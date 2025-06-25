@@ -38,7 +38,7 @@ HwDisplay myDisplay(lcdAddress, lcdLength, lcdHeight);
 HwClock myClock;
 HwValveGroup myValveGroup(myClock, etvsPin);
 HwMainSwitch myMainSwitch(mainSwitchPin);
-HwMemory myMemory(VALVE_NUM);
+HwMemory myMemory;
 HwMoisture myMoisture(humidityPin);
 HwDebugger myDebugger;
 HwTimer myTimer;
