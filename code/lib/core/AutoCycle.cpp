@@ -2,6 +2,10 @@
 
 AutoCycle::AutoCycle(Clock& clock, ValveGroupN& etv, MainSwitch& mainSwitch, Moisture& moisture, Timer& timer, Debugger& debugger) :
 	clock(clock), etv(etv), mainSwitch(mainSwitch), moisture(moisture), timer(timer), debugger(debugger) {
+	watered = false;
+	started = false;
+	moist = false;
+	etvOn = -1;
 }
 
 void AutoCycle::begin(const MyTime tStart) {
@@ -22,7 +26,7 @@ int8_t AutoCycle::chooseNextEtv() const {
 void AutoCycle::exec() {
 	newTime = clock.getDateTime();
 
-	// Check if is moist
+	// Reset watered state
 	if(watered && tReset.hour == newTime.time.hour && tReset.min == newTime.time.min) {
 		watered = false;
 		return;
@@ -46,6 +50,7 @@ void AutoCycle::exec() {
 		if(moisture.getMoisture() >= 50) {
 			started = false;
 			watered = true;
+			moist = true;
 #ifdef DEBUG
 			debugger.println("Today is already moist");
 			debugger.print("Moisture level ");
@@ -55,6 +60,7 @@ void AutoCycle::exec() {
 			return;
 		}
 
+		moist = false;
 		etvOn = chooseNextEtv();
 		if(etvOn == -1) {
 			started = false;

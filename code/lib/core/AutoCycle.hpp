@@ -22,9 +22,10 @@ public:
 	MyTime tStart;
 	MyTime tReset;
 	MyDateTime newTime;
-	bool watered = false;
-	bool started = false;
-	int8_t etvOn = -1;
+	bool watered;
+	bool started;
+	bool moist;
+	int8_t etvOn;
 	explicit AutoCycle(Clock& clock, ValveGroupN& etv, MainSwitch& mainSwitch, Moisture& moisture, Timer& timer, Debugger& debugger);
 	void begin(MyTime tStart);
 	void exec();

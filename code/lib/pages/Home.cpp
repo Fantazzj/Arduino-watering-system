@@ -31,10 +31,8 @@ void Home::show() {
 		} else {
 			if(controller.autoCycle.watered) controller.display.checkSym(true);
 			else controller.display.checkSym(false);
-			/*
-            	if(moisture) _controller.display.dropSym(true);
-            	else _controller.display.dropSym(false);
-			*/
+			if(controller.autoCycle.moist) controller.display.dropSym(true);
+			else controller.display.dropSym(false);
 			if(newTime.date.year < 2022 || controller.timeToEdit) controller.display.clockSym(true);
 			else controller.display.clockSym(false);
 		}
