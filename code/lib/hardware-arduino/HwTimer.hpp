@@ -1,7 +1,7 @@
 #ifndef QTTIMER_HPP
 #define QTTIMER_HPP
 
-#include "../core-lib/Timer.hpp"
+#include "../core/Timer.hpp"
 #include <Arduino.h>
 
 class HwTimer : public Timer {

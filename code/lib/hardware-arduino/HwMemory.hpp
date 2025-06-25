@@ -1,7 +1,7 @@
 #ifndef HWMEMORY_HPP
 #define HWMEMORY_HPP
 
-#include "../core-lib/Memory.hpp"
+#include "../core/Memory.hpp"
 
 class HwMemory : public Memory {
 private:

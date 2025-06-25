@@ -1,7 +1,7 @@
 #ifndef HWVALVEGROUP_HPP
 #define HWVALVEGROUP_HPP
 
-#include "../core-lib/ValveGroup.hpp"
+#include "../core/ValveGroup.hpp"
 
 class HwValveGroup : public ValveGroupN {
 private:

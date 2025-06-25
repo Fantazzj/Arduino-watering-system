@@ -2,15 +2,15 @@
 #include "../lib/core/PageSelector.hpp"
 
 #if defined(HWARDUINO)
-#	include "../lib/arduino-lib/HwClock.hpp"
-#	include "../lib/arduino-lib/HwDisplay.hpp"
-#	include "../lib/arduino-lib/HwKeypad.hpp"
-#	include "../lib/arduino-lib/HwMainSwitch.hpp"
-#	include "../lib/arduino-lib/HwMemory.hpp"
-#	include "../lib/arduino-lib/HwMoisture.hpp"
-#	include "../lib/arduino-lib/HwValveGroup.hpp"
-#	include "../lib/arduino-lib/HwDebugger.hpp"
-#	include "../lib/arduino-lib/HwTimer.hpp"
+#	include "../lib/hardware-arduino/HwClock.hpp"
+#	include "../lib/hardware-arduino/HwDisplay.hpp"
+#	include "../lib/hardware-arduino/HwKeypad.hpp"
+#	include "../lib/hardware-arduino/HwMainSwitch.hpp"
+#	include "../lib/hardware-arduino/HwMemory.hpp"
+#	include "../lib/hardware-arduino/HwMoisture.hpp"
+#	include "../lib/hardware-arduino/HwValveGroup.hpp"
+#	include "../lib/hardware-arduino/HwDebugger.hpp"
+#	include "../lib/hardware-arduino/HwTimer.hpp"
 
 //UnitDisplay
 #	define lcdAddress 0x27
@@ -18,7 +18,7 @@
 #	define lcdHeight 2
 
 //Etv
-const int8_t etvsPin[] = {6, 7, 2, 3, 4, 5, 8, 9, 10};
+constexpr int8_t etvsPin[] = {6, 7, 2, 3, 4, 5, 8, 9, 10};
 #	define mainSwitchPin 11
 
 //Buttons
