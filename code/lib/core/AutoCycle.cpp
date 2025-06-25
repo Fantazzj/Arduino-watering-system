@@ -29,6 +29,7 @@ void AutoCycle::exec() {
 	// Reset watered state
 	if(watered && tReset.hour == newTime.time.hour && tReset.min == newTime.time.min) {
 		watered = false;
+		moist = false;
 		return;
 	}
 
