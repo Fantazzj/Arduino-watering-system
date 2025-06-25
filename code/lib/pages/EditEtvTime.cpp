@@ -2,58 +2,58 @@
 
 EditEtvTime::EditEtvTime(PageController& controller) :
 	Page(controller) {
-	_etvEdit = 0;
-	_timeEdit = _controller.etv.getMinOn(0);
+	etvEdit = 0;
+	timeEdit = controller.etv.getMinOn(0);
 }
 
 PageNum EditEtvTime::exec() {
-	KeypadButton key = _controller.keypadButton();
-	if(key != NoBtn) _redraw = true;
+	const KeypadButton key = controller.keypadButton();
+	if(key != NoBtn) redraw = true;
 
 	switch(key) {
-		case Cancel:
-			if(_etvEdit > 0) {
-				_etvEdit--;
-				_timeEdit = _controller.etv.getMinOn(_etvEdit);
+		case Cancel: {
+			if(etvEdit > 0) {
+				etvEdit--;
+				timeEdit = controller.etv.getMinOn(etvEdit);
 				return Stay;
-			} else {
-				_etvEdit = 0;
-				_timeEdit = 0;
-				return SettingsPage2;
 			}
+			etvEdit = 0;
+			timeEdit = 0;
+			return SettingsPage2;
+		}
 
 		case Down:
-			if(_timeEdit <= 0) {
-				_timeEdit = 0;
+			if(timeEdit <= 0) {
+				timeEdit = 0;
 				return Stay;
 			}
-			if(_timeEdit <= 10) _timeEdit--;
-			else _timeEdit -= 5;
+			if(timeEdit <= 10) timeEdit--;
+			else timeEdit -= 5;
 			return Stay;
 
 		case Up:
-			if(_timeEdit >= 120) {
-				_timeEdit = 120;
+			if(timeEdit >= 120) {
+				timeEdit = 120;
 				return Stay;
 			}
-			if(_timeEdit < 10) _timeEdit++;
-			else _timeEdit += 5;
+			if(timeEdit < 10) timeEdit++;
+			else timeEdit += 5;
 			return Stay;
 
 		case Confirm:
-			_controller.etv.setMinOn(_etvEdit, _timeEdit);
-			_controller.memory.saveEtvMinOn(_etvEdit, _timeEdit);
-			_etvEdit++;
-			_timeEdit = _controller.etv.getMinOn(_etvEdit);
-			if(_etvEdit >= VALVE_NUM) {
-				_controller.autoCycle.updateTReset();
+			controller.etv.setMinOn(etvEdit, timeEdit);
+			controller.memory.saveEtvMinOn(etvEdit, timeEdit);
+			etvEdit++;
+			timeEdit = controller.etv.getMinOn(etvEdit);
+			if(etvEdit >= VALVE_NUM) {
+				controller.autoCycle.updateTReset();
 #ifdef DEBUG
-				_controller.debugger.print("New etv minOn: [ ");
+				controller.debugger.print("New etv minOn: [ ");
 				for(uint8_t e = 0; e < VALVE_NUM; e++) {
-					_controller.debugger.print(_controller.etv.getMinOn(e));
-					_controller.debugger.print(' ');
+					controller.debugger.print(controller.etv.getMinOn(e));
+					controller.debugger.print(' ');
 				}
-				_controller.debugger.println(']');
+				controller.debugger.println(']');
 #endif
 
 				return HomePage;
@@ -66,10 +66,10 @@ PageNum EditEtvTime::exec() {
 }
 
 void EditEtvTime::show() {
-	if(_redraw) {
-		_controller.display.printData("Etv", _etvEdit + 1, "per", _timeEdit, "minuti");
-		int8_t numDigits = 1 + (_timeEdit >= 10) + (_timeEdit >= 100);
-		_controller.display.blinkAt(9 + numDigits, 0);
-		_redraw = false;
+	if(redraw) {
+		controller.display.printData("Etv", etvEdit + 1, "per", timeEdit, "minuti");
+		const int8_t numDigits = 1 + (timeEdit >= 10) + (timeEdit >= 100);
+		controller.display.blinkAt(9 + numDigits, 0);
+		redraw = false;
 	}
 }

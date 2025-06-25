@@ -3,9 +3,9 @@
 
 #include "Page.hpp"
 
-class EditSRWatered : public Page {
+class EditSRWatered final : public Page {
 private:
-	bool _watered = false;
+	bool watered;
 
 public:
 	explicit EditSRWatered(PageController& controller);

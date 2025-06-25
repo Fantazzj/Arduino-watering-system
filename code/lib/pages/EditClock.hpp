@@ -4,10 +4,10 @@
 #include "Page.hpp"
 #include "PageController.hpp"
 
-class EditClock : public Page {
+class EditClock final : public Page {
 private:
-	MyDateTime _newTime;
-	uint8_t _editPhase = 1;
+	MyDateTime newTime;
+	uint8_t editPhase;
 
 public:
 	explicit EditClock(PageController& controller);

@@ -3,10 +3,10 @@
 
 #include "Page.hpp"
 
-class EditEtvTime : public Page {
+class EditEtvTime final : public Page {
 private:
-	int8_t _etvEdit;
-	uint8_t _timeEdit;
+	int8_t etvEdit;
+	uint8_t timeEdit;
 
 public:
 	explicit EditEtvTime(PageController& controller);

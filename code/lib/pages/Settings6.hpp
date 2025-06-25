@@ -3,9 +3,9 @@
 
 #include "Page.hpp"
 
-class Settings6 : public Page {
+class Settings6 final : public Page {
 private:
-	static constexpr const char* displayText = "Cambia giorni elettrovalvole";
+	static constexpr const char* DISPLAY_TEXT = "Cambia giorni elettrovalvole";
 
 public:
 	explicit Settings6(PageController& controller);

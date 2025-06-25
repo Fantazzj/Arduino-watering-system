@@ -1,10 +1,10 @@
 #include "Page.hpp"
 
 Page::Page(PageController& controller) :
-	_controller(controller) {}
+	controller(controller) {}
 
 PageNum Page::exec() { return Stay; }
 
 void Page::show() {
-	_controller.display.printSimpleText("PAGINA GENERALE");
+	controller.display.printSimpleText("PAGINA GENERALE");
 }

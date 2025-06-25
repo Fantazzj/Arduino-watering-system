@@ -3,9 +3,9 @@
 
 #include "Page.hpp"
 
-class Settings3 : public Page {
+class Settings3 final : public Page {
 private:
-	static constexpr const char* displayText = "Cambia orario di avvio";
+	static constexpr const char* DISPLAY_TEXT = "Cambia orario di avvio";
 
 public:
 	explicit Settings3(PageController& controller);

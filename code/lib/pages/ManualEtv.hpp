@@ -4,9 +4,9 @@
 #include "Page.hpp"
 #include "PageController.hpp"
 
-class ManualEtv : public Page {
+class ManualEtv final : public Page {
 private:
-	int8_t _num;
+	int8_t num;
 
 public:
 	explicit ManualEtv(PageController& controller);

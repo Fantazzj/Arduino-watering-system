@@ -2,61 +2,61 @@
 
 EditEtvDays::EditEtvDays(PageController& controller) :
 	Page(controller) {
-	_etvEdit = 0;
-	_daysEdit = _controller.etv.getDays(0);
+	etvEdit = 0;
+	daysEdit = controller.etv.getDays(0);
 }
 
 PageNum EditEtvDays::exec() {
-	KeypadButton key = _controller.keypadButton();
-	if(key != NoBtn) _redraw = true;
+	const KeypadButton key = controller.keypadButton();
+	if(key != NoBtn) redraw = true;
 
 	switch(key) {
-		case Cancel:
-			if(_etvEdit > 0) {
-				_etvEdit--;
-				_daysEdit = _controller.etv.getDays(_etvEdit);
+		case Cancel: {
+			if(etvEdit > 0) {
+				etvEdit--;
+				daysEdit = controller.etv.getDays(etvEdit);
 				return Stay;
-			} else {
-				_etvEdit = 0;
-				_daysEdit = 0;
-				return SettingsPage6;
 			}
+			etvEdit = 0;
+			daysEdit = 0;
+			return SettingsPage6;
+		}
 
 		case Down:
-			if(_daysEdit <= 0) {
-				_daysEdit = 0;
+			if(daysEdit <= 0) {
+				daysEdit = 0;
 				return Stay;
 			}
-			if(_daysEdit <= 10) _daysEdit--;
-			else _daysEdit -= 5;
+			if(daysEdit <= 10) daysEdit--;
+			else daysEdit -= 5;
 			return Stay;
 
 		case Up:
-			if(_daysEdit >= 30) {
-				_daysEdit = 30;
+			if(daysEdit >= 30) {
+				daysEdit = 30;
 				return Stay;
 			}
-			if(_daysEdit < 10) _daysEdit++;
-			else _daysEdit += 5;
+			if(daysEdit < 10) daysEdit++;
+			else daysEdit += 5;
 			return Stay;
 
 		case Confirm:
-			_controller.etv.setDays(_etvEdit, _daysEdit);
-			_controller.memory.saveEtvDays(_etvEdit, _daysEdit);
-			_etvEdit++;
-			_daysEdit = _controller.etv.getDays(_etvEdit);
-			if(_etvEdit >= VALVE_NUM) {
+			controller.etv.setDays(etvEdit, daysEdit);
+			controller.memory.saveEtvDays(etvEdit, daysEdit);
+			etvEdit++;
+			daysEdit = controller.etv.getDays(etvEdit);
+			if(etvEdit >= VALVE_NUM) {
 #ifdef DEBUG
-				_controller.debugger.print("New etv days: [ ");
+				controller.debugger.print("New etv days: [ ");
 				for(uint8_t e = 0; e < VALVE_NUM; e++) {
-					_controller.debugger.print(_controller.etv.getDays(e));
-					_controller.debugger.print(' ');
+					controller.debugger.print(controller.etv.getDays(e));
+					controller.debugger.print(' ');
 				}
-				_controller.debugger.println(']');
+				controller.debugger.println(']');
 #endif
 				return HomePage;
 			}
-			else return Stay;
+			return Stay;
 
 		default:
 			return Stay;
@@ -64,10 +64,10 @@ PageNum EditEtvDays::exec() {
 }
 
 void EditEtvDays::show() {
-	if(_redraw) {
-		_controller.display.printData("Etv", _etvEdit + 1, "ogni", _daysEdit, "giorni");
-		int8_t numDigits = 1 + (_daysEdit >= 10);
-		_controller.display.blinkAt(10 + numDigits, 0);
-		_redraw = false;
+	if(redraw) {
+		controller.display.printData("Etv", etvEdit + 1, "ogni", daysEdit, "giorni");
+		const int8_t numDigits = 1 + (daysEdit >= 10);
+		controller.display.blinkAt(10 + numDigits, 0);
+		redraw = false;
 	}
 }

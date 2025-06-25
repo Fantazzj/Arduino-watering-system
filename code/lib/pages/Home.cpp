@@ -2,20 +2,20 @@
 
 Home::Home(PageController& controller) :
 	Page(controller) {
-	_controller.display.noBlink();
-	_newTime = _controller.clock.getDateTime();
+	controller.display.noBlink();
+	newTime = controller.clock.getDateTime();
 }
 
 PageNum Home::exec() {
-	const KeypadButton key = _controller.keypadButton();
+	const KeypadButton key = controller.keypadButton();
 
-	if(key != NoBtn) _redraw = true;
+	if(key != NoBtn) redraw = true;
 
-	_newTime = _controller.clock.getDateTime();
-	if(_oldTime.time.min != _newTime.time.min) _redraw = true;
+	newTime = controller.clock.getDateTime();
+	if(_oldTime.time.min != newTime.time.min) redraw = true;
 
-	if(_controller.autoCycle.etvOn != oldEtvOn) _redraw = true;
-	oldEtvOn = _controller.autoCycle.etvOn;
+	if(controller.autoCycle.etvOn != oldEtvOn) redraw = true;
+	oldEtvOn = controller.autoCycle.etvOn;
 
 	if(key == Confirm) return SettingsPage1;
 
@@ -23,23 +23,22 @@ PageNum Home::exec() {
 }
 
 void Home::show() {
-	if(_redraw) {
-		_controller.display.showClock(_newTime);
-		//_controller.displayPrint("HOMEPAGE");
-		if(_controller.autoCycle.etvOn != -1) {
-			_controller.display.printIn("Etv", 11, 1);
-			_controller.display.printIn(_controller.autoCycle.etvOn + 1, 14, 1);
+	if(redraw) {
+		controller.display.showClock(newTime);
+		if(controller.autoCycle.etvOn != -1) {
+			controller.display.printIn("Etv", 11, 1);
+			controller.display.printIn(controller.autoCycle.etvOn + 1, 14, 1);
 		} else {
-			if(_controller.autoCycle.watered) _controller.display.checkSym(true);
-			else _controller.display.checkSym(false);
+			if(controller.autoCycle.watered) controller.display.checkSym(true);
+			else controller.display.checkSym(false);
 			/*
             	if(moisture) _controller.display.dropSym(true);
             	else _controller.display.dropSym(false);
 			*/
-			if(_newTime.date.year < 2022 || _controller.timeToEdit) _controller.display.clockSym(true);
-			else _controller.display.clockSym(false);
+			if(newTime.date.year < 2022 || controller.timeToEdit) controller.display.clockSym(true);
+			else controller.display.clockSym(false);
 		}
-		_redraw = false;
+		redraw = false;
 	}
-	_oldTime = _newTime;
+	_oldTime = newTime;
 }

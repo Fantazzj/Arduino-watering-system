@@ -2,25 +2,25 @@
 
 EditSRWatered::EditSRWatered(PageController& controller) :
 	Page(controller) {
-	_watered = _controller.autoCycle.watered;
+	watered = controller.autoCycle.watered;
 }
 
 PageNum EditSRWatered::exec() {
-	KeypadButton key = _controller.keypadButton();
+	const KeypadButton key = controller.keypadButton();
 
-	if(key != NoBtn) _redraw = true;
+	if(key != NoBtn) redraw = true;
 
 	switch(key) {
 		case Cancel:
 			return SettingsPage5;
 
 		case Confirm:
-			_controller.autoCycle.watered = !_watered;
+			controller.autoCycle.watered = !watered;
 #ifdef DEBUG
-			if(_watered)
-				_controller.debugger.println("Reset watered state");
+			if(watered)
+				controller.debugger.println("Reset watered state");
 			else
-				_controller.debugger.println("Set watered state");
+				controller.debugger.println("Set watered state");
 #endif
 			return HomePage;
 
@@ -30,10 +30,10 @@ PageNum EditSRWatered::exec() {
 }
 
 void EditSRWatered::show() {
-	if(_redraw) {
-		if(!_watered) _controller.display.printSimpleText("Imposta gia' innaffiato");
-		else _controller.display.printSimpleText("Imposta da innaffiare");
-		_controller.display.blinkAt(15, 1);
-		_redraw = false;
+	if(redraw) {
+		if(!watered) controller.display.printSimpleText("Imposta gia' innaffiato");
+		else controller.display.printSimpleText("Imposta da innaffiare");
+		controller.display.blinkAt(15, 1);
+		redraw = false;
 	}
 }

@@ -29,8 +29,8 @@ public:
 	virtual void show();
 
 protected:
-	PageController& _controller;
-	bool _redraw = true;
+	PageController& controller;
+	bool redraw = true;
 };
 
 #endif

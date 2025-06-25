@@ -3,9 +3,9 @@
 
 #include "Page.hpp"
 
-class Settings4 : public Page {
+class Settings4 final : public Page {
 private:
-	static constexpr const char* displayText = "Impostazione manuale";
+	static constexpr const char* DISPLAY_TEXT = "Impostazione manuale";
 
 public:
 	explicit Settings4(PageController& controller);

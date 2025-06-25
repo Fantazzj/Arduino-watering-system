@@ -2,76 +2,78 @@
 
 EditClock::EditClock(PageController& controller) :
 	Page(controller) {
-	_editPhase = 1;
-	_newTime = controller.clock.getDateTime();
+	editPhase = 1;
+	newTime = controller.clock.getDateTime();
 }
 
 PageNum EditClock::exec() {
-	KeypadButton key = _controller.keypadButton();
+	const KeypadButton key = controller.keypadButton();
 
-	if(key != NoBtn) _redraw = true;
+	if(key != NoBtn) redraw = true;
 
 	switch(key) {
 		case Cancel:
-			_editPhase--;
-			if(_editPhase <= 0) return SettingsPage1;
+			editPhase--;
+			if(editPhase <= 0) return SettingsPage1;
 			return Stay;
 
 		case Down:
-			switch(_editPhase) {
+			switch(editPhase) {
 				case 1:
-					_newTime.date.dow = (_newTime.date.dow > Sunday) ? _newTime.date.dow - 1u : Saturday;
+					newTime.date.dow = (newTime.date.dow > Sunday) ? newTime.date.dow - 1u : Saturday;
 					break;
 				case 2:
-					_newTime.time.hour = (_newTime.time.hour > 0) ? _newTime.time.hour - 1u : 23u;
+					newTime.time.hour = (newTime.time.hour > 0) ? newTime.time.hour - 1u : 23u;
 					break;
 				case 3:
-					_newTime.time.min = (_newTime.time.min > 0) ? _newTime.time.min - 1u : 59u;
+					newTime.time.min = (newTime.time.min > 0) ? newTime.time.min - 1u : 59u;
 					break;
 				case 4:
-					_newTime.date.day = (_newTime.date.day > 1) ? _newTime.date.day - 1u : 31u;
+					newTime.date.day = (newTime.date.day > 1) ? newTime.date.day - 1u : 31u;
 					break;
 				case 5:
-					_newTime.date.mon = (_newTime.date.mon > 1) ? _newTime.date.mon - 1u : 12u;
+					newTime.date.mon = (newTime.date.mon > 1) ? newTime.date.mon - 1u : 12u;
 					break;
 				case 6:
-					_newTime.date.year = (_newTime.date.year > 2021) ? _newTime.date.year - 1u : 2021u;
+					newTime.date.year = (newTime.date.year > 2021) ? newTime.date.year - 1u : 2021u;
 					break;
+				default:;
 			}
 			return Stay;
 
 		case Up:
-			switch(_editPhase) {
+			switch(editPhase) {
 				case 1:
-					_newTime.date.dow = (_newTime.date.dow < Saturday) ? _newTime.date.dow + 1 : Sunday;
+					newTime.date.dow = (newTime.date.dow < Saturday) ? newTime.date.dow + 1 : Sunday;
 					break;
 				case 2:
-					_newTime.time.hour = (_newTime.time.hour < 23) ? _newTime.time.hour + 1 : 0;
+					newTime.time.hour = (newTime.time.hour < 23) ? newTime.time.hour + 1 : 0;
 					break;
 				case 3:
-					_newTime.time.min = (_newTime.time.min < 59) ? _newTime.time.min + 1 : 0;
+					newTime.time.min = (newTime.time.min < 59) ? newTime.time.min + 1 : 0;
 					break;
 				case 4:
-					_newTime.date.day = (_newTime.date.day < 31) ? _newTime.date.day + 1 : 1;
+					newTime.date.day = (newTime.date.day < 31) ? newTime.date.day + 1 : 1;
 					break;
 				case 5:
-					_newTime.date.mon = (_newTime.date.mon < 12) ? _newTime.date.mon + 1 : 1;
+					newTime.date.mon = (newTime.date.mon < 12) ? newTime.date.mon + 1 : 1;
 					break;
 				case 6:
-					_newTime.date.year++;
+					newTime.date.year++;
 					break;
+				default:;
 			}
 			return Stay;
 
 		case Confirm:
-			_editPhase++;
-			if(_editPhase > 6) {
-				_controller.clock.setDateTime(_newTime);
+			editPhase++;
+			if(editPhase > 6) {
+				controller.clock.setDateTime(newTime);
 #ifdef DEBUG
-				_controller.debugger.print("Date and Time updated: ");
-				_controller.debugger.println(_newTime);
+				controller.debugger.print("Date and Time updated: ");
+				controller.debugger.println(newTime);
 #endif
-				_controller.timeToEdit = false;
+				controller.timeToEdit = false;
 				return HomePage;
 			}
 			return Stay;
@@ -82,29 +84,30 @@ PageNum EditClock::exec() {
 }
 
 void EditClock::show() {
-	if(_redraw) {
-		_controller.display.showClock(_newTime);
-		_redraw = false;
+	if(redraw) {
+		controller.display.showClock(newTime);
+		redraw = false;
 
-		switch(_editPhase) {
+		switch(editPhase) {
 			case 1:
-				_controller.display.blinkAt(0, 0);
+				controller.display.blinkAt(0, 0);
 				break;
 			case 2:
-				_controller.display.blinkAt(12, 0);
+				controller.display.blinkAt(12, 0);
 				break;
 			case 3:
-				_controller.display.blinkAt(15, 0);
+				controller.display.blinkAt(15, 0);
 				break;
 			case 4:
-				_controller.display.blinkAt(1, 1);
+				controller.display.blinkAt(1, 1);
 				break;
 			case 5:
-				_controller.display.blinkAt(4, 1);
+				controller.display.blinkAt(4, 1);
 				break;
 			case 6:
-				_controller.display.blinkAt(9, 1);
+				controller.display.blinkAt(9, 1);
 				break;
+			default:;
 		}
 	}
 }

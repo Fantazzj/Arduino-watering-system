@@ -4,9 +4,9 @@
 #include "Page.hpp"
 #include "PageController.hpp"
 
-class Home : public Page {
+class Home final : public Page {
 private:
-	MyDateTime _newTime;
+	MyDateTime newTime;
 	MyDateTime _oldTime;
 	int8_t oldEtvOn = -1;
 

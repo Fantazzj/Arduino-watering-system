@@ -2,12 +2,12 @@
 
 Settings6::Settings6(PageController& controller) :
 	Page(controller) {
-	_controller.display.noBlink();
+	controller.display.noBlink();
 }
 
 PageNum Settings6::exec() {
-	KeypadButton key = _controller.keypadButton();
-	if(key != NoBtn) _redraw = true;
+	const KeypadButton key = controller.keypadButton();
+	if(key != NoBtn) redraw = true;
 	switch(key) {
 		case Cancel:
 			return HomePage;
@@ -23,8 +23,8 @@ PageNum Settings6::exec() {
 }
 
 void Settings6::show() {
-	if(_redraw) {
-		_controller.display.printSimpleText(displayText);
-		_redraw = false;
+	if(redraw) {
+		controller.display.printSimpleText(DISPLAY_TEXT);
+		redraw = false;
 	}
 }

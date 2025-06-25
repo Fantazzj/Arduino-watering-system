@@ -3,10 +3,10 @@
 
 #include "Page.hpp"
 
-class EditTStart : public Page {
+class EditTStart final : public Page {
 private:
-	MyTime _newTime;
-	uint8_t _editPhase = 1;
+	MyTime newTime;
+	uint8_t editPhase;
 
 public:
 	explicit EditTStart(PageController& controller);
