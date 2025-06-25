@@ -29,12 +29,9 @@ void Home::show() {
 			controller.display.printIn("Etv", 11, 1);
 			controller.display.printIn(controller.autoCycle.etvOn + 1, 14, 1);
 		} else {
-			if(controller.autoCycle.watered) controller.display.checkSym(true);
-			else controller.display.checkSym(false);
-			if(controller.autoCycle.moist) controller.display.dropSym(true);
-			else controller.display.dropSym(false);
-			if(newTime.date.year < 2022 || controller.timeToEdit) controller.display.clockSym(true);
-			else controller.display.clockSym(false);
+			controller.display.checkSym(controller.autoCycle.watered);
+			controller.display.dropSym(controller.autoCycle.moist);
+			controller.display.clockSym(newTime.date.year < 2022 || controller.timeToEdit);
 		}
 		redraw = false;
 	}
