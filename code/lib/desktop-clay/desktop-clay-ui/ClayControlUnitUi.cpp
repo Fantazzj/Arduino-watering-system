@@ -1,5 +1,8 @@
 #include "ClayControlUnitUi.hpp"
 
+#define CLAY_IMPLEMENTATION
+#include "clay.h"
+
 extern "C" {
 #include "clay_renderer_raylib.h"
 }

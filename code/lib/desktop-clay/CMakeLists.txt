@@ -24,7 +24,6 @@ add_library(desktop-clay-ui SHARED
         desktop-clay-ui/ClayClockUi.cpp
         desktop-clay-ui/ClayValveGroupUi.cpp
         desktop-clay-ui/ClayMoistureUi.cpp
-        desktop-clay-ui/clay.c
         desktop-clay-ui/clay_renderer_raylib.c
 )
 
