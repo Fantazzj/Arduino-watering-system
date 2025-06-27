@@ -2,10 +2,7 @@
 
 #define CLAY_IMPLEMENTATION
 #include "clay.h"
-
-extern "C" {
-#include "clay_renderer_raylib.h"
-}
+#include "clay_renderer_raylib.c"
 #include <iostream>
 
 void ClayControlUnitUi::HandleClayErrors(Clay_ErrorData errorData) {
