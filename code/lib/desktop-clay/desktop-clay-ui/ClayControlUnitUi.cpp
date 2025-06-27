@@ -99,7 +99,7 @@ void ClayControlUnitUi::show() {
 								.width = CLAY_SIZING_GROW(),
 								.height = CLAY_SIZING_GROW(),
 						},
-						.padding = {25, 25, 25, 25},
+						.padding = CLAY_PADDING_ALL(25),
 						.childGap = 25,
 						.layoutDirection = CLAY_LEFT_TO_RIGHT,
 				},
@@ -116,6 +116,7 @@ void ClayControlUnitUi::show() {
 		Clay_Raylib_Render(renderCommands, fonts);
 		EndDrawing();
 	}// !WindowShouldClose()
+	Clay_Raylib_Close();
 }
 
 void ClayControlUnitUi::appendDebuggerText(const std::string& string) {
