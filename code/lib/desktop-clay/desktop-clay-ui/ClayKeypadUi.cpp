@@ -74,7 +74,7 @@ void ClayKeypadUi::createButtonGroup() {
 	}
 }
 
-void ClayKeypadUi::createButton(const string& name, const bool* clickVariable) {
+void ClayKeypadUi::createButton(const string_view& name, const bool* clickVariable) {
 	const Clay_TextElementConfig textConfig = {
 			.textColor = TEXT_COLOR,
 			.fontId = textId,
@@ -83,7 +83,7 @@ void ClayKeypadUi::createButton(const string& name, const bool* clickVariable) {
 
 	const Clay_String buttonName = {
 			.length = static_cast<int32_t>(name.length()),
-			.chars = name.c_str(),
+			.chars = name.data(),
 	};
 
 	CLAY({

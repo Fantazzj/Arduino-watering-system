@@ -14,7 +14,7 @@ ClayControlUnitUi::ClayControlUnitUi() :
 	display(1), etvs(2), buttons(3), debugger(4), clock(5) {
 	Clay_Raylib_Initialize(1500, 760, "ControlUnit", FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
-	const uint64_t clayRequiredMemory = Clay_MinMemorySize();
+	const uint32_t clayRequiredMemory = Clay_MinMemorySize();
 	const Clay_Arena clayMemory = {
 			.capacity = clayRequiredMemory,
 			.memory = new char[clayRequiredMemory],

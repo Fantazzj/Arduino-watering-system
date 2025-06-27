@@ -16,10 +16,10 @@ public:
 #else
 	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
 #endif
-	static constexpr std::string CANCEL_STRING = "Cancel";
-	static constexpr std::string DOWN_STRING = "Down";
-	static constexpr std::string UP_STRING = "Up";
-	static constexpr std::string CONFIRM_STRING = "Confirm";
+	static constexpr std::string_view CANCEL_STRING = "Cancel";
+	static constexpr std::string_view DOWN_STRING = "Down";
+	static constexpr std::string_view UP_STRING = "Up";
+	static constexpr std::string_view CONFIRM_STRING = "Confirm";
 
 private:
 	uint16_t textId;
@@ -39,7 +39,7 @@ public:
 	[[nodiscard]] bool getGeneralState() const;
 
 private:
-	void createButton(const std::string& name, const bool* clickVariable);
+	void createButton(const std::string_view& name, const bool* clickVariable);
 	static void updateVariable(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
 };
 
