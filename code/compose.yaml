@@ -1,13 +1,27 @@
 name: Arduino-watering-system
 
 services:
-  clay-app:
+  desktop-env:
+    container_name: desktop-env
     build:
-      target: clay-run
+      target: desktop-env
       dockerfile: Dockerfile
       pull: true
-    command: ./build/bin/Arduino-watering-system
     environment:
       - DISPLAY=$DISPLAY
+      - TYPE=CLAYDESKTOP
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - .:/app
+    command: sleep infinity
+  hardware-env:
+    container_name: hardware-env
+    build:
+      target: hardware-env
+      dockerfile: Dockerfile
+      pull: true
+    volumes:
+      - .:/app
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    command: sleep infinity
