@@ -7,10 +7,12 @@
 
 class ClayTimer final : public Timer {
 private:
-#ifdef MSVC
+#if defined _MSC_BUILD
 	std::chrono::time_point<std::chrono::steady_clock> startTime;
-#else
+#elif defined __MINGW64__
 	std::chrono::time_point<std::chrono::system_clock> startTime;
+#else
+#error "undefined startTime variable for correct platform"
 #endif
 
 public:
