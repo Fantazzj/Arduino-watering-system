@@ -7,12 +7,13 @@ add_executable(Arduino-watering-system
 
 if ($ENV{TYPE} STREQUAL "CLAYDESKTOP")
     target_link_libraries(Arduino-watering-system PUBLIC desktop-clay)
-endif ()
+    set_target_properties(Arduino-watering-system PROPERTIES
+            WIN32_EXECUTABLE FALSE
+    )
 
-set_target_properties(Arduino-watering-system PROPERTIES
-        MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
-        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-        MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-        MACOSX_BUNDLE TRUE
-        WIN32_EXECUTABLE FALSE
-)
+elseif ($ENV{TYPE} STREQUAL "HWARDUINO")
+    target_link_libraries(Arduino-watering-system PUBLIC hardware-arduino)
+    set_target_properties(Arduino-watering-system PROPERTIES
+            SUFFIX ".elf"
+    )
+endif ()

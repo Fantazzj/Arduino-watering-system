@@ -1,7 +1,7 @@
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(core SHARED
+add_library(core STATIC
         AutoCycle.cpp
         PageSelector.cpp
         Debugger.cpp

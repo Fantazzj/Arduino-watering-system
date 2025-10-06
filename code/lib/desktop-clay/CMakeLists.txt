@@ -26,7 +26,9 @@ add_library(desktop-clay-ui SHARED
         desktop-clay-ui/ClayMoistureUi.cpp
 )
 
-target_link_directories(desktop-clay-ui PRIVATE ${RAYLIB_DIR})
+target_link_directories(desktop-clay-ui
+        PRIVATE ${RAYLIB_DIR}
+)
 
 target_link_libraries(desktop-clay-ui
         PUBLIC raylib
