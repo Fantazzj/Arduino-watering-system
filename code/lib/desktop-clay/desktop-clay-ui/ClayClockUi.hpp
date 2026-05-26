@@ -38,7 +38,7 @@ private:
 	void createSpacer();
 	void createEditor(const std::string& num, ClayHandler_t pressHandlerAdd, ClayHandler_t pressHandlerSub);
 	void updateStrings();
-	static void genericHandler(std::chrono::local_time<std::chrono::seconds>* dateTime, std::chrono::duration<intmax_t> delta, bool increase);
+	static void genericHandler(std::chrono::time_point<std::chrono::system_clock>* dateTime, std::chrono::duration<intmax_t> delta, bool increase);
 	static void increaseOneHour(Clay_ElementId, Clay_PointerData, intptr_t args);
 	static void decreaseOneHour(Clay_ElementId, Clay_PointerData, intptr_t args);
 	static void increaseOneMinute(Clay_ElementId, Clay_PointerData, intptr_t args);

@@ -190,66 +190,66 @@ void ClayClockUi::createSpacer() {
 	}) {}
 }
 
-void ClayClockUi::genericHandler(local_time<seconds>* dateTime, const duration<intmax_t> delta, const bool increase) {
+void ClayClockUi::genericHandler(time_point<system_clock>* dateTime, const duration<intmax_t> delta, const bool increase) {
 	*dateTime = increase ? *dateTime + delta : *dateTime - delta;
 }
 
 void ClayClockUi::increaseOneHour(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), hours(1), true);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), hours(1), true);
 }
 
 void ClayClockUi::decreaseOneHour(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), hours(1), false);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), hours(1), false);
 }
 
 void ClayClockUi::increaseOneMinute(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), minutes(1), true);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), minutes(1), true);
 }
 
 void ClayClockUi::decreaseOneMinute(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), minutes(1), false);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), minutes(1), false);
 }
 
 void ClayClockUi::increaseOneDay(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), days(1), true);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), days(1), true);
 }
 
 void ClayClockUi::decreaseOneDay(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), days(1), false);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), days(1), false);
 }
 
 void ClayClockUi::increaseOneMonth(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), months(1), true);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), months(1), true);
 }
 
 void ClayClockUi::decreaseOneMonth(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), months(1), false);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), months(1), false);
 }
 
 void ClayClockUi::increaseOneYear(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), years(1), true);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), years(1), true);
 }
 
 void ClayClockUi::decreaseOneYear(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	genericHandler(reinterpret_cast<local_time<seconds>*>(args), years(1), false);
+	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), years(1), false);
 }
