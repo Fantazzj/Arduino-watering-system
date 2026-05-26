@@ -15,5 +15,10 @@ elseif (TARGET_ARCHITECTURE STREQUAL DESKTOP)
     set_target_properties(Arduino-watering-system PROPERTIES
             WIN32_EXECUTABLE FALSE
     )
+elseif (TARGET_ARCHITECTURE STREQUAL WEB)
+    target_link_libraries(Arduino-watering-system PUBLIC desktop-clay)
+    set_target_properties(Arduino-watering-system PROPERTIES
+            SUFFIX ".html"
+    )
 
 endif ()
