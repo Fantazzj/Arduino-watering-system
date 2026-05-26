@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 4.0)
 
-set(CMAKE_C_COMPILER_WORKS 1)
-set(CMAKE_CXX_COMPILER_WORKS 1)
+set(TARGET_ARCHITECTURE CACHE STRING "AVR DESKTOP or WEB")
 
-if (${CMAKE_BUILD_TYPE} STREQUAL Release)
-    set(TARGET_ARCHITECTURE AVR)
+if (${TARGET_ARCHITECTURE} STREQUAL "")
+    message(FATAL_ERROR "Missing TARGET_ARCHITECTURE definition")
+endif ()
 
+if (${TARGET_ARCHITECTURE} STREQUAL AVR)
     set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
     set(CMAKE_SYSTEM_NAME Generic)
     set(CMAKE_SYSTEM_PROCESSOR avr)
@@ -20,11 +21,9 @@ if (${CMAKE_BUILD_TYPE} STREQUAL Release)
     set(AVR_BAUD CACHE STRING "Target upload baud rate")
     set(AVRDUDE_CONF CACHE STRING "Path of avrdude configuration file")
 
-elseif (${CMAKE_BUILD_TYPE} STREQUAL Debug)
-    set(TARGET_ARCHITECTURE DESKTOP)
-
-else ()
-    message(FATAL_ERROR "Only supported Debug and Release build types")
+elseif (${TARGET_ARCHITECTURE} STREQUAL WEB)
+    set(CMAKE_C_COMPILER_WORKS 1)
+    set(CMAKE_CXX_COMPILER_WORKS 1)
 
 endif ()
 
@@ -34,19 +33,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_compile_definitions(VALVE_NUM=9 DISPLAY_LENGTH=16 DISPLAY_HEIGHT=2)
 
-if (${CMAKE_BUILD_TYPE} STREQUAL Debug)
-    add_compile_definitions(CLAYDESKTOP=0 DEBUG=0)
-
-    if (MSVC)
-        set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS 1)
-    elseif (MINGW)
-        add_compile_options(-fPIC)
-        add_link_options(-fPIC)
-    endif ()
-
-    add_subdirectory(lib/desktop-clay)
-
-elseif (${CMAKE_BUILD_TYPE} STREQUAL Release)
+if (${TARGET_ARCHITECTURE} STREQUAL AVR)
     add_compile_definitions(HWARDUINO=0 RELEASE=0)
     add_compile_options(-mmcu=${AVR_MCU} -Os -Wall -ffunction-sections -fdata-sections -flto)
     add_link_options(-mmcu=${AVR_MCU} -Os -Wall -ffunction-sections -fdata-sections -flto)
@@ -75,6 +62,26 @@ elseif (${CMAKE_BUILD_TYPE} STREQUAL Release)
             DEPENDS ${PROJECT_NAME}.hex
             COMMENT "Uploading ${PROJECT_NAME}.hex to ${AVR_MCU} using ${AVR_PROGRAMMER} as programmer"
     )
+
+elseif (${TARGET_ARCHITECTURE} STREQUAL DESKTOP)
+    add_compile_definitions(CLAYDESKTOP=0 DEBUG=0)
+
+    if (MSVC)
+        set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS 1)
+    elseif (MINGW)
+        add_compile_options(-fPIC)
+        add_link_options(-fPIC)
+    endif ()
+
+    add_subdirectory(lib/desktop-clay)
+
+elseif (${TARGET_ARCHITECTURE} STREQUAL WEB)
+    add_compile_definitions(CLAYDESKTOP=0 DEBUG=0)
+    add_subdirectory(lib/desktop-clay)
+
+    add_compile_options(-pthread -sPTHREAD_POOL_SIZE=4 -sJSPI -O0)
+    add_link_options(-pthread -sPTHREAD_POOL_SIZE=4 -sJSPI -O0)
+
 endif ()
 
 add_subdirectory(src)
