@@ -1,9 +1,19 @@
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(raylib CONFIG REQUIRED)
+if (DEFINED EMSCRIPTEN)
+    include(FetchContent)
+    set(PLATFORM Web)
+    FetchContent_Declare(raylib
+            GIT_REPOSITORY https://github.com/raysan5/raylib.git
+            GIT_TAG 5.5
+    )
+    FetchContent_MakeAvailable(raylib)
+else ()
+    find_package(raylib CONFIG REQUIRED)
+endif ()
 
-add_library(desktop-clay SHARED
+add_library(desktop-clay STATIC
         ClayControlUnit.cpp
         ClayClock.cpp
         ClayDisplay.cpp
@@ -16,7 +26,7 @@ add_library(desktop-clay SHARED
         ClayTimer.cpp
 )
 
-add_library(desktop-clay-ui SHARED
+add_library(desktop-clay-ui STATIC
         desktop-clay-ui/ClayControlUnitUi.cpp
         desktop-clay-ui/ClayDisplayUi.cpp
         desktop-clay-ui/ClayKeypadUi.cpp

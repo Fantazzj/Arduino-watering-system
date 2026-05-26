@@ -21,7 +21,7 @@ MyDateTime ClayClock::getDateTime() {
 
 	const auto dateTime = MyDateTime(
 			MyTime(time.hours().count(), time.minutes().count(), time.seconds().count()),
-			MyDate(weekday.weekday().c_encoding()+1, static_cast<unsigned>(date.day()), static_cast<unsigned>(date.month()), static_cast<int>(date.year())));
+			MyDate(weekday.weekday().c_encoding() + 1, static_cast<unsigned>(date.day()), static_cast<unsigned>(date.month()), static_cast<int>(date.year())));
 
 	return dateTime;
 }
@@ -37,7 +37,7 @@ void ClayClock::setDateTime(const MyDateTime time) {
 			minutes{time.time.min} +
 			seconds{time.time.sec}};
 
-	const local_time<seconds> dateTime = local_days{date_spec} + time_spec.to_duration();
+	const time_point<system_clock> dateTime = sys_days{date_spec} + time_spec.to_duration();
 
 	w->setDateTime(dateTime);
 }
