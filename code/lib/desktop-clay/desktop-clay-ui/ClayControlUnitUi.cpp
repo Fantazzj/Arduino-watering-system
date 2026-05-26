@@ -78,45 +78,47 @@ void ClayControlUnitUi::createAdminSection() {
 
 
 void ClayControlUnitUi::show() {
-	while(!WindowShouldClose()) {
-		Clay_SetLayoutDimensions({
-				.width = static_cast<float>(GetScreenWidth()),
-				.height = static_cast<float>(GetScreenHeight()),
-		});
+	if(false) {
+		Clay_Raylib_Close();
+		return;
+	}
 
-		const Vector2 mousePosition = GetMousePosition();
-		Clay_SetPointerState({mousePosition.x, mousePosition.y}, IsMouseButtonDown(0));
+	Clay_SetLayoutDimensions({
+			.width = static_cast<float>(GetScreenWidth()),
+			.height = static_cast<float>(GetScreenHeight()),
+	});
 
-		const Vector2 scrollDelta = GetMouseWheelMoveV();
-		Clay_UpdateScrollContainers(true, {scrollDelta.x, scrollDelta.y}, GetFrameTime());
+	const Vector2 mousePosition = GetMousePosition();
+	Clay_SetPointerState({mousePosition.x, mousePosition.y}, IsMouseButtonDown(0));
 
-		Clay_BeginLayout();
+	const Vector2 scrollDelta = GetMouseWheelMoveV();
+	Clay_UpdateScrollContainers(true, {scrollDelta.x, scrollDelta.y}, GetFrameTime());
 
-		CLAY({
-				.id = CLAY_ID("Container"),
-				.layout = {
-						.sizing = {
-								.width = CLAY_SIZING_GROW(),
-								.height = CLAY_SIZING_GROW(),
-						},
-						.padding = CLAY_PADDING_ALL(25),
-						.childGap = 25,
-						.layoutDirection = CLAY_LEFT_TO_RIGHT,
-				},
-				.backgroundColor = BG_COLOR,
-		}) {
-			createControlUnit();
-			createAdminSection();
-		}
+	Clay_BeginLayout();
 
-		const Clay_RenderCommandArray renderCommands = Clay_EndLayout();
+	CLAY({
+			.id = CLAY_ID("Container"),
+			.layout = {
+					.sizing = {
+							.width = CLAY_SIZING_GROW(),
+							.height = CLAY_SIZING_GROW(),
+					},
+					.padding = CLAY_PADDING_ALL(25),
+					.childGap = 25,
+					.layoutDirection = CLAY_LEFT_TO_RIGHT,
+			},
+			.backgroundColor = BG_COLOR,
+	}) {
+		createControlUnit();
+		createAdminSection();
+	}
 
-		BeginDrawing();
-		ClearBackground(BLACK);
-		Clay_Raylib_Render(renderCommands, fonts);
-		EndDrawing();
-	}// !WindowShouldClose()
-	Clay_Raylib_Close();
+	const Clay_RenderCommandArray renderCommands = Clay_EndLayout();
+
+	BeginDrawing();
+	ClearBackground(BLACK);
+	Clay_Raylib_Render(renderCommands, fonts);
+	EndDrawing();
 }
 
 void ClayControlUnitUi::appendDebuggerText(const std::string& string) {
