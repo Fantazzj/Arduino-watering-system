@@ -74,7 +74,8 @@ int main(int argc, char* argv[]) {
 		}
 	});
 
-	w.show();
+	for(;;)
+		w.show();
 	finished = true;
 	thread.join();
 

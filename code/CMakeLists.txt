@@ -79,9 +79,6 @@ elseif (${TARGET_ARCHITECTURE} STREQUAL WEB)
     add_compile_definitions(CLAYDESKTOP=0 DEBUG=0)
     add_subdirectory(lib/desktop-clay)
 
-    add_compile_options(-pthread -sPTHREAD_POOL_SIZE=4 -sJSPI -O0)
-    add_link_options(-pthread -sPTHREAD_POOL_SIZE=4 -sJSPI -O0)
-
 endif ()
 
 add_subdirectory(src)
