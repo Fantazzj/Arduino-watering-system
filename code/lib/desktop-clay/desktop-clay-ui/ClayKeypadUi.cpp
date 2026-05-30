@@ -2,17 +2,12 @@
 
 using namespace std;
 
-ClayKeypadUi::ClayKeypadUi(const uint16_t textId) {
-	this->textId = textId;
-	cancelState = false;
-	downState = false;
-	upState = false;
-	confirmState = false;
-}
-
-uint16_t ClayKeypadUi::getTextId() const {
-	return textId;
-}
+ClayKeypadUi::ClayKeypadUi(const uint16_t textId) :
+	cancelState(false),
+	downState(false),
+	upState(false),
+	confirmState(false),
+	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE} {}
 
 void ClayKeypadUi::updateVariable(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
@@ -50,8 +45,7 @@ bool ClayKeypadUi::getGeneralState() const {
 	return cancelState || downState || upState || confirmState;
 }
 
-
-void ClayKeypadUi::createButtonGroup() {
+void ClayKeypadUi::draw() const {
 	CLAY({
 			.id = CLAY_ID("Buttons"),
 			.layout = {
@@ -74,13 +68,7 @@ void ClayKeypadUi::createButtonGroup() {
 	}
 }
 
-void ClayKeypadUi::createButton(const string_view& name, const bool* clickVariable) {
-	const Clay_TextElementConfig textConfig = {
-			.textColor = TEXT_COLOR,
-			.fontId = textId,
-			.fontSize = TEXT_SIZE,
-	};
-
+void ClayKeypadUi::createButton(const string_view& name, const bool* clickVariable) const {
 	const Clay_String buttonName = {
 			.length = static_cast<int32_t>(name.length()),
 			.chars = name.data(),
