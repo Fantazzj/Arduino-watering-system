@@ -28,12 +28,13 @@ ClayControlUnitUi::ClayControlUnitUi() :
 			},
 			{HandleClayErrors});
 
-	fonts[0] = LoadFontEx(ClayControlUnitUi::FONT, 15, nullptr, 250);
-	fonts[1] = LoadFontEx(ClayDisplayUi::FONT, ClayDisplayUi::TEXT_SIZE, nullptr, 250);
-	fonts[2] = LoadFontEx(ClayDebuggerUi::FONT, ClayDebuggerUi::TEXT_SIZE, nullptr, 250);
-	fonts[3] = LoadFontEx(ClayKeypadUi::FONT, ClayKeypadUi::TEXT_SIZE, nullptr, 250);
-	fonts[4] = LoadFontEx(ClayValveGroupUi::FONT, ClayValveGroupUi::TEXT_SIZE, nullptr, 250);
-	fonts[5] = LoadFontEx(ClayClockUi::FONT, ClayClockUi::TEXT_SIZE, nullptr, 250);
+	constexpr char FONT[] = "C:/Windows/Fonts/cour.ttf";
+	fonts[0] = LoadFontEx(FONT, 15, nullptr, 250);
+	fonts[1] = LoadFontEx(FONT, ClayDisplayUi::TEXT_SIZE, nullptr, 250);
+	fonts[2] = LoadFontEx(FONT, ClayDebuggerUi::TEXT_SIZE, nullptr, 250);
+	fonts[3] = LoadFontEx(FONT, ClayKeypadUi::TEXT_SIZE, nullptr, 250);
+	fonts[4] = LoadFontEx(FONT, ClayValveGroupUi::TEXT_SIZE, nullptr, 250);
+	fonts[5] = LoadFontEx(FONT, ClayClockUi::TEXT_SIZE, nullptr, 250);
 
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, fonts);
 
@@ -55,7 +56,7 @@ void ClayControlUnitUi::createControlUnit() {
 		display.createUi();
 		buttons.createButtonGroup();
 		moisture.createUi();
-		etvs.createUi();
+		etvs.draw(valveGroupinfo);
 	}
 }
 
@@ -138,11 +139,11 @@ bool ClayControlUnitUi::getBacklight() const {
 }
 
 void ClayControlUnitUi::activateEtv(const uint8_t n) {
-	etvs.setValveState(n, true);
+	valveGroupinfo.valves[n].state = true;
 }
 
 void ClayControlUnitUi::deactivateEtv(const uint8_t n) {
-	etvs.setValveState(n, false);
+	valveGroupinfo.valves[n].state = false;
 }
 
 bool ClayControlUnitUi::getCancelState() {
@@ -167,11 +168,11 @@ bool ClayControlUnitUi::getGeneralState() const {
 
 
 void ClayControlUnitUi::activateMainSwitch() {
-	etvs.setMainSwitchState(true);
+	valveGroupinfo.mainSwitch = true;
 }
 
 void ClayControlUnitUi::deactivateMainSwitch() {
-	etvs.setMainSwitchState(false);
+	valveGroupinfo.mainSwitch = false;
 }
 
 void ClayControlUnitUi::setBlinkOn(const int8_t row, const int8_t col) {

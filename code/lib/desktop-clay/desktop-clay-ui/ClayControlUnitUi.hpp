@@ -9,9 +9,7 @@
 #include "ClayValveGroupUi.hpp"
 #include "raylib.h"
 
-extern "C" {
 #include "clay.h"
-}
 
 class ClayControlUnitUi {
 public:
@@ -46,11 +44,8 @@ private:
 	ClayMoistureUi moisture;
 	ClayClockUi clock;
 	Font fonts[6];
-#if defined(MINGW) || defined(MSVC)
-	static constexpr char FONT[] = "C:/Windows/Fonts/cour.ttf";
-#else
-	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
-#endif
+
+	ValveGroupInfo valveGroupinfo;
 
 	void createControlUnit();
 	void createAdminSection();
