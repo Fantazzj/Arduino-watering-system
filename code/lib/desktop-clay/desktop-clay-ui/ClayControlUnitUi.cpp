@@ -53,7 +53,7 @@ void ClayControlUnitUi::createControlUnit() {
 					.layoutDirection = CLAY_TOP_TO_BOTTOM,
 			},
 	}) {
-		display.createUi();
+		display.draw();
 		buttons.draw();
 		moisture.createUi();
 		etvs.draw(valveGroupinfo);
