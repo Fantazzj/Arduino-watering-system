@@ -16,7 +16,7 @@ public:
 
 private:
 	Clay_TextElementConfig textConfig;
-	std::array<std::string, DISPLAY_HEIGHT> text;
+	char text[DISPLAY_HEIGHT][DISPLAY_LENGTH];
 	int16_t blinkChar[2];
 	bool backlight;
 
