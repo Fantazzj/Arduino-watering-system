@@ -2,10 +2,7 @@
 
 ClayDisplayUi::ClayDisplayUi(const uint16_t textId) :
 	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE},
-	text{
-			"                ",
-			"                ",
-	},
+	text{},
 	blinkChar{-1, -1},
 	backlight{false} {}
 
