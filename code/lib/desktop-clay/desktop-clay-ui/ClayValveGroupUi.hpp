@@ -2,11 +2,11 @@
 #define CLAY_VALVE_GROUP_UI_HPP
 
 #include "clay.h"
-#include <inttypes.h>
+#include <cinttypes>
 
 struct ValveInfo {
-	const char* name = "Etv000";
-	uint8_t nameLen = 4;
+	char name[7] = "Etv000";
+	uint8_t nameLen = 1;
 	bool state = false;
 };
 
@@ -17,26 +17,24 @@ struct ValveGroupInfo {
 
 class ClayValveGroupUi {
 public:
+	explicit ClayValveGroupUi(uint16_t textId);
+	void draw(const ValveGroupInfo& info) const;
+
+	static constexpr uint8_t TEXT_SIZE = 30;
+
+private:
 	static constexpr Clay_Color ON_COLOR = {100, 255, 150, 255};
 	static constexpr Clay_Color OFF_COLOR = {101, 157, 213, 255};
 	static constexpr Clay_Color SWITCH_OFF_COLOR = {100, 120, 150, 255};
 	static constexpr Clay_Color SWITCH_ON_COLOR = {149, 182, 120, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
-	static constexpr uint8_t TEXT_SIZE = 30;
 
-private:
-	uint16_t textId;
+	Clay_TextElementConfig textConfig;
 	int8_t rows;
 	int8_t cols;
 
-public:
-	explicit ClayValveGroupUi(uint16_t textId);
-	void draw(ValveGroupInfo info) const;
-	[[nodiscard]] uint16_t getTextId() const;
-
-private:
-	void drawValve(ValveInfo info) const;
-	void drawValveRow(ValveInfo info[], int8_t n) const;
+	void drawValve(const ValveInfo& info) const;
+	void drawValveRow(const ValveInfo info[], int8_t n) const;
 };
 
 #endif//CLAY_VALVE_GROUP_UI_HPP
