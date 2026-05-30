@@ -1,27 +1,15 @@
 #include "ClayDisplayUi.hpp"
 
-ClayDisplayUi::ClayDisplayUi(const uint16_t textId) {
-	this->textId = textId;
-	text = {
+ClayDisplayUi::ClayDisplayUi(const uint16_t textId) :
+	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE},
+	text{
 			"                ",
 			"                ",
-	};
-	blinkChar[0] = -1;
-	blinkChar[1] = -1;
-	backlight = false;
-}
+	},
+	blinkChar{-1, -1},
+	backlight{false} {}
 
-uint16_t ClayDisplayUi::getTextId() const {
-	return textId;
-}
-
-void ClayDisplayUi::createChars(const int8_t row) {
-	const Clay_TextElementConfig charTextConfig = {
-			.textColor = TEXT_COLOR,
-			.fontId = textId,
-			.fontSize = TEXT_SIZE,
-	};
-
+void ClayDisplayUi::drawChars(const int8_t row) {
 	for(int8_t c = 0; c < DISPLAY_LENGTH; c++) {
 		const Clay_String charText = {
 				.length = 1,
@@ -39,12 +27,12 @@ void ClayDisplayUi::createChars(const int8_t row) {
 				.backgroundColor = blinkChar[0] == row && blinkChar[1] == c ? SELECTED_CHAR_COLOR : BASIC_CHAR_COLOR,
 				.cornerRadius = {10, 10, 10, 10},
 		}) {
-			if(backlight) { CLAY_TEXT(charText, CLAY_TEXT_CONFIG(charTextConfig)); }
+			if(backlight) { CLAY_TEXT(charText, CLAY_TEXT_CONFIG(textConfig)); }
 		}
 	}
 }
 
-void ClayDisplayUi::createRows() {
+void ClayDisplayUi::drawRows() {
 	for(int8_t r = 0; r < DISPLAY_HEIGHT; r++) {
 		CLAY({
 				.layout = {
@@ -56,12 +44,12 @@ void ClayDisplayUi::createRows() {
 						.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 				},
 		}) {
-			createChars(r);
+			drawChars(r);
 		}
 	}
 }
 
-void ClayDisplayUi::createUi() {
+void ClayDisplayUi::draw() {
 	CLAY({
 			.id = CLAY_ID("Display"),
 			.layout = {
@@ -76,7 +64,7 @@ void ClayDisplayUi::createUi() {
 			.backgroundColor = BG_COLOR,
 			.cornerRadius = {5, 5, 5, 5},
 	}) {
-		createRows();
+		drawRows();
 	}
 }
 
