@@ -17,6 +17,7 @@ public:
 
 public:
 	ClayControlUnitUi();
+	~ClayControlUnitUi();
 	void show();
 	void setDisplayChar(int8_t row, int8_t col, char c);
 	void setBacklight(bool state);
@@ -47,6 +48,7 @@ private:
 
 	ValveGroupInfo valveGroupInfo;
 	DisplayInfo displayInfo;
+	DebuggerInfo debuggerInfo;
 
 	void createControlUnit();
 	void createAdminSection();

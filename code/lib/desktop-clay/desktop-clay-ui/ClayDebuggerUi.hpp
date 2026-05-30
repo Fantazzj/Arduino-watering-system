@@ -3,22 +3,25 @@
 
 #include "clay.h"
 #include <cinttypes>
-#include <string>
+
+struct DebuggerInfo {
+	char* text;
+	int32_t len;
+	int32_t buff_len;
+};
 
 class ClayDebuggerUi {
 public:
-	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
-	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
+	explicit ClayDebuggerUi(uint16_t textId);
+	void draw(const DebuggerInfo& info) const;
+
 	static constexpr uint16_t TEXT_SIZE = 30;
 
 private:
-	Clay_TextElementConfig textConfig;
-	std::string text;
+	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
+	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
 
-public:
-	explicit ClayDebuggerUi(uint16_t textId);
-	void draw() const;
-	void appendText(const std::string& text);
+	Clay_TextElementConfig textConfig;
 };
 
 #endif//CLAY_DEBUGGER_UI_HPP
