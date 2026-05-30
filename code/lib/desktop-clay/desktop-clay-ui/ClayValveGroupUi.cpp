@@ -2,17 +2,12 @@
 
 #include <cmath>
 
-ClayValveGroupUi::ClayValveGroupUi(const uint16_t textId) {
-	this->textId = textId;
-	rows = sqrt(VALVE_NUM);
-	cols = VALVE_NUM / rows + (VALVE_NUM % rows > 0);
-}
+ClayValveGroupUi::ClayValveGroupUi(const uint16_t textId) :
+	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE},
+	rows(sqrt(VALVE_NUM)),
+	cols(VALVE_NUM / rows + (VALVE_NUM % rows > 0)) {}
 
-uint16_t ClayValveGroupUi::getTextId() const {
-	return textId;
-}
-
-void ClayValveGroupUi::draw(ValveGroupInfo info) const {
+void ClayValveGroupUi::draw(const ValveGroupInfo& info) const {
 	CLAY({
 			.id = CLAY_ID("ValveGroup"),
 			.layout = {
@@ -36,7 +31,7 @@ void ClayValveGroupUi::draw(ValveGroupInfo info) const {
 	}
 }
 
-void ClayValveGroupUi::drawValveRow(ValveInfo info[], const int8_t n) const {
+void ClayValveGroupUi::drawValveRow(const ValveInfo info[], const int8_t n) const {
 	CLAY({
 			.layout = {
 					.sizing = {
@@ -53,13 +48,7 @@ void ClayValveGroupUi::drawValveRow(ValveInfo info[], const int8_t n) const {
 	}
 }
 
-void ClayValveGroupUi::drawValve(const ValveInfo info) const {
-	const Clay_TextElementConfig textConfig = {
-			.textColor = TEXT_COLOR,
-			.fontId = textId,
-			.fontSize = TEXT_SIZE,
-	};
-
+void ClayValveGroupUi::drawValve(const ValveInfo& info) const {
 	const Clay_String etvName = {
 			.length = static_cast<int32_t>(info.nameLen),
 			.chars = info.name,
