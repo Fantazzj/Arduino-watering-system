@@ -2,9 +2,18 @@
 #define CLAY_VALVE_GROUP_UI_HPP
 
 #include "clay.h"
-#include <array>
-#include <cstdint>
-#include <string>
+#include <inttypes.h>
+
+struct ValveInfo {
+	const char* name = "Etv000";
+	uint8_t nameLen = 4;
+	bool state = false;
+};
+
+struct ValveGroupInfo {
+	ValveInfo valves[VALVE_NUM];
+	bool mainSwitch = false;
+};
 
 class ClayValveGroupUi {
 public:
@@ -14,30 +23,20 @@ public:
 	static constexpr Clay_Color SWITCH_ON_COLOR = {149, 182, 120, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
 	static constexpr uint8_t TEXT_SIZE = 30;
-#if defined(MINGW) || defined(MSVC)
-	static constexpr char FONT[] = "C:/Windows/Fonts/cour.ttf";
-#else
-	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
-#endif
 
 private:
-	std::array<std::string, VALVE_NUM> etvNames;
-	std::array<bool, VALVE_NUM> etvStates;
-	bool mainSwitchState;
 	uint16_t textId;
 	int8_t rows;
 	int8_t cols;
 
 public:
 	explicit ClayValveGroupUi(uint16_t textId);
-	void createUi();
+	void draw(ValveGroupInfo info) const;
 	[[nodiscard]] uint16_t getTextId() const;
-	void setValveState(uint8_t n, bool state);
-	void setMainSwitchState(bool state);
 
 private:
-	void createEtv(int8_t n);
-	void createEtvRow(int8_t from, int8_t to);
+	void drawValve(ValveInfo info) const;
+	void drawValveRow(ValveInfo info[], int8_t n) const;
 };
 
 #endif//CLAY_VALVE_GROUP_UI_HPP
