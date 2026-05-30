@@ -45,7 +45,8 @@ private:
 	ClayClockUi clock;
 	Font fonts[6];
 
-	ValveGroupInfo valveGroupinfo;
+	ValveGroupInfo valveGroupInfo;
+	DisplayInfo displayInfo;
 
 	void createControlUnit();
 	void createAdminSection();
