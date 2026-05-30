@@ -3,10 +3,10 @@
 ClayDebuggerUi::ClayDebuggerUi(const uint16_t textId) :
 	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE} {}
 
-void ClayDebuggerUi::draw() const {
+void ClayDebuggerUi::draw(const DebuggerInfo& info) const {
 	const Clay_String debugText = {
-			.length = static_cast<int32_t>(text.length()),
-			.chars = text.c_str(),
+			.length = info.len,
+			.chars = info.text,
 	};
 
 	CLAY({
@@ -29,8 +29,4 @@ void ClayDebuggerUi::draw() const {
 	}) {
 		CLAY_TEXT(debugText, CLAY_TEXT_CONFIG(textConfig));
 	}
-}
-
-void ClayDebuggerUi::appendText(const std::string& text) {
-	this->text.append(text);
 }

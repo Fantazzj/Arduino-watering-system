@@ -39,6 +39,14 @@ ClayControlUnitUi::ClayControlUnitUi() :
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, fonts);
 
 	//Clay_SetDebugModeEnabled(true);
+
+	debuggerInfo.text = static_cast<char*>(malloc(2048));
+	debuggerInfo.len = 0;
+	debuggerInfo.buff_len = 2048;
+}
+
+ClayControlUnitUi::~ClayControlUnitUi() {
+	free(debuggerInfo.text);
 }
 
 void ClayControlUnitUi::createControlUnit() {
@@ -73,7 +81,7 @@ void ClayControlUnitUi::createAdminSection() {
 			},
 	}) {
 		clock.draw();
-		debugger.draw();
+		debugger.draw(debuggerInfo);
 	}
 }
 
@@ -123,7 +131,13 @@ void ClayControlUnitUi::show() {
 }
 
 void ClayControlUnitUi::appendDebuggerText(const std::string& string) {
-	debugger.appendText(string);
+	if(debuggerInfo.len + string.length() > debuggerInfo.buff_len) {
+		debuggerInfo.buff_len *= 2;
+		debuggerInfo.text = static_cast<char*>(realloc(debuggerInfo.text, debuggerInfo.buff_len));
+	}
+
+	for(const auto c: string)
+		debuggerInfo.text[debuggerInfo.len++] = c;
 }
 
 void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const char c) {
