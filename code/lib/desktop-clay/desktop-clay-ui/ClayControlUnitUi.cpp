@@ -53,10 +53,10 @@ void ClayControlUnitUi::createControlUnit() {
 					.layoutDirection = CLAY_TOP_TO_BOTTOM,
 			},
 	}) {
-		display.draw();
+		display.draw(displayInfo);
 		buttons.draw();
 		moisture.createUi();
-		etvs.draw(valveGroupinfo);
+		etvs.draw(valveGroupInfo);
 	}
 }
 
@@ -127,23 +127,23 @@ void ClayControlUnitUi::appendDebuggerText(const std::string& string) {
 }
 
 void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const char c) {
-	display.setChar(row, col, c);
+	displayInfo.text[row][col] = c;
 }
 
 void ClayControlUnitUi::setBacklight(const bool state) {
-	display.setBacklight(state);
+	displayInfo.backlight = state;
 }
 
 bool ClayControlUnitUi::getBacklight() const {
-	return display.getBacklight();
+	return displayInfo.backlight;
 }
 
 void ClayControlUnitUi::activateEtv(const uint8_t n) {
-	valveGroupinfo.states[n] = true;
+	valveGroupInfo.states[n] = true;
 }
 
 void ClayControlUnitUi::deactivateEtv(const uint8_t n) {
-	valveGroupinfo.states[n] = false;
+	valveGroupInfo.states[n] = false;
 }
 
 bool ClayControlUnitUi::getCancelState() {
@@ -168,15 +168,16 @@ bool ClayControlUnitUi::getGeneralState() const {
 
 
 void ClayControlUnitUi::activateMainSwitch() {
-	valveGroupinfo.mainSwitch = true;
+	valveGroupInfo.mainSwitch = true;
 }
 
 void ClayControlUnitUi::deactivateMainSwitch() {
-	valveGroupinfo.mainSwitch = false;
+	valveGroupInfo.mainSwitch = false;
 }
 
 void ClayControlUnitUi::setBlinkOn(const int8_t row, const int8_t col) {
-	display.setBlinkOn(row, col);
+	displayInfo.blinkChar[0] = row;
+	displayInfo.blinkChar[1] = col;
 }
 
 uint8_t ClayControlUnitUi::getMoisture() const {
