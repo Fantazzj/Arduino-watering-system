@@ -10,13 +10,9 @@ public:
 	static constexpr Clay_Color CHAR_COLOR = {101, 157, 213, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
 	static constexpr uint16_t TEXT_SIZE = 48;
-#if defined(MINGW) || defined(MSVC)
-	static constexpr char FONT[] = "C:/Windows/Fonts/cour.ttf";
-#else
-	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
-#endif
+
 private:
-	uint16_t textId;
+	Clay_TextElementConfig textConfig;
 	std::chrono::time_point<std::chrono::system_clock> dateTime;
 	std::string stringDateDay;
 	std::string stringDateMonth;
@@ -26,16 +22,15 @@ private:
 
 public:
 	explicit ClayClockUi(uint16_t id);
-	[[nodiscard]] uint16_t getTextId() const;
-	void createClock();
+	void draw();
 	[[nodiscard]] std::chrono::time_point<std::chrono::system_clock> getDateTime() const;
 	void setDateTime(std::chrono::time_point<std::chrono::system_clock> dateTime);
 
 private:
 	typedef void (*ClayHandler_t)(Clay_ElementId, Clay_PointerData, intptr_t args);
-	void createDateEditor();
-	void createTimeEditor();
-	void createSpacer();
+	void drawDateEditor();
+	void drawTimeEditor();
+	void drawSpacer();
 	void createEditor(const std::string& num, ClayHandler_t pressHandlerAdd, ClayHandler_t pressHandlerSub);
 	void updateStrings();
 	static void genericHandler(std::chrono::time_point<std::chrono::system_clock>* dateTime, std::chrono::duration<intmax_t> delta, bool increase);

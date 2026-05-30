@@ -11,27 +11,22 @@ public:
 	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
 	static constexpr uint16_t TEXT_SIZE = 30;
-#if defined(MINGW) || defined(MSVC)
-	static constexpr char FONT[] = "C:/Windows/Fonts/cour.ttf";
-#else
-	static constexpr char FONT[] = "/usr/share/fonts/jetbrains-mono-fonts/JetBrainsMono-Regular.otf";
-#endif
+
 	static constexpr std::string_view CANCEL_STRING = "Cancel";
 	static constexpr std::string_view DOWN_STRING = "Down";
 	static constexpr std::string_view UP_STRING = "Up";
 	static constexpr std::string_view CONFIRM_STRING = "Confirm";
 
 private:
-	uint16_t textId;
 	bool cancelState;
 	bool downState;
 	bool upState;
 	bool confirmState;
+	Clay_TextElementConfig textConfig;
 
 public:
 	explicit ClayKeypadUi(uint16_t textId);
-	void createButtonGroup();
-	[[nodiscard]] uint16_t getTextId() const;
+	void draw() const;
 	bool getCancelState();
 	bool getDownState();
 	bool getUpState();
@@ -39,7 +34,7 @@ public:
 	[[nodiscard]] bool getGeneralState() const;
 
 private:
-	void createButton(const std::string_view& name, const bool* clickVariable);
+	void createButton(const std::string_view& name, const bool* clickVariable) const;
 	static void updateVariable(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
 };
 

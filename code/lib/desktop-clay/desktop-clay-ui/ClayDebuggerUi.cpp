@@ -1,20 +1,9 @@
 #include "ClayDebuggerUi.hpp"
 
-ClayDebuggerUi::ClayDebuggerUi(const uint16_t textId) {
-	this->textId = textId;
-}
+ClayDebuggerUi::ClayDebuggerUi(const uint16_t textId) :
+	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE} {}
 
-uint16_t ClayDebuggerUi::getTextId() const {
-	return textId;
-}
-
-void ClayDebuggerUi::createUi() {
-	const Clay_TextElementConfig debugTextConfig = {
-			.textColor = TEXT_COLOR,
-			.fontId = textId,
-			.fontSize = TEXT_SIZE,
-	};
-
+void ClayDebuggerUi::draw() const {
 	const Clay_String debugText = {
 			.length = static_cast<int32_t>(text.length()),
 			.chars = text.c_str(),
@@ -38,7 +27,7 @@ void ClayDebuggerUi::createUi() {
 					.childOffset = Clay_GetScrollOffset(),
 			},
 	}) {
-		CLAY_TEXT(debugText, CLAY_TEXT_CONFIG(debugTextConfig));
+		CLAY_TEXT(debugText, CLAY_TEXT_CONFIG(textConfig));
 	}
 }
 

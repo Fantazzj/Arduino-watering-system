@@ -54,7 +54,7 @@ void ClayControlUnitUi::createControlUnit() {
 			},
 	}) {
 		display.createUi();
-		buttons.createButtonGroup();
+		buttons.draw();
 		moisture.createUi();
 		etvs.draw(valveGroupinfo);
 	}
@@ -72,8 +72,8 @@ void ClayControlUnitUi::createAdminSection() {
 					.layoutDirection = CLAY_TOP_TO_BOTTOM,
 			},
 	}) {
-		clock.createClock();
-		debugger.createUi();
+		clock.draw();
+		debugger.draw();
 	}
 }
 
@@ -130,7 +130,7 @@ void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const
 	display.setChar(row, col, c);
 }
 
-void ClayControlUnitUi::setBacklight(bool state) {
+void ClayControlUnitUi::setBacklight(const bool state) {
 	display.setBacklight(state);
 }
 
@@ -139,11 +139,11 @@ bool ClayControlUnitUi::getBacklight() const {
 }
 
 void ClayControlUnitUi::activateEtv(const uint8_t n) {
-	valveGroupinfo.valves[n].state = true;
+	valveGroupinfo.states[n] = true;
 }
 
 void ClayControlUnitUi::deactivateEtv(const uint8_t n) {
-	valveGroupinfo.valves[n].state = false;
+	valveGroupinfo.states[n] = false;
 }
 
 bool ClayControlUnitUi::getCancelState() {
