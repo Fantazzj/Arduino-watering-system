@@ -3,19 +3,16 @@
 
 #include "clay.h"
 #include <cinttypes>
-
-struct ValveInfo {
-	char name[7] = "Etv000";
-	uint8_t nameLen = 1;
-	bool state = false;
-};
+#include <string>
 
 struct ValveGroupInfo {
-	ValveInfo valves[VALVE_NUM];
-	bool mainSwitch = false;
+	bool states[VALVE_NUM]{};
+	bool mainSwitch{};
 };
 
 class ClayValveGroupUi {
+	using string = std::string;
+
 public:
 	explicit ClayValveGroupUi(uint16_t textId);
 	void draw(const ValveGroupInfo& info) const;
@@ -29,12 +26,16 @@ private:
 	static constexpr Clay_Color SWITCH_ON_COLOR = {149, 182, 120, 255};
 	static constexpr Clay_Color TEXT_COLOR = {50, 50, 50, 255};
 
-	Clay_TextElementConfig textConfig;
 	int8_t rows;
 	int8_t cols;
 
-	void drawValve(const ValveInfo& info) const;
-	void drawValveRow(const ValveInfo info[], int8_t n) const;
+	Clay_TextElementConfig textConfig;
+
+	string valveNames[VALVE_NUM];
+	Clay_String clayValveNames[VALVE_NUM];
+
+	void drawValve(Clay_String name, bool state) const;
+	void drawValveRow(const Clay_String* names, const bool* states, int8_t n) const;
 };
 
 #endif//CLAY_VALVE_GROUP_UI_HPP

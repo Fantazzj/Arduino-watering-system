@@ -4,8 +4,15 @@
 
 ClayValveGroupUi::ClayValveGroupUi(const uint16_t textId) :
 	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE},
-	rows(sqrt(VALVE_NUM)),
-	cols(VALVE_NUM / rows + (VALVE_NUM % rows > 0)) {}
+	rows(static_cast<int8_t>(sqrt(VALVE_NUM))),
+	cols(VALVE_NUM / rows + (VALVE_NUM % rows > 0)),
+	clayValveNames() {
+	for(int8_t i = 0; i < VALVE_NUM; i++) {
+		valveNames[i] = "Etv" + std::to_string(i + 1);
+		clayValveNames[i].chars = valveNames[i].c_str();
+		clayValveNames[i].length = static_cast<int32_t>(valveNames[i].length());
+	}
+}
 
 void ClayValveGroupUi::draw(const ValveGroupInfo& info) const {
 	CLAY({
@@ -26,12 +33,12 @@ void ClayValveGroupUi::draw(const ValveGroupInfo& info) const {
 		for(int8_t i = 0; i < rows; i++) {
 			const int8_t from = i * cols;
 			const int8_t to = from + (cols - 1) >= VALVE_NUM ? VALVE_NUM - 1 : i * cols + (cols - 1);
-			drawValveRow(info.valves + from, to - from);
+			drawValveRow(clayValveNames + from, info.states + from, to - from);
 		}
 	}
 }
 
-void ClayValveGroupUi::drawValveRow(const ValveInfo info[], const int8_t n) const {
+void ClayValveGroupUi::drawValveRow(const Clay_String* names, const bool* states, const int8_t n) const {
 	CLAY({
 			.layout = {
 					.sizing = {
@@ -44,16 +51,11 @@ void ClayValveGroupUi::drawValveRow(const ValveInfo info[], const int8_t n) cons
 			},
 	}) {
 		for(int8_t i = 0; i <= n; i++)
-			drawValve(info[i]);
+			drawValve(names[i], states[i]);
 	}
 }
 
-void ClayValveGroupUi::drawValve(const ValveInfo& info) const {
-	const Clay_String etvName = {
-			.length = static_cast<int32_t>(info.nameLen),
-			.chars = info.name,
-	};
-
+void ClayValveGroupUi::drawValve(const Clay_String name, const bool state) const {
 	CLAY({
 			.layout = {
 					.sizing = {
@@ -63,9 +65,9 @@ void ClayValveGroupUi::drawValve(const ValveInfo& info) const {
 					.childAlignment = {CLAY_ALIGN_X_CENTER, CLAY_ALIGN_Y_CENTER},
 					.layoutDirection = CLAY_TOP_TO_BOTTOM,
 			},
-			.backgroundColor = info.state ? ON_COLOR : OFF_COLOR,
+			.backgroundColor = state ? ON_COLOR : OFF_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		CLAY_TEXT(etvName, CLAY_TEXT_CONFIG(textConfig));
+		CLAY_TEXT(name, CLAY_TEXT_CONFIG(textConfig));
 	}
 }
