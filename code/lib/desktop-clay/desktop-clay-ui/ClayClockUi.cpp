@@ -1,23 +1,9 @@
 #include "ClayClockUi.hpp"
 
-using namespace std::chrono;
-
 ClayClockUi::ClayClockUi(const uint16_t textId) :
-	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE},
-	dateTime{system_clock::now()} {
-	updateStrings();
-}
+	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE} {}
 
-time_point<system_clock> ClayClockUi::getDateTime() const {
-	return dateTime;
-}
-
-void ClayClockUi::setDateTime(const time_point<system_clock> dateTime) {
-	this->dateTime = dateTime;
-}
-
-void ClayClockUi::draw() {
-	updateStrings();
+void ClayClockUi::draw(const ClockInfo& info) const {
 	CLAY({
 			.id = CLAY_ID("Clock"),
 			.layout = {
@@ -42,14 +28,14 @@ void ClayClockUi::draw() {
 			.cornerRadius = {5, 5, 5, 5},
 	}) {
 		drawSpacer();
-		drawDateEditor();
+		drawDateEditor(info);
 		drawSpacer();
-		drawTimeEditor();
+		drawTimeEditor(info);
 		drawSpacer();
 	}
 }
 
-void ClayClockUi::drawDateEditor() {
+void ClayClockUi::drawDateEditor(const ClockInfo& info) const {
 	CLAY({
 			.layout = {
 					.sizing = {
@@ -69,15 +55,15 @@ void ClayClockUi::drawDateEditor() {
 			.backgroundColor = CHAR_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		createEditor(stringDateDay, increaseOneDay, decreaseOneDay);
+		drawEditor(info, info.DateDay, 2, info.increaseOneDay, info.decreaseOneDay);
 		CLAY_TEXT(CLAY_STRING("/"), CLAY_TEXT_CONFIG(textConfig));
-		createEditor(stringDateMonth, increaseOneMonth, decreaseOneMonth);
+		drawEditor(info, info.DateMonth, 2, info.increaseOneMonth, info.decreaseOneMonth);
 		CLAY_TEXT(CLAY_STRING("/"), CLAY_TEXT_CONFIG(textConfig));
-		createEditor(stringDateYear, increaseOneYear, decreaseOneYear);
+		drawEditor(info, info.DateYear, 4, info.increaseOneYear, info.decreaseOneYear);
 	}
 }
 
-void ClayClockUi::drawTimeEditor() {
+void ClayClockUi::drawTimeEditor(const ClockInfo& info) const {
 	CLAY({
 			.layout = {
 					.sizing = {
@@ -97,16 +83,16 @@ void ClayClockUi::drawTimeEditor() {
 			.backgroundColor = CHAR_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		createEditor(stringTimeHours, increaseOneHour, decreaseOneHour);
+		drawEditor(info, info.TimeHours, 2, info.increaseOneHour, info.decreaseOneHour);
 		CLAY_TEXT(CLAY_STRING(":"), CLAY_TEXT_CONFIG(textConfig));
-		createEditor(stringTimeMinutes, increaseOneMinute, decreaseOneMinute);
+		drawEditor(info, info.TimeMinutes, 2, info.increaseOneMinute, info.decreaseOneMinute);
 	}
 }
 
-void ClayClockUi::createEditor(const std::string& num, const ClayHandler_t pressHandlerAdd, const ClayHandler_t pressHandlerSub) {
+void ClayClockUi::drawEditor(const ClockInfo& info, const char* num, const int8_t len, const ClayHandler_t pressHandlerAdd, const ClayHandler_t pressHandlerSub) const {
 	const Clay_String string = {
-			.length = static_cast<int32_t>(num.length()),
-			.chars = num.c_str(),
+			.length = static_cast<int32_t>(len),
+			.chars = num,
 	};
 
 	CLAY({
@@ -123,42 +109,18 @@ void ClayClockUi::createEditor(const std::string& num, const ClayHandler_t press
 			},
 	}) {
 		CLAY() {
-			Clay_OnHover(pressHandlerAdd, reinterpret_cast<intptr_t>(&dateTime));
+			Clay_OnHover(pressHandlerAdd, info.args);
 			CLAY_TEXT(CLAY_STRING("+"), CLAY_TEXT_CONFIG(textConfig));
 		}
 		CLAY_TEXT(string, CLAY_TEXT_CONFIG(textConfig));
 		CLAY() {
-			Clay_OnHover(pressHandlerSub, reinterpret_cast<intptr_t>(&dateTime));
+			Clay_OnHover(pressHandlerSub, info.args);
 			CLAY_TEXT(CLAY_STRING("-"), CLAY_TEXT_CONFIG(textConfig));
 		}
 	}
 }
 
-void ClayClockUi::updateStrings() {
-	const auto dateTimeDays = floor<days>(dateTime);
-	const year_month_day date{dateTimeDays};
-	const hh_mm_ss time{floor<milliseconds>(dateTime - dateTimeDays)};
-
-	if(date.day() < 10d) stringDateDay = "0";
-	else stringDateDay = "";
-	stringDateDay += std::to_string(static_cast<unsigned>(date.day()));
-
-	if(date.month() < October) stringDateMonth = "0";
-	else stringDateMonth = "";
-	stringDateMonth += std::to_string(static_cast<unsigned>(date.month()));
-
-	stringDateYear = std::to_string(static_cast<int>(date.year()));
-
-	if(time.hours() < 10h) stringTimeHours = "0";
-	else stringTimeHours = "";
-	stringTimeHours += std::to_string(time.hours().count());
-
-	if(time.minutes() < 10min) stringTimeMinutes = "0";
-	else stringTimeMinutes = "";
-	stringTimeMinutes += std::to_string(time.minutes().count());
-}
-
-void ClayClockUi::drawSpacer() {
+void ClayClockUi::drawSpacer() const {
 	CLAY({
 			.layout = {
 					.sizing = {
@@ -167,68 +129,4 @@ void ClayClockUi::drawSpacer() {
 					},
 			},
 	}) {}
-}
-
-void ClayClockUi::genericHandler(time_point<system_clock>* dateTime, const duration<intmax_t> delta, const bool increase) {
-	*dateTime = increase ? *dateTime + delta : *dateTime - delta;
-}
-
-void ClayClockUi::increaseOneHour(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), hours(1), true);
-}
-
-void ClayClockUi::decreaseOneHour(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), hours(1), false);
-}
-
-void ClayClockUi::increaseOneMinute(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), minutes(1), true);
-}
-
-void ClayClockUi::decreaseOneMinute(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), minutes(1), false);
-}
-
-void ClayClockUi::increaseOneDay(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), days(1), true);
-}
-
-void ClayClockUi::decreaseOneDay(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), days(1), false);
-}
-
-void ClayClockUi::increaseOneMonth(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), months(1), true);
-}
-
-void ClayClockUi::decreaseOneMonth(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), months(1), false);
-}
-
-void ClayClockUi::increaseOneYear(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), years(1), true);
-}
-
-void ClayClockUi::decreaseOneYear(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-	genericHandler(reinterpret_cast<time_point<system_clock>*>(args), years(1), false);
 }

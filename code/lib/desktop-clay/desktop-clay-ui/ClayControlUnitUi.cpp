@@ -68,7 +68,7 @@ void ClayControlUnitUi::createControlUnit() {
 	}
 }
 
-void ClayControlUnitUi::createAdminSection() {
+void ClayControlUnitUi::drawAdminSection(const ClockInfo& clockInfo) const {
 	CLAY({
 			.id = CLAY_ID("Admin"),
 			.layout = {
@@ -80,14 +80,14 @@ void ClayControlUnitUi::createAdminSection() {
 					.layoutDirection = CLAY_TOP_TO_BOTTOM,
 			},
 	}) {
-		clock.draw();
+		clock.draw(clockInfo);
 		debugger.draw(debuggerInfo);
 	}
 }
 
 
-void ClayControlUnitUi::show() {
-	if(false) {
+void ClayControlUnitUi::draw(const ClockInfo& clockInfo) {
+	if(WindowShouldClose()) {
 		Clay_Raylib_Close();
 		return;
 	}
@@ -119,7 +119,7 @@ void ClayControlUnitUi::show() {
 			.backgroundColor = BG_COLOR,
 	}) {
 		createControlUnit();
-		createAdminSection();
+		drawAdminSection(clockInfo);
 	}
 
 	const Clay_RenderCommandArray renderCommands = Clay_EndLayout();
@@ -180,7 +180,6 @@ bool ClayControlUnitUi::getGeneralState() const {
 	return buttons.getGeneralState();
 }
 
-
 void ClayControlUnitUi::activateMainSwitch() {
 	valveGroupInfo.mainSwitch = true;
 }
@@ -196,12 +195,4 @@ void ClayControlUnitUi::setBlinkOn(const int8_t row, const int8_t col) {
 
 uint8_t ClayControlUnitUi::getMoisture() const {
 	return moisture.getMoistureLevel();
-}
-
-void ClayControlUnitUi::setDateTime(const std::chrono::time_point<std::chrono::system_clock> dateTime) {
-	clock.setDateTime(dateTime);
-}
-
-std::chrono::time_point<std::chrono::system_clock> ClayControlUnitUi::getDateTime() const {
-	return clock.getDateTime();
 }

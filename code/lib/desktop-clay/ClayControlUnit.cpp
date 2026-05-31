@@ -1,9 +1,17 @@
 #include "ClayControlUnit.hpp"
 
-ClayControlUnit::ClayControlUnit() = default;
+#include <chrono>
 
-void ClayControlUnit::show() {
-	ui.show();
+ClayControlUnit::ClayControlUnit(ClayClock& clock) : clock{clock}, clockInfo{} {}
+
+void ClayControlUnit::draw() {
+	clock.getDayString().copy(clockInfo.DateDay, 2);
+	clock.getMonthString().copy(clockInfo.DateMonth, 2);
+	clock.getYearString().copy(clockInfo.DateYear, 4);
+	clock.getHoursString().copy(clockInfo.TimeHours, 2);
+	clock.getMinutesString().copy(clockInfo.TimeMinutes, 2);
+
+	ui.draw(clockInfo);
 }
 
 bool ClayControlUnit::getCancelState() {
@@ -81,12 +89,4 @@ bool ClayControlUnit::getBacklight() const {
 
 uint8_t ClayControlUnit::getMoisture() const {
 	return ui.getMoisture();
-}
-
-void ClayControlUnit::setDateTime(const std::chrono::time_point<std::chrono::system_clock> dateTime) {
-	ui.setDateTime(dateTime);
-}
-
-std::chrono::time_point<std::chrono::system_clock> ClayControlUnit::getDateTime() const {
-	return ui.getDateTime();
 }
