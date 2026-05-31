@@ -2,20 +2,35 @@
 #define CLAYCLOCK_HPP
 
 #include "../core/Clock.hpp"
-#include "ClayControlUnit.hpp"
+#include <chrono>
+#include <string>
 
 class ClayClock final : public Clock {
-private:
-	ClayControlUnit* w;
+	using chronoTime = std::chrono::time_point<std::chrono::system_clock>;
+	using chornoDuration = std::chrono::duration<intmax_t>;
 
 public:
 	explicit ClayClock();
-	void begin(ClayControlUnit* w);
 	MyDateTime getDateTime() override;
-	void setDateTime(MyDateTime time) override;
+	void setDateTime(MyDateTime myDateTime) override;
+	void increaseOneHour();
+	void decreaseOneHour();
+	void increaseOneMinute();
+	void decreaseOneMinute();
+	void increaseOneDay();
+	void decreaseOneDay();
+	void increaseOneMonth();
+	void decreaseOneMonth();
+	void increaseOneYear();
+	void decreaseOneYear();
+	[[nodiscard]] std::string getDayString() const;
+	[[nodiscard]] std::string getMonthString() const;
+	[[nodiscard]] std::string getYearString() const;
+	[[nodiscard]] std::string getHoursString() const;
+	[[nodiscard]] std::string getMinutesString() const;
 
-protected:
+private:
+	chronoTime dateTime;
 };
-
 
 #endif//CLAYCLOCK_HPP

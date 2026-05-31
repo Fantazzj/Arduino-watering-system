@@ -13,12 +13,9 @@
 
 class ClayControlUnitUi {
 public:
-	static constexpr Clay_Color BG_COLOR = {74, 95, 115, 255};
-
-public:
 	ClayControlUnitUi();
 	~ClayControlUnitUi();
-	void show();
+	void draw(const ClockInfo& clockInfo);
 	void setDisplayChar(int8_t row, int8_t col, char c);
 	void setBacklight(bool state);
 	[[nodiscard]] bool getBacklight() const;
@@ -34,10 +31,10 @@ public:
 	[[nodiscard]] bool getGeneralState() const;
 	void setBlinkOn(int8_t row, int8_t col);
 	[[nodiscard]] uint8_t getMoisture() const;
-	void setDateTime(std::chrono::time_point<std::chrono::system_clock> dateTime);
-	[[nodiscard]] std::chrono::time_point<std::chrono::system_clock> getDateTime() const;
 
 private:
+	static constexpr Clay_Color BG_COLOR = {74, 95, 115, 255};
+
 	ClayDisplayUi display;
 	ClayValveGroupUi etvs;
 	ClayKeypadUi buttons;
@@ -51,8 +48,10 @@ private:
 	DebuggerInfo debuggerInfo;
 
 	void createControlUnit();
-	void createAdminSection();
+	void drawAdminSection(const ClockInfo& clockInfo) const;
 	static void HandleClayErrors(Clay_ErrorData errorData);
+
+	void updateStrings();
 };
 
 #endif//CLAY_CONTROL_UNIT_UI_HPP

@@ -1,17 +1,15 @@
 #ifndef CLAYCONTROLUNIT_HPP
 #define CLAYCONTROLUNIT_HPP
 
+#include "ClayClock.hpp"
 #include "desktop-clay-ui/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
-private:
-	ClayControlUnitUi ui;
-	int8_t x = 0;
-	int8_t y = 0;
-
 public:
-	explicit ClayControlUnit();
-	void show();
+	explicit ClayControlUnit(ClayClock& clock);
+	void draw();
+
+
 	bool getCancelState();
 	bool getDownState();
 	bool getUpState();
@@ -30,10 +28,14 @@ public:
 	void setBacklight(bool state);
 	[[nodiscard]] bool getBacklight() const;
 	[[nodiscard]] uint8_t getMoisture() const;
-	void setDateTime(std::chrono::time_point<std::chrono::system_clock> dateTime);
-	[[nodiscard]] std::chrono::time_point<std::chrono::system_clock> getDateTime() const;
 
-protected:
+private:
+	ClayControlUnitUi ui;
+	int8_t x = 0;
+	int8_t y = 0;
+
+	ClayClock& clock;
+	ClockInfo clockInfo;
 };
 
 
