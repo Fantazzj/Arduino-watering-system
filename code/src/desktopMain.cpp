@@ -31,7 +31,7 @@ ClayTimer myTimer;
 AutoCycle autoCycle(myClock, myValveGroup, myMainSwitch, myMoisture, myTimer, myDebugger);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
 
-ClayControlUnit unit(myClock);
+ClayControlUnit unit(myClock, myDebugger);
 
 void setup(ClayControlUnit* w) {
 	myDisplay.begin(w);
@@ -40,7 +40,6 @@ void setup(ClayControlUnit* w) {
 	myMemory.begin();
 	myMoisture.begin(w);
 	myValveGroup.begin(w);
-	myDebugger.begin(w);
 
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
 		myValveGroup.setDays(i, myMemory.readEtvDays(i));
