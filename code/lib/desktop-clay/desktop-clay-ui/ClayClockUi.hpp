@@ -11,17 +11,17 @@ struct ClockInfo {
 	char DateYear[5]{"2000"};
 	char TimeHours[3]{"00"};
 	char TimeMinutes[3]{"00"};
-	ClayHandler_t increaseOneDay;
-	ClayHandler_t decreaseOneDay;
-	ClayHandler_t increaseOneMonth;
-	ClayHandler_t decreaseOneMonth;
-	ClayHandler_t increaseOneYear;
-	ClayHandler_t decreaseOneYear;
-	ClayHandler_t increaseOneHour;
-	ClayHandler_t decreaseOneHour;
-	ClayHandler_t increaseOneMinute;
-	ClayHandler_t decreaseOneMinute;
-	intptr_t args;
+	ClayHandler_t increaseOneDay{};
+	ClayHandler_t decreaseOneDay{};
+	ClayHandler_t increaseOneMonth{};
+	ClayHandler_t decreaseOneMonth{};
+	ClayHandler_t increaseOneYear{};
+	ClayHandler_t decreaseOneYear{};
+	ClayHandler_t increaseOneHour{};
+	ClayHandler_t decreaseOneHour{};
+	ClayHandler_t increaseOneMinute{};
+	ClayHandler_t decreaseOneMinute{};
+	intptr_t args{};
 };
 
 class ClayClockUi {

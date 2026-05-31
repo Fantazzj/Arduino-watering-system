@@ -9,7 +9,6 @@ public:
 	explicit ClayControlUnit(ClayClock& clock);
 	void draw();
 
-
 	bool getCancelState();
 	bool getDownState();
 	bool getUpState();
@@ -36,6 +35,17 @@ private:
 
 	ClayClock& clock;
 	ClockInfo clockInfo;
+
+	static void increaseOneDay(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneDay(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void increaseOneMonth(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneMonth(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void increaseOneYear(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneYear(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void increaseOneHour(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneHour(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void increaseOneMinute(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void decreaseOneMinute(Clay_ElementId, Clay_PointerData, intptr_t args);
 };
 
 

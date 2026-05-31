@@ -2,7 +2,19 @@
 
 #include <chrono>
 
-ClayControlUnit::ClayControlUnit(ClayClock& clock) : clock{clock}, clockInfo{} {}
+ClayControlUnit::ClayControlUnit(ClayClock& clock) : clock{clock}, clockInfo{} {
+	clockInfo.increaseOneDay = increaseOneDay;
+	clockInfo.decreaseOneDay = decreaseOneDay;
+	clockInfo.increaseOneMonth = increaseOneMonth;
+	clockInfo.decreaseOneMonth = decreaseOneMonth;
+	clockInfo.increaseOneYear = increaseOneYear;
+	clockInfo.decreaseOneYear = decreaseOneYear;
+	clockInfo.increaseOneHour = increaseOneHour;
+	clockInfo.decreaseOneHour = decreaseOneHour;
+	clockInfo.increaseOneMinute = increaseOneMinute;
+	clockInfo.decreaseOneMinute = decreaseOneMinute;
+	clockInfo.args = reinterpret_cast<intptr_t>(&clock);
+}
 
 void ClayControlUnit::draw() {
 	clock.getDayString().copy(clockInfo.DateDay, 2);
@@ -89,4 +101,64 @@ bool ClayControlUnit::getBacklight() const {
 
 uint8_t ClayControlUnit::getMoisture() const {
 	return ui.getMoisture();
+}
+
+void ClayControlUnit::increaseOneDay(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->increaseOneDay();
+}
+
+void ClayControlUnit::decreaseOneDay(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->decreaseOneDay();
+}
+
+void ClayControlUnit::increaseOneMonth(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->increaseOneMonth();
+}
+
+void ClayControlUnit::decreaseOneMonth(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->decreaseOneMonth();
+}
+
+void ClayControlUnit::increaseOneYear(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->increaseOneYear();
+}
+
+void ClayControlUnit::decreaseOneYear(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->decreaseOneYear();
+}
+
+void ClayControlUnit::increaseOneHour(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->increaseOneHour();
+}
+
+void ClayControlUnit::decreaseOneHour(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->decreaseOneHour();
+}
+
+void ClayControlUnit::increaseOneMinute(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->increaseOneMinute();
+}
+
+void ClayControlUnit::decreaseOneMinute(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayClock*>(args)->decreaseOneMinute();
 }
