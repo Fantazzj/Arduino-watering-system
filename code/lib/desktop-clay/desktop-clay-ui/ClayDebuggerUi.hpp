@@ -5,9 +5,8 @@
 #include <cinttypes>
 
 struct DebuggerInfo {
-	char* text;
-	int32_t len;
-	int32_t buff_len;
+	const char* text{nullptr};
+	int32_t len{0};
 };
 
 class ClayDebuggerUi {

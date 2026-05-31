@@ -39,14 +39,6 @@ ClayControlUnitUi::ClayControlUnitUi() :
 	Clay_SetMeasureTextFunction(Raylib_MeasureText, fonts);
 
 	//Clay_SetDebugModeEnabled(true);
-
-	debuggerInfo.text = static_cast<char*>(malloc(2048));
-	debuggerInfo.len = 0;
-	debuggerInfo.buff_len = 2048;
-}
-
-ClayControlUnitUi::~ClayControlUnitUi() {
-	free(debuggerInfo.text);
 }
 
 void ClayControlUnitUi::createControlUnit() {
@@ -68,7 +60,7 @@ void ClayControlUnitUi::createControlUnit() {
 	}
 }
 
-void ClayControlUnitUi::drawAdminSection(const ClockInfo& clockInfo) const {
+void ClayControlUnitUi::drawAdminSection(const ClockInfo& clockInfo, const DebuggerInfo& debuggerInfo) const {
 	CLAY({
 			.id = CLAY_ID("Admin"),
 			.layout = {
@@ -86,7 +78,7 @@ void ClayControlUnitUi::drawAdminSection(const ClockInfo& clockInfo) const {
 }
 
 
-void ClayControlUnitUi::draw(const ClockInfo& clockInfo) {
+void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const DebuggerInfo& debuggerInfo) {
 	if(WindowShouldClose()) {
 		Clay_Raylib_Close();
 		return;
@@ -119,7 +111,7 @@ void ClayControlUnitUi::draw(const ClockInfo& clockInfo) {
 			.backgroundColor = BG_COLOR,
 	}) {
 		createControlUnit();
-		drawAdminSection(clockInfo);
+		drawAdminSection(clockInfo, debuggerInfo);
 	}
 
 	const Clay_RenderCommandArray renderCommands = Clay_EndLayout();
@@ -128,16 +120,6 @@ void ClayControlUnitUi::draw(const ClockInfo& clockInfo) {
 	ClearBackground(BLACK);
 	Clay_Raylib_Render(renderCommands, fonts);
 	EndDrawing();
-}
-
-void ClayControlUnitUi::appendDebuggerText(const std::string& string) {
-	if(debuggerInfo.len + string.length() > debuggerInfo.buff_len) {
-		debuggerInfo.buff_len *= 2;
-		debuggerInfo.text = static_cast<char*>(realloc(debuggerInfo.text, debuggerInfo.buff_len));
-	}
-
-	for(const auto c: string)
-		debuggerInfo.text[debuggerInfo.len++] = c;
 }
 
 void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const char c) {

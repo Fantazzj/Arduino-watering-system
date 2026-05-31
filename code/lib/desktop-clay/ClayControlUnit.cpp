@@ -2,7 +2,7 @@
 
 #include <chrono>
 
-ClayControlUnit::ClayControlUnit(ClayClock& clock) : clock{clock}, clockInfo{} {
+ClayControlUnit::ClayControlUnit(ClayClock& clock, ClayDebugger& debugger) : clock{clock}, debugger{debugger} {
 	clockInfo.increaseOneDay = increaseOneDay;
 	clockInfo.decreaseOneDay = decreaseOneDay;
 	clockInfo.increaseOneMonth = increaseOneMonth;
@@ -23,7 +23,10 @@ void ClayControlUnit::draw() {
 	clock.getHoursString().copy(clockInfo.TimeHours, 2);
 	clock.getMinutesString().copy(clockInfo.TimeMinutes, 2);
 
-	ui.draw(clockInfo);
+	debuggerInfo.text = debugger.getText().data();
+	debuggerInfo.len = debugger.getText().length();
+
+	ui.draw(clockInfo, debuggerInfo);
 }
 
 bool ClayControlUnit::getCancelState() {
@@ -52,10 +55,6 @@ void ClayControlUnit::activateEtv(const uint8_t n) {
 
 void ClayControlUnit::deactivateEtv(const uint8_t n) {
 	ui.deactivateEtv(n);
-}
-
-void ClayControlUnit::debuggerLog(const std::string& string) {
-	ui.appendDebuggerText(string);
 }
 
 void ClayControlUnit::printOnDisplay(const std::string& text) {

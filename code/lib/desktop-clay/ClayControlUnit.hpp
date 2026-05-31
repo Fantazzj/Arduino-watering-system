@@ -2,11 +2,12 @@
 #define CLAYCONTROLUNIT_HPP
 
 #include "ClayClock.hpp"
+#include "ClayDebugger.hpp"
 #include "desktop-clay-ui/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
 public:
-	explicit ClayControlUnit(ClayClock& clock);
+	explicit ClayControlUnit(ClayClock& clock, ClayDebugger& debugger);
 	void draw();
 
 	bool getCancelState();
@@ -35,6 +36,9 @@ private:
 
 	ClayClock& clock;
 	ClockInfo clockInfo;
+	ClayDebugger& debugger;
+	DebuggerInfo debuggerInfo;
+
 
 	static void increaseOneDay(Clay_ElementId, Clay_PointerData, intptr_t args);
 	static void decreaseOneDay(Clay_ElementId, Clay_PointerData, intptr_t args);

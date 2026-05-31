@@ -2,21 +2,18 @@
 #define CLAYDEBUGGER_HPP
 
 #include "../core/Debugger.hpp"
-#include "ClayControlUnit.hpp"
+#include <string>
 
 class ClayDebugger final : public Debugger {
-private:
-	ClayControlUnit* w;
-
 public:
 	explicit ClayDebugger();
-	void begin(ClayControlUnit* w);
 	void print(const char* text) override;
 	void print(char c) override;
 	void print(int n) override;
+	[[nodiscard]] std::string_view getText() const;
 
-protected:
+private:
+	std::string text;
 };
-
 
 #endif//CLAYDEBUGGER_HPP
