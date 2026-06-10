@@ -31,12 +31,11 @@ ClayTimer myTimer;
 AutoCycle autoCycle(myClock, myValveGroup, myMainSwitch, myMoisture, myTimer, myDebugger);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
 
-ClayControlUnit unit(myClock, myValveGroup, myDebugger);
+ClayControlUnit unit(myClock, myValveGroup, myMainSwitch, myDebugger);
 
 void setup(ClayControlUnit* w) {
 	myDisplay.begin(w);
 	myKeypad.begin(w);
-	myMainSwitch.begin(w);
 	myMemory.begin();
 	myMoisture.begin(w);
 

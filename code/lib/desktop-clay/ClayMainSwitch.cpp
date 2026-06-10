@@ -1,17 +1,16 @@
 #include "ClayMainSwitch.hpp"
 
-ClayMainSwitch::ClayMainSwitch() {
-	w = nullptr;
-}
-
-void ClayMainSwitch::begin(ClayControlUnit* w) {
-	this->w = w;
-}
+ClayMainSwitch::ClayMainSwitch() :
+	state{false} {}
 
 void ClayMainSwitch::turnOn() {
-	//TODO: IMPLEMENT
+	state = true;
 }
 
 void ClayMainSwitch::turnOff() {
-	//TODO: IMPLEMENT
+	state = false;
+}
+
+bool ClayMainSwitch::getState() const {
+	return state;
 }

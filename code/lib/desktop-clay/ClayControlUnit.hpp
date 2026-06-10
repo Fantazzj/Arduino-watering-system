@@ -4,11 +4,12 @@
 #include "ClayClock.hpp"
 #include "ClayDebugger.hpp"
 #include "ClayValveGroup.hpp"
+#include "ClayMainSwitch.hpp"
 #include "desktop-clay-ui/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
 public:
-	explicit ClayControlUnit(ClayClock& clock, ClayValveGroup& valveGroup, ClayDebugger& debugger);
+	explicit ClayControlUnit(ClayClock& clock, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayDebugger& debugger);
 	void draw();
 
 	bool getCancelState();
@@ -37,6 +38,7 @@ private:
 	ClockInfo clockInfo;
 	ClayValveGroup& valveGroup;
 	ValveGroupInfo valveGroupInfo;
+	ClayMainSwitch& mainSwitch;
 	ClayDebugger& debugger;
 	DebuggerInfo debuggerInfo;
 
