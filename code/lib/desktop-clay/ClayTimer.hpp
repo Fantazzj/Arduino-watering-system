@@ -6,19 +6,15 @@
 #include <chrono>
 
 class ClayTimer final : public Timer {
-private:
-#if defined _MSC_BUILD || defined __EMSCRIPTEN__
-	std::chrono::time_point<std::chrono::steady_clock> startTime;
-#elif defined __MINGW64__
-	std::chrono::time_point<std::chrono::system_clock> startTime;
-#else
-#error "undefined startTime variable for correct platform"
-#endif
+	using chronoTime = std::chrono::time_point<std::chrono::system_clock>;
 
 public:
 	explicit ClayTimer();
 	void wait(unsigned long t) override;
 	unsigned long millis() override;
+
+private:
+	chronoTime startTime;
 
 protected:
 };
