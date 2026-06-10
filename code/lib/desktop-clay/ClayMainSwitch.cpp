@@ -9,9 +9,9 @@ void ClayMainSwitch::begin(ClayControlUnit* w) {
 }
 
 void ClayMainSwitch::turnOn() {
-	w->activateMainSwitch();
+	//TODO: IMPLEMENT
 }
 
 void ClayMainSwitch::turnOff() {
-	w->deactivateMainSwitch();
+	//TODO: IMPLEMENT
 }

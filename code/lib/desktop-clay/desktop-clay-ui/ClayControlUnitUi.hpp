@@ -14,7 +14,7 @@
 class ClayControlUnitUi {
 public:
 	ClayControlUnitUi();
-	void draw(const ClockInfo& clockInfo, const DebuggerInfo& debuggerInfo);
+	void draw(const ClockInfo& clockInfo, const ValveGroupInfo& valveGroupInfo, const DebuggerInfo& debuggerInfo);
 	void setDisplayChar(int8_t row, int8_t col, char c);
 	void setBacklight(bool state);
 	[[nodiscard]] bool getBacklight() const;
@@ -41,10 +41,9 @@ private:
 	ClayClockUi clock;
 	Font fonts[6];
 
-	ValveGroupInfo valveGroupInfo;
 	DisplayInfo displayInfo;
 
-	void createControlUnit();
+	void createControlUnit(const ValveGroupInfo& valveGroupInfo);
 	void drawAdminSection(const ClockInfo& clockInfo, const DebuggerInfo& debuggerInfo) const;
 	static void HandleClayErrors(Clay_ErrorData errorData);
 

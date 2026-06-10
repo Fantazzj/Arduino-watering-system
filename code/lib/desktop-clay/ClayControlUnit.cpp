@@ -2,7 +2,8 @@
 
 #include <chrono>
 
-ClayControlUnit::ClayControlUnit(ClayClock& clock, ClayDebugger& debugger) : clock{clock}, debugger{debugger} {
+ClayControlUnit::ClayControlUnit(ClayClock& clock, ClayValveGroup& valveGroup, ClayDebugger& debugger) :
+	clock{clock}, valveGroup{valveGroup}, debugger{debugger} {
 	clockInfo.increaseOneDay = increaseOneDay;
 	clockInfo.decreaseOneDay = decreaseOneDay;
 	clockInfo.increaseOneMonth = increaseOneMonth;
@@ -23,10 +24,12 @@ void ClayControlUnit::draw() {
 	clock.getHoursString().copy(clockInfo.TimeHours, 2);
 	clock.getMinutesString().copy(clockInfo.TimeMinutes, 2);
 
+	valveGroupInfo.states = valveGroup.getStates();
+
 	debuggerInfo.text = debugger.getText().data();
 	debuggerInfo.len = debugger.getText().length();
 
-	ui.draw(clockInfo, debuggerInfo);
+	ui.draw(clockInfo, valveGroupInfo, debuggerInfo);
 }
 
 bool ClayControlUnit::getCancelState() {
@@ -49,14 +52,6 @@ bool ClayControlUnit::getGeneralState() const {
 	return ui.getGeneralState();
 }
 
-void ClayControlUnit::activateEtv(const uint8_t n) {
-	ui.activateEtv(n);
-}
-
-void ClayControlUnit::deactivateEtv(const uint8_t n) {
-	ui.deactivateEtv(n);
-}
-
 void ClayControlUnit::printOnDisplay(const std::string& text) {
 	for(int8_t i = x, j = 0; j < text.size() && i < DISPLAY_LENGTH; i++, j++) {
 		ui.setDisplayChar(y, i, text[j]);
@@ -72,14 +67,6 @@ void ClayControlUnit::clearDisplay() {
 	for(int8_t i = 0; i < DISPLAY_HEIGHT; i++)
 		for(int8_t j = 0; j < DISPLAY_LENGTH; j++)
 			ui.setDisplayChar(i, j, ' ');
-}
-
-void ClayControlUnit::activateMainSwitch() {
-	ui.activateMainSwitch();
-}
-
-void ClayControlUnit::deactivateMainSwitch() {
-	ui.deactivateMainSwitch();
 }
 
 void ClayControlUnit::hideCursorDisplay() {

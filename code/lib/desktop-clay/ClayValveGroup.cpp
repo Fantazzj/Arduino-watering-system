@@ -1,20 +1,19 @@
 #include "ClayValveGroup.hpp"
 
 ClayValveGroup::ClayValveGroup(Clock& clock) :
-	ValveGroup(clock) {
-	w = nullptr;
-}
-
-void ClayValveGroup::begin(ClayControlUnit* w) {
-	this->w = w;
+	ValveGroup{clock}, states{} {
 }
 
 void ClayValveGroup::turnOn(const uint8_t num) {
 	this->tOn[num] = this->clock.getDateTime().time;
 	this->elapsedDays[num] = 1;
-	w->activateEtv(num);
+	states[num] = true;
 }
 
 void ClayValveGroup::turnOff(const uint8_t num) {
-	w->deactivateEtv(num);
+	states[num] = false;
+}
+
+const bool* ClayValveGroup::getStates() const {
+	return states;
 }
