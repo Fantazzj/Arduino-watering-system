@@ -2,18 +2,15 @@
 #define CLAYMOISTURE_HPP
 
 #include "../core/Moisture.hpp"
-#include "ClayControlUnit.hpp"
 
 class ClayMoisture final : public Moisture {
-private:
-	ClayControlUnit* w;
-
 public:
 	explicit ClayMoisture();
-	void begin(ClayControlUnit* w);
 	uint8_t getMoisture() override;
+	void setMoisture(uint8_t value);
 
-protected:
+private:
+	uint8_t value;
 };
 
 #endif//CLAYMOISTURE_HPP
