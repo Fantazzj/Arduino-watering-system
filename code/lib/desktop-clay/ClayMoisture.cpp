@@ -1,13 +1,12 @@
 #include "ClayMoisture.hpp"
 
-ClayMoisture::ClayMoisture() {
-	w = nullptr;
-}
-
-void ClayMoisture::begin(ClayControlUnit* w) {
-	this->w = w;
-}
+ClayMoisture::ClayMoisture() :
+	value{0} {}
 
 uint8_t ClayMoisture::getMoisture() {
-	return w->getMoisture();
+	return value;
+}
+
+void ClayMoisture::setMoisture(uint8_t value) {
+	this->value = value;
 }

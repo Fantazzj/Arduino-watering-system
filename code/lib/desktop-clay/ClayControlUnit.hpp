@@ -3,13 +3,14 @@
 
 #include "ClayClock.hpp"
 #include "ClayDebugger.hpp"
-#include "ClayValveGroup.hpp"
 #include "ClayMainSwitch.hpp"
+#include "ClayMoisture.hpp"
+#include "ClayValveGroup.hpp"
 #include "desktop-clay-ui/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
 public:
-	explicit ClayControlUnit(ClayClock& clock, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayDebugger& debugger);
+	explicit ClayControlUnit(ClayClock& clock, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayMoisture& moisture, ClayDebugger& debugger);
 	void draw();
 
 	bool getCancelState();
@@ -17,9 +18,6 @@ public:
 	bool getUpState();
 	bool getConfirmState();
 	[[nodiscard]] bool getGeneralState() const;
-	void activateMainSwitch();
-	void deactivateMainSwitch();
-	void debuggerLog(const std::string& string);
 	void printOnDisplay(const std::string& text);
 	void setCursorDisplay(int8_t x, int8_t y);
 	void clearDisplay();
@@ -39,9 +37,10 @@ private:
 	ClayValveGroup& valveGroup;
 	ValveGroupInfo valveGroupInfo;
 	ClayMainSwitch& mainSwitch;
+	ClayMoisture& moisture;
+	MoistureInfo moistureInfo;
 	ClayDebugger& debugger;
 	DebuggerInfo debuggerInfo;
-
 
 	static void increaseOneDay(Clay_ElementId, Clay_PointerData, intptr_t args);
 	static void decreaseOneDay(Clay_ElementId, Clay_PointerData, intptr_t args);
@@ -53,6 +52,16 @@ private:
 	static void decreaseOneHour(Clay_ElementId, Clay_PointerData, intptr_t args);
 	static void increaseOneMinute(Clay_ElementId, Clay_PointerData, intptr_t args);
 	static void decreaseOneMinute(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture00(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture10(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture20(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture30(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture40(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture50(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture60(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture70(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture80(Clay_ElementId, Clay_PointerData, intptr_t args);
+	static void setMoisture90(Clay_ElementId, Clay_PointerData, intptr_t args);
 };
 
 

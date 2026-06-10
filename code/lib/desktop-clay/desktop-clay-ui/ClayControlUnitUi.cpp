@@ -41,7 +41,7 @@ ClayControlUnitUi::ClayControlUnitUi() :
 	//Clay_SetDebugModeEnabled(true);
 }
 
-void ClayControlUnitUi::createControlUnit(const ValveGroupInfo& valveGroupInfo) {
+void ClayControlUnitUi::createControlUnit(const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo) {
 	CLAY({
 			.id = CLAY_ID("ControlUnit"),
 			.layout = {
@@ -55,7 +55,7 @@ void ClayControlUnitUi::createControlUnit(const ValveGroupInfo& valveGroupInfo) 
 	}) {
 		display.draw(displayInfo);
 		buttons.draw();
-		moisture.createUi();
+		moisture.draw(moistureInfo);
 		etvs.draw(valveGroupInfo);
 	}
 }
@@ -78,7 +78,7 @@ void ClayControlUnitUi::drawAdminSection(const ClockInfo& clockInfo, const Debug
 }
 
 
-void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const ValveGroupInfo& valveGroupInfo, const DebuggerInfo& debuggerInfo) {
+void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo, const DebuggerInfo& debuggerInfo) {
 	if(WindowShouldClose()) {
 		Clay_Raylib_Close();
 		return;
@@ -110,7 +110,7 @@ void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const ValveGroupInfo& v
 			},
 			.backgroundColor = BG_COLOR,
 	}) {
-		createControlUnit(valveGroupInfo);
+		createControlUnit(valveGroupInfo, moistureInfo);
 		drawAdminSection(clockInfo, debuggerInfo);
 	}
 
@@ -157,8 +157,4 @@ bool ClayControlUnitUi::getGeneralState() const {
 void ClayControlUnitUi::setBlinkOn(const int8_t row, const int8_t col) {
 	displayInfo.blinkChar[0] = row;
 	displayInfo.blinkChar[1] = col;
-}
-
-uint8_t ClayControlUnitUi::getMoisture() const {
-	return moisture.getMoistureLevel();
 }
