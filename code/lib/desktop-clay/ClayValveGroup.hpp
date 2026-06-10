@@ -2,19 +2,16 @@
 #define CLAYVALVEGROUP_HPP
 
 #include "../core/ValveGroup.hpp"
-#include "ClayControlUnit.hpp"
 
 class ClayValveGroup final : public ValveGroupN {
-private:
-	ClayControlUnit* w;
-
 public:
 	explicit ClayValveGroup(Clock& clock);
-	void begin(ClayControlUnit* w);
 	void turnOn(uint8_t num) override;
 	void turnOff(uint8_t num) override;
+	[[nodiscard]] const bool* getStates() const;
 
-protected:
+private:
+	bool states[VALVE_NUM];
 };
 
 #endif//CLAYVALVEGROUP_HPP

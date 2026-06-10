@@ -3,11 +3,12 @@
 
 #include "ClayClock.hpp"
 #include "ClayDebugger.hpp"
+#include "ClayValveGroup.hpp"
 #include "desktop-clay-ui/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
 public:
-	explicit ClayControlUnit(ClayClock& clock, ClayDebugger& debugger);
+	explicit ClayControlUnit(ClayClock& clock, ClayValveGroup& valveGroup, ClayDebugger& debugger);
 	void draw();
 
 	bool getCancelState();
@@ -15,8 +16,6 @@ public:
 	bool getUpState();
 	bool getConfirmState();
 	[[nodiscard]] bool getGeneralState() const;
-	void activateEtv(uint8_t n);
-	void deactivateEtv(uint8_t n);
 	void activateMainSwitch();
 	void deactivateMainSwitch();
 	void debuggerLog(const std::string& string);
@@ -36,6 +35,8 @@ private:
 
 	ClayClock& clock;
 	ClockInfo clockInfo;
+	ClayValveGroup& valveGroup;
+	ValveGroupInfo valveGroupInfo;
 	ClayDebugger& debugger;
 	DebuggerInfo debuggerInfo;
 

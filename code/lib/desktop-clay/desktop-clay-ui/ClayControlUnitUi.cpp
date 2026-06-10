@@ -41,7 +41,7 @@ ClayControlUnitUi::ClayControlUnitUi() :
 	//Clay_SetDebugModeEnabled(true);
 }
 
-void ClayControlUnitUi::createControlUnit() {
+void ClayControlUnitUi::createControlUnit(const ValveGroupInfo& valveGroupInfo) {
 	CLAY({
 			.id = CLAY_ID("ControlUnit"),
 			.layout = {
@@ -78,7 +78,7 @@ void ClayControlUnitUi::drawAdminSection(const ClockInfo& clockInfo, const Debug
 }
 
 
-void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const DebuggerInfo& debuggerInfo) {
+void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const ValveGroupInfo& valveGroupInfo, const DebuggerInfo& debuggerInfo) {
 	if(WindowShouldClose()) {
 		Clay_Raylib_Close();
 		return;
@@ -110,7 +110,7 @@ void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const DebuggerInfo& deb
 			},
 			.backgroundColor = BG_COLOR,
 	}) {
-		createControlUnit();
+		createControlUnit(valveGroupInfo);
 		drawAdminSection(clockInfo, debuggerInfo);
 	}
 
@@ -134,14 +134,6 @@ bool ClayControlUnitUi::getBacklight() const {
 	return displayInfo.backlight;
 }
 
-void ClayControlUnitUi::activateEtv(const uint8_t n) {
-	valveGroupInfo.states[n] = true;
-}
-
-void ClayControlUnitUi::deactivateEtv(const uint8_t n) {
-	valveGroupInfo.states[n] = false;
-}
-
 bool ClayControlUnitUi::getCancelState() {
 	return buttons.getCancelState();
 }
@@ -160,14 +152,6 @@ bool ClayControlUnitUi::getConfirmState() {
 
 bool ClayControlUnitUi::getGeneralState() const {
 	return buttons.getGeneralState();
-}
-
-void ClayControlUnitUi::activateMainSwitch() {
-	valveGroupInfo.mainSwitch = true;
-}
-
-void ClayControlUnitUi::deactivateMainSwitch() {
-	valveGroupInfo.mainSwitch = false;
 }
 
 void ClayControlUnitUi::setBlinkOn(const int8_t row, const int8_t col) {

@@ -6,8 +6,8 @@
 #include <string>
 
 struct ValveGroupInfo {
-	bool states[VALVE_NUM]{};
-	bool mainSwitch{};
+	const bool* states{nullptr};
+	bool mainSwitch{false};
 };
 
 class ClayValveGroupUi {
