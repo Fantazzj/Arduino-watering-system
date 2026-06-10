@@ -2,8 +2,8 @@
 
 #include <chrono>
 
-ClayControlUnit::ClayControlUnit(ClayClock& clock, ClayValveGroup& valveGroup, ClayDebugger& debugger) :
-	clock{clock}, valveGroup{valveGroup}, debugger{debugger} {
+ClayControlUnit::ClayControlUnit(ClayClock& clock, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayDebugger& debugger) :
+	clock{clock}, valveGroup{valveGroup}, mainSwitch{mainSwitch}, debugger{debugger} {
 	clockInfo.increaseOneDay = increaseOneDay;
 	clockInfo.decreaseOneDay = decreaseOneDay;
 	clockInfo.increaseOneMonth = increaseOneMonth;
@@ -25,6 +25,7 @@ void ClayControlUnit::draw() {
 	clock.getMinutesString().copy(clockInfo.TimeMinutes, 2);
 
 	valveGroupInfo.states = valveGroup.getStates();
+	valveGroupInfo.mainSwitch = mainSwitch.getState();
 
 	debuggerInfo.text = debugger.getText().data();
 	debuggerInfo.len = debugger.getText().length();
@@ -77,7 +78,7 @@ void ClayControlUnit::showCursorDisplay() {
 	ui.setBlinkOn(y, x);
 }
 
-void ClayControlUnit::setBacklight(bool state) {
+void ClayControlUnit::setBacklight(const bool state) {
 	ui.setBacklight(state);
 }
 
