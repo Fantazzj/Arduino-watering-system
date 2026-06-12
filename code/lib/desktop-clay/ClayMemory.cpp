@@ -7,9 +7,7 @@ using namespace std::filesystem;
 
 ClayMemory::ClayMemory(const string& fileName) {
 	this->fileName = fileName;
-}
 
-void ClayMemory::begin() {
 	if(exists(fileName) && file_size(fileName) == MEMORY_SIZE)
 		return;
 

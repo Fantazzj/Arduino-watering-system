@@ -34,8 +34,6 @@ PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwit
 ClayControlUnit unit(myDisplay, myClock, myKeypad, myValveGroup, myMainSwitch, myMoisture, myDebugger);
 
 void setup() {
-	myMemory.begin();
-
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
 		myValveGroup.setDays(i, myMemory.readEtvDays(i));
 		myValveGroup.setMinOn(i, myMemory.readEtvMinOn(i));
