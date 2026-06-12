@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../core/Timer.hpp"
-#include "ClayControlUnit.hpp"
+#include "../ui-clay/ClayControlUnit.hpp"
 #include <chrono>
 
 class StdTimer final : public Timer {

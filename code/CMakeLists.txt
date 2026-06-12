@@ -73,11 +73,13 @@ elseif (${TARGET_ARCHITECTURE} STREQUAL DESKTOP)
         add_link_options(-fPIC)
     endif ()
 
-    add_subdirectory(lib/desktop-clay)
+    add_subdirectory(lib/simulator-std)
+    add_subdirectory(lib/ui-clay)
 
 elseif (${TARGET_ARCHITECTURE} STREQUAL WEB)
     add_compile_definitions(CLAYDESKTOP=0 DEBUG=0)
-    add_subdirectory(lib/desktop-clay)
+    add_subdirectory(lib/simulator-std)
+    add_subdirectory(lib/ui-clay)
 
 endif ()
 

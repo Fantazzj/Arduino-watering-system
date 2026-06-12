@@ -1,13 +1,13 @@
 #pragma once
 
-#include "StdClock.hpp"
-#include "StdDebugger.hpp"
-#include "StdDisplay.hpp"
-#include "StdKeypad.hpp"
-#include "StdMainSwitch.hpp"
-#include "StdMoisture.hpp"
-#include "StdValveGroup.hpp"
-#include "desktop-clay-ui/ClayControlUnitUi.hpp"
+#include "../simulator-std/StdClock.hpp"
+#include "../simulator-std/StdDebugger.hpp"
+#include "../simulator-std/StdDisplay.hpp"
+#include "../simulator-std/StdKeypad.hpp"
+#include "../simulator-std/StdMainSwitch.hpp"
+#include "../simulator-std/StdMoisture.hpp"
+#include "../simulator-std/StdValveGroup.hpp"
+#include "ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
 public:

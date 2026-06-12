@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../core/Memory.hpp"
-#include "ClayControlUnit.hpp"
+#include "../ui-clay/ClayControlUnit.hpp"
 #include <fstream>
 
 class StdMemory final : public Memory {

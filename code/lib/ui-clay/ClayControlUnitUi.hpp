@@ -1,11 +1,11 @@
 #pragma once
 
-#include "ClayClockUi.hpp"
 #include "ClayDebuggerUi.hpp"
 #include "ClayDisplayUi.hpp"
 #include "ClayKeypadUi.hpp"
 #include "ClayMoistureUi.hpp"
 #include "ClayValveGroupUi.hpp"
+#include "ClayClockUi.hpp"
 #include "raylib.h"
 
 class ClayControlUnitUi {
