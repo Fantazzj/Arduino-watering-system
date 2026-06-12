@@ -41,7 +41,7 @@ ClayControlUnitUi::ClayControlUnitUi() :
 	//Clay_SetDebugModeEnabled(true);
 }
 
-void ClayControlUnitUi::createControlUnit(const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo) {
+void ClayControlUnitUi::createControlUnit(const DisplayInfo& displayInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo) {
 	CLAY({
 			.id = CLAY_ID("ControlUnit"),
 			.layout = {
@@ -78,7 +78,7 @@ void ClayControlUnitUi::drawAdminSection(const ClockInfo& clockInfo, const Debug
 }
 
 
-void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo, const DebuggerInfo& debuggerInfo) {
+void ClayControlUnitUi::draw(const DisplayInfo& displayInfo, const ClockInfo& clockInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo, const DebuggerInfo& debuggerInfo) {
 	if(WindowShouldClose()) {
 		Clay_Raylib_Close();
 		return;
@@ -110,7 +110,7 @@ void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const ValveGroupInfo& v
 			},
 			.backgroundColor = BG_COLOR,
 	}) {
-		createControlUnit(valveGroupInfo, moistureInfo);
+		createControlUnit(displayInfo, valveGroupInfo, moistureInfo);
 		drawAdminSection(clockInfo, debuggerInfo);
 	}
 
@@ -120,18 +120,6 @@ void ClayControlUnitUi::draw(const ClockInfo& clockInfo, const ValveGroupInfo& v
 	ClearBackground(BLACK);
 	Clay_Raylib_Render(renderCommands, fonts);
 	EndDrawing();
-}
-
-void ClayControlUnitUi::setDisplayChar(const int8_t row, const int8_t col, const char c) {
-	displayInfo.text[row][col] = c;
-}
-
-void ClayControlUnitUi::setBacklight(const bool state) {
-	displayInfo.backlight = state;
-}
-
-bool ClayControlUnitUi::getBacklight() const {
-	return displayInfo.backlight;
 }
 
 bool ClayControlUnitUi::getCancelState() {
@@ -152,9 +140,4 @@ bool ClayControlUnitUi::getConfirmState() {
 
 bool ClayControlUnitUi::getGeneralState() const {
 	return buttons.getGeneralState();
-}
-
-void ClayControlUnitUi::setBlinkOn(const int8_t row, const int8_t col) {
-	displayInfo.blinkChar[0] = row;
-	displayInfo.blinkChar[1] = col;
 }

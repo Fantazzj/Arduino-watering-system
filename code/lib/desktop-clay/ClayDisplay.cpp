@@ -1,18 +1,13 @@
 #include "ClayDisplay.hpp"
 
-ClayDisplay::ClayDisplay() {
-	w = nullptr;
-}
-
-void ClayDisplay::begin(ClayControlUnit* w) {
-	this->w = w;
-}
+ClayDisplay::ClayDisplay() :
+	text{}, blinkChar{-1, -1}, backlight{false}, x{}, y{} {}
 
 void ClayDisplay::printSimpleText(const char text[]) {
 	std::string rows[DISPLAY_HEIGHT];
 	const std::string conv(text);
 
-	w->clearDisplay();
+	clearDisplay();
 
 	if(conv.length() <= displayChars) {
 		arrangeWords(conv, rows);
@@ -28,7 +23,7 @@ void ClayDisplay::printData(const char text1[], const int8_t data, const char te
 
 	const std::string conv = conv1 + " " + std::to_string(data) + " " + conv2;
 
-	w->clearDisplay();
+	clearDisplay();
 
 	if(conv.length() <= displayChars) {
 		arrangeWords(conv, rows);
@@ -45,7 +40,7 @@ void ClayDisplay::printData(const char text1[], const int8_t data1, const char t
 
 	const std::string conv = conv1 + " " + std::to_string(data1) + " " + conv2 + " " + std::to_string(data2) + " " + conv3;
 
-	w->clearDisplay();
+	clearDisplay();
 
 	if(conv.length() <= displayChars) {
 		arrangeWords(conv, rows);
@@ -56,24 +51,24 @@ void ClayDisplay::printData(const char text1[], const int8_t data1, const char t
 void ClayDisplay::printIn(const char text[], const int8_t x, const int8_t y) {
 	const std::string conv(text);
 
-	w->setCursorDisplay(x, y);
-	w->printOnDisplay(conv);
+	setCursorDisplay(x, y);
+	printOnDisplay(conv);
 }
 
 void ClayDisplay::printIn(const int8_t data, const int8_t x, const int8_t y) {
 	const std::string conv = std::to_string(data);
 
-	w->setCursorDisplay(x, y);
-	w->printOnDisplay(conv);
+	setCursorDisplay(x, y);
+	printOnDisplay(conv);
 }
 
 void ClayDisplay::printIn(const std::string& data, const int8_t x, const int8_t y) {
-	w->setCursorDisplay(x, y);
-	w->printOnDisplay(data);
+	setCursorDisplay(x, y);
+	printOnDisplay(data);
 }
 
 void ClayDisplay::showClock(const MyDateTime timeIn) {
-	w->clearDisplay();
+	clearDisplay();
 
 	const std::string date = arrangeDate(timeIn.date);
 	printIn(date, 0, 1);
@@ -84,28 +79,26 @@ void ClayDisplay::showClock(const MyDateTime timeIn) {
 }
 
 void ClayDisplay::blinkAt(const int8_t x, const int8_t y) {
-	w->hideCursorDisplay();
-	w->setCursorDisplay(x, y);
-	w->showCursorDisplay();
+	setCursorDisplay(x, y);
 }
 
 void ClayDisplay::noBlink() {
-	w->hideCursorDisplay();
+	setCursorDisplay(-1, -1);
 }
 
 void ClayDisplay::clockSym(const bool state) {
-	w->setCursorDisplay(12, 1);
-	w->printOnDisplay(state ? "c" : " ");
+	setCursorDisplay(12, 1);
+	printOnDisplay(state ? "c" : " ");
 }
 
 void ClayDisplay::dropSym(const bool state) {
-	w->setCursorDisplay(13, 1);
-	w->printOnDisplay(state ? "d" : " ");
+	setCursorDisplay(13, 1);
+	printOnDisplay(state ? "d" : " ");
 }
 
 void ClayDisplay::checkSym(const bool state) {
-	w->setCursorDisplay(14, 1);
-	w->printOnDisplay(state ? "c" : " ");
+	setCursorDisplay(14, 1);
+	printOnDisplay(state ? "c" : " ");
 }
 
 void ClayDisplay::arrangeWords(std::string text, std::string rows[]) {
@@ -126,8 +119,8 @@ void ClayDisplay::arrangeWords(std::string text, std::string rows[]) {
 
 void ClayDisplay::printRows(std::string rows[]) {
 	for(int8_t row = 0; row < DISPLAY_HEIGHT; row++) {
-		w->setCursorDisplay(0, row);
-		w->printOnDisplay(rows[row]);
+		setCursorDisplay(0, row);
+		printOnDisplay(rows[row]);
 	}
 }
 
@@ -187,15 +180,40 @@ std::string ClayDisplay::arrangeTime(const MyTime time) {
 }
 
 void ClayDisplay::displayError1() {
-	w->printOnDisplay("Err. string");
-	w->setCursorDisplay(0, 1);
-	w->printOnDisplay("too big");
+	printOnDisplay("Err. string");
+	setCursorDisplay(0, 1);
+	printOnDisplay("too big");
+}
+
+void ClayDisplay::clearDisplay() {
+	for(int8_t i = 0; i < DISPLAY_HEIGHT; i++)
+		for(int8_t j = 0; j < DISPLAY_LENGTH; j++)
+			text[i][j] = ' ';
+}
+
+void ClayDisplay::printOnDisplay(string s) {
+	for(int8_t i = x, j = 0; j < s.size() && i < DISPLAY_LENGTH; i++, j++) {
+		text[y][i] = s[j];
+	}
+}
+
+void ClayDisplay::setCursorDisplay(int8_t x, int8_t y) {
+	this->x = x;
+	this->y = y;
 }
 
 void ClayDisplay::setBacklight(const bool state) {
-	w->setBacklight(state);
+	backlight = state;
 }
 
 bool ClayDisplay::getBacklight() const {
-	return w->getBacklight();
+	return backlight;
+}
+
+int8_t* ClayDisplay::getBlinkChar() {
+	return blinkChar;
+}
+
+char* ClayDisplay::getTextLine(const uint8_t n) {
+	return text[n];
 }

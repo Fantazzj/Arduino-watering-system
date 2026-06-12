@@ -14,16 +14,12 @@
 class ClayControlUnitUi {
 public:
 	ClayControlUnitUi();
-	void draw(const ClockInfo& clockInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo, const DebuggerInfo& debuggerInfo);
-	void setDisplayChar(int8_t row, int8_t col, char c);
-	void setBacklight(bool state);
-	[[nodiscard]] bool getBacklight() const;
+	void draw(const DisplayInfo& displayInfo, const ClockInfo& clockInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo, const DebuggerInfo& debuggerInfo);
 	bool getCancelState();
 	bool getDownState();
 	bool getUpState();
 	bool getConfirmState();
 	[[nodiscard]] bool getGeneralState() const;
-	void setBlinkOn(int8_t row, int8_t col);
 
 private:
 	static constexpr Clay_Color BG_COLOR = {74, 95, 115, 255};
@@ -36,13 +32,9 @@ private:
 	ClayClockUi clock;
 	Font fonts[6];
 
-	DisplayInfo displayInfo;
-
-	void createControlUnit(const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo);
+	void createControlUnit(const DisplayInfo& displayInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo);
 	void drawAdminSection(const ClockInfo& clockInfo, const DebuggerInfo& debuggerInfo) const;
 	static void HandleClayErrors(Clay_ErrorData errorData);
-
-	void updateStrings();
 };
 
 #endif//CLAY_CONTROL_UNIT_UI_HPP

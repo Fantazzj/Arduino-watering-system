@@ -5,8 +5,8 @@
 #include <cinttypes>
 
 struct DisplayInfo {
-	char text[DISPLAY_HEIGHT][DISPLAY_LENGTH]{};
-	int8_t blinkChar[2]{-1, -1};
+	char* text[DISPLAY_HEIGHT];
+	int8_t* blinkChar{};
 	bool backlight{false};
 };
 

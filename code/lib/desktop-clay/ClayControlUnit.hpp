@@ -3,6 +3,7 @@
 
 #include "ClayClock.hpp"
 #include "ClayDebugger.hpp"
+#include "ClayDisplay.hpp"
 #include "ClayMainSwitch.hpp"
 #include "ClayMoisture.hpp"
 #include "ClayValveGroup.hpp"
@@ -10,7 +11,7 @@
 
 class ClayControlUnit {
 public:
-	explicit ClayControlUnit(ClayClock& clock, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayMoisture& moisture, ClayDebugger& debugger);
+	explicit ClayControlUnit(ClayDisplay& display, ClayClock& clock, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayMoisture& moisture, ClayDebugger& debugger);
 	void draw();
 
 	bool getCancelState();
@@ -18,20 +19,12 @@ public:
 	bool getUpState();
 	bool getConfirmState();
 	[[nodiscard]] bool getGeneralState() const;
-	void printOnDisplay(const std::string& text);
-	void setCursorDisplay(int8_t x, int8_t y);
-	void clearDisplay();
-	void hideCursorDisplay();
-	void showCursorDisplay();
-	void setBacklight(bool state);
-	[[nodiscard]] bool getBacklight() const;
-	[[nodiscard]] uint8_t getMoisture() const;
 
 private:
 	ClayControlUnitUi ui;
-	int8_t x = 0;
-	int8_t y = 0;
 
+	ClayDisplay& display;
+	DisplayInfo displayInfo;
 	ClayClock& clock;
 	ClockInfo clockInfo;
 	ClayValveGroup& valveGroup;
