@@ -1,5 +1,4 @@
-#ifndef CLAYDEBUGGER_HPP
-#define CLAYDEBUGGER_HPP
+#pragma once
 
 #include "../core/Debugger.hpp"
 #include <string>
@@ -15,5 +14,3 @@ public:
 private:
 	std::string text;
 };
-
-#endif//CLAYDEBUGGER_HPP

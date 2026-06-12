@@ -1,5 +1,4 @@
-#ifndef CLAYMOISTURE_HPP
-#define CLAYMOISTURE_HPP
+#pragma once
 
 #include "../core/Moisture.hpp"
 
@@ -12,5 +11,3 @@ public:
 private:
 	uint8_t value;
 };
-
-#endif//CLAYMOISTURE_HPP

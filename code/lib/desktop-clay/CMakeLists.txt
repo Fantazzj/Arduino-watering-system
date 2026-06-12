@@ -21,7 +21,7 @@ add_library(desktop-clay STATIC
         StdMainSwitch.cpp
         StdMoisture.cpp
         StdMemory.cpp
-        ClayValveGroup.cpp
+        StdValveGroup.cpp
         StdDebugger.cpp
         StdTimer.cpp
 )

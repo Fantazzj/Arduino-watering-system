@@ -2,7 +2,7 @@
 
 #include <chrono>
 
-ClayControlUnit::ClayControlUnit(StdDisplay& display, StdClock& clock, StdKeypad& keypad, ClayValveGroup& valveGroup, StdMainSwitch& mainSwitch, StdMoisture& moisture, StdDebugger& debugger) :
+ClayControlUnit::ClayControlUnit(StdDisplay& display, StdClock& clock, StdKeypad& keypad, StdValveGroup& valveGroup, StdMainSwitch& mainSwitch, StdMoisture& moisture, StdDebugger& debugger) :
 	display{display}, clock{clock}, keypad{keypad}, valveGroup{valveGroup}, mainSwitch{mainSwitch}, moisture{moisture}, debugger{debugger} {
 	clockInfo.increaseOneDay = increaseOneDay;
 	clockInfo.decreaseOneDay = decreaseOneDay;

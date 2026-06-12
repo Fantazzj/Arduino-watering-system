@@ -1,5 +1,4 @@
-#ifndef CLAYCLOCK_HPP
-#define CLAYCLOCK_HPP
+#pragma once
 
 #include "../core/Clock.hpp"
 #include <chrono>
@@ -32,5 +31,3 @@ public:
 private:
 	chronoTime dateTime;
 };
-
-#endif//CLAYCLOCK_HPP

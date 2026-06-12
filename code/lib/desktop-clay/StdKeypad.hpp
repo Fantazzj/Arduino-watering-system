@@ -1,5 +1,4 @@
-#ifndef CLAYKEYPAD_HPP
-#define CLAYKEYPAD_HPP
+#pragma once
 
 #include "../core/Keypad.hpp"
 
@@ -22,6 +21,3 @@ private:
 	bool upState;
 	bool confirmState;
 };
-
-
-#endif//CLAYKEYPAD_HPP

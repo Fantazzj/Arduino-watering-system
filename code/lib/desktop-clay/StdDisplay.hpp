@@ -1,5 +1,4 @@
-#ifndef CLAYDISPLAY_HPP
-#define CLAYDISPLAY_HPP
+#pragma once
 
 #include "../core/UnitDisplay.hpp"
 #include <string>
@@ -45,5 +44,3 @@ private:
 	void displayError1();
 	static constexpr int8_t displayChars = DISPLAY_HEIGHT * DISPLAY_LENGTH;
 };
-
-#endif//CLAYDISPLAY_HPP

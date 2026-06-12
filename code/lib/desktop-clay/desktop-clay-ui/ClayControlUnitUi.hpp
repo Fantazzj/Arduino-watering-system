@@ -1,5 +1,4 @@
-#ifndef CLAY_CONTROL_UNIT_UI_HPP
-#define CLAY_CONTROL_UNIT_UI_HPP
+#pragma once
 
 #include "ClayClockUi.hpp"
 #include "ClayDebuggerUi.hpp"
@@ -8,8 +7,6 @@
 #include "ClayMoistureUi.hpp"
 #include "ClayValveGroupUi.hpp"
 #include "raylib.h"
-
-#include "clay.h"
 
 class ClayControlUnitUi {
 public:
@@ -31,5 +28,3 @@ private:
 	void drawAdminSection(const ClockInfo& clockInfo, const DebuggerInfo& debuggerInfo) const;
 	static void HandleClayErrors(Clay_ErrorData errorData);
 };
-
-#endif//CLAY_CONTROL_UNIT_UI_HPP

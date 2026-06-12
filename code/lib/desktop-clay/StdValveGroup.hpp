@@ -1,11 +1,10 @@
-#ifndef CLAYVALVEGROUP_HPP
-#define CLAYVALVEGROUP_HPP
+#pragma once
 
 #include "../core/ValveGroup.hpp"
 
-class ClayValveGroup final : public ValveGroupN {
+class StdValveGroup final : public ValveGroupN {
 public:
-	explicit ClayValveGroup(Clock& clock);
+	explicit StdValveGroup(Clock& clock);
 	void turnOn(uint8_t num) override;
 	void turnOff(uint8_t num) override;
 	[[nodiscard]] const bool* getStates() const;
@@ -13,5 +12,3 @@ public:
 private:
 	bool states[VALVE_NUM];
 };
-
-#endif//CLAYVALVEGROUP_HPP

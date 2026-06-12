@@ -1,8 +1,6 @@
-#ifndef CLAY_DISPLAY_UI_HPP
-#define CLAY_DISPLAY_UI_HPP
+#pragma once
 
 #include "clay.h"
-#include <cinttypes>
 
 struct DisplayInfo {
 	char* text[DISPLAY_HEIGHT];
@@ -28,5 +26,3 @@ private:
 	void drawChars(const DisplayInfo& info, int8_t row) const;
 	void drawRows(const DisplayInfo& info) const;
 };
-
-#endif//CLAY_DISPLAY_UI_HPP

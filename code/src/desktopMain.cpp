@@ -1,7 +1,6 @@
 #include "../lib/core/AutoCycle.hpp"
 #include "../lib/core/PageSelector.hpp"
 #include "../lib/desktop-clay/ClayControlUnit.hpp"
-#include "../lib/desktop-clay/ClayValveGroup.hpp"
 #include "../lib/desktop-clay/StdClock.hpp"
 #include "../lib/desktop-clay/StdDebugger.hpp"
 #include "../lib/desktop-clay/StdDisplay.hpp"
@@ -10,6 +9,7 @@
 #include "../lib/desktop-clay/StdMemory.hpp"
 #include "../lib/desktop-clay/StdMoisture.hpp"
 #include "../lib/desktop-clay/StdTimer.hpp"
+#include "../lib/desktop-clay/StdValveGroup.hpp"
 
 #include <chrono>
 #include <thread>
@@ -21,7 +21,7 @@ using std::this_thread::sleep_for;
 StdKeypad myKeypad;
 StdDisplay myDisplay;
 StdClock myClock;
-ClayValveGroup myValveGroup(myClock);
+StdValveGroup myValveGroup(myClock);
 StdMainSwitch myMainSwitch;
 StdMemory myMemory("./memory.bin");
 StdMoisture myMoisture;

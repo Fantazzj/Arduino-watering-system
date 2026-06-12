@@ -1,5 +1,4 @@
-#ifndef CLAY_MOISTURE_UI_HPP
-#define CLAY_MOISTURE_UI_HPP
+#pragma once
 
 #include "clay.h"
 
@@ -23,5 +22,3 @@ private:
 	static constexpr Clay_Color SELECTED_LEVEL_COLOR = {149, 182, 120, 255};
 	static constexpr Clay_Color BG_COLOR = {100, 120, 150, 255};
 };
-
-#endif//CLAY_MOISTURE_UI_HPP

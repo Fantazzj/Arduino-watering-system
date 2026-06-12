@@ -1,8 +1,6 @@
-#ifndef CLAY_DEBUGGER_UI_HPP
-#define CLAY_DEBUGGER_UI_HPP
+#pragma once
 
 #include "clay.h"
-#include <cinttypes>
 
 struct DebuggerInfo {
 	const char* text{nullptr};
@@ -22,5 +20,3 @@ private:
 
 	Clay_TextElementConfig textConfig;
 };
-
-#endif//CLAY_DEBUGGER_UI_HPP

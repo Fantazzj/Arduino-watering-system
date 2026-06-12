@@ -1,5 +1,4 @@
-#ifndef CLAYMAINSWITCH_HPP
-#define CLAYMAINSWITCH_HPP
+#pragma once
 
 #include "../core/MainSwitch.hpp"
 
@@ -13,5 +12,3 @@ public:
 private:
 	bool state;
 };
-
-#endif//CLAYMAINSWITCH_HPP

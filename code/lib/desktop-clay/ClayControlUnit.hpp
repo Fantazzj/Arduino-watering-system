@@ -1,18 +1,17 @@
-#ifndef CLAYCONTROLUNIT_HPP
-#define CLAYCONTROLUNIT_HPP
+#pragma once
 
-#include "ClayValveGroup.hpp"
 #include "StdClock.hpp"
 #include "StdDebugger.hpp"
 #include "StdDisplay.hpp"
 #include "StdKeypad.hpp"
 #include "StdMainSwitch.hpp"
 #include "StdMoisture.hpp"
+#include "StdValveGroup.hpp"
 #include "desktop-clay-ui/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
 public:
-	explicit ClayControlUnit(StdDisplay& display, StdClock& clock, StdKeypad& keypad, ClayValveGroup& valveGroup, StdMainSwitch& mainSwitch, StdMoisture& moisture, StdDebugger& debugger);
+	explicit ClayControlUnit(StdDisplay& display, StdClock& clock, StdKeypad& keypad, StdValveGroup& valveGroup, StdMainSwitch& mainSwitch, StdMoisture& moisture, StdDebugger& debugger);
 	void draw();
 
 private:
@@ -24,7 +23,7 @@ private:
 	ClockInfo clockInfo;
 	StdKeypad& keypad;
 	KeypadInfo keypadInfo;
-	ClayValveGroup& valveGroup;
+	StdValveGroup& valveGroup;
 	ValveGroupInfo valveGroupInfo;
 	StdMainSwitch& mainSwitch;
 	StdMoisture& moisture;
@@ -57,5 +56,3 @@ private:
 	static void pressUp(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
 	static void pressConfirm(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);
 };
-
-#endif//CLAYCONTROLUNIT_HPP

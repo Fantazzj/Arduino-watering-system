@@ -1,5 +1,4 @@
-#ifndef CLAYCLOCKUI_HPP
-#define CLAYCLOCKUI_HPP
+#pragma once
 
 #include "clay.h"
 
@@ -43,5 +42,3 @@ private:
 	void drawSpacer() const;
 	void drawEditor(const ClockInfo& info, const char* num, int8_t len, ClayHandler_t pressHandlerAdd, ClayHandler_t pressHandlerSub) const;
 };
-
-#endif//CLAYCLOCKUI_HPP

@@ -1,5 +1,4 @@
-#ifndef CLAYTIMER_HPP
-#define CLAYTIMER_HPP
+#pragma once
 
 #include "../core/Timer.hpp"
 #include "ClayControlUnit.hpp"
@@ -15,8 +14,4 @@ public:
 
 private:
 	chronoTime startTime;
-
-protected:
 };
-
-#endif//CLAYTIMER_HPP

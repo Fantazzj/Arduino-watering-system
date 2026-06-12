@@ -1,8 +1,6 @@
-#ifndef CLAY_VALVE_GROUP_UI_HPP
-#define CLAY_VALVE_GROUP_UI_HPP
+#pragma once
 
 #include "clay.h"
-#include <cinttypes>
 #include <string>
 
 struct ValveGroupInfo {
@@ -37,5 +35,3 @@ private:
 	void drawValve(Clay_String name, bool state) const;
 	void drawValveRow(const Clay_String* names, const bool* states, int8_t n) const;
 };
-
-#endif//CLAY_VALVE_GROUP_UI_HPP

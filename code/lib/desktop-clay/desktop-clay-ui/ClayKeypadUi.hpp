@@ -1,5 +1,4 @@
-#ifndef CLAY_KEYPAD_UI_HPP
-#define CLAY_KEYPAD_UI_HPP
+#pragma once
 
 #include "clay.h"
 #include <string>
@@ -37,5 +36,3 @@ private:
 
 	void drawButton(const string_view& name, ClayHandler_t handler, intptr_t args) const;
 };
-
-#endif//CLAY_KEYPAD_UI_HPP
