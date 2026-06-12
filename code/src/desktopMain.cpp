@@ -31,10 +31,9 @@ ClayTimer myTimer;
 AutoCycle autoCycle(myClock, myValveGroup, myMainSwitch, myMoisture, myTimer, myDebugger);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);
 
-ClayControlUnit unit(myDisplay, myClock, myValveGroup, myMainSwitch, myMoisture, myDebugger);
+ClayControlUnit unit(myDisplay, myClock, myKeypad, myValveGroup, myMainSwitch, myMoisture, myDebugger);
 
-void setup(ClayControlUnit* w) {
-	myKeypad.begin(w);
+void setup() {
 	myMemory.begin();
 
 	for(int8_t i = 0; i < VALVE_NUM; i++) {
@@ -59,7 +58,7 @@ void loop() {
 int main(int argc, char* argv[]) {
 	bool finished = false;
 
-	setup(&unit);
+	setup();
 
 	bool* pfinished = &finished;
 	thread thread([pfinished] {

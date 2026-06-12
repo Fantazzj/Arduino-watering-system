@@ -41,7 +41,7 @@ ClayControlUnitUi::ClayControlUnitUi() :
 	//Clay_SetDebugModeEnabled(true);
 }
 
-void ClayControlUnitUi::createControlUnit(const DisplayInfo& displayInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo) {
+void ClayControlUnitUi::createControlUnit(const DisplayInfo& displayInfo, const KeypadInfo& keypadInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo) {
 	CLAY({
 			.id = CLAY_ID("ControlUnit"),
 			.layout = {
@@ -54,7 +54,7 @@ void ClayControlUnitUi::createControlUnit(const DisplayInfo& displayInfo, const 
 			},
 	}) {
 		display.draw(displayInfo);
-		buttons.draw();
+		buttons.draw(keypadInfo);
 		moisture.draw(moistureInfo);
 		etvs.draw(valveGroupInfo);
 	}
@@ -78,7 +78,7 @@ void ClayControlUnitUi::drawAdminSection(const ClockInfo& clockInfo, const Debug
 }
 
 
-void ClayControlUnitUi::draw(const DisplayInfo& displayInfo, const ClockInfo& clockInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo, const DebuggerInfo& debuggerInfo) {
+void ClayControlUnitUi::draw(const DisplayInfo& displayInfo, const ClockInfo& clockInfo, const KeypadInfo& keypadInfo, const ValveGroupInfo& valveGroupInfo, const MoistureInfo& moistureInfo, const DebuggerInfo& debuggerInfo) {
 	if(WindowShouldClose()) {
 		Clay_Raylib_Close();
 		return;
@@ -110,7 +110,7 @@ void ClayControlUnitUi::draw(const DisplayInfo& displayInfo, const ClockInfo& cl
 			},
 			.backgroundColor = BG_COLOR,
 	}) {
-		createControlUnit(displayInfo, valveGroupInfo, moistureInfo);
+		createControlUnit(displayInfo, keypadInfo, valveGroupInfo, moistureInfo);
 		drawAdminSection(clockInfo, debuggerInfo);
 	}
 
@@ -120,24 +120,4 @@ void ClayControlUnitUi::draw(const DisplayInfo& displayInfo, const ClockInfo& cl
 	ClearBackground(BLACK);
 	Clay_Raylib_Render(renderCommands, fonts);
 	EndDrawing();
-}
-
-bool ClayControlUnitUi::getCancelState() {
-	return buttons.getCancelState();
-}
-
-bool ClayControlUnitUi::getDownState() {
-	return buttons.getDownState();
-}
-
-bool ClayControlUnitUi::getUpState() {
-	return buttons.getUpState();
-}
-
-bool ClayControlUnitUi::getConfirmState() {
-	return buttons.getConfirmState();
-}
-
-bool ClayControlUnitUi::getGeneralState() const {
-	return buttons.getGeneralState();
 }

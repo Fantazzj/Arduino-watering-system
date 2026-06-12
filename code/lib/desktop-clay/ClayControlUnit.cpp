@@ -2,8 +2,8 @@
 
 #include <chrono>
 
-ClayControlUnit::ClayControlUnit(ClayDisplay& display, ClayClock& clock, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayMoisture& moisture, ClayDebugger& debugger) :
-	display{display}, clock{clock}, valveGroup{valveGroup}, mainSwitch{mainSwitch}, moisture{moisture}, debugger{debugger} {
+ClayControlUnit::ClayControlUnit(ClayDisplay& display, ClayClock& clock, ClayKeypad& keypad, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayMoisture& moisture, ClayDebugger& debugger) :
+	display{display}, clock{clock}, keypad{keypad}, valveGroup{valveGroup}, mainSwitch{mainSwitch}, moisture{moisture}, debugger{debugger} {
 	clockInfo.increaseOneDay = increaseOneDay;
 	clockInfo.decreaseOneDay = decreaseOneDay;
 	clockInfo.increaseOneMonth = increaseOneMonth;
@@ -15,6 +15,12 @@ ClayControlUnit::ClayControlUnit(ClayDisplay& display, ClayClock& clock, ClayVal
 	clockInfo.increaseOneMinute = increaseOneMinute;
 	clockInfo.decreaseOneMinute = decreaseOneMinute;
 	clockInfo.args = reinterpret_cast<intptr_t>(&clock);
+
+	keypadInfo.cancelHandler = pressCancel;
+	keypadInfo.downHandler = pressDown;
+	keypadInfo.upHandler = pressUp;
+	keypadInfo.confirmHandler = pressConfirm;
+	keypadInfo.args = reinterpret_cast<intptr_t>(&keypad);
 
 	moistureInfo.handler[0] = setMoisture00;
 	moistureInfo.handler[1] = setMoisture10;
@@ -50,27 +56,7 @@ void ClayControlUnit::draw() {
 	debuggerInfo.text = debugger.getText().data();
 	debuggerInfo.len = debugger.getText().length();
 
-	ui.draw(displayInfo, clockInfo, valveGroupInfo, moistureInfo, debuggerInfo);
-}
-
-bool ClayControlUnit::getCancelState() {
-	return ui.getCancelState();
-}
-
-bool ClayControlUnit::getDownState() {
-	return ui.getDownState();
-}
-
-bool ClayControlUnit::getUpState() {
-	return ui.getUpState();
-}
-
-bool ClayControlUnit::getConfirmState() {
-	return ui.getConfirmState();
-}
-
-bool ClayControlUnit::getGeneralState() const {
-	return ui.getGeneralState();
+	ui.draw(displayInfo, clockInfo, keypadInfo, valveGroupInfo, moistureInfo, debuggerInfo);
 }
 
 void ClayControlUnit::increaseOneDay(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
@@ -191,4 +177,25 @@ void ClayControlUnit::setMoisture90(Clay_ElementId, Clay_PointerData pointerData
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
 	reinterpret_cast<ClayMoisture*>(args)->setMoisture(90);
+}
+
+void ClayControlUnit::pressCancel(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayKeypad*>(args)->setCancel(true);
+}
+void ClayControlUnit::pressDown(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayKeypad*>(args)->setDown(true);
+}
+void ClayControlUnit::pressUp(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayKeypad*>(args)->setUp(true);
+}
+void ClayControlUnit::pressConfirm(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
+	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
+		return;
+	reinterpret_cast<ClayKeypad*>(args)->setConfirm(true);
 }

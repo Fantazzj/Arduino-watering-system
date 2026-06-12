@@ -2,22 +2,25 @@
 #define CLAYKEYPAD_HPP
 
 #include "../core/Keypad.hpp"
-#include "ClayControlUnit.hpp"
 
 class ClayKeypad final : public Keypad {
-private:
-	ClayControlUnit* w;
-
 public:
 	explicit ClayKeypad();
-	void begin(ClayControlUnit* w);
 	bool cancel() override;
 	bool down() override;
 	bool up() override;
 	bool confirm() override;
 	bool generalPressed() override;
+	void setCancel(bool state);
+	void setDown(bool state);
+	void setUp(bool state);
+	void setConfirm(bool state);
 
-protected:
+private:
+	bool cancelState;
+	bool downState;
+	bool upState;
+	bool confirmState;
 };
 
 

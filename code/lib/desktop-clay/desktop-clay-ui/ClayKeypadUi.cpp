@@ -3,49 +3,9 @@
 using namespace std;
 
 ClayKeypadUi::ClayKeypadUi(const uint16_t textId) :
-	cancelState(false),
-	downState(false),
-	upState(false),
-	confirmState(false),
 	textConfig{.textColor = TEXT_COLOR, .fontId = textId, .fontSize = TEXT_SIZE} {}
 
-void ClayKeypadUi::updateVariable(Clay_ElementId, const Clay_PointerData pointerData, const intptr_t args) {
-	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
-		return;
-
-	const auto clickVariable = reinterpret_cast<bool*>(args);
-	*clickVariable = true;
-}
-
-bool ClayKeypadUi::getCancelState() {
-	const bool state = cancelState;
-	cancelState = false;
-	return state;
-}
-
-bool ClayKeypadUi::getDownState() {
-	const bool state = downState;
-	downState = false;
-	return state;
-}
-
-bool ClayKeypadUi::getUpState() {
-	const bool state = upState;
-	upState = false;
-	return state;
-}
-
-bool ClayKeypadUi::getConfirmState() {
-	const bool state = confirmState;
-	confirmState = false;
-	return state;
-}
-
-bool ClayKeypadUi::getGeneralState() const {
-	return cancelState || downState || upState || confirmState;
-}
-
-void ClayKeypadUi::draw() const {
+void ClayKeypadUi::draw(const KeypadInfo& info) const {
 	CLAY({
 			.id = CLAY_ID("Buttons"),
 			.layout = {
@@ -61,14 +21,14 @@ void ClayKeypadUi::draw() const {
 			.backgroundColor = BG_COLOR,
 			.cornerRadius = {5, 5, 5, 5},
 	}) {
-		createButton(CANCEL_STRING, &cancelState);
-		createButton(DOWN_STRING, &downState);
-		createButton(UP_STRING, &upState);
-		createButton(CONFIRM_STRING, &confirmState);
+		drawButton(CANCEL_STRING, info.cancelHandler, info.args);
+		drawButton(DOWN_STRING, info.downHandler, info.args);
+		drawButton(UP_STRING, info.upHandler, info.args);
+		drawButton(CONFIRM_STRING, info.confirmHandler, info.args);
 	}
 }
 
-void ClayKeypadUi::createButton(const string_view& name, const bool* clickVariable) const {
+void ClayKeypadUi::drawButton(const string_view& name, const ClayHandler_t handler, const intptr_t args) const {
 	const Clay_String buttonName = {
 			.length = static_cast<int32_t>(name.length()),
 			.chars = name.data(),
@@ -85,7 +45,7 @@ void ClayKeypadUi::createButton(const string_view& name, const bool* clickVariab
 			.backgroundColor = BUTTONS_COLOR,
 			.cornerRadius = {10, 10, 10, 10},
 	}) {
-		Clay_OnHover(updateVariable, reinterpret_cast<intptr_t>(clickVariable));
+		Clay_OnHover(handler, args);
 		CLAY_TEXT(buttonName, CLAY_TEXT_CONFIG(textConfig));
 	}
 }

@@ -1,29 +1,56 @@
 #include "ClayKeypad.hpp"
 
-ClayKeypad::ClayKeypad() {
-	w = nullptr;
-};
-
-void ClayKeypad::begin(ClayControlUnit* w) {
-	this->w = w;
-}
+ClayKeypad::ClayKeypad() :
+	cancelState{false}, downState{false}, upState{false}, confirmState{false} {}
 
 bool ClayKeypad::cancel() {
-	return w->getCancelState();
+	if(cancelState) {
+		cancelState = false;
+		return true;
+	}
+	return false;
 }
 
 bool ClayKeypad::down() {
-	return w->getDownState();
+	if(downState) {
+		downState = false;
+		return true;
+	}
+	return false;
 }
 
 bool ClayKeypad::up() {
-	return w->getUpState();
+	if(upState) {
+		upState = false;
+		return true;
+	}
+	return false;
 }
 
 bool ClayKeypad::confirm() {
-	return w->getConfirmState();
+	if(confirmState) {
+		confirmState = false;
+		return true;
+	}
+	return false;
 }
 
 bool ClayKeypad::generalPressed() {
-	return w->getGeneralState();
+	return cancelState || downState || upState || confirmState;
+}
+
+void ClayKeypad::setCancel(const bool state) {
+	cancelState = state;
+}
+
+void ClayKeypad::setDown(const bool state) {
+	downState = state;
+}
+
+void ClayKeypad::setUp(const bool state) {
+	upState = state;
+}
+
+void ClayKeypad::setConfirm(const bool state) {
+	confirmState = state;
 }
