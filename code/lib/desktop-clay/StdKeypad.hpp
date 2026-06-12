@@ -3,9 +3,9 @@
 
 #include "../core/Keypad.hpp"
 
-class ClayKeypad final : public Keypad {
+class StdKeypad final : public Keypad {
 public:
-	explicit ClayKeypad();
+	explicit StdKeypad();
 	bool cancel() override;
 	bool down() override;
 	bool up() override;

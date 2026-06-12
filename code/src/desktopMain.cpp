@@ -1,15 +1,15 @@
 #include "../lib/core/AutoCycle.hpp"
 #include "../lib/core/PageSelector.hpp"
-#include "../lib/desktop-clay/ClayClock.hpp"
 #include "../lib/desktop-clay/ClayControlUnit.hpp"
-#include "../lib/desktop-clay/ClayDebugger.hpp"
-#include "../lib/desktop-clay/ClayDisplay.hpp"
-#include "../lib/desktop-clay/ClayKeypad.hpp"
-#include "../lib/desktop-clay/ClayMainSwitch.hpp"
-#include "../lib/desktop-clay/ClayMemory.hpp"
-#include "../lib/desktop-clay/ClayMoisture.hpp"
-#include "../lib/desktop-clay/ClayTimer.hpp"
 #include "../lib/desktop-clay/ClayValveGroup.hpp"
+#include "../lib/desktop-clay/StdClock.hpp"
+#include "../lib/desktop-clay/StdDebugger.hpp"
+#include "../lib/desktop-clay/StdDisplay.hpp"
+#include "../lib/desktop-clay/StdKeypad.hpp"
+#include "../lib/desktop-clay/StdMainSwitch.hpp"
+#include "../lib/desktop-clay/StdMemory.hpp"
+#include "../lib/desktop-clay/StdMoisture.hpp"
+#include "../lib/desktop-clay/StdTimer.hpp"
 
 #include <chrono>
 #include <thread>
@@ -18,15 +18,15 @@ using std::thread;
 using std::chrono::microseconds;
 using std::this_thread::sleep_for;
 
-ClayKeypad myKeypad;
-ClayDisplay myDisplay;
-ClayClock myClock;
+StdKeypad myKeypad;
+StdDisplay myDisplay;
+StdClock myClock;
 ClayValveGroup myValveGroup(myClock);
-ClayMainSwitch myMainSwitch;
-ClayMemory myMemory("./memory.bin");
-ClayMoisture myMoisture;
-ClayDebugger myDebugger;
-ClayTimer myTimer;
+StdMainSwitch myMainSwitch;
+StdMemory myMemory("./memory.bin");
+StdMoisture myMoisture;
+StdDebugger myDebugger;
+StdTimer myTimer;
 
 AutoCycle autoCycle(myClock, myValveGroup, myMainSwitch, myMoisture, myTimer, myDebugger);
 PageSelector pageSelector(myKeypad, myDisplay, myClock, myValveGroup, myMainSwitch, myMemory, myTimer, myDebugger, autoCycle);

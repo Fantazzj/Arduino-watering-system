@@ -5,7 +5,7 @@
 #include "ClayControlUnit.hpp"
 #include <fstream>
 
-class ClayMemory final : public Memory {
+class StdMemory final : public Memory {
 private:
 	std::string fileName;
 	const std::ios::openmode IN_FLAGS = std::ios::in | std::ios::binary;
@@ -13,7 +13,7 @@ private:
 	static constexpr int8_t MEMORY_SIZE = 2 * VALVE_NUM * sizeof(uint8_t) + 3 * sizeof(uint8_t);
 
 public:
-	explicit ClayMemory(const std::string& fileName);
+	explicit StdMemory(const std::string& fileName);
 	void saveEtvMinOn(uint8_t num, uint8_t minOn) override;
 	uint8_t readEtvMinOn(uint8_t num) override;
 	void saveEtvDays(uint8_t num, uint8_t days) override;

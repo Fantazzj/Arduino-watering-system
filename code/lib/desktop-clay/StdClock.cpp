@@ -1,11 +1,11 @@
-#include "ClayClock.hpp"
+#include "StdClock.hpp"
 #include <chrono>
 
 using namespace std::chrono;
 
-ClayClock::ClayClock() : dateTime{system_clock::now()} {}
+StdClock::StdClock() : dateTime{system_clock::now()} {}
 
-MyDateTime ClayClock::getDateTime() {
+MyDateTime StdClock::getDateTime() {
 	const auto dateTimeDays = floor<days>(dateTime);
 	const year_month_day date{dateTimeDays};
 	const year_month_weekday weekday{dateTimeDays};
@@ -18,7 +18,7 @@ MyDateTime ClayClock::getDateTime() {
 	return myDateTime;
 }
 
-void ClayClock::setDateTime(const MyDateTime myDateTime) {
+void StdClock::setDateTime(const MyDateTime myDateTime) {
 	const year_month_day date_spec{
 			year{myDateTime.date.year},
 			month{myDateTime.date.mon},
@@ -32,47 +32,47 @@ void ClayClock::setDateTime(const MyDateTime myDateTime) {
 	dateTime = sys_days{date_spec} + time_spec.to_duration();
 }
 
-void ClayClock::increaseOneHour() {
+void StdClock::increaseOneHour() {
 	dateTime += hours(1);
 }
 
-void ClayClock::decreaseOneHour() {
+void StdClock::decreaseOneHour() {
 	dateTime -= hours(1);
 }
 
-void ClayClock::increaseOneMinute() {
+void StdClock::increaseOneMinute() {
 	dateTime += minutes(1);
 }
 
-void ClayClock::decreaseOneMinute() {
+void StdClock::decreaseOneMinute() {
 	dateTime -= minutes(1);
 }
 
-void ClayClock::increaseOneDay() {
+void StdClock::increaseOneDay() {
 	dateTime += days(1);
 }
 
-void ClayClock::decreaseOneDay() {
+void StdClock::decreaseOneDay() {
 	dateTime -= days(1);
 }
 
-void ClayClock::increaseOneMonth() {
+void StdClock::increaseOneMonth() {
 	dateTime += months(1);
 }
 
-void ClayClock::decreaseOneMonth() {
+void StdClock::decreaseOneMonth() {
 	dateTime -= months(1);
 }
 
-void ClayClock::increaseOneYear() {
+void StdClock::increaseOneYear() {
 	dateTime += years(1);
 }
 
-void ClayClock::decreaseOneYear() {
+void StdClock::decreaseOneYear() {
 	dateTime -= years(1);
 }
 
-std::string ClayClock::getDayString() const {
+std::string StdClock::getDayString() const {
 	const auto dateTimeDays = floor<days>(dateTime);
 	const year_month_day date{dateTimeDays};
 
@@ -84,7 +84,7 @@ std::string ClayClock::getDayString() const {
 	return string;
 }
 
-std::string ClayClock::getMonthString() const {
+std::string StdClock::getMonthString() const {
 	const auto dateTimeDays = floor<days>(dateTime);
 	const year_month_day date{dateTimeDays};
 
@@ -96,14 +96,14 @@ std::string ClayClock::getMonthString() const {
 	return string;
 }
 
-std::string ClayClock::getYearString() const {
+std::string StdClock::getYearString() const {
 	const auto dateTimeDays = floor<days>(dateTime);
 	const year_month_day date{dateTimeDays};
 
 	return std::to_string(static_cast<int>(date.year()));
 }
 
-std::string ClayClock::getHoursString() const {
+std::string StdClock::getHoursString() const {
 	const auto dateTimeDays = floor<days>(dateTime);
 	const hh_mm_ss time{floor<milliseconds>(dateTime - dateTimeDays)};
 
@@ -115,7 +115,7 @@ std::string ClayClock::getHoursString() const {
 	return string;
 }
 
-std::string ClayClock::getMinutesString() const {
+std::string StdClock::getMinutesString() const {
 	const auto dateTimeDays = floor<days>(dateTime);
 	const hh_mm_ss time{floor<milliseconds>(dateTime - dateTimeDays)};
 

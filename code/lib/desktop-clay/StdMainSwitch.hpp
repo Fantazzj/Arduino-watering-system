@@ -3,9 +3,9 @@
 
 #include "../core/MainSwitch.hpp"
 
-class ClayMainSwitch final : public MainSwitch {
+class StdMainSwitch final : public MainSwitch {
 public:
-	explicit ClayMainSwitch();
+	explicit StdMainSwitch();
 	void turnOn() override;
 	void turnOff() override;
 	[[nodiscard]] bool getState() const;

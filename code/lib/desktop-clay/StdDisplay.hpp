@@ -4,11 +4,11 @@
 #include "../core/UnitDisplay.hpp"
 #include <string>
 
-class ClayDisplay final : public UnitDisplay {
+class StdDisplay final : public UnitDisplay {
 	using string = std::string;
 
 public:
-	explicit ClayDisplay();
+	explicit StdDisplay();
 	void printSimpleText(const char text[]) override;
 	void printData(const char text1[], int8_t data, const char text2[]) override;
 	void printData(const char text1[], int8_t data1, const char text2[], int8_t data2, const char text3[]) override;

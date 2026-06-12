@@ -1,35 +1,35 @@
 #ifndef CLAYCONTROLUNIT_HPP
 #define CLAYCONTROLUNIT_HPP
 
-#include "ClayClock.hpp"
-#include "ClayDebugger.hpp"
-#include "ClayDisplay.hpp"
-#include "ClayKeypad.hpp"
-#include "ClayMainSwitch.hpp"
-#include "ClayMoisture.hpp"
 #include "ClayValveGroup.hpp"
+#include "StdClock.hpp"
+#include "StdDebugger.hpp"
+#include "StdDisplay.hpp"
+#include "StdKeypad.hpp"
+#include "StdMainSwitch.hpp"
+#include "StdMoisture.hpp"
 #include "desktop-clay-ui/ClayControlUnitUi.hpp"
 
 class ClayControlUnit {
 public:
-	explicit ClayControlUnit(ClayDisplay& display, ClayClock& clock, ClayKeypad& keypad, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayMoisture& moisture, ClayDebugger& debugger);
+	explicit ClayControlUnit(StdDisplay& display, StdClock& clock, StdKeypad& keypad, ClayValveGroup& valveGroup, StdMainSwitch& mainSwitch, StdMoisture& moisture, StdDebugger& debugger);
 	void draw();
 
 private:
 	ClayControlUnitUi ui;
 
-	ClayDisplay& display;
+	StdDisplay& display;
 	DisplayInfo displayInfo;
-	ClayClock& clock;
+	StdClock& clock;
 	ClockInfo clockInfo;
-	ClayKeypad& keypad;
+	StdKeypad& keypad;
 	KeypadInfo keypadInfo;
 	ClayValveGroup& valveGroup;
 	ValveGroupInfo valveGroupInfo;
-	ClayMainSwitch& mainSwitch;
-	ClayMoisture& moisture;
+	StdMainSwitch& mainSwitch;
+	StdMoisture& moisture;
 	MoistureInfo moistureInfo;
-	ClayDebugger& debugger;
+	StdDebugger& debugger;
 	DebuggerInfo debuggerInfo;
 
 	static void increaseOneDay(Clay_ElementId, Clay_PointerData pointerData, intptr_t args);

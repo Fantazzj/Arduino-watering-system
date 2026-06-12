@@ -5,11 +5,11 @@
 #include "ClayControlUnit.hpp"
 #include <chrono>
 
-class ClayTimer final : public Timer {
+class StdTimer final : public Timer {
 	using chronoTime = std::chrono::time_point<std::chrono::system_clock>;
 
 public:
-	explicit ClayTimer();
+	explicit StdTimer();
 	void wait(unsigned long t) override;
 	unsigned long millis() override;
 

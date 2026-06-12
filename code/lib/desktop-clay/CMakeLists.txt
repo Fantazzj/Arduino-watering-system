@@ -15,15 +15,15 @@ endif ()
 
 add_library(desktop-clay STATIC
         ClayControlUnit.cpp
-        ClayClock.cpp
-        ClayDisplay.cpp
-        ClayKeypad.cpp
-        ClayMainSwitch.cpp
-        ClayMoisture.cpp
-        ClayMemory.cpp
+        StdClock.cpp
+        StdDisplay.cpp
+        StdKeypad.cpp
+        StdMainSwitch.cpp
+        StdMoisture.cpp
+        StdMemory.cpp
         ClayValveGroup.cpp
-        ClayDebugger.cpp
-        ClayTimer.cpp
+        StdDebugger.cpp
+        StdTimer.cpp
 )
 
 add_library(desktop-clay-ui STATIC

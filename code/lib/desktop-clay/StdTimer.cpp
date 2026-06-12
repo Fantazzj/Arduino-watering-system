@@ -1,19 +1,19 @@
-#include "ClayTimer.hpp"
+#include "StdTimer.hpp"
 
 #include <thread>
 
 using namespace std::chrono;
 using namespace std::this_thread;
 
-ClayTimer::ClayTimer() {
+StdTimer::StdTimer() {
 	startTime = high_resolution_clock::now();
 };
 
-void ClayTimer::wait(const unsigned long t) {
+void StdTimer::wait(const unsigned long t) {
 	sleep_for(milliseconds(t));
 }
 
-unsigned long ClayTimer::millis() {
+unsigned long StdTimer::millis() {
 	const auto currentTime = high_resolution_clock::now();
 	return duration_cast<milliseconds>(currentTime - startTime).count();
 }

@@ -2,7 +2,7 @@
 
 #include <chrono>
 
-ClayControlUnit::ClayControlUnit(ClayDisplay& display, ClayClock& clock, ClayKeypad& keypad, ClayValveGroup& valveGroup, ClayMainSwitch& mainSwitch, ClayMoisture& moisture, ClayDebugger& debugger) :
+ClayControlUnit::ClayControlUnit(StdDisplay& display, StdClock& clock, StdKeypad& keypad, ClayValveGroup& valveGroup, StdMainSwitch& mainSwitch, StdMoisture& moisture, StdDebugger& debugger) :
 	display{display}, clock{clock}, keypad{keypad}, valveGroup{valveGroup}, mainSwitch{mainSwitch}, moisture{moisture}, debugger{debugger} {
 	clockInfo.increaseOneDay = increaseOneDay;
 	clockInfo.decreaseOneDay = decreaseOneDay;
@@ -62,140 +62,140 @@ void ClayControlUnit::draw() {
 void ClayControlUnit::increaseOneDay(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->increaseOneDay();
+	reinterpret_cast<StdClock*>(args)->increaseOneDay();
 }
 
 void ClayControlUnit::decreaseOneDay(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->decreaseOneDay();
+	reinterpret_cast<StdClock*>(args)->decreaseOneDay();
 }
 
 void ClayControlUnit::increaseOneMonth(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->increaseOneMonth();
+	reinterpret_cast<StdClock*>(args)->increaseOneMonth();
 }
 
 void ClayControlUnit::decreaseOneMonth(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->decreaseOneMonth();
+	reinterpret_cast<StdClock*>(args)->decreaseOneMonth();
 }
 
 void ClayControlUnit::increaseOneYear(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->increaseOneYear();
+	reinterpret_cast<StdClock*>(args)->increaseOneYear();
 }
 
 void ClayControlUnit::decreaseOneYear(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->decreaseOneYear();
+	reinterpret_cast<StdClock*>(args)->decreaseOneYear();
 }
 
 void ClayControlUnit::increaseOneHour(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->increaseOneHour();
+	reinterpret_cast<StdClock*>(args)->increaseOneHour();
 }
 
 void ClayControlUnit::decreaseOneHour(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->decreaseOneHour();
+	reinterpret_cast<StdClock*>(args)->decreaseOneHour();
 }
 
 void ClayControlUnit::increaseOneMinute(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->increaseOneMinute();
+	reinterpret_cast<StdClock*>(args)->increaseOneMinute();
 }
 
 void ClayControlUnit::decreaseOneMinute(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayClock*>(args)->decreaseOneMinute();
+	reinterpret_cast<StdClock*>(args)->decreaseOneMinute();
 }
 
 void ClayControlUnit::setMoisture00(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(0);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(0);
 }
 
 void ClayControlUnit::setMoisture10(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(10);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(10);
 }
 
 void ClayControlUnit::setMoisture20(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(20);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(20);
 }
 
 void ClayControlUnit::setMoisture30(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(30);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(30);
 }
 
 void ClayControlUnit::setMoisture40(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(40);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(40);
 }
 
 void ClayControlUnit::setMoisture50(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(50);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(50);
 }
 
 void ClayControlUnit::setMoisture60(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(60);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(60);
 }
 
 void ClayControlUnit::setMoisture70(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(70);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(70);
 }
 
 void ClayControlUnit::setMoisture80(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(80);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(80);
 }
 
 void ClayControlUnit::setMoisture90(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayMoisture*>(args)->setMoisture(90);
+	reinterpret_cast<StdMoisture*>(args)->setMoisture(90);
 }
 
 void ClayControlUnit::pressCancel(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayKeypad*>(args)->setCancel(true);
+	reinterpret_cast<StdKeypad*>(args)->setCancel(true);
 }
 void ClayControlUnit::pressDown(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayKeypad*>(args)->setDown(true);
+	reinterpret_cast<StdKeypad*>(args)->setDown(true);
 }
 void ClayControlUnit::pressUp(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayKeypad*>(args)->setUp(true);
+	reinterpret_cast<StdKeypad*>(args)->setUp(true);
 }
 void ClayControlUnit::pressConfirm(Clay_ElementId, Clay_PointerData pointerData, intptr_t args) {
 	if(pointerData.state != CLAY_POINTER_DATA_PRESSED_THIS_FRAME)
 		return;
-	reinterpret_cast<ClayKeypad*>(args)->setConfirm(true);
+	reinterpret_cast<StdKeypad*>(args)->setConfirm(true);
 }

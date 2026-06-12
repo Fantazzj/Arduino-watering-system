@@ -4,9 +4,9 @@
 #include "../core/Debugger.hpp"
 #include <string>
 
-class ClayDebugger final : public Debugger {
+class StdDebugger final : public Debugger {
 public:
-	explicit ClayDebugger();
+	explicit StdDebugger();
 	void print(const char* text) override;
 	void print(char c) override;
 	void print(int n) override;

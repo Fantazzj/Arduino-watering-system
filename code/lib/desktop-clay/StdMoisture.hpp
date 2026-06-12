@@ -3,9 +3,9 @@
 
 #include "../core/Moisture.hpp"
 
-class ClayMoisture final : public Moisture {
+class StdMoisture final : public Moisture {
 public:
-	explicit ClayMoisture();
+	explicit StdMoisture();
 	uint8_t getMoisture() override;
 	void setMoisture(uint8_t value);
 

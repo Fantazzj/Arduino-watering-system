@@ -1,9 +1,9 @@
-#include "ClayKeypad.hpp"
+#include "StdKeypad.hpp"
 
-ClayKeypad::ClayKeypad() :
+StdKeypad::StdKeypad() :
 	cancelState{false}, downState{false}, upState{false}, confirmState{false} {}
 
-bool ClayKeypad::cancel() {
+bool StdKeypad::cancel() {
 	if(cancelState) {
 		cancelState = false;
 		return true;
@@ -11,7 +11,7 @@ bool ClayKeypad::cancel() {
 	return false;
 }
 
-bool ClayKeypad::down() {
+bool StdKeypad::down() {
 	if(downState) {
 		downState = false;
 		return true;
@@ -19,7 +19,7 @@ bool ClayKeypad::down() {
 	return false;
 }
 
-bool ClayKeypad::up() {
+bool StdKeypad::up() {
 	if(upState) {
 		upState = false;
 		return true;
@@ -27,7 +27,7 @@ bool ClayKeypad::up() {
 	return false;
 }
 
-bool ClayKeypad::confirm() {
+bool StdKeypad::confirm() {
 	if(confirmState) {
 		confirmState = false;
 		return true;
@@ -35,22 +35,22 @@ bool ClayKeypad::confirm() {
 	return false;
 }
 
-bool ClayKeypad::generalPressed() {
+bool StdKeypad::generalPressed() {
 	return cancelState || downState || upState || confirmState;
 }
 
-void ClayKeypad::setCancel(const bool state) {
+void StdKeypad::setCancel(const bool state) {
 	cancelState = state;
 }
 
-void ClayKeypad::setDown(const bool state) {
+void StdKeypad::setDown(const bool state) {
 	downState = state;
 }
 
-void ClayKeypad::setUp(const bool state) {
+void StdKeypad::setUp(const bool state) {
 	upState = state;
 }
 
-void ClayKeypad::setConfirm(const bool state) {
+void StdKeypad::setConfirm(const bool state) {
 	confirmState = state;
 }

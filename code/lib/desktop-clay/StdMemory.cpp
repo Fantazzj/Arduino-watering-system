@@ -1,11 +1,11 @@
-#include "ClayMemory.hpp"
+#include "StdMemory.hpp"
 
 #include <filesystem>
 
 using namespace std;
 using namespace std::filesystem;
 
-ClayMemory::ClayMemory(const string& fileName) {
+StdMemory::StdMemory(const string& fileName) {
 	this->fileName = fileName;
 
 	if(exists(fileName) && file_size(fileName) == MEMORY_SIZE)
@@ -20,7 +20,7 @@ ClayMemory::ClayMemory(const string& fileName) {
 	out.close();
 }
 
-void ClayMemory::saveEtvMinOn(uint8_t num, uint8_t minOn) {
+void StdMemory::saveEtvMinOn(uint8_t num, uint8_t minOn) {
 	ifstream in(fileName, IN_FLAGS);
 
 	char memoryBuffer[MEMORY_SIZE];
@@ -35,7 +35,7 @@ void ClayMemory::saveEtvMinOn(uint8_t num, uint8_t minOn) {
 	out.close();
 }
 
-uint8_t ClayMemory::readEtvMinOn(const uint8_t num) {
+uint8_t StdMemory::readEtvMinOn(const uint8_t num) {
 	ifstream in(fileName, IN_FLAGS);
 
 	char memoryBuffer[MEMORY_SIZE];
@@ -46,7 +46,7 @@ uint8_t ClayMemory::readEtvMinOn(const uint8_t num) {
 	return memoryBuffer[num];
 }
 
-void ClayMemory::saveEtvDays(uint8_t num, uint8_t days) {
+void StdMemory::saveEtvDays(uint8_t num, uint8_t days) {
 	ifstream in(fileName, IN_FLAGS);
 
 	char memoryBuffer[MEMORY_SIZE];
@@ -61,7 +61,7 @@ void ClayMemory::saveEtvDays(uint8_t num, uint8_t days) {
 	out.close();
 }
 
-uint8_t ClayMemory::readEtvDays(const uint8_t num) {
+uint8_t StdMemory::readEtvDays(const uint8_t num) {
 	ifstream in(fileName, IN_FLAGS);
 
 	char memoryBuffer[MEMORY_SIZE];
@@ -72,7 +72,7 @@ uint8_t ClayMemory::readEtvDays(const uint8_t num) {
 	return memoryBuffer[num + VALVE_NUM];
 }
 
-void ClayMemory::saveStartTime(MyTime startTime) {
+void StdMemory::saveStartTime(MyTime startTime) {
 	ifstream in(fileName, IN_FLAGS);
 
 	char memoryBuffer[MEMORY_SIZE];
@@ -89,7 +89,7 @@ void ClayMemory::saveStartTime(MyTime startTime) {
 	out.close();
 }
 
-MyTime ClayMemory::readStartTime() {
+MyTime StdMemory::readStartTime() {
 	ifstream in(fileName, IN_FLAGS);
 
 	char memoryBuffer[MEMORY_SIZE];

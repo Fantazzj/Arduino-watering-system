@@ -5,12 +5,12 @@
 #include <chrono>
 #include <string>
 
-class ClayClock final : public Clock {
+class StdClock final : public Clock {
 	using chronoTime = std::chrono::time_point<std::chrono::system_clock>;
 	using chornoDuration = std::chrono::duration<intmax_t>;
 
 public:
-	explicit ClayClock();
+	explicit StdClock();
 	MyDateTime getDateTime() override;
 	void setDateTime(MyDateTime myDateTime) override;
 	void increaseOneHour();
